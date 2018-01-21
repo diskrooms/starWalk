@@ -1,17 +1,58 @@
 //app.js
+function login(){
+  // 登录
+  wx.login({
+    success: res => {
+      var code = res.code
+      wx.getUserInfo({
+        'withCredentials': true,
+        'success': function (info) {
+          // 发送 res.code 到后台换取 openId, sessionKey, unionId
+          wx.request({
+            url: 'https://sapi.51tui.vip/login/index',
+            data: {
+              'code': code,
+              'rawData': info.rawData,
+              'signature': info.signature,
+              'encryptedData': info.encryptedData,
+              'iv': info.iv
+            },
+            success: function (token) {
+              //console.log(token)
+              wx.setStorageSync('token', token)
+            }
+          })
+        }
+      })
+
+    }
+  })
+}
+
 App({
   onLaunch: function () {
     // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    //var logs = wx.getStorageSync('logs') || []
+    //logs.unshift(Date.now())
+    //wx.setStorageSync('logs', logs)
 
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+    wx.checkSession({
+      success: function () {
+        //session 未过期，并且在本生命周期一直有效
+        //检测token是否存在
+        var tokenInfo = wx.getStorageSync('token')
+        var token = tokenInfo.data
+        if(token == '' || token == null || token == undefined){
+          login()
+        }
+      },
+      fail: function () {
+        //登录态过期
+        // 登录
+        login()
       }
     })
+    
     // 获取用户信息
     wx.getSetting({
       success: res => {

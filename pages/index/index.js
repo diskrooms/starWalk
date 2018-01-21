@@ -7,7 +7,9 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    latitude:0,
+    longitude:0
   },
   //事件处理函数
   bindViewTap: function() {
@@ -16,6 +18,7 @@ Page({
     })
   },
   onLoad: function () {
+    //从小程序客户端获取用户信息
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -42,6 +45,49 @@ Page({
         }
       })
     }
+    //获取当前位置
+    wx.getLocation({
+      type: 'wgs84',
+      success: res=> {
+        //var latitude = res.latitude
+        //var longitude = res.longitude
+        //var speed = res.speed
+        //var accuracy = res.accuracy
+        this.setData({
+          latitude: res.latitude,
+          longitude: res.longitude
+        })
+        /*wx.openLocation({
+          latitude: res.latitude,
+          longitude: res.longitude,
+          scale: 28
+        })*/
+      }
+    })
+
+    //初始化WIFI模块
+    wx.startWifi({
+      success:function(res){
+        //获取WIFI信息
+        wx.getConnectedWifi({
+          success: function(res) {
+            wx.showToast({
+              title: res.wifi.BSSID+'',
+              icon: 'success',
+              duration: 2000
+            })
+          },
+          fail: res => {
+            wx.showToast({
+              title: res.errCode + '',
+              icon: 'success',
+              duration: 2000
+            })
+          }
+        })
+      }
+    })
+    
   },
   getUserInfo: function(e) {
     console.log(e)
