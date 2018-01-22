@@ -17,9 +17,9 @@ function login(){
               'encryptedData': info.encryptedData,
               'iv': info.iv
             },
-            success: function (token) {
-              //console.log(token)
-              wx.setStorageSync('token', token)
+            success: function (res) {
+              //console.log(res)
+              wx.setStorageSync('token', res.data.msg)
             }
           })
         }

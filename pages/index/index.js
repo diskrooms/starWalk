@@ -9,7 +9,9 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     latitude:0,
-    longitude:0
+    longitude:0,
+    current_wifi:'',
+    useless_wifi:[]
   },
   //事件处理函数
   bindViewTap: function() {
@@ -57,24 +59,57 @@ Page({
           latitude: res.latitude,
           longitude: res.longitude
         })
-        /*wx.openLocation({
-          latitude: res.latitude,
-          longitude: res.longitude,
-          scale: 28
+        //请求服务数据
+        /*wx.request({
+          url: 'https://sapi.51tui.vip/user/wifi',
+          data:{
+            latitude: res.latitude,
+            longitude: res.longitude,
+            token:wx.getStorageSync('token')
+          },
+          success:res=>{
+            if(res.status == -10){
+              wx.showToast({
+                title: '未查到此用户',
+              })
+            }
+            console.log(res)
+            var wifiList = res.data.result.data
+            //console.log(wifiList)
+            var markers = [];
+            for(var i in wifiList){
+              var marker = {};
+              marker.iconPath = '';
+              marker.id = 0;
+              marker.latitude = wifiList[i]['baidu_lat'];
+              marker.longitude = wifiList[i]['baidu_lon'];
+              marker.width = 5;
+              marker.height = 5;
+              markers.push(marker);
+            }
+            //设置wifi热点
+            this.setData({
+              markers: markers,
+            })
+          }
         })*/
+        
+        //wx.openLocation({
+        //  latitude: res.latitude,
+        //  longitude: res.longitude,
+        // scale: 28
+        //})
       }
     })
 
     //初始化WIFI模块
     wx.startWifi({
-      success:function(res){
-        //获取WIFI信息
+      success:res=>{
+        //获取当前已连接的WIFI信息
         wx.getConnectedWifi({
-          success: function(res) {
-            wx.showToast({
-              title: res.wifi.BSSID+'',
-              icon: 'success',
-              duration: 2000
+          success: res=> {
+            this.setData({
+              'current_wifi':res.wifi.SSID
             })
           },
           fail: res => {
@@ -82,6 +117,14 @@ Page({
               title: res.errCode + '',
               icon: 'success',
               duration: 2000
+            })
+          }
+        })
+        //获取附近的WIFI信息
+        wx.getWifiList({
+          success:function(res){
+            wx.onGetWifiList(function(list){
+              console.log(list.wifiList)
             })
           }
         })
