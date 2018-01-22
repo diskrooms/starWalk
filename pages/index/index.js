@@ -11,7 +11,9 @@ Page({
     latitude:0,
     longitude:0,
     current_wifi:'',
-    useless_wifi:[]
+    useless_wifi:[],
+    connectCount:0,
+    connectPwdLists:['12345678','123456789','88888888']
   },
   //事件处理函数
   bindViewTap: function() {
@@ -120,14 +122,25 @@ Page({
             })
           }
         })
-        //获取附近的WIFI信息
+        //获取附近的WIFI信息 start
+        var that = this
         wx.getWifiList({
           success:function(res){
             wx.onGetWifiList(function(list){
-              console.log(list.wifiList)
+              //console.log(list.wifiList)
+              that.setData({
+                useless_wifi: list.wifiList
+              });
             })
           }
         })
+        //获取附近的WIFI信息 end
+        var max = this.data.connectPwdLists.length;
+        var connectCount = this.data.connectCount;
+        if (connectCount < max){
+          var pwd = this.data.connectPwdLists[connectCount]
+          this.connectWifi(pwd);
+        }
       }
     })
     
@@ -138,6 +151,25 @@ Page({
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    })
+  },
+  connectWifi(pwd){
+    var that = this;
+    wx.connectWifi({
+      SSID: 'Xiaomi_9B31_5G',
+      BSSID: '34:ce:00:2b:9b:33',
+      password: pwd,
+      success: function (res) {
+        console.log(res.errMsg)
+      },
+      fail:function(res){
+        var connectCount = that.data.connectCount + 1;
+        var pwd = this.data.connectPwdLists[connectCount];
+        that.connectWifi(pwd);
+        that.setData({
+          connectCount:connectCount
+        })
+      }
     })
   }
 })

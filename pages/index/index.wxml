@@ -14,9 +14,10 @@
     </view>
     <view class='userful-wifi'>
     </view>
-    <button>附近的WIFI</button>
-    <view class='userless-wifi' wx:for="{{useless_wifi}}">
-      {{item.message}}
+    <button class='useless-wifi-title'>附近的WIFI</button>
+    <view class='useless-wifi-content' wx:for="{{useless_wifi}}">
+      <text>{{item.SSID}}</text> / <text>{{item.secure}}</text> / <text>{{item.signalStrength}}</text>
     </view>
   </view>
 </view>
+
