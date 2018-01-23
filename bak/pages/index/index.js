@@ -13,7 +13,7 @@ Page({
     current_wifi:'',
     useless_wifi:[],
     connectCount:0,
-    connectPwdLists:['12345678','123456789','88888888']
+    connectPwdLists:['12345678','7x123456']
   },
   //事件处理函数
   bindViewTap: function() {
@@ -155,6 +155,7 @@ Page({
   },
   connectWifi(pwd){
     var that = this;
+    console.log(pwd)
     wx.connectWifi({
       SSID: 'Xiaomi_9B31_5G',
       BSSID: '34:ce:00:2b:9b:33',
@@ -164,11 +165,13 @@ Page({
       },
       fail:function(res){
         var connectCount = that.data.connectCount + 1;
-        var pwd = this.data.connectPwdLists[connectCount];
-        that.connectWifi(pwd);
-        that.setData({
-          connectCount:connectCount
-        })
+        var pwd = that.data.connectPwdLists[connectCount];
+        if(pwd != undefined && pwd !='' && pwd != null){
+          that.connectWifi(pwd);
+          that.setData({
+            connectCount:connectCount
+          })
+        }
       }
     })
   }
