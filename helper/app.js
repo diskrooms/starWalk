@@ -1,4 +1,5 @@
 //app.js
+var apiDomain = "api.51tui.vip";			//API主域名
 function login(){
   // 登录
   wx.login({

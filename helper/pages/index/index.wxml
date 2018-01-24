@@ -33,5 +33,5 @@
 </view>-->
 
 <view>
-  <button bingtap="">查看程序调试推送消息</button>
+  <button bingtap="purchase">调试推送消息</button>
 </view>

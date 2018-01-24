@@ -44,7 +44,7 @@ Page({
     }
   },
   getUserInfo: function(e) {
-    console.log(e)
+    //console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -54,9 +54,17 @@ Page({
   jumpToNewPage:function(e){
     //console.log(e)
     var id = e.currentTarget.id
-    console.log(id)
+    //console.log(id)
     wx.navigateTo({
       url: '../detail/detail?id='+id
+    })
+  },
+  purchase:function(e){
+    wx.request({
+      url: 'https://' + apiDomain +'/pay/small_buy',
+      data:{
+        title:'小程序推送一条'
+      }
     })
   }
 })
