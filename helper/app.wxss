@@ -1,0 +1,30 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+
+/* 公共样式*/
+.block{display: block;}
+.px-10{font-size: 10rpx;}
+.px-12{font-size: 12rpx;}
+.px-16{font-size: 16rpx;}
+.px-24{font-size: 24rpx;}
+.left{float:left}
+.right{float:right}
+.inline{display: inline;}
+.block{display:block}
+.flex{display: flex}
+.inline-block{display:inline-block}
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}

@@ -1,0 +1,37 @@
+<!--index.wxml-->
+<!--<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view>-->
+<view class='apis'>
+    <view class='list-title'><text class='list-title-text'>编程手册</text></view>
+    <view class="list-content">
+      <view bindtap='jumpToNewPage' id='php' class='inline-block list-item'>
+        <text class='api inline-block'>php</text><text class='block list-item-info'>中文手册</text>
+      </view>
+      <view bindtap='jumpToNewPage' id='java1.8' class='inline-block list-item'>
+        <text class='api inline-block'>java</text><text class='block list-item-info'>1.8 英文手册</text>
+      </view>
+      <view bindtap='jumpToNewPage' id='java1.6' class='inline-block list-item'>
+        <text class='api inline-block'>java</text><text class='block list-item-info'>1.6 中文手册</text>
+      </view>
+    </view>
+</view>
+
+<!--<view class="btn-area">
+  <navigator url="/page/navigate/navigate?title=navigate" hover-class="navigator-hover">跳转到新页面</navigator>
+  <navigator url="../../redirect/redirect/redirect?title=redirect" open-type="redirect" hover-class="other-navigator-hover">在当前页打开</navigator>
+  <navigator url="/page/index/index" open-type="switchTab" hover-class="other-navigator-hover">切换 Tab</navigator>
+</view>-->
+
+<view>
+  <button bingtap="">查看程序调试推送消息</button>
+</view>
