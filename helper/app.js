@@ -76,6 +76,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    apiDomain:'api.51tui.vip'
   }
 })

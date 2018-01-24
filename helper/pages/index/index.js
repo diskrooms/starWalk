@@ -61,10 +61,26 @@ Page({
   },
   purchase:function(e){
     wx.request({
-      url: 'https://' + apiDomain +'/pay/small_buy',
+      url: 'https://' + app.globalData.apiDomain + '/pay/small_buy',
       data:{
-        title:'小程序推送一条'
-      }
+        token:wx.getStorageSync('token'),
+        title:'购买单条推送',
+        desc:'购买单条推送'
+      },
+      success:function(res){
+        wx.requestPayment({
+          'timeStamp': res.data.timeStamp+'',
+          'nonceStr': res.data.nonceStr,
+          'package': res.data.package,
+          'signType': 'MD5',
+          'paySign': res.data.paySign,
+          'success': function (res) {
+          },
+          'fail': function (res) {
+          }
+        })
+      },
+
     })
   }
 })
