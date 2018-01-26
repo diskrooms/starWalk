@@ -1,6 +1,6 @@
 //app.js
 var apiDomain = "api.51tui.vip";			//API主域名
-function login(){
+function login(opt){
   // 登录
   wx.login({
     success: res => {
@@ -8,21 +8,56 @@ function login(){
       wx.getUserInfo({
         'withCredentials': true,
         'success': function (info) {
-          // 发送 res.code 到后台换取 openId, sessionKey, unionId
-          wx.request({
-            url: 'https://api.51tui.vip/user/small_login',
-            data: {
-              'code': code,
-              'rawData': info.rawData,
-              'signature': info.signature,
-              'encryptedData': info.encryptedData,
-              'iv': info.iv
-            },
-            success: function (res) {
-              //console.log(res)
-              wx.setStorageSync('token', res.data.msg)
+          var wechatGroupInfo = ''
+          //获取群ID
+          wx.showShareMenu({
+            withShareTicket: true, //要求小程序返回分享目标信息
+            success: function () {
+              //console.log(opt)
+              if (opt.scene == 1044) {
+                wx.getShareInfo({
+                  shareTicket: opt.shareTicket,
+                  complete(res) {
+                      wechatGroupInfo = res
+                      // 发送 res.code 到后台换取 openId, sessionKey, unionId
+                      wx.request({
+                        url: 'https://api.51tui.vip/user/small_login',
+                        data: {
+                          'code': code,
+                          'rawData': info.rawData,
+                          'signature': info.signature,
+                          'encryptedData': info.encryptedData,
+                          'iv': info.iv,
+                          'encryptedData_': wechatGroupInfo.encryptedData,
+                          'iv_': wechatGroupInfo.iv
+                        },
+                        success: function (res) {
+                          //console.log(res)
+                          wx.setStorageSync('token', res.data.msg)
+                        }
+                      })
+                  }
+                })
+              } else {
+                  // 发送 res.code 到后台换取 openId, sessionKey, unionId
+                  wx.request({
+                    url: 'https://api.51tui.vip/user/small_login',
+                    data: {
+                      'code': code,
+                      'rawData': info.rawData,
+                      'signature': info.signature,
+                      'encryptedData': info.encryptedData,
+                      'iv': info.iv
+                    },
+                    success: function (res) {
+                      //console.log(res)
+                      wx.setStorageSync('token', res.data.msg)
+                    }
+                  })
+              }
             }
           })
+          
         }
       })
 
@@ -31,26 +66,27 @@ function login(){
 }
 
 App({
-  onLaunch: function () {
+  onLaunch: function (opt) {
     // 展示本地存储能力
     //var logs = wx.getStorageSync('logs') || []
     //logs.unshift(Date.now())
     //wx.setStorageSync('logs', logs)
-
+    
     wx.checkSession({
       success: function () {
         //session 未过期，并且在本生命周期一直有效
         //检测token是否存在
         var tokenInfo = wx.getStorageSync('token')
         var token = tokenInfo.data
+        login(opt)
         if(token == '' || token == null || token == undefined){
-          login()
+          //login(opt)
         }
       },
       fail: function () {
         //登录态过期
         // 登录
-        login()
+        login(opt)
       }
     })
     
@@ -78,5 +114,22 @@ App({
   globalData: {
     userInfo: null,
     apiDomain:'api.51tui.vip'
-  }
+  },
+  /*onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      //console.log(res.target)
+    }
+    return {
+      title: '自定义转发标题',
+      path: '/pages/index/index',
+      success: function (res) {
+        // 转发成功
+        //console.log(app.globalData.userInfo)
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  }*/
 })

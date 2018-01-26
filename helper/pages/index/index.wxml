@@ -1,20 +1,7 @@
-<!--index.wxml-->
-<!--<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
-</view>-->
 <view class='apis'>
     <view class='list-title'><text class='list-title-text'>编程手册</text></view>
     <view class="list-content">
-      <view bindtap='jumpToNewPage' id='php' class='inline-block list-item'>
+      <!--<view bindtap='jumpToNewPage' id='php' class='inline-block list-item'>
         <text class='api inline-block'>php</text><text class='block list-item-info'>中文手册</text>
       </view>
       <view bindtap='jumpToNewPage' id='java1.8' class='inline-block list-item'>
@@ -22,15 +9,24 @@
       </view>
       <view bindtap='jumpToNewPage' id='java1.6' class='inline-block list-item'>
         <text class='api inline-block'>java</text><text class='block list-item-info'>1.6 中文手册</text>
-      </view>
+      </view>-->
+      <scroll-view scroll-x="true" class="list-content-scroll">
+        <view class="inline-block fa fa-angle-left"></view>
+        <block wx:for="{{code_languages}}" wx:for-item="code_language" wx:key="{{code_language.id}}">
+          <!--<view class="{{ip.isSelect?'ip_tab_item_s':'ip_tab_item_n'}}" bindtap="onIpItemClick" wx:key="{{ip.id}}" data-item="{{ip}}">
+            {{ip.title}}
+          </view>-->
+          <view bindtap='jumpToNewPage' id='{{code_language.id}}' class="inline-block list-item {{code_language.isSelect?'ip_tab_item_s':'ip_tab_item_n'}}">
+            <text class='api inline-block'>{{code_language.name}}</text><text class='block list-item-info'>{{code_language.info}}</text>
+          </view>
+        </block>
+        <view class="inline-block fa fa-angle-right"></view>
+      </scroll-view>
     </view>
 </view>
 
-<!--<view class="btn-area">
-  <navigator url="/page/navigate/navigate?title=navigate" hover-class="navigator-hover">跳转到新页面</navigator>
-  <navigator url="../../redirect/redirect/redirect?title=redirect" open-type="redirect" hover-class="other-navigator-hover">在当前页打开</navigator>
-  <navigator url="/page/index/index" open-type="switchTab" hover-class="other-navigator-hover">切换 Tab</navigator>
-</view>-->
+
+<video width="100%" height="300" src='http://video.51tui.vip/df5edcacccdf40589411221ce344a33f/ea679e3d24894a1f919778b4cdeaa16b-fff36e94716efc9d4f3b12162f78ecd0-sd.m3u8'></video>
 
 <view>
   <button bindtap="purchase">调试推送消息</button>

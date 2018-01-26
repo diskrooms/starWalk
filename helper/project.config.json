@@ -27,7 +27,14 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": []
+			"list": [
+				{
+					"id": -1,
+					"name": "测试模式",
+					"pathName": "pages/index/test",
+					"query": ""
+				}
+			]
 		}
 	}
 }

@@ -7,7 +7,15 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    code_languages:[
+      { 'id': 'php', 'name': 'php', 'info': '中文手册' },
+      { 'id': 'java1.8', 'name': 'java', 'info': '1.8英文手册' },
+      { 'id': 'java1.6', 'name': 'java', 'info': '1.6中文手册' }, 
+      { 'id': 'php', 'name': 'php', 'info': '中文手册' },
+      { 'id': 'java1.8', 'name': 'java', 'info': '1.8英文手册' },
+      { 'id': 'java1.6', 'name': 'java', 'info': '1.6中文手册' }
+    ]
   },
   //事件处理函数
   /*bindViewTap: function() {
@@ -42,6 +50,7 @@ Page({
         }
       })
     }
+    
   },
   getUserInfo: function(e) {
     //console.log(e)
@@ -82,5 +91,22 @@ Page({
       },
 
     })
-  }
+  },
+  /*onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      //console.log(res.target)
+    }
+    return {
+      title: '自定义转发标题',
+      path: '/pages/index/index',
+      success: function (res) {
+        // 转发成功
+        //console.log(app.globalData.userInfo)
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  }*/
 })

@@ -1,3 +1,4 @@
+@import './css/font-some.wxss';
 /**app.wxss**/
 .container {
   height: 100%;
