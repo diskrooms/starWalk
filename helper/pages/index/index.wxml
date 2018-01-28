@@ -25,8 +25,7 @@
     </view>
 </view>
 
-
-<video width="100%" height="300" src='http://video.51tui.vip/df5edcacccdf40589411221ce344a33f/ea679e3d24894a1f919778b4cdeaa16b-fff36e94716efc9d4f3b12162f78ecd0-sd.m3u8'></video>
+<!--<video width="100%" height="300" src='http://video.51tui.vip/df5edcacccdf40589411221ce344a33f/ea679e3d24894a1f919778b4cdeaa16b-fff36e94716efc9d4f3b12162f78ecd0-sd.m3u8'></video>-->
 
 <view>
   <button bindtap="purchase">调试推送消息</button>
