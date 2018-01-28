@@ -10,17 +10,17 @@
       <view bindtap='jumpToNewPage' id='java1.6' class='inline-block list-item'>
         <text class='api inline-block'>java</text><text class='block list-item-info'>1.6 中文手册</text>
       </view>-->
+      <view class="fa fa-arrows-h direction-tip"></view>
       <scroll-view scroll-x="true" class="list-content-scroll">
-        <view class="inline-block fa fa-angle-left"></view>
         <block wx:for="{{code_languages}}" wx:for-item="code_language" wx:key="{{code_language.id}}">
           <!--<view class="{{ip.isSelect?'ip_tab_item_s':'ip_tab_item_n'}}" bindtap="onIpItemClick" wx:key="{{ip.id}}" data-item="{{ip}}">
             {{ip.title}}
           </view>-->
-          <view bindtap='jumpToNewPage' id='{{code_language.id}}' class="inline-block list-item {{code_language.isSelect?'ip_tab_item_s':'ip_tab_item_n'}}">
-            <text class='api inline-block'>{{code_language.name}}</text><text class='block list-item-info'>{{code_language.info}}</text>
+          <view bindtap='jumpToNewPage' id='{{code_language.id}}' class="inline-block list-item {{code_language.name}}">
+            <image src="/images/{{code_language.name}}.png" class='api inline-block'></image><text class='block list-item-info'>{{code_language.info}}</text>
           </view>
         </block>
-        <view class="inline-block fa fa-angle-right"></view>
+        <!--<view class="fa fa-ellipsis-h"></view>-->
       </scroll-view>
     </view>
 </view>
