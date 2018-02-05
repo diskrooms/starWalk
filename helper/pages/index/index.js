@@ -12,9 +12,15 @@ Page({
       { 'id': 'php', 'name': 'php', 'info': '中文手册' },
       { 'id': 'java1.8', 'name': 'java', 'info': '1.8英文手册' },
       { 'id': 'java1.6', 'name': 'java', 'info': '1.6中文手册' }, 
-      { 'id': 'php', 'name': 'php', 'info': '中文手册' },
-      { 'id': 'java1.8', 'name': 'java', 'info': '1.8英文手册' },
-      { 'id': 'java1.6', 'name': 'java', 'info': '1.6中文手册' }
+      { 'id': 'mysql5.1', 'name': 'mysql', 'info': '5.1中文手册' },
+	  { 'id': 'mysql5.7', 'name': 'mysql', 'info': '5.7英文手册' },
+    ],
+    interview_skills: [
+      { 'id': 'php', 'name': 'PHP'},
+      { 'id': 'java', 'name': 'Java'},
+      { 'id': 'front', 'name': '前端'},
+      { 'id': 'ops', 'name': '运维' },
+      { 'id': 'python', 'name': 'Python' },
     ]
   },
   //事件处理函数

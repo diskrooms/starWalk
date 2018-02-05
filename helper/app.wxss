@@ -12,9 +12,14 @@
 
 /* 公共样式*/
 .block{display: block;}
+.px-8{font-size: 8rpx;}
 .px-10{font-size: 10rpx;}
 .px-12{font-size: 12rpx;}
+.px-14{font-size: 14rpx;}
 .px-16{font-size: 16rpx;}
+.px-18{font-size: 18rpx;}
+.px-20{font-size: 20rpx;}
+.px-22{font-size: 22rpx;}
 .px-24{font-size: 24rpx;}
 .left{float:left}
 .right{float:right}

@@ -17,7 +17,7 @@
             {{ip.title}}
           </view>-->
           <view bindtap='jumpToNewPage' id='{{code_language.id}}' class="inline-block list-item {{code_language.name}}">
-            <image src="/images/{{code_language.name}}.png" class='api inline-block'></image><text class='block list-item-info'>{{code_language.info}}</text>
+            <image src="/images/{{code_language.name}}.png" class='api inline-block'></image><text class='block list-item-info px-16'>{{code_language.info}}</text>
           </view>
         </block>
         <!--<view class="fa fa-ellipsis-h"></view>-->
@@ -27,6 +27,21 @@
 
 <!--<video width="100%" height="300" src='http://video.51tui.vip/df5edcacccdf40589411221ce344a33f/ea679e3d24894a1f919778b4cdeaa16b-fff36e94716efc9d4f3b12162f78ecd0-sd.m3u8'></video>-->
 
-<view>
+<!--<view>
   <button bindtap="purchase">调试推送消息</button>
+</view>-->
+
+<view class='apis'>
+    <view class='list-title'><text class='list-title-text'>面试宝典</text></view>
+    <view class="list-content">
+      <view class="direction-tip"></view>
+      <scroll-view scroll-x="true" class="list-content-scroll">
+        <block wx:for="{{interview_skills}}">
+          <view bindtap='jumpToNewPage' id='{{item.id}}' class="api inline-block list-item"><text class='block list-item-info px-22'>{{item.name}}</text>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
 </view>
+
+<button open-type="contact">联系客服</button>

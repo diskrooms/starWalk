@@ -24,12 +24,15 @@ Page({
           url = 'https://docs.51tui.vip/docs/';
           break;
         case 'java1.6':
-          url = 'https://docs.51tui.vip/html/zh_CN/api/'
+          url = 'https://docs.51tui.vip/html/zh_CN/api/';
+          break;
+		case 'mysql5.1':
+		  url = 'https://docs.51tui.vip/mysql5.1_zh_CN/';
           break;
         default:
           break;
       }
-      console.log(url)
+      //console.log(url)
       this.setData({
         src:url
       })

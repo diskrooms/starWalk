@@ -29,9 +29,9 @@
 			"current": -1,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "测试模式",
-					"pathName": "pages/index/test",
+					"pathName": "pages/detail/interview",
 					"query": ""
 				}
 			]
