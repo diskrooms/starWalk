@@ -37,9 +37,10 @@
       <view class="direction-tip"></view>
       <scroll-view scroll-x="true" class="list-content-scroll">
         <block wx:for="{{interview_skills}}">
-          <view bindtap='jumpToNewPage' id='{{item.id}}' class="api inline-block list-item"><text class='block list-item-info px-22'>{{item.name}}</text>
+          <view bindtap='jumpToNewPage2' id='{{item.id}}' class="api inline-block list-item"><text class='block list-item-info px-22'>{{item.name}}</text>
           </view>
         </block>
+        <view bindtap='instruction' class="api inline-block list-item"><text class='block list-item-info px-22'>说明</text></view>
       </scroll-view>
     </view>
 </view>

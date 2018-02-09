@@ -1,4 +1,5 @@
 @import './css/font-some.wxss';
+@import './wxParse/wxParse.wxss';
 /**app.wxss**/
 .container {
   height: 100%;
@@ -21,6 +22,7 @@
 .px-20{font-size: 20rpx;}
 .px-22{font-size: 22rpx;}
 .px-24{font-size: 24rpx;}
+.px-26{font-size: 26rpx;}
 .left{float:left}
 .right{float:right}
 .inline{display: inline;}

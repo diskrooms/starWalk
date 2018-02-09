@@ -1,10 +1,12 @@
 // pages/detail/interview.js
 var WxParse = require('../../wxParse/wxParse.js');
+const app = getApp()
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    src:'',       //原文出处
     nodes: [{
       name: 'code',
       attrs: {
@@ -22,7 +24,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-	/**
+    var id = options.id;
+	  /**
      * 初始化emoji设置
      */
     WxParse.emojisInit('[]', "/wxParse/emojis/", {
@@ -53,10 +56,11 @@ Page({
      */
     var that = this;
     wx.request({
-      url: 'https://api.51tui.vip/content/interview',
-      data:{'id':2},
+      url: app.globalData.apiDomain +'/smallContent/ivDetail',
+      data:{'id':id,'token':wx.getStorageSync('token')},
       success:res=>{
-        var article = res.data.content;
+        var article = res.data.msg.content;
+        this.setData({ src: res.data.msg.src})
         WxParse.wxParse('article', 'html', article, that, 5);
       }
     })

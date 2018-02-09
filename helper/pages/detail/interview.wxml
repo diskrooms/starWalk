@@ -1,7 +1,7 @@
 <!--pages/detail/interview.wxml-->
-<import src="../../wxParse/wxParse.wxml"/> 
+<import src="../../wxParse/wxParse.wxml"/>
 <view class="wxParse">
     <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
 </view>
 
-
+<view>原文出处:</view><text>{{src}}</text>

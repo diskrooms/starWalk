@@ -16,11 +16,11 @@ Page({
 	  { 'id': 'mysql5.7', 'name': 'mysql', 'info': '5.7英文手册' },
     ],
     interview_skills: [
-      { 'id': 'php', 'name': 'PHP'},
-      { 'id': 'java', 'name': 'Java'},
-      { 'id': 'front', 'name': '前端'},
-      { 'id': 'ops', 'name': '运维' },
-      { 'id': 'python', 'name': 'Python' },
+      { 'id': '1', 'name': 'PHP'},
+      { 'id': '2', 'name': 'Java'},
+      { 'id': '3', 'name': '前端'},
+      { 'id': '4', 'name': '运维' },
+      { 'id': '5', 'name': 'Python' },
     ]
   },
   //事件处理函数
@@ -71,12 +71,25 @@ Page({
     var id = e.currentTarget.id
     //console.log(id)
     wx.navigateTo({
-      url: '../detail/detail?id='+id
+      url: '/pages/detail/detail?id='+id
+    })
+  },
+  jumpToNewPage2: function (e) {
+    //console.log(e)
+    var id = e.currentTarget.id
+    //console.log(id)
+    wx.navigateTo({
+      url: '/pages/detail/ivList?id=' + id
+    })
+  },
+  instruction:function(){
+    wx.navigateTo({
+      url: '/pages/detail/instruction'
     })
   },
   purchase:function(e){
     wx.request({
-      url: 'https://' + app.globalData.apiDomain + '/pay/small_buy',
+      url: app.globalData.apiDomain + '/pay/small_buy',
       data:{
         token:wx.getStorageSync('token'),
         title:'购买单条推送',

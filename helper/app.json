@@ -4,7 +4,9 @@
     "pages/logs/logs",
     "pages/detail/detail",
     "pages/index/test",
-    "pages/detail/interview"
+    "pages/detail/interview",
+    "pages/detail/ivList",
+    "pages/detail/instruction"
   ],
   "window": {
     "backgroundTextStyle": "light",

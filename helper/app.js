@@ -1,5 +1,5 @@
 //app.js
-var apiDomain = "api.51tui.vip";			//API主域名
+var apiDomain = "https://api.51tui.vip";			//API主域名
 function login(opt){
   // 登录
   wx.login({
@@ -113,7 +113,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    apiDomain:'api.51tui.vip'
+    apiDomain:'https://api.51tui.vip'
   },
   /*onShareAppMessage: function (res) {
     if (res.from === 'button') {
