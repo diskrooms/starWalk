@@ -19,8 +19,8 @@ Page({
       { 'id': '1', 'name': 'PHP'},
       { 'id': '2', 'name': 'Java'},
       { 'id': '3', 'name': '前端'},
-      { 'id': '4', 'name': '运维' },
-      { 'id': '5', 'name': 'Python' },
+      { 'id': '4', 'name': 'Python' },
+      { 'id': '5', 'name': '运维' },
     ]
   },
   //事件处理函数
@@ -56,7 +56,9 @@ Page({
         }
       })
     }
-    
+    wx.request({
+      url: app.globalData.apiDomain+'/smallContent/index',
+    })
   },
   getUserInfo: function(e) {
     //console.log(e)
