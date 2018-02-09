@@ -1,3 +1,4 @@
 /* pages/detail/interview.wxss */
 text{word-break: break-all}
 .wxParse{margin:10rpx 15rpx}
+.src{margin:10rpx 15rpx;color:#666;}
