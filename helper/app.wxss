@@ -29,6 +29,8 @@
 .block{display:block}
 .flex{display: flex}
 .inline-block{display:inline-block}
+.show{display: auto;}
+.hide{display: none;}
 .clearfix:after {
   content: ".";
   display: block;

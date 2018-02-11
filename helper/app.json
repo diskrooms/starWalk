@@ -6,7 +6,8 @@
     "pages/index/test",
     "pages/detail/interview",
     "pages/detail/ivList",
-    "pages/detail/instruction"
+    "pages/detail/instruction",
+    "pages/detail/tool"
   ],
   "window": {
     "backgroundTextStyle": "light",

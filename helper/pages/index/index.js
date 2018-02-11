@@ -8,20 +8,13 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    code_languages:[
-      { 'id': 'php', 'name': 'php', 'info': '中文手册' },
-      { 'id': 'java1.8', 'name': 'java', 'info': '1.8英文手册' },
-      { 'id': 'java1.6', 'name': 'java', 'info': '1.6中文手册' }, 
-      { 'id': 'mysql5.1', 'name': 'mysql', 'info': '5.1中文手册' },
-	  { 'id': 'mysql5.7', 'name': 'mysql', 'info': '5.7英文手册' },
-    ],
-    interview_skills: [
-      { 'id': '1', 'name': 'PHP'},
-      { 'id': '2', 'name': 'Java'},
-      { 'id': '3', 'name': '前端'},
-      { 'id': '4', 'name': 'Python' },
-      { 'id': '5', 'name': '运维' },
-    ]
+    code_languages:[],
+    interview_skills: [],
+    remain_skills:[],
+    remain_skills_status:'hide',
+    tools:[],
+    remain_tools:[],
+    remain_tools_status:'hide'
   },
   //事件处理函数
   /*bindViewTap: function() {
@@ -58,6 +51,15 @@ Page({
     }
     wx.request({
       url: app.globalData.apiDomain+'/smallContent/index',
+      success:res=>{
+        //console.log(res);
+        this.setData({ 'code_languages': res.data.msg.books,
+                      'interview_skills':res.data.msg.ivs,
+                      'remain_skills':res.data.msg.remain_ivs,
+                      'tools':res.data.msg.tools,
+                      'remain_tools': res.data.msg.remain_tools,
+                    })
+      }
     })
   },
   getUserInfo: function(e) {
@@ -69,7 +71,7 @@ Page({
     })
   },
   jumpToNewPage:function(e){
-    //console.log(e)
+    //手册页
     var id = e.currentTarget.id
     //console.log(id)
     wx.navigateTo({
@@ -77,12 +79,25 @@ Page({
     })
   },
   jumpToNewPage2: function (e) {
-    //console.log(e)
+    //面试宝典列表页
     var id = e.currentTarget.id
     //console.log(id)
     wx.navigateTo({
       url: '/pages/detail/ivList?id=' + id
     })
+  },
+  jumpToNewPage3: function (e) {
+    //实用工具页
+    var id = e.currentTarget.id
+    //console.log(id)
+    wx.navigateTo({
+      url: '/pages/detail/tool?id=' + id
+    })
+  },
+  show_remain_tools:function(e){
+    var _status = this.data.remain_tools_status
+    var _status = _status == 'show' ? 'hide' : 'show'
+    this.setData({'remain_tools_status':_status})
   },
   instruction:function(){
     wx.navigateTo({

@@ -1,15 +1,6 @@
 <view class='apis'>
     <view class='list-title'><text class='list-title-text'>编程手册</text></view>
     <view class="list-content">
-      <!--<view bindtap='jumpToNewPage' id='php' class='inline-block list-item'>
-        <text class='api inline-block'>php</text><text class='block list-item-info'>中文手册</text>
-      </view>
-      <view bindtap='jumpToNewPage' id='java1.8' class='inline-block list-item'>
-        <text class='api inline-block'>java</text><text class='block list-item-info'>1.8 英文手册</text>
-      </view>
-      <view bindtap='jumpToNewPage' id='java1.6' class='inline-block list-item'>
-        <text class='api inline-block'>java</text><text class='block list-item-info'>1.6 中文手册</text>
-      </view>-->
       <view class="fa fa-arrows-h direction-tip"></view>
       <scroll-view scroll-x="true" class="list-content-scroll">
         <block wx:for="{{code_languages}}" wx:for-item="code_language" wx:key="{{code_language.id}}">
@@ -45,4 +36,24 @@
     </view>
 </view>
 
-<button open-type="contact">联系客服</button>
+<view class='apis'>
+    <view class='list-title'><text class='list-title-text'>实用工具</text></view>
+    <view class="list-content">
+      <view class="direction-tip"></view>
+      <scroll-view scroll-x="true" class="list-content-scroll">
+        <block wx:for="{{tools}}">
+          <view bindtap='jumpToNewPage3' id='{{item.id}}' class="api inline-block list-item"><text class='block list-item-info px-22'>{{item.name}}</text>
+          </view>
+        </block>
+        <view bindtap='show_remain_tools' class="api inline-block list-item"><text class='block list-item-info px-22'>...</text></view>
+      </scroll-view>
+
+      <view class="{{remain_tools_status}}">
+        <block wx:for="{{remain_tools}}">
+            <view bindtap='jumpToNewPage3' id='{{item.id}}' class="api inline-block list-item"><text class='block list-item-info px-22'>{{item.name}}</text>
+            </view>
+        </block>
+      </view>
+    </view>
+</view>
+<!--<button open-type="contact">联系客服</button>-->

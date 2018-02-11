@@ -1,0 +1,7 @@
+<!--pages/detail/tool.wxml-->
+<textarea placeholder="这里输入待加密的字符串"></textarea>
+<input placeholder="这是输入加密密码"></input>
+
+<button>转换</button>
+
+<textarea>这是输入待加密的字符串</textarea>
