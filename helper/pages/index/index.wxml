@@ -23,7 +23,7 @@
 </view>-->
 
 <view class='apis'>
-    <view class='list-title'><text class='list-title-text left'>面试宝典</text></view>
+    <view class='list-title'><text class='list-title-text left'>面试宝典</text><text bindtap='instruction' class='list-title-text-right right'>说明 ></text></view>
     <view class="list-content">
       <view class="direction-tip"></view>
       <scroll-view scroll-x="true" class="list-content-scroll">
@@ -31,8 +31,15 @@
           <view bindtap='jumpToNewPage2' id='{{item.id}}' class="api inline-block list-item"><text class='block list-item-info px-22'>{{item.name}}</text>
           </view>
         </block>
-        <view bindtap='instruction' class="api inline-block list-item"><text class='block list-item-info px-22'>说明</text></view>
+        <view bindtap='show_remain_skills' class="api inline-block list-item"><text class='block list-item-info px-22'>{{remain_skills_status_tips}}</text></view>
       </scroll-view>
+
+      <view class="{{remain_skills_status}} text-align-left">
+        <block wx:for="{{remain_skills}}">
+            <view bindtap='jumpToNewPage2' id='{{item.id}}' class="api inline-block list-item"><text class='block list-item-info px-22'>{{item.name}}</text>
+            </view>
+        </block>
+      </view>
     </view>
 </view>
 
@@ -40,17 +47,17 @@
     <view class='list-title'><text class='list-title-text left'>实用工具</text></view>
     <view class="list-content">
       <view class="direction-tip"></view>
-      <scroll-view scroll-x="true" class="list-content-scroll">
+      <view scroll-x="true" class="list-content-scroll">
         <block wx:for="{{tools}}">
-          <view bindtap='jumpToNewPage3' id='{{item.id}}' class="api inline-block list-item"><text class='block list-item-info px-22'>{{item.name}}</text>
+          <view bindtap='jumpToNewPage3' id='{{item.id}}' data-name='{{item.name}}' class="api inline-block list-item"><text class='block list-item-info px-22'>{{item.name}}</text>
           </view>
         </block>
-        <view bindtap='show_remain_tools' class="api inline-block list-item"><text class='block list-item-info px-22'>...</text></view>
-      </scroll-view>
+        <view bindtap='show_remain_tools' class="api inline-block list-item"><text class='block list-item-info px-22'>{{remain_tools_status_tips}}</text></view>
+      </view>
 
-      <view class="{{remain_tools_status}}">
+      <view class="{{remain_tools_status}} text-align-left">
         <block wx:for="{{remain_tools}}">
-            <view bindtap='jumpToNewPage3' id='{{item.id}}' class="api inline-block list-item"><text class='block list-item-info px-22'>{{item.name}}</text>
+            <view bindtap='jumpToNewPage3' id='{{item.id}}' data-name='{{item.name}}' class="api inline-block list-item"><text class='block list-item-info px-22'>{{item.name}}</text>
             </view>
         </block>
       </view>

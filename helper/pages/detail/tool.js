@@ -1,18 +1,24 @@
 // pages/detail/tool.js
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+      func_name:'',
+      data:'',
+      pwd:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    //console.log(options.name)
+    this.data.func_name = options.name;
+    
   },
 
   /**
@@ -62,5 +68,33 @@ Page({
    */
   onShareAppMessage: function () {
   
-  }
+  },
+
+  bindTextAreaBlur:function (e){
+    this.data.data = e.detail.value
+    //console.log(this.data.data)
+  },
+
+  calculator:function(){
+    var that = this;
+    setTimeout(function(){
+      if(that.data.data == '' || that.data.data == undefined || that.data.data == null){
+        wx.showToast({
+          title: '请输入待加密或者待哈希数据',
+          icon: 'none',
+          duration: 1000,
+          mask: true
+        })
+        return false;
+      }
+      wx.request({
+        url: app.globalData.apiDomain + '/smallContent/calculator',
+        data: { 'func_name': that.data.func_name, 'data': that.data.data, 'pwd':that.data.pwd },
+        success: res => {
+
+        }
+      })
+    }
+    ,100)
+  },
 })

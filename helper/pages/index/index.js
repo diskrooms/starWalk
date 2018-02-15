@@ -9,12 +9,15 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     code_languages:[],
+
     interview_skills: [],
     remain_skills:[],
     remain_skills_status:'hide',
+    remain_skills_status_tips:'展开',
     tools:[],
     remain_tools:[],
-    remain_tools_status:'hide'
+    remain_tools_status:'hide',
+    remain_tools_status_tips:'展开'
   },
   //事件处理函数
   /*bindViewTap: function() {
@@ -52,7 +55,7 @@ Page({
     wx.request({
       url: app.globalData.apiDomain+'/smallContent/index',
       success:res=>{
-        //console.log(res);
+        //console.log(res.data.msg.tools);
         this.setData({ 'code_languages': res.data.msg.books,
                       'interview_skills':res.data.msg.ivs,
                       'remain_skills':res.data.msg.remain_ivs,
@@ -89,15 +92,25 @@ Page({
   jumpToNewPage3: function (e) {
     //实用工具页
     var id = e.currentTarget.id
-    //console.log(id)
+    var name = e.currentTarget.dataset.name
+    //console.log(name)
     wx.navigateTo({
-      url: '/pages/detail/tool?id=' + id
+      url: '/pages/detail/tool?id=' + id + '&name=' + name
     })
   },
+  show_remain_skills: function (e) {
+    var _remain_skills_status = this.data.remain_skills_status
+    var _remain_skills_status = _remain_skills_status == 'show' ? 'hide' : 'show'
+    var _remain_skills_status_tips = _remain_skills_status == 'show' ? '收起' : '展开';
+    this.setData({ 'remain_skills_status': _remain_skills_status })
+    this.setData({ 'remain_skills_status_tips': _remain_skills_status_tips })
+  },
   show_remain_tools:function(e){
-    var _status = this.data.remain_tools_status
-    var _status = _status == 'show' ? 'hide' : 'show'
-    this.setData({'remain_tools_status':_status})
+    var _remain_tools_status = this.data.remain_tools_status
+    var _remain_tools_status = _remain_tools_status == 'show' ? 'hide' : 'show'
+    var _remain_tools_status_tips = _remain_tools_status == 'show' ? '收起' : '展开';
+    this.setData({ 'remain_tools_status': _remain_tools_status})
+    this.setData({ 'remain_tools_status_tips': _remain_tools_status_tips })
   },
   instruction:function(){
     wx.navigateTo({

@@ -33,6 +33,12 @@
 					"name": "测试模式",
 					"pathName": "pages/detail/interview",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "计算页",
+					"pathName": "pages/detail/tool",
+					"query": ""
 				}
 			]
 		}

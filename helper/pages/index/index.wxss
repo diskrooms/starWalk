@@ -26,7 +26,7 @@
   line-height: 80rpx;   /*设置文本居中*/
   background-color: #0096E6;
   color:#fff;
-  margin:0rpx 18rpx;
+  margin:5rpx 18rpx;
   padding: 20rpx;
   border-radius: 50%;
 }
@@ -42,17 +42,14 @@
     border-left: 12rpx solid #0096E6;
     padding: 20rpx 0rpx;
     font-size: 28rpx;
+    margin-left: 20rpx;
 }
 
-.list-title-text{
-  margin-left: 20rpx;
-}
+.list-title-text{margin-left: 20rpx;}
 
-.list-content{
-  text-align: center;
-  margin: 20rpx 0rpx;
-}
+.list-title-text-right{margin-right:20rpx;}
 
+.list-content{text-align: center;margin: 20rpx 0rpx;}
 
 .list-content .direction-tip{
   color:#0096E6;

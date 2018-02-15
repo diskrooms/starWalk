@@ -1,1 +1,7 @@
 /* pages/detail/tool.wxss */
+
+.textarea{border: 3rpx solid #ccc; vertical-align: middle}
+
+#container{padding: 20rpx;}
+#calculator{margin:10rpx 0rpx;background: #0096E6;color:#fff;padding: 20rpx 0rpx;}
+#result{height: 350rpx;line-height:350rpx;color:#999}

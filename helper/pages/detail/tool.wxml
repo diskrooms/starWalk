@@ -1,7 +1,6 @@
 <!--pages/detail/tool.wxml-->
-<textarea placeholder="这里输入待加密的字符串"></textarea>
-<input placeholder="这是输入加密密码"></input>
-
-<button>转换</button>
-
-<textarea>这是输入待加密的字符串</textarea>
+<view id="container">
+  <textarea bindblur="bindTextAreaBlur" placeholder="这里输入待哈希的字符串" class='textarea text-align-center' id='data'></textarea>
+  <view bindtap="calculator" class='text-align-center px-32' id='calculator'>计算哈希</view>
+  <view class='textarea text-align-center' id='result'>这里显示哈希后的结果</view>
+</view>
