@@ -7,7 +7,8 @@
     "pages/detail/interview",
     "pages/detail/ivList",
     "pages/detail/instruction",
-    "pages/detail/tool"
+    "pages/detail/tool",
+    "pages/detail/crypt"
   ],
   "window": {
     "backgroundTextStyle": "light",

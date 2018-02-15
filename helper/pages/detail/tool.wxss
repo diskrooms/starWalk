@@ -4,4 +4,4 @@
 
 #container{padding: 20rpx;}
 #calculator{margin:20rpx 0rpx;background: #0096E6;color:#fff;padding: 20rpx 0rpx;}
-#result{height: 350rpx;line-height:350rpx;color:#999}
+#result{width:100%;height: 100rpx;color:#999;text-align:center;padding: 150rpx 0rpx}
