@@ -89,14 +89,32 @@ Page({
       url: '/pages/detail/ivList?id=' + id
     })
   },
-  jumpToNewPage3: function (e) {
+  jumpToToolPage: function (e) {
     //实用工具页
     var id = e.currentTarget.id
     var name = e.currentTarget.dataset.name
+    var type = e.currentTarget.dataset.type
     //console.log(name)
+    switch(type){
+      case '0':
+        //哈希
+        var url = '/pages/detail/tool?id=' + id + '&name=' + name
+        break;
+      case '1':
+        //编码
+        var url = '/pages/detail/base?id=' + id + '&name=' + name
+        break;
+      case '3':
+        //加密
+        var url = '/pages/detail/crypt?id=' + id + '&name=' + name
+        break;
+      default:
+        break;
+    }
     wx.navigateTo({
-      url: '/pages/detail/tool?id=' + id + '&name=' + name
+      url: url
     })
+    
   },
   show_remain_skills: function (e) {
     var _remain_skills_status = this.data.remain_skills_status

@@ -49,7 +49,7 @@
       <view class="direction-tip"></view>
       <view scroll-x="true" class="list-content-scroll">
         <block wx:for="{{tools}}">
-          <view bindtap='jumpToNewPage3' id='{{item.id}}' data-name='{{item.name}}' class="api inline-block list-item"><text class='block list-item-info px-22'>{{item.name}}</text>
+          <view bindtap='jumpToToolPage' id='{{item.id}}' data-name='{{item.name}}' data-type='{{item.type}}' class="api inline-block list-item"><text class='block list-item-info px-22'>{{item.name}}</text>
           </view>
         </block>
         <view bindtap='show_remain_tools' class="api inline-block list-item"><text class='block list-item-info px-22'>{{remain_tools_status_tips}}</text></view>
@@ -57,7 +57,7 @@
 
       <view class="{{remain_tools_status}} text-align-left">
         <block wx:for="{{remain_tools}}">
-            <view bindtap='jumpToNewPage3' id='{{item.id}}' data-name='{{item.name}}' class="api inline-block list-item"><text class='block list-item-info px-22'>{{item.name}}</text>
+            <view bindtap='jumpToToolPage' id='{{item.id}}' data-name='{{item.name}}' data-type='{{item.type}}' class="api inline-block list-item"><text class='block list-item-info px-22'>{{item.name}}</text>
             </view>
         </block>
       </view>
