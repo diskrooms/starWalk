@@ -70,6 +70,20 @@ Page({
   
   },
 
+  copyResult(e){
+    wx.setClipboardData({
+      data: this.data.result,
+      success: function (res) {
+        wx.showToast({
+          title: '复制成功',
+          icon: 'success',
+          duration: 1000,
+          mask: true
+        })
+      }
+    })
+  },
+
   bindTextAreaBlur:function (e){
     this.data.data = e.detail.value
     //console.log(this.data.data)
