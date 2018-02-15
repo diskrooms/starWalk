@@ -1,7 +1,7 @@
 <view class='apis'>
-    <view class='list-title'><text class='list-title-text'>编程手册</text></view>
+    <view class='list-title'><text class='list-title-text left'>编程手册</text></view>
     <view class="list-content">
-      <view class="fa fa-arrows-h direction-tip"></view>
+      <!--<view class="fa fa-arrows-h direction-tip"></view>-->
       <scroll-view scroll-x="true" class="list-content-scroll">
         <block wx:for="{{code_languages}}" wx:for-item="code_language" wx:key="{{code_language.id}}">
           <!--<view class="{{ip.isSelect?'ip_tab_item_s':'ip_tab_item_n'}}" bindtap="onIpItemClick" wx:key="{{ip.id}}" data-item="{{ip}}">
@@ -23,7 +23,7 @@
 </view>-->
 
 <view class='apis'>
-    <view class='list-title'><text class='list-title-text'>面试宝典</text></view>
+    <view class='list-title'><text class='list-title-text left'>面试宝典</text></view>
     <view class="list-content">
       <view class="direction-tip"></view>
       <scroll-view scroll-x="true" class="list-content-scroll">
@@ -37,7 +37,7 @@
 </view>
 
 <view class='apis'>
-    <view class='list-title'><text class='list-title-text'>实用工具</text></view>
+    <view class='list-title'><text class='list-title-text left'>实用工具</text></view>
     <view class="list-content">
       <view class="direction-tip"></view>
       <scroll-view scroll-x="true" class="list-content-scroll">

@@ -38,14 +38,19 @@
 
 .list-title{
     text-align: center;
-    background-color: #0096E6;
-    color:#fff;
+    background-color: #fff;  /*#0096E6*/
+    border-left: 12rpx solid #0096E6;
     padding: 20rpx 0rpx;
     font-size: 28rpx;
 }
 
+.list-title-text{
+  margin-left: 20rpx;
+}
+
 .list-content{
   text-align: center;
+  margin: 20rpx 0rpx;
 }
 
 
