@@ -9,7 +9,8 @@ Page({
   data: {
       func_name:'',
       data:'',
-      pwd:''
+      pwd:'',
+      result:'这里显示哈希后的结果'
   },
 
   /**
@@ -18,7 +19,6 @@ Page({
   onLoad: function (options) {
     //console.log(options.name)
     this.data.func_name = options.name;
-    
   },
 
   /**
@@ -80,7 +80,7 @@ Page({
     setTimeout(function(){
       if(that.data.data == '' || that.data.data == undefined || that.data.data == null){
         wx.showToast({
-          title: '请输入待加密或者待哈希数据',
+          title: '请输入需要哈希的数据',
           icon: 'none',
           duration: 1000,
           mask: true
@@ -91,7 +91,7 @@ Page({
         url: app.globalData.apiDomain + '/smallContent/calculator',
         data: { 'func_name': that.data.func_name, 'data': that.data.data, 'pwd':that.data.pwd },
         success: res => {
-
+          that.setData({result:res.data.msg})
         }
       })
     }

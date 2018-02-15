@@ -1,6 +1,6 @@
 <!--pages/detail/tool.wxml-->
 <view id="container">
-  <textarea bindblur="bindTextAreaBlur" placeholder="这里输入待哈希的字符串" class='textarea text-align-center' id='data'></textarea>
+  <textarea bindblur="bindTextAreaBlur" placeholder="这里输入需要哈希的字符串" class='textarea text-align-center' id='data'></textarea>
   <view bindtap="calculator" class='text-align-center px-32' id='calculator'>计算哈希</view>
-  <view class='textarea text-align-center' id='result'>这里显示哈希后的结果</view>
+  <view class='textarea text-align-center' id='result'>{{result}}</view>
 </view>
