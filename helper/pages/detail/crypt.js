@@ -10,6 +10,7 @@ Page({
   data: {
     func_name:'',
     cipher: [],
+    index:0,
     result: '这是是加密后的字符串'
   },
 
@@ -74,5 +75,15 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  /**
+   * 切换加密类型
+   */
+  bindPickerChange:function(e){
+    //console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
   }
 })
