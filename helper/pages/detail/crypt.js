@@ -128,12 +128,22 @@ Page({
   encrypt:function(){
     var that = this
     setTimeout(function(){
-      console.log(that.data)
+      if (that.data.data == '' || that.data.data == undefined || that.data.data == null) {
+        wx.showToast({
+          title: '请输入需要待加密的数据',
+          icon: 'none',
+          duration: 1000,
+          mask: true
+        })
+        return false;
+      }
       wx.request({
-        url: app.globalData.apiDomain + '/smallContent/get_cipher_methods',
+        url: app.globalData.apiDomain + '/smallContent/encrypt',
         data: { 'data': that.data.data, 'encrypt': that.data.encrypt,
-        'key':that.data.key,'iv'：that.data.iv},
-        
+        'key':that.data.key,'iv':that.data.iv},
+        success:res=>{
+
+        }
       })
     },100)
   },
