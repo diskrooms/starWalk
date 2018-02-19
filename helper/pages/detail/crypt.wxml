@@ -8,13 +8,19 @@
           加密类型 {{cipher[index]}} <i class="fa fa-angle-down" aria-hidden="true"></i>
         </view>
       </picker>
-      <view class='input-container'><text class='input-title inline'>加密密钥</text><input type='text' class='input-content inline-block'/></view>
-      <view class='input-container'><text class='input-title inline'>加密向量</text><input type='text' class='input-content inline-block'/></view>
+      <view class='input-container'>
+        <text class='input-title inline'>加密密钥</text>
+        <input bindblur='setKey' type='text' class='input-content inline-block'/>
+      </view>
+      <view class='input-container'>
+        <text class='input-title inline'>加密向量</text>
+        <input bindblur='setIv' type='text' class='input-content inline-block'/>
+      </view>
     </view>
     <view class='inline-block' id='btn'>
         <view bindtap="encrypt" class='crypt-btn' id='encrypt'>加密</view>
         <view bindtap="decrypt" class='crypt-btn' id='decrypt'>解密</view>
     </view>
   </view>
-    <textarea bindtap="copyResult" class='textarea text-align-center px-32' id='result'>{{result}}</textarea>
+    <textarea bindtap="copyResult" class='textarea text-align-center px-32' id='result' placeholder="这里输入需要加密的字符串">{{result}}</textarea>
   </view>

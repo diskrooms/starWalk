@@ -85,8 +85,10 @@ Page({
   },
 
   bindTextAreaBlur:function (e){
-    this.data.data = e.detail.value
     //console.log(this.data.data)
+    this.setData({
+      data: e.detail.value
+    })
   },
 
   calculator:function(){
