@@ -88,7 +88,7 @@ Page({
   },
 
   /**
-   * 
+   * textarea blur事件
    */
   bindTextAreaBlur:function(e){
     this.setData({
@@ -97,7 +97,7 @@ Page({
   },
 
   /**
-   * 切换加密类型
+   * 切换加密类型事件
    */
   bindPickerChange:function(e){
     //console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -108,7 +108,7 @@ Page({
   },
 
   /**
-   * 
+   * 密钥控件事件
    */
   setKey:function(e){
     this.setData({
@@ -116,9 +116,21 @@ Page({
     })
   },
 
+  /**
+   * 向量控件事件
+   */
   setIv:function(e){
     this.setData({
       iv: e.detail.value
+    })
+  },
+
+  /**
+   * textarea blur事件
+   */
+  decryptBlur:function(e){
+    this.setData({
+      result: e.detail.value
     })
   },
 
@@ -142,9 +154,59 @@ Page({
         data: { 'data': that.data.data, 'encrypt': that.data.encrypt,
         'key':that.data.key,'iv':that.data.iv},
         success:res=>{
-
+            if(res.data.status == 1){
+              that.setData({
+                result:res.data.msg
+              })
+            } else {
+              wx.showToast({
+                title: '加解密失败',
+                icon: 'none',
+                duration: 500,
+                mask: true
+              })
+            }
         }
       })
     },100)
+  },
+
+  /**
+   * 解密
+   */
+  decrypt: function () {
+    var that = this
+    setTimeout(function () {
+      if (that.data.result == '' || that.data.result == undefined || that.data.result == null) {
+        wx.showToast({
+          title: '请输入需要待解密的数据',
+          icon: 'none',
+          duration: 1000,
+          mask: true
+        })
+        return false;
+      }
+      wx.request({
+        url: app.globalData.apiDomain + '/smallContent/decrypt',
+        data: {
+          'data': that.data.result, 'encrypt': that.data.encrypt,
+          'key': that.data.key, 'iv': that.data.iv
+        },
+        success: res => {
+          if (res.data.status == 1) {
+            that.setData({
+              data: res.data.msg
+            })
+          } else {
+            wx.showToast({
+              title: '加解密失败',
+              icon: 'none',
+              duration: 1000,
+              mask: true
+            })
+          }
+        }
+      })
+    }, 100)
   },
 })

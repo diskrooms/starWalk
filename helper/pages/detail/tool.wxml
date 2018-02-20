@@ -2,5 +2,5 @@
 <view id="container">
   <textarea bindblur="bindTextAreaBlur" placeholder="这里输入需要哈希的字符串" class='textarea text-align-center' id='data'></textarea>
   <view bindtap="calculator" class='text-align-center px-32' id='calculator'>计算哈希</view>
-  <view bindtap="copyResult" class='textarea text-align-center px-32' id='result'>{{result}}</view>
+  <view bindtap="copyResult" class='textarea text-align-center px-30' id='result'>{{result}}</view>
 </view>

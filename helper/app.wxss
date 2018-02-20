@@ -23,6 +23,9 @@
 .px-22{font-size: 22rpx;}
 .px-24{font-size: 24rpx;}
 .px-26{font-size: 26rpx;}
+.px-28{font-size: 28rpx;}
+.px-30{font-size: 30rpx;}
+.px-32{font-size: 32rpx;}
 .left{float:left}
 .right{float:right}
 .inline{display: inline;}

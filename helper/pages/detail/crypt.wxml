@@ -1,6 +1,6 @@
 <!--pages/detail/tool.wxml-->
   <view id="container">
-    <textarea bindblur="bindTextAreaBlur" placeholder="这里输入需要加密的字符串" class='textarea text-align-center' id='data'></textarea>
+    <textarea bindblur="bindTextAreaBlur" placeholder="这里输入需要加密的字符串" class='textarea text-align-center' id='data' value='{{data}}'></textarea>
   <view class='px-26' id='condition'>
     <view class='inline-block' id='key'>
      <picker bindchange="bindPickerChange" value="{{index}}" range="{{cipher}}">
@@ -22,5 +22,5 @@
         <view bindtap="decrypt" class='crypt-btn' id='decrypt'>解密</view>
     </view>
   </view>
-    <textarea bindtap="copyResult" class='textarea text-align-center px-32' id='result' placeholder="这里输入需要加密的字符串">{{result}}</textarea>
+    <textarea bindtap="copyResult" bindblur="decryptBlur" class='textarea text-align-center px-32' id='result' placeholder="这里输入需要解密的字符串" value='{{result}}'></textarea>
   </view>
