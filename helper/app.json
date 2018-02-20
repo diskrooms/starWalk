@@ -8,7 +8,8 @@
     "pages/detail/ivList",
     "pages/detail/instruction",
     "pages/detail/tool",
-    "pages/detail/crypt"
+    "pages/detail/crypt",
+    "pages/detail/base"
   ],
   "window": {
     "backgroundTextStyle": "light",

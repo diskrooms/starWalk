@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-      func_name:'',
+      func_name:'',   //哈希函数
       data:'',
       pwd:'',
       result:'这里显示哈希后的结果'

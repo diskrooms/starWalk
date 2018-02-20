@@ -23,7 +23,7 @@
 </view>-->
 
 <view class='apis'>
-    <view class='list-title'><text class='list-title-text left'>面试宝典</text><text bindtap='instruction' class='list-title-text-right right'>说明 ></text></view>
+    <view class='list-title'><text class='list-title-text left'>面试宝典</text><text bindtap='instruction' class='list-title-text-right right'>说明</text></view>
     <view class="list-content">
       <view class="direction-tip"></view>
       <scroll-view scroll-x="true" class="list-content-scroll">
@@ -55,7 +55,7 @@
         <view bindtap='show_remain_tools' class="api inline-block list-item"><text class='block list-item-info px-22'>{{remain_tools_status_tips}}</text></view>
       </view>
 
-      <view class="{{remain_tools_status}} text-align-left">
+      <view class="{{remain_tools_status}} text-align-left list-content-scroll">
         <block wx:for="{{remain_tools}}">
             <view bindtap='jumpToToolPage' id='{{item.id}}' data-name='{{item.name}}' data-type='{{item.type}}' class="api inline-block list-item"><text class='block list-item-info px-22'>{{item.name}}</text>
             </view>
