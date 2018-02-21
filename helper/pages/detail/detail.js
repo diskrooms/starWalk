@@ -26,8 +26,11 @@ Page({
         case 'java1.6':
           url = 'https://docs.51tui.vip/html/zh_CN/api/';
           break;
-		case 'mysql5.1':
-		  url = 'https://docs.51tui.vip/mysql5.1_zh_CN/';
+		    case 'mysql5.1':
+		      url = 'https://docs.51tui.vip/mysql5.1_zh_CN/';
+          break;
+        case 'mysql5.7':
+          url = 'https://docs.51tui.vip/mysql-5.7-en/';
           break;
         default:
           break;

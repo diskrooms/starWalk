@@ -5,14 +5,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    instruction:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var type = options.type
+    switch(type){
+      case 'iv':
+        this.setData({ 'instruction':'所有的面试宝典试题都转载自网络，并会在详情页上标明出处。如果您觉得该转载对您的权益造成了损害，请及时联系客服进行删除处理'})
+        break;
+      case 'tool':
+        this.setData({ 'instruction': '所有的计算结果仅供参考' })
+        break;
+      default:
+        break;
+    }
   },
 
   /**

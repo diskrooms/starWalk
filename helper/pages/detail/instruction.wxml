@@ -1,4 +1,5 @@
 <!--pages/detail/instruction.wxml-->
-<text>说明</text>
-
-<view><text>所有的面试宝典试题都转载自网络，并会在详情页下标明出处。如果您觉得该转载对您的权益造成了损害，请及时联系客服进行删除处理</text></view>
+<view id="container" class="px-26">
+  <text id="title">说明</text>
+  <view id="content"><text>{{instruction}}</text></view>
+</view>

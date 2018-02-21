@@ -23,7 +23,7 @@
 </view>-->
 
 <view class='apis'>
-    <view class='list-title'><text class='list-title-text left'>面试宝典</text><text bindtap='instruction' class='list-title-text-right right'>说明</text></view>
+    <view class='list-title'><text class='list-title-text left'>面试宝典</text><text bindtap='instruction' class='list-title-text-right right' data-type='iv'>说明</text></view>
     <view class="list-content">
       <view class="direction-tip"></view>
       <scroll-view scroll-x="true" class="list-content-scroll">
@@ -44,7 +44,7 @@
 </view>
 
 <view class='apis'>
-    <view class='list-title'><text class='list-title-text left'>实用工具</text></view>
+    <view class='list-title'><text class='list-title-text left'>实用工具</text><text bindtap='instruction' class='list-title-text-right right' data-type='tool'>说明</text></view>
     <view class="list-content">
       <view class="direction-tip"></view>
       <view scroll-x="true" class="list-content-scroll">

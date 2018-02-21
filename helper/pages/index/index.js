@@ -130,9 +130,10 @@ Page({
     this.setData({ 'remain_tools_status': _remain_tools_status})
     this.setData({ 'remain_tools_status_tips': _remain_tools_status_tips })
   },
-  instruction:function(){
+  instruction:function(e){
+    var type = e.currentTarget.dataset.type
     wx.navigateTo({
-      url: '/pages/detail/instruction'
+      url: '/pages/detail/instruction?type='+type
     })
   },
   purchase:function(e){
