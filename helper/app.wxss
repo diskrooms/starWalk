@@ -43,5 +43,7 @@
 }
 .text-align-center{text-align: center}
 .text-align-left{text-align: left;}
+.bg-blue2{background: #1291d4;}
+.bg-blue3{background: #1f8cc6;}
 
 page{background-color: #f5f5f5;}
