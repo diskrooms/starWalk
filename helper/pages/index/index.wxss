@@ -47,7 +47,7 @@
 
 .list-title-text{margin-left: 20rpx;}
 
-.list-title-text-right{margin-right:20rpx;}
+.list-title-text-right{margin-right:22rpx;}
 
 .list-content{text-align: center;margin: 20rpx 0rpx;}
 
@@ -74,3 +74,4 @@
 
 .php .api image{width: 80rpx; height: 80rpx;}
 .apis{padding-bottom: 20rpx;background-color: #f5f5f5;}
+#service{margin:0rpx 22rpx 0rpx 0rpx;line-height: 1.8;}

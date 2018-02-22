@@ -1,5 +1,5 @@
 <view class='apis'>
-    <view class='list-title'><text class='list-title-text left'>编程手册</text><button class='px-20 right' open-type="contact">客服</button></view>
+    <view class='list-title'><text class='list-title-text left'>编程手册</text><button id="service" class="px-20 right" open-type="contact">客服</button></view>
     <view class="list-content">
       <!--<view class="fa fa-arrows-h direction-tip"></view>-->
       <scroll-view scroll-x="true" class="list-content-scroll">
