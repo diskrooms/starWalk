@@ -74,4 +74,4 @@
 
 .php .api image{width: 80rpx; height: 80rpx;}
 .apis{padding-bottom: 20rpx;background-color: #f5f5f5;}
-#service{margin:0rpx 22rpx 0rpx 0rpx;line-height: 1.8;}
+#service{margin:0rpx 22rpx 0rpx 0rpx;position: absolute;right:0;top:0;}
