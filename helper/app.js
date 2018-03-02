@@ -58,6 +58,33 @@ function login(opt){
             }
           })
           
+        },
+        fail:function(fail){
+          console.log('fail')
+          console.log(fail)
+          wx.showModal({
+            title: '警告',
+            content: '若不授权微信登录，将无法正常使用本小程序；点击授权，则可重新使用。若还是点击不授权，之后还想使用的话，请在微信【发现】-【小程序】-删掉本小程序，重新授权登录，方可使用',
+            success: function (res) {
+              if (res.confirm) {
+                  wx.openSetting({
+                    success: function (res) {
+                      if (!res.authSetting["scope.userInfo"] || !res.authSetting["scope.userLocation"]) {
+                        //这里是授权成功之后 填写你重新获取数据的js
+                        //参考:
+                        login(opt)
+                      }
+                    }
+                  })
+              } else if (res.cancel) {
+                console.log('用户点击取消授权')
+              }
+            }
+          })
+        },
+        complete:function(complete){
+          //console.log('complete')
+          //console.log(complete)
         }
       })
 
@@ -67,6 +94,7 @@ function login(opt){
 
 App({
   onLaunch: function (opt) {
+    console.log('onLaunch')
     // 展示本地存储能力
     //var logs = wx.getStorageSync('logs') || []
     //logs.unshift(Date.now())
@@ -74,16 +102,18 @@ App({
     
     wx.checkSession({
       success: function () {
+        console.log('登录态有效')
         //session 未过期，并且在本生命周期一直有效
         //检测token是否存在
         var tokenInfo = wx.getStorageSync('token')
         var token = tokenInfo.data
-        login(opt)
+        //login(opt)
         if(token == '' || token == null || token == undefined){
-          //login(opt)
+          login(opt)
         }
       },
       fail: function () {
+        console.log('登录态过期')
         //登录态过期
         // 登录
         login(opt)
