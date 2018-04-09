@@ -8,14 +8,46 @@
 .userinfo-avatar {
   width: 128rpx;
   height: 128rpx;
-  margin: 20rpx;
+  margin: 0rpx;
   border-radius: 50%;
 }
 
 .userinfo-nickname {
-  color: #aaa;
+  color: #000;
 }
 
-.usermotto {
-  margin-top: 200px;
+.container{
+  padding: 30rpx;
+}
+.container-header{
+  border:1rpx solid #ccc;
+  border-radius: 30rpx;
+  background:#fff;
+  padding: 20rpx;
+  color:#000;
+  height: 500rpx;
+}
+.instruction{
+  margin: 80rpx 0 0 0;
+}
+.instruction .title{margin:40rpx}
+.container-content{margin:20rpx;width:100%;}
+.container-content .start{
+  padding:20rpx;
+  background:firebrick;
+  border-radius: 45rpx;
+  margin:20rpx 0rpx;
+  height: 50rpx;
+}
+.container-content .invite{
+  padding:20rpx;
+  background:burlywood;
+  border-radius: 45rpx;
+  margin:40rpx 0rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  box-sizing: content-box;
+}
+.container-content .remains{
+  margin: 50rpx 0;
 }

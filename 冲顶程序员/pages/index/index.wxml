@@ -1,13 +1,44 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
+  <view class="container-header">
+    <view class="userinfo">
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+      <text class="userinfo-nickname px-30">{{userInfo.nickName}}</text>
+    </view>
+    <view class="instruction text-align-center px-36">
+      <view class="title">答编程题 / 拿奖品 / 迎事业巅峰</view>
+      <view class="px-30 info">只要冲顶上榜便有机会拿到心仪奖品(书籍、键盘或者鼠标)，各位程序猿(媛)想一想很激动有木有,马上点击下方的"开始答题"按钮参与吧</view>
+    </view>
+    
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class="container-content text-align-center">
+    <view class="remains">剩余挑战次数: {{remains}}</view>
+    <view class="start" bindtap="start">开始答题</view>
+    <button open-type="share" class="invite px-32">转发到不同的群,一天挑战机会+1</button>
   </view>
+</view>
+
+<!-- 职业选择框 -->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" bindtap="cancelSubmit" wx:if="{{showJobChoosePanel}}"></view>
+<view class="modal-dialog" wx:if="{{showJobChoosePanel}}">
+  <view class="modal-title">你是哪一类程序猿(媛),可多选</view>
+  <view class="modal-content">
+    <view class="modal-input">
+      <button class="input {{jobChoose.php > 0 ? 'on':''}}" bindtap="chooseJob" id="php">PHP</button>
+      <button class="input {{jobChoose.java > 0 ? 'on':''}}" bindtap="chooseJob" id="java">Java</button>
+    </view>
+    <view class="modal-input">
+      <button class="input {{jobChoose.python > 0 ? 'on':''}}" bindtap="chooseJob" id="python">Python</button>
+      <button class="input {{jobChoose.front > 0 ? 'on':''}}" bindtap="chooseJob" id="front">前端</button>
+    </view>
+    <view class="modal-input">
+      <button class="input {{jobChoose.maintenance > 0 ? 'on':''}}" bindtap="chooseJob" id="maintenance">运维</button>
+      <button class="input {{jobChoose.go > 0 ? 'on':''}}" bindtap="chooseJob" id="go">Go</button>
+    </view>
+    <view class='submit' bindtap='submitJob'>完成</view>
+  </view>
+  <!--<view class="modal-footer">
+    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+  </view>-->
 </view>
