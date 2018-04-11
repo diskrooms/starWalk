@@ -1,20 +1,38 @@
 // pages/play/index.js
+var WxParse = require('../../wxParse/wxParse.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    remains: 60,      //答题时间
+    totalTime:60,     //总计时间
+    remains: 60,      //答题保留时间
     count: 0,         // 设置 计数器 初始为0
-    countTimer: null  // 设置 定时器 初始为null
+    countTimer: null,  // 设置 定时器 初始为null
+    freq:100,           //绘制频率 ms
+    arcWidth:3,         //圆环宽度
+    arcPointX:25,          //圆环中心x坐标 相对于canvas容器
+    arcPointY: 25,           //圆环中心y坐标 相对于canvas容器
+    arcRadius:20,          //圆环半径
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var article = '<code>\
+      <?php\
+    $arr = array(0 =>1, "aa" => 2, 3, 4);\
+foreach($arr as $key => $val){\
+  print($key == "aa" ? 5 : $val);\
+}\
+?>\
+  </code>\
+  <text>\
+  以上程序输出什么？\
+</text>';
+    WxParse.wxParse('article', 'html', article, this, 5);
   },
 
   /**
@@ -88,13 +106,12 @@ Page({
     gradient.addColorStop("0", "#2661DD");
     //gradient.addColorStop("0.5", "#40ED94");
     //gradient.addColorStop("1.0", "#5956CC");
-
-    context.setLineWidth(10);
+    context.setLineWidth(this.data.arcWidth);
     context.setStrokeStyle(gradient);
     context.setLineCap('round')
     context.beginPath();
     // 参数step 为绘制的圆环周长，从0到2为一周 。 -Math.PI / 2 将起始角设在12点钟位置 ，结束角 通过改变 step 的值确定
-    context.arc(110, 110, 100, -Math.PI / 2, step * Math.PI - Math.PI / 2, false);
+    context.arc(this.data.arcPointX, this.data.arcPointY, this.data.arcRadius, -Math.PI / 2, step * Math.PI - Math.PI / 2, false);
     context.stroke();
     context.draw()
   },
@@ -102,20 +119,24 @@ Page({
   countInterval: function () {
     // 设置倒计时 定时器 每100毫秒执行一次，计数器count+1 ,耗时6秒绘一圈
     this.countTimer = setInterval(() => {
-      if (this.data.count <= 600) {
+      var _count = this.data.count
+      var _max = parseInt(this.data.totalTime * 1000 / this.data.freq)
+      if (_count <= _max) {
         /* 绘制彩色圆环进度条 
         注意此处 传参 step 取值范围是0到2，
         所以 计数器 最大值 60 对应 2 做处理，计数器count=60的时候step=2
         */
-        this.drawCircle(this.data.count / (600 / 2))
-        this.data.count++;
+        this.drawCircle(_count / (_max / 2))
+        _count++;
+        this.setData({'count':_count})
       } else {
-        this.setData({
-          progress_txt: "时间到"
-        });
         clearInterval(this.countTimer);
       }
-
-    }, 100)
+      var _spent_time = parseInt(_count * this.data.freq/1000) //花费时间 s
+      var _remains_time = this.data.totalTime - _spent_time       
+      this.setData({
+        remains: _remains_time
+      })
+    }, this.data.freq)
   },
 })
