@@ -9,6 +9,6 @@
         </view>    
     </view>
     <!-- 题目 -->
-    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+    <template is="wxParse" data="{{wxParseData:wxParseData.nodes}}"/>
 </view>
 

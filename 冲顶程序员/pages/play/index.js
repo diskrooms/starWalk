@@ -32,7 +32,8 @@ foreach($arr as $key => $val){\
   <text>\
   以上程序输出什么？\
 </text>';
-    WxParse.wxParse('article', 'html', article, this, 5);
+    //WxParse.wxParse('article', 'html', article, this, 5);
+    WxParse.wxParse('wxParseData','html', '<code class="color:red;">&lt;?php echo "hello php";?&gt;</code>',this,5)
   },
 
   /**
