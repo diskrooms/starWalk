@@ -26,8 +26,20 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 1,
+			"list": [
+				{
+					"id": -1,
+					"name": "倒计时动画",
+					"pathName": "pages/play/play",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "倒计时动画",
+					"pathName": "pages/play/index"
+				}
+			]
 		}
 	}
 }
