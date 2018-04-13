@@ -22,18 +22,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var code = '<?php ';
+    var code = ' <?php \r\n\
+        echo "hello world!";\r\n\
+ ?>';
     var _code = lighter.code({
       target: code,
       language: 'php',
       style: 'light'
     });
     var _parese = _code.on();
-    var article = _parese+'<text>以上程序会输出什么?</text>'
-    var article = _parese;
     //console.log(article)
-    //WxParse.wxParse('article', 'html', article, this, 5);
-    WxParse.wxParse('wxParseData','html', article,this,5)
+    WxParse.wxParse('wxParseData', 'html', _parese, this, 5)     //'wxParseData'为绑定数据键名
   },
 
   /**

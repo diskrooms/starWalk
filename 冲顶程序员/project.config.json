@@ -21,23 +21,22 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
 					"name": "倒计时动画",
-					"pathName": "pages/play/play",
+					"pathName": "pages/play/index",
 					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "倒计时动画",
-					"pathName": "pages/play/index"
 				}
 			]
 		}

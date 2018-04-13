@@ -86,17 +86,17 @@ function HTMLParser(html, handler) {
       //console.log(chars)
       //console.log('------')
 			if (chars) {
-				index = html.indexOf("<");
+				index = html.indexOf("</");
 				var text = ''
 				while (index === 0) {
-                                  text += "<";
-                                  html = html.substring(1);
-                                  index = html.indexOf("<");
+          text += "<";
+          html = html.substring(1);
+          index = html.indexOf("<");
 				}
 				text += index < 0 ? html : html.substring(0, index);
-        console.log('------')
-        console.log(text)
-        console.log('------')
+        //console.log('------')
+        //console.log(encodeURI(text))
+        //console.log('------')
 				html = index < 0 ? "" : html.substring(index);
 				if (handler.chars)
 					handler.chars(text);

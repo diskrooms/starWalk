@@ -195,7 +195,7 @@ function html2json(html, bindName) {
                 parent.nodes.push(node);
             } else {
                 bufArray.unshift(node);
-            }
+            }  
         },
         end: function (tag) {
             //debug(tag);
@@ -220,7 +220,7 @@ function html2json(html, bindName) {
             }
         },
         chars: function (text) {
-            //debug(text);
+            //console.log(encodeURI(text));
             var node = {
                 node: 'text',
                 text: text,
@@ -259,13 +259,25 @@ function html2json(html, bindName) {
 function transEmojiStr(str){
   // var eReg = new RegExp("["+__reg+' '+"]");
 //   str = str.replace(/\[([^\[\]]+)\]/g,':$1:')
-  
+  //console.log(str)
   var emojiObjs = [];
   //如果正则表达式为空
   if(__emojisReg.length == 0 || !__emojis){
       var emojiObj = {}
+      var _str = [];
+      for(i in str){
+        if(str[i] == ' '){
+          _str.push('&nbsp;');
+        } else {
+          _str.push(str[i]);
+        }
+      }
+      var __str = '';
+      for(i in _str){
+        __str += _str[i];
+      }
       emojiObj.node = "text";
-      emojiObj.text = str;
+      emojiObj.text = __str;
       array = [emojiObj];
       return array;
   }

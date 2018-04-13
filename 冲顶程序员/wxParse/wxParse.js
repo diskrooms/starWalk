@@ -48,6 +48,7 @@ function wxParse(bindName = 'wxParseData', type='html', data='<div class="color:
     transData.view.imagePadding = imagePadding
   }
   var bindData = {};
+  //console.log(transData)
   bindData[bindName] = transData;
   that.setData(bindData)
   that.wxParseImgLoad = wxParseImgLoad;
