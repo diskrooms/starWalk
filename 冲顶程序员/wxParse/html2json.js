@@ -67,6 +67,7 @@ function html2json(html, bindName) {
     html = removeDOCTYPE(html);
     html = trimHtml(html);
     html = wxDiscode.strDiscode(html);
+    //console.log(html)
     //生成node节点
     var bufArray = [];
     var results = {

@@ -1,5 +1,6 @@
 // pages/play/index.js
 var WxParse = require('../../wxParse/wxParse.js');
+var lighter = require('../../utils/code-lighter.js');
 Page({
 
   /**
@@ -21,19 +22,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var article = '<code>\
-      <?php\
-    $arr = array(0 =>1, "aa" => 2, 3, 4);\
-foreach($arr as $key => $val){\
-  print($key == "aa" ? 5 : $val);\
-}\
-?>\
-  </code>\
-  <text>\
-  以上程序输出什么？\
-</text>';
+    var code = '<?php ';
+    var _code = lighter.code({
+      target: code,
+      language: 'php',
+      style: 'light'
+    });
+    var _parese = _code.on();
+    var article = _parese+'<text>以上程序会输出什么?</text>'
+    var article = _parese;
+    //console.log(article)
     //WxParse.wxParse('article', 'html', article, this, 5);
-    WxParse.wxParse('wxParseData','html', '<code class="color:red;">&lt;?php echo "hello php";?&gt;</code>',this,5)
+    WxParse.wxParse('wxParseData','html', article,this,5)
   },
 
   /**

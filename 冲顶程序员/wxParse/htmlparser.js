@@ -40,7 +40,7 @@ function HTMLParser(html, handler) {
 	stack.last = function () {
 		return this[this.length - 1];
 	};
-
+  //console.log(html)
 	while (html) {
 		chars = true;
 
@@ -61,7 +61,6 @@ function HTMLParser(html, handler) {
 				// end tag
 			} else if (html.indexOf("</") == 0) {
 				match = html.match(endTag);
-
 				if (match) {
 					html = html.substring(match[0].length);
 					match[0].replace(endTag, parseEndTag);
@@ -69,16 +68,23 @@ function HTMLParser(html, handler) {
 				}
 
 				// start tag
-			} else if (html.indexOf("<") == 0) {
+      } else if (html.indexOf("<") == 0 && html.indexOf("<<") !== 0) {
+        //console.log(html.indexOf("<<"))
+        //console.log(html)
 				match = html.match(startTag);
-
+        
 				if (match) {
 					html = html.substring(match[0].length);
 					match[0].replace(startTag, parseStartTag);
 					chars = false;
+          //console.log(match[0])
 				}
+        //console.log(html)
 			}
-
+      //console.log('------')
+      //console.log(html)
+      //console.log(chars)
+      //console.log('------')
 			if (chars) {
 				index = html.indexOf("<");
 				var text = ''
@@ -88,14 +94,15 @@ function HTMLParser(html, handler) {
                                   index = html.indexOf("<");
 				}
 				text += index < 0 ? html : html.substring(0, index);
+        console.log('------')
+        console.log(text)
+        console.log('------')
 				html = index < 0 ? "" : html.substring(index);
-
 				if (handler.chars)
 					handler.chars(text);
 			}
 
 		} else {
-
 			html = html.replace(new RegExp("([\\s\\S]*?)<\/" + stack.last() + "[^>]*>"), function (all, text) {
 				text = text.replace(/<!--([\s\S]*?)-->|<!\[CDATA\[([\s\S]*?)]]>/g, "$1$2");
 				if (handler.chars)
@@ -103,8 +110,6 @@ function HTMLParser(html, handler) {
 
 				return "";
 			});
-
-
 			parseEndTag("", stack.last());
 		}
 
