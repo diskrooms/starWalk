@@ -1,6 +1,6 @@
 <import src="../../wxParse/wxParse.wxml"/>
 <view class="container">
-     <view class='progress_box'>
+    <view class='progress_box'>
         <!--<canvas class="progress_bg"   canvas-id="canvasProgressbg">  </canvas>-->
         <canvas class="progress_canvas"   canvas-id="canvasProgress">  </canvas>
         <view class="progress_text">
@@ -9,6 +9,14 @@
         </view>    
     </view>
     <!-- 题目 -->
-    <template is="wxParse" data="{{wxParseData:wxParseData.nodes}}"/>
+    <view class="question">
+      <template is="wxParse" data="{{wxParseData:wxParseData.nodes}}"/>
+    </view>
+    <!-- 答案 -->
+    <view class="answer">
+      <block wx:for="{{questions[index].answers}}">
+        <view class="answer-item" bindtap="choose_answer">{{item.answer}}</view>
+      </block>
+    </view>
 </view>
 

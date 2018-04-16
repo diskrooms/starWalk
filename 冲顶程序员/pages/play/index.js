@@ -1,6 +1,8 @@
 // pages/play/index.js
 var WxParse = require('../../wxParse/wxParse.js');
 var lighter = require('../../utils/code-lighter.js');
+const app = getApp()
+
 Page({
 
   /**
@@ -16,29 +18,44 @@ Page({
     arcPointX:25,          //圆环中心x坐标 相对于canvas容器
     arcPointY: 25,           //圆环中心y坐标 相对于canvas容器
     arcRadius:20,          //圆环半径
+    questions:[],         //全部问题数据
+    index:0,              //当前问题索引
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var code = ' <?php \r\n\
-        echo "hello world!";\r\n\
- ?>';
-    var _code = lighter.code({
-      target: code,
-      language: 'php',
-      style: 'light'
-    });
-    var _parese = _code.on();
-    //console.log(article)
-    WxParse.wxParse('wxParseData', 'html', _parese, this, 5)     //'wxParseData'为绑定数据键名
+    //console.log('onLoad');
+    var that = this;
+    wx.request({
+      url: app.globalData.apiDomain + '/question/index',
+      data: {'token': wx.getStorageSync('token') },
+      method: 'POST',
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      dataType: 'json',
+      success:function(res){
+        that.setData({'questions':res.data.msg});
+        var _index = that.data.index;
+        var code = res.data.msg[_index].question;
+        //console.log(code)
+        var _code = lighter.code({
+          target: code,
+          language: 'php',
+          style: 'light'
+        });
+        var _parese = _code.on();
+        //console.log(article)
+        WxParse.wxParse('wxParseData', 'html', _parese, that, 5)     //'wxParseData'为绑定数据键名
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    //console.log('onReady');
     //this.drawProgressbg()
     //this.drawCircle(1)
     this.countInterval()
@@ -48,7 +65,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    //console.log('onShow');
   },
 
   /**
@@ -139,4 +156,7 @@ Page({
       })
     }, this.data.freq)
   },
+  
+  //选择答案
+  
 })

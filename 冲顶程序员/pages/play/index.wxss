@@ -38,3 +38,25 @@
   border-radius: 50%;
   background-color: #fb9126;
 }
+
+.question{
+  font-size: 28rpx;
+  padding:0rpx 20rpx;
+}
+.answer{
+  padding: 0 20rpx;
+}
+.answer-item{
+  margin:10rpx 0rpx;
+  border-radius: 10rpx;
+  border:1px solid rgb(68, 111, 189);
+  padding: 10rpx;
+}
+.answer-item.right{
+  background: blue;
+  color:#fff;
+}
+.answer-item.error{
+  background: red;
+  color:#fff;
+}
