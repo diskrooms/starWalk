@@ -21,6 +21,7 @@ Page({
     questions:[],         //全部问题数据
     index:0,              //当前问题索引
     status:0,             //是否已经作答 1 已作答 0 未作答
+    showFailPanel:0,      //回答失败弹窗
   },
 
   /**
@@ -136,7 +137,7 @@ Page({
   //倒计时
   countInterval: function () {
     // 设置倒计时 定时器 每100毫秒执行一次，计数器count+1 ,耗时6秒绘一圈
-    this.countTimer = setInterval(() => {
+    this.data.countTimer = setInterval(() => {
       var _count = this.data.count
       var _max = parseInt(this.data.totalTime * 1000 / this.data.freq)
       if (_count <= _max) {
@@ -148,7 +149,7 @@ Page({
         _count++;
         this.setData({'count':_count})
       } else {
-        clearInterval(this.countTimer);
+        clearInterval(this.data.countTimer);
       }
       var _spent_time = parseInt(_count * this.data.freq/1000) //花费时间 s
       var _remains_time = this.data.totalTime - _spent_time       
@@ -160,6 +161,7 @@ Page({
   
   //选择答案
   choose_answer:function(e){
+    var that = this;
     var _status = this.data.status;             //作答状态
     if(_status == 0){
       var _answer_index = e.currentTarget.id;    //选择答案在当前面板的序号
@@ -170,6 +172,7 @@ Page({
       var _answer = _answers[_answer_index];            //所选中的答案内容
       if(_answer.is_true == 1){
         _answer.flag = 'correct';
+        this.goNext(_question_index);
       } else {
         _answer.flag = 'error';
         //显示正确答案
@@ -179,8 +182,34 @@ Page({
           }
         }
         //
+        setTimeout(()=>{
+          that.setData({'showFailPanel':1})
+        },600);
       }
-      this.setData({'questions':questions,'status':1});
+      clearInterval(this.data.countTimer);
+      this.setData({ 'questions': questions, 'status': 1 });
     }
+  },
+  //取消弹窗
+  cancelShowFail: function () {
+    this.setData({
+      'showFailPanel': false
+    })
+  },
+  //回答正确 下一题
+  goNext:function(index){
+      //初始化变量
+      this.setData({'index':index+1,'status':0})
+      var code = this.data.questions[index+1].question;
+      //console.log(code)
+      var _code = lighter.code({
+        target: code,
+        language: 'php',
+        style: 'light'
+      });
+      var _parese = _code.on();
+      //console.log(article)
+      WxParse.wxParse('wxParseData', 'html', _parese, this, 5)     //'wxParseData'为绑定数据键名
+      this.countInterval()
   }
 })
