@@ -15,7 +15,7 @@
     <!-- 答案 -->
     <view class="answer">
       <block wx:for="{{questions[index].answers}}">
-        <view class="answer-item" bindtap="choose_answer">{{item.answer}}</view>
+        <view class="answer-item {{item.flag}}" bindtap="choose_answer" id="{{index}}">{{item.answer}}</view>
       </block>
     </view>
 </view>

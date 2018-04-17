@@ -20,6 +20,7 @@ Page({
     arcRadius:20,          //圆环半径
     questions:[],         //全部问题数据
     index:0,              //当前问题索引
+    status:0,             //是否已经作答 1 已作答 0 未作答
   },
 
   /**
@@ -158,5 +159,28 @@ Page({
   },
   
   //选择答案
-  
+  choose_answer:function(e){
+    var _status = this.data.status;             //作答状态
+    if(_status == 0){
+      var _answer_index = e.currentTarget.id;    //选择答案在当前面板的序号
+      var _question_index = this.data.index;      //当前问题序号
+      var questions = this.data.questions;
+      
+      var _answers = questions[_question_index].answers; //当前问题所有答案
+      var _answer = _answers[_answer_index];            //所选中的答案内容
+      if(_answer.is_true == 1){
+        _answer.flag = 'correct';
+      } else {
+        _answer.flag = 'error';
+        //显示正确答案
+        for (var i in _answers){
+          if(_answers[i].is_true == 1){
+            _answers[i].flag = 'correct';
+          }
+        }
+        //
+      }
+      this.setData({'questions':questions,'status':1});
+    }
+  }
 })

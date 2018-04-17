@@ -52,7 +52,7 @@
   border:1px solid rgb(68, 111, 189);
   padding: 10rpx;
 }
-.answer-item.right{
+.answer-item.correct{
   background: blue;
   color:#fff;
 }
