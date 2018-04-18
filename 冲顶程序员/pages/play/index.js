@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    totalTime:60,     //总计时间
+    totalTime:60,     //总计时间  一个常量
     remains: 60,      //答题保留时间
     count: 0,         // 设置 计数器 初始为0
     countTimer: null,  // 设置 定时器 初始为null
@@ -171,11 +171,14 @@ Page({
       var _answers = questions[_question_index].answers; //当前问题所有答案
       var _answer = _answers[_answer_index];            //所选中的答案内容
       if(_answer.is_true == 1){
+        //回答正确
         _answer.flag = 'correct';
-        this.goNext(_question_index);
+        setTimeout(() => {
+          this.goNext(_question_index);
+        }, 600);
       } else {
         _answer.flag = 'error';
-        //显示正确答案
+        //回答错误 显示正确答案
         for (var i in _answers){
           if(_answers[i].is_true == 1){
             _answers[i].flag = 'correct';
@@ -199,7 +202,7 @@ Page({
   //回答正确 下一题
   goNext:function(index){
       //初始化变量
-      this.setData({'index':index+1,'status':0})
+      this.setData({'index':index+1,'status':0,'count':0,remains:60})
       var code = this.data.questions[index+1].question;
       //console.log(code)
       var _code = lighter.code({
@@ -211,5 +214,11 @@ Page({
       //console.log(article)
       WxParse.wxParse('wxParseData', 'html', _parese, this, 5)     //'wxParseData'为绑定数据键名
       this.countInterval()
+  },
+  //重新开始
+  restart:function(){
+    wx.reLaunch({
+      url: '/pages/index/index',
+    })
   }
 })
