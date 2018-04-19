@@ -91,13 +91,16 @@ function onLogin(app,callback){
       } else {
         //获取用户信息等系统数据
         wx.request({
-          url: app.globalData.apiDomain+'/user/userInfo',
+          url: app.globalData.apiDomain+'/my/userInfo',
           data: { 'token': wx.getStorageSync('token') },
           method: 'POST',
           header: { "Content-Type": "application/x-www-form-urlencoded" },
           dataType: 'json',
           success:function(res){
-            
+            app.globalData.userInfo = res.data.msg;
+            if (typeof callback == 'function') {
+              callback();
+            }
           }
         })
       }

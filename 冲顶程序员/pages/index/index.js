@@ -18,8 +18,7 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
-    console.log(app)
+  onShow: function () {
     app.onLaunch(this.render);
   },
   //渲染页面

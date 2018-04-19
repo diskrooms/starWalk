@@ -52,7 +52,7 @@
   border:1px solid #ddd;
   background:#ddd;
   padding: 10rpx 20rpx;
-  color:#6c6c6c;
+  color:#222;
 }
 .answer-item.correct{
   background: #6495ed;
