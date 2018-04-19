@@ -13,7 +13,7 @@
   </view>
   <view class="container-content text-align-center">
     <view class="start" bindtap="start">开始答题</view>
-    <view class="remains">剩余挑战次数:{{remains}}次</view>
+    <view class="remains">剩余挑战次数:{{userInfo.ticket}}次</view>
     <button open-type="share" class="invite px-32">转发到不同的群,挑战机会+1</button>
   </view>
 </view>
@@ -37,8 +37,7 @@
     </view>
     <view class='submit' bindtap='submitJob'>完成</view>
   </view>
-  <!--<view class="modal-footer">
-    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
-    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
-  </view>-->
 </view>
+
+<!-- 提示分享框 -->
+

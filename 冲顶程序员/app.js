@@ -32,7 +32,8 @@ function login(opt) {
                       },
                       success: function (res) {
                         //console.log(res)
-                        wx.setStorageSync('token', res.data.msg)
+                        wx.setStorageSync('token', res.data.msg.auth)
+                        app.globalData.userInfo = res.data.msg.userInfo
                       }
                     })
                   }
@@ -50,7 +51,8 @@ function login(opt) {
                   },
                   success: function (res) {
                     //console.log(res)
-                    wx.setStorageSync('token', res.data.msg)
+                    wx.setStorageSync('token', res.data.msg.auth)
+                    app.globalData.userInfo = res.data.msg.userInfo
                   }
                 })
               }

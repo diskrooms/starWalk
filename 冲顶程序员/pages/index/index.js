@@ -7,7 +7,6 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    remains:0,
     jobChoose: { 'php': 0, 'java': 0, 'python': 0, 
                 'front': 0,'maintenance': 0,'go': 0
                },
@@ -52,8 +51,8 @@ Page({
     }
   },
 
-  onShow(){
-    
+  onShow:function(){
+    this.setData({'userInfo':app.globalData.userInfo})
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo
@@ -138,9 +137,13 @@ Page({
   },
   //开始答题
   start:function(){
+    if(app.globalData.userInfo.ticket > 0){
       wx.navigateTo({
         url: '/pages/play/index',
       })
+    } else {
+      
+    }
   },
   //分享
   onShareAppMessage:function(res){
