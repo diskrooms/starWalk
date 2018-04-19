@@ -1388,7 +1388,7 @@ var lighter = (function () {
           } else if (c === $.Stream.EOF) {
             ignore = false;
             state = State.DONE;
-            urrentToken = Token.type.STRING;
+            currentToken = Token.type.STRING;
             save = false;
             stream.putBack();
           }
@@ -1413,7 +1413,7 @@ var lighter = (function () {
           } else if (c === $.Stream.EOF) {
             ignore = false;
             state = State.DONE;
-            urrentToken = Token.type.STRING;
+            currentToken = Token.type.STRING;
             save = false;
             stream.putBack();
           }
@@ -1861,7 +1861,7 @@ var lighter = (function () {
           } else if (c === $.Stream.EOF) {
             ignore = false;
             state = State.DONE;
-            urrentToken = Token.type.STRING;
+            currentToken = Token.type.STRING;
             save = false;
             stream.putBack();
           }
@@ -1886,7 +1886,7 @@ var lighter = (function () {
           } else if (c === $.Stream.EOF) {
             ignore = false;
             state = State.DONE;
-            urrentToken = Token.type.STRING;
+            currentToken = Token.type.STRING;
             save = false;
             stream.putBack();
           }

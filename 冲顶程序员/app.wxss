@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: space-between;*/
   box-sizing: border-box;
-  height: 800rpx;
+  /*height: 800rpx;*/
   margin: 100rpx auto;
   border-radius: 20rpx;
   background: #fff;
@@ -67,16 +67,20 @@ page{background:cornflowerblue;color:#fff;}
 }
 
 .modal-dialog {
-  width: 690rpx;
+  width: 80%;
   overflow: hidden;
-  position: fixed;
-  top: 260rpx;
-  left: 30rpx;
+  /*position: fixed;*/
+  position: absolute;
+  left: 50%; 
+  top: 50%;
+  transform: translate(-50%, -50%);
+  /*left: 30rpx;*/
   z-index: 9999;
   background: #f9f9f9;
   border-radius: 30rpx;
   padding: 0rpx 30rpx;
   box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .modal-title {
@@ -155,4 +159,8 @@ input-holder {
   background:cornflowerblue;
   border-radius: 44rpx;
   margin:40rpx auto;
+}
+
+.card{
+  background: #fb9126;
 }

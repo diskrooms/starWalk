@@ -20,21 +20,27 @@
   padding: 30rpx;
 }
 .container-header{
-  border:1rpx solid #ccc;
+  /*border:1rpx solid #ccc;*/
   border-radius: 30rpx;
   background:#fff;
   padding: 20rpx;
   color:#000;
-  height: 500rpx;
+  height: 300rpx;
 }
 .instruction{
-  margin: 80rpx 0 0 0;
+  margin: 10rpx 0 0 0;
 }
-.instruction .title{margin:40rpx}
-.container-content{margin:20rpx;width:100%;}
+.instruction .title{
+  margin:40rpx 0 0 0
+}
+.container-content{
+  margin:20rpx auto;
+  width:100%;
+}
 .container-content .start{
   padding:20rpx;
-  background:firebrick;
+  background:cornflowerblue;
+  color:#fff;
   border-radius: 45rpx;
   margin:20rpx 0rpx;
   height: 50rpx;
@@ -42,6 +48,7 @@
 .container-content .invite{
   padding:20rpx;
   background:burlywood;
+  color:#fff;
   border-radius: 45rpx;
   margin:40rpx 0rpx;
   height: 50rpx;

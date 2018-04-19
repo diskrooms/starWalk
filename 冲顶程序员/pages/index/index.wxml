@@ -6,15 +6,15 @@
       <text class="userinfo-nickname px-30">{{userInfo.nickName}}</text>
     </view>
     <view class="instruction text-align-center px-36">
-      <view class="title">答编程题 / 拿奖品 / 迎事业巅峰</view>
-      <view class="px-30 info">只要冲顶上榜便有机会拿到心仪奖品(书籍、键盘或者鼠标)，各位程序猿(媛)想一想很激动有木有,马上点击下方的"开始答题"按钮参与吧</view>
+      <view class="px-30 title">做最好的你</view>
+      <view class="px-30 info">实现心中所有的美好</view>
     </view>
     
   </view>
   <view class="container-content text-align-center">
-    <view class="remains">剩余挑战次数: {{remains}}</view>
     <view class="start" bindtap="start">开始答题</view>
-    <button open-type="share" class="invite px-32">转发到不同的群,一天挑战机会+1</button>
+    <view class="remains">剩余挑战次数:{{remains}}次</view>
+    <button open-type="share" class="invite px-32">转发到不同的群,挑战机会+1</button>
   </view>
 </view>
 

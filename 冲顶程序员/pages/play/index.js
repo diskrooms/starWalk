@@ -74,14 +74,15 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+    //console.log('onHide');
   },
 
   /**
    * 生命周期函数--监听页面卸载
+   * 关闭计时器
    */
   onUnload: function () {
-  
+    clearInterval(this.data.countTimer);
   },
 
   /**
@@ -150,6 +151,7 @@ Page({
         this.setData({'count':_count})
       } else {
         clearInterval(this.data.countTimer);
+        this.setData({ 'showFailPanel': 1 })
       }
       var _spent_time = parseInt(_count * this.data.freq/1000) //花费时间 s
       var _remains_time = this.data.totalTime - _spent_time       
@@ -161,6 +163,7 @@ Page({
   
   //选择答案
   choose_answer:function(e){
+    
     var that = this;
     var _status = this.data.status;             //作答状态
     if(_status == 0){
@@ -176,6 +179,7 @@ Page({
         setTimeout(() => {
           this.goNext(_question_index);
         }, 600);
+        
       } else {
         _answer.flag = 'error';
         //回答错误 显示正确答案
@@ -195,14 +199,14 @@ Page({
   },
   //取消弹窗
   cancelShowFail: function () {
-    this.setData({
+    /*this.setData({
       'showFailPanel': false
-    })
+    })*/
   },
   //回答正确 下一题
   goNext:function(index){
       //初始化变量
-      this.setData({'index':index+1,'status':0,'count':0,remains:60})
+    this.setData({ 'index': index + 1, 'status': 0, 'count': 0, 'remains': 60, 'showFailPanel':0})
       var code = this.data.questions[index+1].question;
       //console.log(code)
       var _code = lighter.code({
@@ -210,8 +214,9 @@ Page({
         language: 'php',
         style: 'light'
       });
+      console.log(_code)
       var _parese = _code.on();
-      //console.log(article)
+      //console.log(_parese)
       WxParse.wxParse('wxParseData', 'html', _parese, this, 5)     //'wxParseData'为绑定数据键名
       this.countInterval()
   },
@@ -220,5 +225,10 @@ Page({
     wx.reLaunch({
       url: '/pages/index/index',
     })
+  },
+  //使用复活卡
+  usecard:function(){
+    var that = this;
+    
   }
 })
