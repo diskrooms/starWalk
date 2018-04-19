@@ -2,8 +2,8 @@
 <view class="container">
   <view class="container-header">
     <view class="userinfo">
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname px-30">{{userInfo.nickName}}</text>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatar}}" background-size="cover"></image>
+      <text class="userinfo-nickname px-30">{{userInfo.nickname}}</text>
     </view>
     <view class="instruction text-align-center px-36">
       <view class="px-30 title">做最好的你</view>
@@ -40,4 +40,15 @@
 </view>
 
 <!-- 提示分享框 -->
-
+<view class="modal-mask" bindtap="hideModal" bindtap='cancelShowFail' wx:if="{{showSharePanel}}"></view>
+<view class="modal-dialog" wx:if="{{showSharePanel}}">
+  <view class="modal-title">复活卡不足</view>
+  <view class="modal-content">
+    <button class="submit" open-type="share">分享到不同的群(+1)</button>
+    <button class="submit" bindtap="payment">打赏奖励挑战次数</button>
+  </view>
+  <!--<view class="modal-footer">
+    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+  </view>-->
+</view>
