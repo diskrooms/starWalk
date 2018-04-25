@@ -6,7 +6,7 @@
       <text class="userinfo-nickname px-30">{{userInfo.nickname}}</text>
     </view>
     <view class="instruction text-align-center px-36">
-      <view class="px-30 title">做最好的你</view>
+      <view class="px-30 title">愿最好的你</view>
       <view class="px-30 info">实现心中所有的美好</view>
     </view>
     
@@ -35,17 +35,24 @@
       <button class="input {{jobChoose.maintenance > 0 ? 'on':''}}" bindtap="chooseJob" id="maintenance">运维</button>
       <button class="input {{jobChoose.go > 0 ? 'on':''}}" bindtap="chooseJob" id="go">Go</button>
     </view>
+    <view class="modal-input">
+      <button class="input {{jobChoose.c > 0 ? 'on':''}}" bindtap="chooseJob" id="c">C</button>
+      <button class="input {{jobChoose.android > 0 ? 'on':''}}" bindtap="chooseJob" id="android">Android</button>
+    </view>
+    <view class="modal-input">
+      <button class="input {{jobChoose.arithmetic > 0 ? 'on':''}}" bindtap="chooseJob" id="arithmetic">算法</button>
+    </view>
     <view class='submit' bindtap='submitJob'>完成</view>
   </view>
 </view>
 
-<!-- 提示分享框 -->
-<view class="modal-mask" bindtap="hideModal" bindtap='cancelShowFail' wx:if="{{showSharePanel}}"></view>
+<!-- 分享提示框 -->
+<view class="modal-mask" bindtap="hideModal" bindtap='cancelShowShare' wx:if="{{showSharePanel}}"></view>
 <view class="modal-dialog" wx:if="{{showSharePanel}}">
-  <view class="modal-title">复活卡不足</view>
+  <view class="modal-title">挑战机会不足</view>
   <view class="modal-content">
-    <button class="submit" open-type="share">分享到不同的群(+1)</button>
-    <button class="submit" bindtap="payment">打赏奖励挑战次数</button>
+    <button class="submit" bindtap="payment">打赏奖励(+10)</button>
+    <button class="submit share" open-type="share">分享到不同的群(+1)</button>
   </view>
   <!--<view class="modal-footer">
     <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>

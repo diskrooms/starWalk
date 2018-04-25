@@ -8,17 +8,17 @@
             <text class='progress_info'>{{remains}}</text>
         </view>    
     </view>
+    
+    <!-- 题目 -->
+    <view class="question">
+      <template is="wxParse" data="{{wxParseData:wxParseData.nodes}}"/>
+    </view>
     <!-- 答案 -->
     <view class="answer">
       <block wx:for="{{questions[index].answers}}">
         <view class="answer-item {{item.flag}}" bindtap="choose_answer" id="{{index}}">{{item.answer}}</view>
       </block>
     </view>
-    <!-- 题目 -->
-    <view class="question">
-      <template is="wxParse" data="{{wxParseData:wxParseData.nodes}}"/>
-    </view>
-    
 </view>
 
 <!-- 失败弹窗 -->

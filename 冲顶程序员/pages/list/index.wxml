@@ -1,2 +1,20 @@
 <!--pages/list/index.wxml-->
-<text>pages/list/index.wxml</text>
+<view class="nav bc_white">
+  <view class="{{currentTabIndex == 0?'current':'default'}}" bindtap="switchTab" id='0'>周排行</view>
+  <view class="{{currentTabIndex == 1?'current':'default'}}" bindtap="switchTab" id='1'>月排行</view>
+</view>
+<view class="{{currentTabIndex == 0?'show':'hidden'}}">
+  <text>本周冠军奖品</text>
+  <image></image>
+  <scroll-view bindscroll="scroll" scroll-y>
+      <view wx:for="{{listData.week}}"></view>
+  </scroll-view>
+</view>
+<view class="{{currentTabIndex == 1?'show':'hidden'}}">
+  <text>本月冠军奖品</text>
+  <image></image>
+  <scroll-view bindscroll="scroll" scroll-y>
+      <view wx:for="{{listData.month}}"></view>
+  </scroll-view>
+</view>
+

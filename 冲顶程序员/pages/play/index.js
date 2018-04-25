@@ -214,7 +214,7 @@ Page({
         language: 'php',
         style: 'light'
       });
-      console.log(_code)
+      //console.log(_code)
       var _parese = _code.on();
       //console.log(_parese)
       WxParse.wxParse('wxParseData', 'html', _parese, this, 5)     //'wxParseData'为绑定数据键名

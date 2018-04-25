@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    'currentTabIndex':0
   },
 
   /**
@@ -62,5 +62,13 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  /**
+   * 切换tab
+   */
+  switchTab:function(e){
+    var index = e.currentTarget.id;
+    //console.log(index)
+    this.setData({'currentTabIndex':index});
   }
 })

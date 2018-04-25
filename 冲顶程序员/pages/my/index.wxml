@@ -1,2 +1,24 @@
 <!--pages/my/index.wxml-->
-<text>pages/my/index.wxml</text>
+<view>
+   <view class="flex">
+      <view class="flex-item">
+         <view>100</view>
+         <view>已挑战</view>
+      </view>
+      <view class="flex-item">
+         <view>10</view>
+         <view>挑战机会</view>
+      </view>
+      <view class="flex-item">
+         <view>
+            <view>
+               <text>周</text> <view>1000</view>
+            </view>
+            <view>
+               <text>月</text> <view>2000</view>
+            </view>
+         </view>
+         <view>排行榜</view>
+      </view>
+   </view>
+</view>

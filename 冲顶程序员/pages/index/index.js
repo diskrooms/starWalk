@@ -8,9 +8,11 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     jobChoose: { 'php': 0, 'java': 0, 'python': 0, 
-                'front': 0,'maintenance': 0,'go': 0
+                'front': 0,'maintenance': 0,'go': 0,
+                'c': 0, 'android': 0,'arithmetic':0
                },
-    showJobChoosePanel:0
+    showJobChoosePanel:0,    //职业选择框显示开关
+    showSharePanel:0,        //分享提示框开关
   },
   //事件处理函数
   bindViewTap: function() {
@@ -110,11 +112,76 @@ Page({
         url: '/pages/play/index',
       })
     } else {
-      
+      this.setData({'showSharePanel':1});
     }
   },
+  //取消分享提示框
+  cancelShowShare:function(){
+    this.setData({ 'showSharePanel': 0 });
+  },
   //分享
-  onShareAppMessage:function(res){
-
+  onShareAppMessage: function (fromRes) {
+    var that = this;
+    //res form target
+    wx.showShareMenu({
+      withShareTicket: true,
+      success: function (showRes) {    //showShareMenu:ok showShareMenu会打开群分享体验并shareTickets出现
+      }
+    })
+    return {
+      title: '自定义转发标题',
+      path: '/pages/index/index',
+      success: function (shareRes) {
+        //转发成功记录
+        var shareTicket = shareRes.shareTickets[0];
+        if (shareTicket != '' && shareTicket != null && shareTicket != undefined){
+          wx.getShareInfo({
+            shareTicket: shareTicket,
+            success:function(infoRes){
+              //记录分享信息 start
+              wx.request({
+                url: app.globalData.apiDomain + '/my/shareLog',
+                data: {
+                  'token': wx.getStorageSync('token'),
+                  'fromRes': fromRes,                             //分享来源 按钮还是右上角
+                  'url':'/pages/index/index',                     //分享页面url
+                  'encryptedData': infoRes.encryptedData,
+                  'iv': infoRes.iv
+                },
+                method: 'POST',
+                header: { "Content-Type": "application/x-www-form-urlencoded" },
+                dataType: 'json',
+                success: function (res) {
+                    if(res.data.status > 0){
+                      //console.log(res.data.msg)
+                        //分享成功
+                      wx.showToast({
+                        title: res.data.msg[0],
+                        icon:'none',
+                        duration: 2000
+                      })
+                      app.globalData.userInfo.ticket = res.data.msg[1];
+                      that.setData({ 'userInfo': app.globalData.userInfo});
+                    } else {
+                        //分享失败
+                        wx.showToast({
+                          title: res.data.msg,
+                          icon: 'none',
+                          duration: 2000
+                        })
+                    }
+                }
+              })
+              //记录分享信息 end
+            }
+          })
+          
+        }
+      },
+      fail: function (shareRes) {
+        // 转发失败
+        //console.log(shareRes)
+      }
+    }
   }
 })

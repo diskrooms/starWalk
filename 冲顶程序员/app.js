@@ -157,6 +157,7 @@ App({
     apiDomain: 'https://coder.51tui.vip',     //api主域名
   },
   /*onShareAppMessage: function (res) {
+    console.log(res)
     if (res.from === 'button') {
       // 来自页面内转发按钮
       //console.log(res.target)
