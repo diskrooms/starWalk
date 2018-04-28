@@ -67,7 +67,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    //console.log('onShow');
+    console.log(app.globalData.userInfo);
+    this.setData({ 'userInfo': app.globalData.userInfo});
   },
 
   /**
@@ -229,6 +230,39 @@ Page({
   //使用复活卡
   usecard:function(){
     var that = this;
+    //使用复活卡
+
     
+  },
+  //购买复活卡
+  buycard:function(e){
+    var price =  e.currentTarget.dataset.price;
+    var title = e.currentTarget.dataset.title;
+    wx.request({
+      url: app.globalData.apiDomain + '/pay/index',
+      data: {
+        token: wx.getStorageSync('token'),
+        title: title,
+        price: price,
+        
+      },
+      method: 'POST',
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      dataType: 'json',
+      success: function (res) {
+        wx.requestPayment({
+          'timeStamp': res.data.timeStamp + '',
+          'nonceStr': res.data.nonceStr,
+          'package': res.data.package,
+          'signType': 'MD5',
+          'paySign': res.data.paySign,
+          'success': function (res) {
+          },
+          'fail': function (res) {
+          }
+        })
+      },
+
+    })
   }
 })

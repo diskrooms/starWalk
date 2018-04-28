@@ -27,7 +27,13 @@
   <view class="modal-title">回答错误</view>
   <view class="modal-content">
     <button class="submit" open-type="share">分享到群复活</button>
-    <button class="submit card" bindtap="usecard">使用复活卡(-1)</button>
+    <block wx:if="{{userInfo.card > 0}}">
+      <button class="submit card" bindtap="usecard">使用复活卡并查看释义(-1)</button>
+    </block>
+    <block wx:if="{{userInfo.card == 0}}">
+      <button class="submit card" bindtap="buycard" data-price='2' data-title='购买两张复活卡'>购买复活卡 ￥2(+5)</button>
+      <button class="submit card" bindtap="buycard" data-price='5' data-title='购买五张复活卡'>购买复活卡 ￥5(+15)</button>
+    </block>
     <button class="submit" bindtap="restart">重新开始</button>
   </view>
   <!--<view class="modal-footer">
