@@ -230,12 +230,30 @@ Page({
   //使用复活卡
   usecard:function(){
     var that = this;
+    var _question_index = that.data.index;      //当前问题序号
     //使用复活卡
-
+    wx.request({
+      url: app.globalData.apiDomain + '/my/usecard',
+      data: {
+        token: wx.getStorageSync('token'), 
+      },
+      method: 'POST',
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      dataType: 'json',
+      success:function(res){
+        if(res.data.status > 0){
+            that.goNext(_question_index)
+        } else {
+            that.alert('使用失败')
+        }
+      }
+    })
     
   },
   //购买复活卡
   buycard:function(e){
+    var that = this;
+    var _question_index = that.data.index;      //当前问题序号
     var price =  e.currentTarget.dataset.price;
     var title = e.currentTarget.dataset.title;
     wx.request({
@@ -244,7 +262,6 @@ Page({
         token: wx.getStorageSync('token'),
         title: title,
         price: price,
-        
       },
       method: 'POST',
       header: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -257,12 +274,22 @@ Page({
           'signType': 'MD5',
           'paySign': res.data.paySign,
           'success': function (res) {
+            if(res.errMsg == 'requestPayment:ok'){
+              that.usecard();
+            }
           },
           'fail': function (res) {
+            //console.log(res)
           }
         })
       },
 
     })
+  },
+  alert:function(msg){
+      wx.showToast({
+        title: msg,
+        icon:'none'
+      })
   }
 })
