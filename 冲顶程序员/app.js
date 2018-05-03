@@ -33,6 +33,8 @@ function login(app,callback) {
                       success: function (res) {
                         //console.log(res)
                         wx.setStorageSync('token', res.data.msg.auth)
+                        wx.setStorageSync('sessionid', res.data.msg.sessionid)
+                        wx.setStorageSync('csrfToken', res.data.msg.csrfToken)
                         app.globalData.userInfo = res.data.msg.userInfo
                         if(typeof callback =='function'){
                           callback();
@@ -55,6 +57,8 @@ function login(app,callback) {
                   success: function (res) {
                     //console.log(res)
                     wx.setStorageSync('token', res.data.msg.auth)
+                    wx.setStorageSync('sessionid', res.data.msg.sessionid)
+                    wx.setStorageSync('csrfToken', res.data.msg.csrfToken)
                     app.globalData.userInfo = res.data.msg.userInfo
                     if (typeof callback == 'function') {
                       callback();

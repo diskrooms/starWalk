@@ -67,7 +67,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log(app.globalData.userInfo);
+    //console.log(app.globalData.userInfo);
     this.setData({ 'userInfo': app.globalData.userInfo});
   },
 
@@ -207,7 +207,7 @@ Page({
   //回答正确 下一题
   goNext:function(index){
       //初始化变量
-    this.setData({ 'index': index + 1, 'status': 0, 'count': 0, 'remains': 60, 'showFailPanel':0})
+      this.setData({ 'index': index + 1, 'status': 0, 'count': 0, 'remains': 60, 'showFailPanel':0})
       var code = this.data.questions[index+1].question;
       //console.log(code)
       var _code = lighter.code({
@@ -242,7 +242,9 @@ Page({
       dataType: 'json',
       success:function(res){
         if(res.data.status > 0){
-            that.goNext(_question_index)
+            //that.goNext(_question_index)
+            //that.alert('使用成功');
+            that.setData({'showFailPanel':0,'showCardPanel':1});
         } else {
             that.alert('使用失败')
         }
@@ -286,10 +288,50 @@ Page({
 
     })
   },
+  //弹出框
   alert:function(msg){
       wx.showToast({
         title: msg,
         icon:'none'
       })
-  }
+  },
+  //查看释义
+  explain:function(){
+    //获取当前问题id
+    var index = this.data.index;
+    var q_id = this.data.questions[index].id;
+    wx.navigateTo({
+      url: '/pages/explain/index?q_id='+q_id,
+    })
+  },
+
+  /*inputChange: function (e) {
+    var input = e.currentTarget.id;
+    var value = e.detail.value;
+    switch (input) {
+      case 'name':
+        this.setData({ 'name': value });
+        break;
+      default:
+        break;
+    }
+  },
+
+  //确认提交
+  onConfirm: function () {
+    var name = this.data.name;
+    var sessionid = wx.getStorageSync('sessionid')
+    var csrfToken = wx.getStorageSync('csrfToken')
+    var userToken = wx.getStorageSync('token')
+    wx.request({
+      url: app.globalData.apiDomain + '/question/submitCopy',
+      data: { 'name': name, 'csrfToken': csrfToken, 'token': userToken },
+      header: { "Content-Type": "application/x-www-form-urlencoded", "cookie": "PHPSESSID=" + sessionid },
+      method: 'POST',
+      dataType: 'json',
+      success: function (res) {
+
+      }
+    })
+  }*/
 })
