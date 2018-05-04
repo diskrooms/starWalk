@@ -6,15 +6,15 @@
       <text class="userinfo-nickname px-30">{{userInfo.nickname}}</text>
     </view>
     <view class="instruction text-align-center px-36">
-      <view class="px-30 title">愿最好的你</view>
-      <view class="px-30 info">实现心中所有的美好</view>
+      <view class="px-36 title">愿最好的你</view>
+      <view class="px-32 info">实现心中所有的美好</view>
     </view>
     
   </view>
   <view class="container-content text-align-center">
     <view class="start" bindtap="start">开始答题</view>
     <view class="remains">剩余挑战次数:{{userInfo.ticket}}次</view>
-    <button open-type="share" class="invite px-32">转发到不同的群,挑战机会+1</button>
+    <button open-type="share" class="invite px-32">分享给小伙伴，一起来挑战</button>
   </view>
 </view>
 

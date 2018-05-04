@@ -164,7 +164,6 @@ Page({
   
   //选择答案
   choose_answer:function(e){
-    
     var that = this;
     var _status = this.data.status;             //作答状态
     if(_status == 0){
@@ -206,8 +205,14 @@ Page({
   },
   //回答正确 下一题
   goNext:function(index){
+    //console.log(typeof index)
+    if(typeof index =='object'){
+      var index = this.data.index;
+      //console.log(index)
+    }
+    
       //初始化变量
-      this.setData({ 'index': index + 1, 'status': 0, 'count': 0, 'remains': 60, 'showFailPanel':0})
+    this.setData({ 'index': index + 1, 'status': 0, 'count': 0, 'remains': 60, 'showFailPanel': 0,'showCardPanel':0})
       var code = this.data.questions[index+1].question;
       //console.log(code)
       var _code = lighter.code({

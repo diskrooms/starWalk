@@ -49,7 +49,7 @@
 .text-align-center{text-align: center}
 .text-align-left{text-align: left;}
 .text-align-right{text-align: right;}
-
+.vertical-align-middle{vertical-align:middle;}
 page{background:cornflowerblue;color:#fff;}
 
 /* 遮罩层公共样式 */
@@ -84,12 +84,12 @@ page{background:cornflowerblue;color:#fff;}
 }
 
 .modal-title {
-  margin: 60rpx 0rpx;
+  margin: 60rpx 0rpx 30rpx 0rpx;
   font-size: 32rpx;
   color: #030303;
   text-align: center;
 }
-
+.modal-title text{margin-left: 10rpx;}
 .modal-content {
   /*padding: 50rpx 32rpx;*/
   margin-bottom: 50rpx;
@@ -97,7 +97,10 @@ page{background:cornflowerblue;color:#fff;}
 .modal-content .share{
   background: burlywood;
 }
-
+.modal-image{
+  width:90rpx;
+  height: 90rpx;
+}
 .modal-input {
   display: flex;
   font-size: 28rpx;
@@ -161,7 +164,7 @@ input-holder {
   text-align: center;
   background:cornflowerblue;
   border-radius: 44rpx;
-  margin:40rpx auto;
+  margin:0rpx auto 40rpx;
 }
 
 .card{
