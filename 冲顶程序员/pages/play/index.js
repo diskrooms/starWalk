@@ -22,6 +22,7 @@ Page({
     index:0,              //当前问题索引
     status:0,             //是否已经作答 1 已作答 0 未作答
     showFailPanel:0,      //回答失败弹窗
+    showCardPanel:0       //复活弹窗
   },
 
   /**

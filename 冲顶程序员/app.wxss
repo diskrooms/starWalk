@@ -98,8 +98,8 @@ page{background:cornflowerblue;color:#fff;}
   background: burlywood;
 }
 .modal-image{
-  width:90rpx;
-  height: 90rpx;
+  width:160rpx;
+  height: 160rpx;
 }
 .modal-input {
   display: flex;

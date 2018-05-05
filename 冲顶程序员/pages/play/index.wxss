@@ -60,6 +60,6 @@
   color:#fff;
 }
 .answer-item.error{
-  background: #fa3a3a;
+  background: #f44336;
   color:#fff;
 }

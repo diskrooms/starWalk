@@ -1,18 +1,20 @@
 // pages/list/index.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    'currentTabIndex':0
+    'currentTabIndex':0,
+    'listData':[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    //console.log('onLoad')
   },
 
   /**
@@ -26,7 +28,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    wx.request({
+      url: app.globalData.apiDomain + '/question/ranklist',
+      data: { 'token': wx.getStorageSync('token') },
+      method: 'POST',
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      dataType: 'json',
+      success: (res) => {
+        console.log(res)
+        this.setData({ 'listData': res.data.msg });
+      }
+    })
   },
 
   /**

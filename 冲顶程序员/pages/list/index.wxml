@@ -5,16 +5,24 @@
 </view>
 <view class="{{currentTabIndex == 0?'show':'hidden'}}">
   <text>本周冠军奖品</text>
-  <image></image>
+  <image src="{{listData.week.week_gift.image}}" mode="widthFix"></image>
   <scroll-view bindscroll="scroll" scroll-y>
-      <view wx:for="{{listData.week}}"></view>
+      <view wx:for="{{listData.week.month_list}}">
+          <view>{{item.avatar}}</view>
+          <view>{{item.nickname}}</view>
+          <view>{{item.count}}</view>
+      </view>
   </scroll-view>
 </view>
 <view class="{{currentTabIndex == 1?'show':'hidden'}}">
   <text>本月冠军奖品</text>
-  <image></image>
+  <image src="{{listData.month.month_gift.image}}" mode="widthFix"></image>
   <scroll-view bindscroll="scroll" scroll-y>
-      <view wx:for="{{listData.month}}"></view>
+      <view wx:for="{{listData.month.month_list}}">
+          <view>{{item.avatar}}</view>
+          <view>{{item.nickname}}</view>
+          <view>{{item.count}}</view>
+      </view>
   </scroll-view>
 </view>
 

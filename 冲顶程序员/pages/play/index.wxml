@@ -25,7 +25,7 @@
 <view class="modal-mask" bindtap="hideModal" bindtap='cancelShowFail' wx:if="{{showFailPanel}}"></view>
 <view class="modal-dialog" wx:if="{{showFailPanel}}">
   
-  <view class="modal-title"><image class="modal-image vertical-align-middle" src="/images/fail.png"></image><text class="vertical-align-middle">回答错误</text></view>
+  <view class="modal-title"><image class="modal-image vertical-align-middle" src="/images/fail-480.png"></image><text class="vertical-align-middle">回答错误</text></view>
   <view class="modal-content">
     <button class="submit" open-type="share">分享到群复活</button>
     <block wx:if="{{userInfo.card > 0}}">
@@ -46,7 +46,7 @@
 <!-- 使用复活卡弹窗 -->
 <view class="modal-mask"  wx:if="{{showCardPanel}}"></view>
 <view class="modal-dialog" wx:if="{{showCardPanel}}">
-  <view class="modal-title"><image class="modal-image vertical-align-middle" src="/images/success.png"></image><text class="vertical-align-middle">复活成功</text></view>
+  <view class="modal-title"><image class="modal-image vertical-align-middle" src="/images/success-480.png"></image><text class="vertical-align-middle">复活成功</text></view>
   <!--<view class="modal-content">
     <view class='submit' bindtap='explain'>是否查看详细解答？</view>
   </view>-->
