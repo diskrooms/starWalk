@@ -1,8 +1,19 @@
 /* pages/list/index.wxss */
 page{background-color:#edf0f3;color:#000;}
-.nav{width:100%;height:100rpx;display:flex;flex-direction:row;}
-.default{line-height:100rpx;text-align:center;flex:1;border-right:1px solid gainsboro;color:#000;font-weight:bold;font-size:28rpx;}
-.current{line-height:100rpx;text-align:center;color:#fc5558;flex:1;border-right:1px solid gainsboro;font-weight:bold;font-size:28rpx;}
+.nav{width:100%;height:100rpx;display:flex;flex-direction:row;margin-top:20rpx;}
+.default{line-height:100rpx;text-align:center;flex:1;border-right:1px solid gainsboro;color:#000;font-size:30rpx;}
+.current{line-height:100rpx;text-align:center;color:#fc5558;flex:1;border-right:1px solid gainsboro;font-size:30rpx;}
 .show{display:block;text-align:center;line-height:100rpx;}
-.show text{font-size:30rpx;}
+.show text{font-size:30rpx;font-weight:bold;}
 .hidden{display:none;text-align:center;line-height:200px;}
+
+.image-container{padding: 0rpx 50rpx;}
+.image-container image{width:100%;} /*宽度恰好铺满容器*/
+
+.ranklist-image-container .level{font-size:30rpx;background: cornflowerblue;font-weight: bold;
+  color:#fff;width:60rpx;height: 60rpx;line-height: 60rpx;border-radius: 30rpx;
+}
+.ranklist-image-container .one{background:goldenrod}
+.ranklist-avatar{width:80rpx !important;height: 80rpx;border-radius: 40rpx;margin-left:30rpx;}
+.ranklist-nickname{font-size: 30rpx;width:260rpx;text-align: left;}
+.ranklist-count{font-size: 30rpx;}

@@ -5,24 +5,34 @@
 </view>
 <view class="{{currentTabIndex == 0?'show':'hidden'}}">
   <text>本周冠军奖品</text>
-  <image src="{{listData.week.week_gift.image}}" mode="widthFix"></image>
-  <scroll-view bindscroll="scroll" scroll-y>
-      <view wx:for="{{listData.week.month_list}}">
-          <view>{{item.avatar}}</view>
-          <view>{{item.nickname}}</view>
-          <view>{{item.count}}</view>
-      </view>
-  </scroll-view>
+  <view class="image-container">
+    <image src="{{listData.week.week_gift.image}}" mode="widthFix"></image>
+    <scroll-view bindscroll="scroll" scroll-y>
+        <view wx:for="{{listData.week.week_list}}" class="flex">
+            <view class="flex ranklist-image-container">
+                <view class="{{item.level}} level">1</view>
+                <image src="{{item.avatar}}" class="ranklist-avatar"></image>
+            </view>
+            <view class="ranklist-nickname">{{item.nickname}}</view>
+            <view class="ranklist-count">最高记录 {{item.best}} 关</view>
+        </view>
+    </scroll-view>
+  </view>
 </view>
 <view class="{{currentTabIndex == 1?'show':'hidden'}}">
   <text>本月冠军奖品</text>
-  <image src="{{listData.month.month_gift.image}}" mode="widthFix"></image>
-  <scroll-view bindscroll="scroll" scroll-y>
-      <view wx:for="{{listData.month.month_list}}">
-          <view>{{item.avatar}}</view>
-          <view>{{item.nickname}}</view>
-          <view>{{item.count}}</view>
-      </view>
-  </scroll-view>
+  <view class="image-container">
+    <image src="{{listData.month.month_gift.image}}" mode="widthFix"></image>
+    <scroll-view bindscroll="scroll" scroll-y>
+        <view wx:for="{{listData.month.month_list}}"  class="flex">
+            <view class="flex ranklist-image-container">
+                  <view class="{{item.level}} level">1</view>
+                  <image src="{{item.avatar}}" class="ranklist-avatar"></image>
+              </view>
+            <view class="ranklist-nickname">{{item.nickname}}</view>
+            <view class="ranklist-count">最高纪录 {{item.best}} 关</view>
+        </view>
+    </scroll-view>
+  </view>
 </view>
 

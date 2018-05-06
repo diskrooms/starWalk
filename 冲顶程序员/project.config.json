@@ -30,12 +30,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": [
 				{
-					"id": -1,
-					"name": "倒计时动画",
-					"pathName": "pages/play/index",
+					"id": 0,
+					"name": "排行榜",
+					"pathName": "pages/list/index",
 					"query": ""
 				}
 			]
