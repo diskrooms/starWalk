@@ -102,10 +102,11 @@ Page({
   },
 
   /**
-   * 用户点击右上角分享
+   * 用户分享
    */
-  onShareAppMessage: function () {
-  
+  onShareAppMessage: function (res) {
+    res.type = 1;          
+    return app.onShareAppMessage(res,this.goNext)
   },
   //绘制圆
   drawProgressbg: function () {
@@ -152,8 +153,10 @@ Page({
         _count++;
         this.setData({'count':_count})
       } else {
+        //规定时间内未回答
         clearInterval(this.data.countTimer);
-        this.setData({ 'showFailPanel': 1 })
+        //this.setData({'showFailPanel': 1 })
+        this.error();
       }
       var _spent_time = parseInt(_count * this.data.freq/1000) //花费时间 s
       var _remains_time = this.data.totalTime - _spent_time       
@@ -191,7 +194,8 @@ Page({
         }
         //
         setTimeout(()=>{
-          that.setData({'showFailPanel':1})
+          //that.setData({'showFailPanel':1})
+          that.error();
         },600);
       }
       clearInterval(this.data.countTimer);
@@ -204,14 +208,33 @@ Page({
       'showFailPanel': false
     })*/
   },
+
+  //回答错误的后续动作
+  error:function(){
+    var that = this;
+    this.setData({ 'showFailPanel': 1 })  //弹出错误框
+    wx.request({
+      url: app.globalData.apiDomain + '/my/passLog',
+      data: {
+        token: wx.getStorageSync('token'),
+        pass:that.data.index
+      },
+      method: 'POST',
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      dataType: 'json',
+      success:(res)=>{
+        
+      }
+    })
+  },
   //回答正确 下一题
   goNext:function(index){
-    //console.log(typeof index)
-    if(typeof index =='object'){
+    //console.log(typeof index) number
+    if(typeof index =='object' || !index){
       var index = this.data.index;
       //console.log(index)
     }
-    
+   
       //初始化变量
     this.setData({ 'index': index + 1, 'status': 0, 'count': 0, 'remains': 60, 'showFailPanel': 0,'showCardPanel':0})
       var code = this.data.questions[index+1].question;

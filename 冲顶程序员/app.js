@@ -160,22 +160,65 @@ App({
     userInfo: null,
     apiDomain: 'https://coder.51tui.vip',     //api主域名
   },
-  /*onShareAppMessage: function (res) {
-    console.log(res)
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      //console.log(res.target)
-    }
+  onShareAppMessage: function (params,callback) {
+    var that = this
+    //console.log(params)
+    wx.showShareMenu({
+      withShareTicket: true,
+      success:function(res){
+      }
+    })
     return {
-      title: '自定义转发标题',
+      title: '学长,帮帮忙,这道编程题不会做',
       path: '/pages/index/index',
       success: function (res) {
         // 转发成功
-        //console.log(app.globalData.userInfo)
+        var shareTickets = res.shareTickets;
+        if (shareTickets.length == 0) {
+          console.log('转发获取tickets失败')
+          return false;
+        }
+        wx.getShareInfo({
+          shareTicket: shareTickets[0],
+          success: function (res) {
+            wx.request({
+                url: that.globalData.apiDomain+'/my/share',
+                data: {
+                  token : wx.getStorageSync('token'),
+                  encryptedData_ : res.encryptedData,
+                  iv_ : res.iv,
+                  from:params.from,      //nenu右上角 button按钮
+                  type:params.type
+                },
+                method: 'POST',
+                header: { "Content-Type": "application/x-www-form-urlencoded" },
+                dataType: 'json',
+                success: (res) => {
+                   if(res.data.status > 0){
+                     alert('复活成功');//todo换对话框
+                     setTimeout(()=>{
+                       callback()
+                     },1000)
+                   } else {
+                     alert(res.data.msg);
+                   }
+                }
+            })
+          }
+        })
       },
       fail: function (res) {
         // 转发失败
+        console.log('转发失败')
       }
     }
-  }*/
+  }
 })
+
+//弹出框
+function alert(msg) {
+  wx.showToast({
+    title: msg,
+    icon: 'none'
+  })
+}

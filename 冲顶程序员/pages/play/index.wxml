@@ -27,7 +27,7 @@
   
   <view class="modal-title"><image class="modal-image vertical-align-middle" src="/images/fail-480.png"></image><text class="vertical-align-middle">回答错误</text></view>
   <view class="modal-content">
-    <button class="submit" open-type="share">分享到群复活</button>
+    <button class="submit" open-type="share">请群好友帮忙</button>
     <block wx:if="{{userInfo.card > 0}}">
       <button class="submit card" bindtap="usecard">使用复活卡并查看解答</button>
     </block>
