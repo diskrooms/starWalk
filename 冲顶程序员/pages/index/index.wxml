@@ -59,3 +59,18 @@
     <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
   </view>-->
 </view>
+
+<view class="modal-mask" bindtap='cancelAuth' wx:if="{{showAuthPanel}}"></view>
+<view class="modal-dialog" wx:if="{{showAuthPanel}}">
+  <view class="modal-title">请授权登录</view>
+  <view class="modal-content">
+    <view class="modal-input">
+        若不授权微信登录，将无法正常使用本小程序；点击授权，则可重新使用。若还是点击不授权，之后还想使用的话，请在微信【发现】-【小程序】-删掉本小程序，重新授权登录，方可使用
+    </view>
+    <view class='submit' bindtap='submit'>提交领取奖励</view>
+  </view>
+  <!--<view class="modal-footer">
+    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+  </view>-->
+</view>

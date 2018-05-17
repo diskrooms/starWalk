@@ -112,6 +112,7 @@ function onLogin(app,callback){
     fail: function () {
       //登录态过期 重新登录
       //console.log(opt)
+      
       login(app,callback)
     }
   })
@@ -119,16 +120,16 @@ function onLogin(app,callback){
 
 //不授权弹出提示 opt为传递过来的 onLaunch 场景参数
 function unAuthModal(app,callback){
-  wx.showModal({
+  /*wx.showModal({
     title: '警告',
     content: '若不授权微信登录，将无法正常使用本小程序；点击授权，则可重新使用。若还是点击不授权，之后还想使用的话，请在微信【发现】-【小程序】-删掉本小程序，重新授权登录，方可使用',
     success: function (res) {
       if (res.confirm) {
+        //openSetting 已被废弃
         wx.openSetting({
           success: function (res) {
             if (!res.authSetting["scope.userInfo"] || !res.authSetting["scope.userLocation"]) {
               //这里是授权成功之后 填写你重新获取数据的js
-              //参考:
               login(app,callback)
             }
           }
@@ -137,11 +138,17 @@ function unAuthModal(app,callback){
         unAuthModal(app,callback);
       }
     }
+  })*/
+  wx.getSetting({
+    success(res) {
+      console.log(res.authSetting['scope.userInfo'])
+    }
   })
 }
 
 App({
   onLaunch: function (opt) {
+    console.log('2')
     //console.log(opt)
     // 展示本地存储能力
     //var logs = wx.getStorageSync('logs') || []
@@ -159,6 +166,7 @@ App({
     opt:null,
     userInfo: null,
     apiDomain: 'https://coder.51tui.vip',     //api主域名
+    showAuthPanel:0
   },
   onShareAppMessage: function (params,callback) {
     var that = this

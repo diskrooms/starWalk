@@ -13,6 +13,7 @@ Page({
                },
     showJobChoosePanel:0,    //职业选择框显示开关
     showSharePanel:0,        //分享提示框开关
+    showAuthPanel: 0
   },
   //事件处理函数
   bindViewTap: function() {
@@ -21,6 +22,7 @@ Page({
     })
   },
   onShow: function () {
+    this.setData({ 'showAuthPanel': app.globalData.showAuthPanel })
     app.onLaunch(this.render);
   },
   //渲染页面
@@ -30,6 +32,7 @@ Page({
     if (!(set_job > 0)) {
       this.setData({ "showJobChoosePanel": 1 })
     }
+    
   },
   //职业选择
   chooseJob:function(e){
