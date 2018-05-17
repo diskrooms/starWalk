@@ -139,11 +139,6 @@ function unAuthModal(app,callback){
       }
     }
   })*/
-  wx.getSetting({
-    success(res) {
-      console.log(res.authSetting['scope.userInfo'])
-    }
-  })
 }
 
 App({

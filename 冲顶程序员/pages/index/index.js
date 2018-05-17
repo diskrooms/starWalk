@@ -22,8 +22,35 @@ Page({
     })
   },
   onShow: function () {
-    this.setData({ 'showAuthPanel': app.globalData.showAuthPanel })
-    app.onLaunch(this.render);
+    console.log('onShow')
+    var that = this;
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.userInfo']) {
+          wx.getUserInfo({
+            success: function (res) {
+              console.log(res)
+            }
+          })
+        } else {
+          /*wx.authorize({
+            scope: 'scope.userInfo',
+            success() {
+              // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
+              console.log('userinfo');
+            },
+            complete: function (res) {
+              console.log(res);
+            }
+          })*/
+          that.setData({'showAuthPanel':1})
+        }
+      }
+    })
+  },
+  onGotUserInfo:function(e){
+    console.log(e.detail)
+    onLogin(app,this.render)
   },
   //渲染页面
   render:function(){

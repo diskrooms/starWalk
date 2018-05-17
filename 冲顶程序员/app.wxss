@@ -103,8 +103,9 @@ page{background:cornflowerblue;color:#fff;}
 }
 .modal-input {
   display: flex;
-  font-size: 28rpx;
+  font-size: 32rpx;
   margin-bottom: 20rpx;
+  color:#000;
 }
 
 .modal-input .on{
