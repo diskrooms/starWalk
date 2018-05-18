@@ -6,7 +6,7 @@
       <text class="userinfo-nickname px-30">{{userInfo.nickname}}</text>
     </view>
     <view class="instruction text-align-center px-36">
-      <view class="px-36 title">愿最好的你</view>
+      <view class="px-32 title">愿最好的你</view>
       <view class="px-32 info">实现心中所有的美好</view>
     </view>
     
@@ -62,10 +62,11 @@
 
 <view class="modal-mask" bindtap='cancelAuth' wx:if="{{showAuthPanel}}"></view>
 <view class="modal-dialog" wx:if="{{showAuthPanel}}">
-  <view class="modal-title">请授权登录</view>
+  <view class="modal-title">小提示</view>
   <view class="modal-content">
     <view class="modal-input">
-        若不授权微信登录，将无法正常使用本小程序；点击授权，则可重新使用。若还是点击不授权，之后还想使用的话，请在微信【发现】-【小程序】-删掉本小程序，重新授权登录，方可使用
+        <!--若不授权微信登录，将无法正常使用本小程序；点击授权，则可重新使用。若还是点击不授权，之后还想使用的话，请在微信【发现】-【小程序】-删掉本小程序，重新授权登录，方可使用-->
+        若不授权微信登录，将无法正常使用本小程序；点击登录，允许授权才能使用小程序哦
     </view>
     <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" class="modal-title">登录</button>
   </view>

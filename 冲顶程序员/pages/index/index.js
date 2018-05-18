@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
+const util = require('../../utils/util.js')
 
 Page({
   data: {
@@ -29,7 +30,7 @@ Page({
       success(res) {
         if (res.authSetting['scope.userInfo']) {
           //直接登录
-          app.onLaunch(this.render)
+          app.onLaunch(that.render)
         } else {
           that.setData({'showAuthPanel':1})
         }
@@ -37,9 +38,12 @@ Page({
     })
   },
   onGotUserInfo:function(e){
-    //console.log(e)
-    this.setData({ 'showAuthPanel': 0 })
-    app.onLaunch(this.render)
+    if (e.detail.encryptedData){
+      this.setData({ 'showAuthPanel': 0 })
+      app.onLaunch(this.render)
+    } else {
+
+    }
   },
   //渲染页面
   render:function(){
@@ -70,6 +74,10 @@ Page({
       if(jobChoose[i] >0){
         jobs.push(i)
       }
+    }
+    if(jobs.length == 0){
+      util.alert('请选择您擅长的语言');
+      return;
     }
     wx.request({
       url: app.globalData.apiDomain+'/my/settings',
