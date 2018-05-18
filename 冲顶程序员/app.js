@@ -112,7 +112,6 @@ function onLogin(app,callback){
     fail: function () {
       //登录态过期 重新登录
       //console.log(opt)
-      
       login(app,callback)
     }
   })
@@ -143,7 +142,6 @@ function unAuthModal(app,callback){
 
 App({
   onLaunch: function (opt) {
-    console.log('2')
     //console.log(opt)
     // 展示本地存储能力
     //var logs = wx.getStorageSync('logs') || []
