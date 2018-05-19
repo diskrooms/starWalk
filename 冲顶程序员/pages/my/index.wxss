@@ -1,1 +1,28 @@
 /* pages/my/index.wxss */
+page{background: #fff;color:#000;}
+.userInfo{padding: 50rpx 80rpx;}
+.userInfo .count{
+  font-size:40rpx;
+  background: cornflowerblue;
+  font-weight: bold;
+  color:#fff;
+  width:100rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-radius: 50rpx;
+  margin: 0 auto;/*水平居中*/
+}
+.userInfo .desc{margin-top:10rpx;}
+.userInfo .desc_r{margin-right: 20rpx;}
+.userInfo .ranklist{
+  background: burlywood;
+  color:#fff;
+  padding: 10rpx 20rpx;
+  border-radius: 5rpx;
+}
+
+.appreciate{margin: 100rpx 0rpx 20rpx}
+.about{background:burlywood;color:#fff;border-radius: 5rpx;margin:20rpx 10rpx 5rpx;padding:10rpx }
+.softicon{width:90rpx;height: 90rpx;}
+.softname{width:200rpx;}
+.odd{}

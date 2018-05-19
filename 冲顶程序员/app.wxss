@@ -35,6 +35,7 @@
 .right{float:right}
 .inline{display: inline;}
 .block{display:block}
+.bolder{font-weight: bolder;}
 .flex{display:flex;flex-direction:row;align-items:center;justify-content:space-between;}
 .inline-block{display:inline-block}
 .show{display: auto;}

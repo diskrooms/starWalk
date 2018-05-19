@@ -40,7 +40,7 @@
 }
 
 .question{
-  font-size: 30rpx;
+  font-size: 34rpx;
   padding:20rpx;
 }
 .answer{
@@ -51,9 +51,9 @@
   border-radius: 35rpx;
   /*border:1px solid #fb9126;*/
   background:#fb9126;
-  padding: 10rpx 20rpx;
+  padding: 20rpx 20rpx;
   color:#fff;
-  font-size: 34rpx;
+  font-size: 32rpx;
 }
 .answer-item.correct{
   background: #6495ed;

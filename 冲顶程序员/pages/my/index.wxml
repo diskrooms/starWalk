@@ -1,24 +1,54 @@
 <!--pages/my/index.wxml-->
-<view>
+<view class="userInfo">
    <view class="flex">
-      <view class="flex-item">
-         <view>100</view>
-         <view>已挑战</view>
+      <view class="flex-item text-align-center">
+         <view class="count">100</view>
+         <view class="desc px-36">已挑战</view>
       </view>
-      <view class="flex-item">
-         <view>10</view>
-         <view>挑战机会</view>
+      <view class="flex-item text-align-center">
+         <view class="count">10</view>
+         <view class="desc px-36">挑战机会</view>
       </view>
-      <view class="flex-item">
-         <view>
-            <view>
-               <text>周</text> <view>1000</view>
-            </view>
-            <view>
-               <text>月</text> <view>2000</view>
-            </view>
-         </view>
-         <view>排行榜</view>
+      <view class="flex-item ranklist">
+          <view><text class="desc_r px-32">周排行</text><text class="count_r px-30">1000</text></view>
+          <view><text class="desc_r px-32">月排行</text><text class="count_r px-30">2000</text></view>
       </view>
    </view>
+
+   <view class="px-32 text-align-center appreciate">鸣谢</view>
+   <view class="px-30">致敬计算机世界中默默分享耕耘的自由战士</view>
+   <view class="px-30 text-align-center"><text class="about inline-block">本项目构建于下列软件之上</text></view>
+   
+   <scroll-view bindscroll="scroll" scroll-y>
+        <view class="flex">
+            <image src="../../images/ssl.png" class="softicon"></image>
+            <view class="softname px-32">OpenSSL</view>
+            <view class="work px-30">数据安全</view>
+        </view>
+        <view class="flex odd">
+            <image src="../../images/ssh.png" class="softicon"></image>
+            <view class="softname px-32">OpenSSH</view>
+            <view class="work px-30">远程登录</view>
+        </view>
+        <view class="flex">
+            <image src="../../images/linux.png" class="softicon"></image>
+            <view class="softname px-32">Linux</view>
+            <view class="work px-30">操作系统</view>
+        </view>
+        <view class="flex odd">
+            <image src="../../images/apache.png" class="softicon"></image>
+            <view class="softname px-32">Apache</view>
+            <view class="work px-30">网络服务</view>
+        </view>
+        <view class="flex">
+            <image src="../../images/mysql.png" class="softicon"></image>
+            <view class="softname px-32">Mysql</view>
+            <view class="work px-30">数据存储</view>
+        </view>
+        <view class="flex odd">
+            <image src="../../images/php.png" class="softicon"></image>
+            <view class="softname px-32">PHP</view>
+            <view class="work px-30">数据计算</view>
+        </view>
+    </scroll-view>
 </view>
