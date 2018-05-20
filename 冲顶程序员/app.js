@@ -196,12 +196,12 @@ App({
                 dataType: 'json',
                 success: (res) => {
                    if(res.data.status > 0){
-                     alert('复活成功');//todo换对话框
+                     alert(res.data.msg[0]);   //todo换对话框
                      setTimeout(()=>{
-                       callback()
+                       callback(res.data.msg[1])
                      },1000)
                    } else {
-                     alert(res.data.msg);
+                     alert(res.data.msg[0]);
                    }
                 }
             })

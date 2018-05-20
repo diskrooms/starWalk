@@ -1,17 +1,17 @@
-<!--pages/my/index.wxml-->
+              <!--pages/my/index.wxml-->
 <view class="userInfo">
    <view class="flex">
       <view class="flex-item text-align-center">
-         <view class="count">100</view>
+         <view class="count">{{userInfo.pcount}}</view>
          <view class="desc px-36">已挑战</view>
       </view>
       <view class="flex-item text-align-center">
-         <view class="count">10</view>
+         <view class="count">{{userInfo.ticket}}</view>
          <view class="desc px-36">挑战机会</view>
       </view>
       <view class="flex-item ranklist">
-          <view><text class="desc_r px-32">周排行</text><text class="count_r px-30">1000</text></view>
-          <view><text class="desc_r px-32">月排行</text><text class="count_r px-30">2000</text></view>
+          <view><text class="desc_r px-32">周排行</text><text class="count_r px-30">{{userInfo.weekRank}}</text></view>
+          <view><text class="desc_r px-32">月排行</text><text class="count_r px-30">{{userInfo.monthRank}}</text></view>
       </view>
    </view>
 
