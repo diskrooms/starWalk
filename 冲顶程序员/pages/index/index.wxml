@@ -21,7 +21,7 @@
 <!-- 职业选择框 -->
 <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" bindtap="cancelSubmit" wx:if="{{showJobChoosePanel}}"></view>
 <view class="modal-dialog" wx:if="{{showJobChoosePanel}}">
-  <view class="modal-title">你是哪一类程序猿(媛),可多选</view>
+  <view class="modal-title">您是哪一类开发者(可多选)</view>
   <view class="modal-content">
     <view class="modal-input">
       <button class="input {{jobChoose.php > 0 ? 'on':''}}" bindtap="chooseJob" id="php">PHP</button>

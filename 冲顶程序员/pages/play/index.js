@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userInfo:null,
     totalTime:60,     //总计时间  一个常量
     remains: 60,      //答题保留时间
     count: 0,         // 设置 计数器 初始为0
@@ -273,7 +274,7 @@ Page({
         if(res.data.status > 0){
             //that.goNext(_question_index)
             //that.alert('使用成功');
-            that.setData({'showFailPanel':0,'showCardPanel':1});
+            that.setData({'showFailPanel':0,'showCardPanel':1,'userInfo':res.data.msg[1]});
         } else {
             that.alert('使用失败')
         }

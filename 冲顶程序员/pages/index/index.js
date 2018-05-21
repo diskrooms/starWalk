@@ -76,7 +76,7 @@ Page({
       }
     }
     if(jobs.length == 0){
-      util.alert('请选择您擅长的语言');
+      util.alert('请选择您擅长的领域');
       return;
     }
     wx.request({

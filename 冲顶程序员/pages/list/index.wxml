@@ -4,13 +4,15 @@
   <view class="{{currentTabIndex == 1?'current':'default'}}" bindtap="switchTab" id='1'>月排行</view>
 </view>
 <view class="{{currentTabIndex == 0?'show':'hidden'}}">
-  <text>本周冠军奖品</text>
+  <text class="title">本周冠军奖品</text>
+  <button open-type="contact" class="contact">联系客服</button>
   <view class="image-container">
     <image src="{{listData.week.week_gift.image}}" mode="widthFix"></image>
+    <text class="desc">{{listData.week.week_gift.desc}}</text>
     <scroll-view bindscroll="scroll" scroll-y>
         <view wx:for="{{listData.week.week_list}}" class="flex">
             <view class="flex ranklist-image-container">
-                <view class="{{item.level}} level">1</view>
+                <view class="{{item.level}} level">{{item.level}}</view>
                 <image src="{{item.avatar}}" class="ranklist-avatar"></image>
             </view>
             <view class="ranklist-nickname">{{item.nickname}}</view>
@@ -20,13 +22,15 @@
   </view>
 </view>
 <view class="{{currentTabIndex == 1?'show':'hidden'}}">
-  <text>本月冠军奖品</text>
+  <text class="title">本月冠军奖品</text>
+  <button open-type="contact" class="contact">联系客服</button>
   <view class="image-container">
     <image src="{{listData.month.month_gift.image}}" mode="widthFix"></image>
+    <text class="desc">{{listData.month.month_gift.desc}}</text>
     <scroll-view bindscroll="scroll" scroll-y>
         <view wx:for="{{listData.month.month_list}}"  class="flex">
             <view class="flex ranklist-image-container">
-                  <view class="{{item.level}} level">1</view>
+                  <view class="{{item.level}} level">{{item.level}}</view>
                   <image src="{{item.avatar}}" class="ranklist-avatar"></image>
               </view>
             <view class="ranklist-nickname">{{item.nickname}}</view>
