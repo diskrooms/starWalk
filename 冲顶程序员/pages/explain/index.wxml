@@ -1,3 +1,5 @@
 <!--pages/explain/index.wxml-->
 <import src="../../wxParse/wxParse.wxml"/>
-<template is="wxParse" data="{{wxParseData:wxParseData.nodes}}"/>
+<view class="container">
+  <template is="wxParse" data="{{wxParseData:wxParseData.nodes}}"/>
+</view>

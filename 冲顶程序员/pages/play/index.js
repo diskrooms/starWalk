@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    right_collect: [101, 102, 106, 111, 123, 128, 129, 150, 151, 167],
     userInfo:null,
     totalTime:60,     //总计时间  一个常量
     remains: 60,      //答题保留时间
@@ -178,7 +179,7 @@ Page({
       
       var _answers = questions[_question_index].answers; //当前问题所有答案
       var _answer = _answers[_answer_index];            //所选中的答案内容
-      if(_answer.is_true == 1){
+      if(that.data.right_collect.indexOf(_answer.is_true) >= 0){
         //回答正确
         _answer.flag = 'correct';
         setTimeout(() => {
@@ -189,7 +190,7 @@ Page({
         _answer.flag = 'error';
         //回答错误 显示正确答案
         for (var i in _answers){
-          if(_answers[i].is_true == 1){
+          if (that.data.right_collect.indexOf(_answers[i].is_true) >= 0){
             _answers[i].flag = 'correct';
           }
         }

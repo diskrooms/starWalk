@@ -56,7 +56,7 @@
   font-size: 32rpx;
 }
 .answer-item.correct{
-  background: #6495ed;
+  background: #4caf50;
   color:#fff;
 }
 .answer-item.error{
