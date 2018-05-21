@@ -83,7 +83,13 @@ page{background:cornflowerblue;color:#fff;}
   box-sizing: border-box;
   margin: 0 auto;
 }
-
+.modal-close{
+  width:50rpx;
+  height: 50rpx;
+  position: absolute;
+  right: -10rpx;
+  top:-10rpx;
+}
 .modal-title {
   margin: 60rpx 0rpx 30rpx 0rpx;
   font-size: 32rpx;
