@@ -185,7 +185,7 @@ Page({
                 wx.reLaunch({
                   url: '/pages/index/index',
                 })
-              },1000);
+              },50);
             }
           },
           'fail': function (res) {
