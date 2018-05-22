@@ -87,8 +87,8 @@ page{background:cornflowerblue;color:#fff;}
   width:50rpx;
   height: 50rpx;
   position: absolute;
-  right: -10rpx;
-  top:-10rpx;
+  right: 0rpx;
+  top:0rpx;
 }
 .modal-title {
   margin: 60rpx 0rpx 30rpx 0rpx;

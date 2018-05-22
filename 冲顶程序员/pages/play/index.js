@@ -24,7 +24,8 @@ Page({
     index:0,              //当前问题索引
     status:0,             //是否已经作答 1 已作答 0 未作答
     showFailPanel:0,      //回答失败弹窗
-    showCardPanel:0       //复活弹窗
+    showCardPanel:0,       //复活弹窗
+    showCardPanel2: 1,
   },
 
   /**
@@ -204,11 +205,19 @@ Page({
       this.setData({ 'questions': questions, 'status': 1 });
     }
   },
-  //取消弹窗
-  cancelShowFail: function () {
-    /*this.setData({
-      'showFailPanel': false
-    })*/
+
+  //显示复活卡弹窗
+  showCardModal: function () {
+    this.setData({
+      'showCardPanel2': true
+    })
+  },
+
+  //隐藏复活卡弹窗但显示遮罩层
+  hideCardModal: function () {
+    this.setData({
+      'showCardPanel2': false
+    })
   },
 
   //回答错误的后续动作

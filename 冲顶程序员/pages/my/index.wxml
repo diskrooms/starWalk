@@ -1,4 +1,4 @@
-hei               <!--pages/my/index.wxml-->
+<!--pages/my/index.wxml-->
 <view class="userInfo">
    <view class="flex">
       <view class="flex-item text-align-center">

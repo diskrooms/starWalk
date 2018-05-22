@@ -22,9 +22,8 @@
 </view>
 
 <!-- 失败弹窗 -->
-<view class="modal-mask" bindtap="hideModal" bindtap='cancelShowFail' wx:if="{{showFailPanel}}"></view>
+<view class="modal-mask" wx:if="{{showFailPanel}}"></view>
 <view class="modal-dialog" wx:if="{{showFailPanel}}">
-  <image src="../../images/close.png" class="modal-close"></image>
   <view class="modal-title"><image class="modal-image vertical-align-middle" src="/images/fail-480.png"></image><text class="vertical-align-middle">回答错误</text></view>
   <view class="modal-content">
     <button class="submit" open-type="share">请群好友帮忙</button>
@@ -44,8 +43,9 @@
 </view>
 
 <!-- 使用复活卡弹窗 -->
-<view class="modal-mask"  wx:if="{{showCardPanel}}"></view>
-<view class="modal-dialog" wx:if="{{showCardPanel}}">
+<view class="modal-mask"  wx:if="{{showCardPanel}}" bindtap="showCardModal"></view>
+<view class="modal-dialog" wx:if="{{showCardPanel && showCardPanel2}}">
+  <image src="../../images/close.png" class="modal-close" bindtap="hideCardModal"></image>
   <view class="modal-title"><image class="modal-image vertical-align-middle" src="/images/success-480.png"></image><text class="vertical-align-middle">复活成功</text></view>
   <!--<view class="modal-content">
     <view class='submit' bindtap='explain'>是否查看详细解答？</view>
