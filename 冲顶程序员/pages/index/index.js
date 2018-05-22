@@ -153,6 +153,47 @@ Page({
   },
   afterShare(ticket){
     app.globalData.userInfo.ticket = ticket;
-    this.setData({ 'userInfo': app.globalData.userInfo });
+    this.setData({ 'userInfo': app.globalData.userInfo,'showSharePanel':0 });
+  },
+
+  //购买挑战次数
+  buyTicket: function (e) {
+    var that = this;
+    var price = e.currentTarget.dataset.price;
+    var title = e.currentTarget.dataset.title;
+    wx.request({
+      url: app.globalData.apiDomain + '/pay/index',
+      data: {
+        token: wx.getStorageSync('token'),
+        title: title,
+        price: price,
+        'type': 1
+      },
+      method: 'POST',
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      dataType: 'json',
+      success: function (res) {
+        wx.requestPayment({
+          'timeStamp': res.data.timeStamp + '',
+          'nonceStr': res.data.nonceStr,
+          'package': res.data.package,
+          'signType': 'MD5',
+          'paySign': res.data.paySign,
+          'success': function (res) {
+            if (res.errMsg == 'requestPayment:ok') {
+              setTimeout(function(){
+                wx.reLaunch({
+                  url: '/pages/index/index',
+                })
+              },1000);
+            }
+          },
+          'fail': function (res) {
+            //console.log(res)
+          }
+        })
+      },
+
+    })
   }
 })

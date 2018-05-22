@@ -304,6 +304,7 @@ Page({
         token: wx.getStorageSync('token'),
         title: title,
         price: price,
+        'type':2
       },
       method: 'POST',
       header: { "Content-Type": "application/x-www-form-urlencoded" },

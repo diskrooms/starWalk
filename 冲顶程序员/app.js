@@ -176,7 +176,7 @@ App({
         // 转发成功
         var shareTickets = res.shareTickets;
         if (shareTickets.length == 0) {
-          console.log('转发获取tickets失败')
+          //console.log('转发获取tickets失败')
           return false;
         }
         wx.getShareInfo({
