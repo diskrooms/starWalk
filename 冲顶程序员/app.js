@@ -172,6 +172,7 @@ App({
     return {
       title: '学长,帮帮忙,这道编程题不会做',
       path: '/pages/index/index',
+      imageUrl:'http://coder.51tui.vip/Public/share_work.jpg',
       success: function (res) {
         // 转发成功
         var shareTickets = res.shareTickets;
