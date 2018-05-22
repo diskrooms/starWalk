@@ -6,8 +6,8 @@
       <text class="userinfo-nickname px-30">{{userInfo.nickname}}</text>
     </view>
     <view class="instruction text-align-center px-36">
-      <view class="px-32 title">愿最好的你</view>
-      <view class="px-32 info">实现心中所有的美好</view>
+      <view class="px-30 title">每周六/月末晚上20:00点开奖</view>
+      <view class="px-30 info">请联系客服拿奖吧！</view>
     </view>
     
   </view>
@@ -28,7 +28,7 @@
       <button class="input {{jobChoose.java > 0 ? 'on':''}}" bindtap="chooseJob" id="java">Java</button>
     </view>
     <view class="modal-input">
-      <button class="input {{jobChoose.python > 0 ? 'on':''}}" bindtap="chooseJob" id="python">Python</button>
+      <button class="input {{jobChoose.arithmetic > 0 ? 'on':''}}" bindtap="chooseJob" id="arithmetic">算法</button>
       <button class="input {{jobChoose.front > 0 ? 'on':''}}" bindtap="chooseJob" id="front">前端</button>
     </view>
     <view class="modal-input">
@@ -39,9 +39,9 @@
       <button class="input {{jobChoose.c > 0 ? 'on':''}}" bindtap="chooseJob" id="c">C</button>
       <button class="input {{jobChoose.android > 0 ? 'on':''}}" bindtap="chooseJob" id="android">Android</button>
     </view>
-    <view class="modal-input">
-      <button class="input {{jobChoose.arithmetic > 0 ? 'on':''}}" bindtap="chooseJob" id="arithmetic">算法</button>
-    </view>
+    <!--<view class="modal-input">
+      <button class="input {{jobChoose.python > 0 ? 'on':''}}" bindtap="chooseJob" id="python">Python</button>
+    </view>-->
     <view class='submit' bindtap='submitJob'>完成</view>
   </view>
 </view>
