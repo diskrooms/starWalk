@@ -23,24 +23,17 @@
 <!-- 职业选择框 -->
 <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" bindtap="cancelSubmit" wx:if="{{showJobChoosePanel}}"></view>
 <view class="modal-dialog" wx:if="{{showJobChoosePanel}}">
-  <view class="modal-title">您是哪一类开发者(可多选)</view>
+  <view class="modal-title">选择您擅长的领域(可多选)</view>
   <view class="modal-content">
     <view class="modal-input">
-      <button class="input {{jobChoose.php > 0 ? 'on':''}}" bindtap="chooseJob" id="php">PHP</button>
-      <button class="input {{jobChoose.java > 0 ? 'on':''}}" bindtap="chooseJob" id="java">Java</button>
+      <button class="input {{jobChoose.wen > 0 ? 'on':''}}" bindtap="chooseJob" id="wen">文</button>
+      <button class="input {{jobChoose.shi > 0 ? 'on':''}}" bindtap="chooseJob" id="shi">史</button>
     </view>
     <view class="modal-input">
-      <button class="input {{jobChoose.arithmetic > 0 ? 'on':''}}" bindtap="chooseJob" id="arithmetic">算法</button>
-      <button class="input {{jobChoose.front > 0 ? 'on':''}}" bindtap="chooseJob" id="front">前端</button>
+      <button class="input {{jobChoose.zhe > 0 ? 'on':''}}" bindtap="chooseJob" id="zhe">哲</button>
+      <button class="input {{jobChoose.jing > 0 ? 'on':''}}" bindtap="chooseJob" id="jing">经</button>
     </view>
-    <view class="modal-input">
-      <button class="input {{jobChoose.maintenance > 0 ? 'on':''}}" bindtap="chooseJob" id="maintenance">运维</button>
-      <button class="input {{jobChoose.go > 0 ? 'on':''}}" bindtap="chooseJob" id="go">Go</button>
-    </view>
-    <view class="modal-input">
-      <button class="input {{jobChoose.c > 0 ? 'on':''}}" bindtap="chooseJob" id="c">C</button>
-      <button class="input {{jobChoose.android > 0 ? 'on':''}}" bindtap="chooseJob" id="android">Android</button>
-    </view>
+    
     <!--<view class="modal-input">
       <button class="input {{jobChoose.python > 0 ? 'on':''}}" bindtap="chooseJob" id="python">Python</button>
     </view>-->

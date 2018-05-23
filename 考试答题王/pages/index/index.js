@@ -8,9 +8,8 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    jobChoose: { 'php': 0, 'java': 0, 'python': 0, 
-                'front': 0,'maintenance': 0,'go': 0,
-                'c': 0, 'android': 0,'arithmetic':0
+    jobChoose: { 'wen': 0, 'shi': 0, 'zhe': 0, 
+                'jing': 0
                },
     showJobChoosePanel:0,    //职业选择框显示开关
     showSharePanel:0,        //分享提示框开关
@@ -81,7 +80,7 @@ Page({
     }
     wx.request({
       url: app.globalData.apiDomain+'/my/settings',
-      data:{'jobs':jobs,'token':wx.getStorageSync('token')},
+      data:{'jobs':jobs,'token':wx.getStorageSync('token'),'app':2},
       method:'POST',
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       dataType:'json',

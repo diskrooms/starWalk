@@ -20,7 +20,7 @@ function login(app,callback) {
                     wechatGroupInfo = res
                     // 发送 res.code 到后台换取 openId, sessionKey, unionId
                     wx.request({
-                      url: app.globalData.apiDomain+'/user/small_login',
+                      url: app.globalData.apiDomain+'/user/login',
                       data: {
                         'code': code,
                         'rawData': info.rawData,
@@ -28,7 +28,8 @@ function login(app,callback) {
                         'encryptedData': info.encryptedData,
                         'iv': info.iv,
                         'encryptedData_': wechatGroupInfo.encryptedData,
-                        'iv_': wechatGroupInfo.iv
+                        'iv_': wechatGroupInfo.iv,
+                        'app':2
                       },
                       success: function (res) {
                         //console.log(res)
@@ -46,13 +47,14 @@ function login(app,callback) {
               } else {
                 // 发送 res.code 到后台换取 openId, sessionKey, unionId
                 wx.request({
-                  url: app.globalData.apiDomain +'/user/small_login',
+                  url: app.globalData.apiDomain +'/user/login',
                   data: {
                     'code': code,
                     'rawData': info.rawData,
                     'signature': info.signature,
                     'encryptedData': info.encryptedData,
-                    'iv': info.iv
+                    'iv': info.iv,
+                    'app':2
                   },
                   success: function (res) {
                     //console.log(res)
