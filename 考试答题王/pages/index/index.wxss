@@ -46,6 +46,7 @@
   height: 50rpx;
   box-sizing: content-box;
   line-height: 50rpx;
+  width:50rpx;
 }
 .container-content .invite{
   padding:20rpx;

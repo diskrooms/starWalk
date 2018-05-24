@@ -6,37 +6,15 @@
     "pages/list/index",
     "pages/play/index",
     "pages/explain/index",
-    "pages/play/prePlay"
+    "pages/play/prePlay",
+    "pages/index/index2"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "考试答题王",
     "navigationBarTextStyle": "black"
   },
-  "tabBar": {
-    "color": "#666666",
-    "selectedColor": "#f39c12",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "开始答题",
-        "iconPath": "images/start.png",
-        "selectedIconPath": "images/selectedStart.png"
-      },
-      {
-        "pagePath": "pages/list/index",
-        "text": "排行榜",
-        "iconPath": "images/list.png",
-        "selectedIconPath": "images/selectedList.png"
-      },
-      {
-        "pagePath": "pages/my/index",
-        "text": "我的成绩",
-        "iconPath": "images/my.png",
-        "selectedIconPath": "images/selectedMy.png"
-      }
-    ]
-  },
+  
   "debug": false
 }

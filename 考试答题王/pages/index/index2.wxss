@@ -1,0 +1,61 @@
+/* pages/index/index2.wxss */
+.nologin{
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  margin:auto;
+  height:400rpx;
+  width:70%;
+  border-radius:0rpx;
+}
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20rpx 0 0 20rpx;
+}
+.userCoins{
+  margin: 20rpx 20rpx 0 0;
+}
+.userCoins .coins{
+    width: 64rpx;
+    height: 64rpx;
+    display: block;
+}
+.userCoins .count{
+  color:#fff;
+}
+.userinfo-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  margin: 0rpx;
+  border: 1rpx solid #ffed00;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #fff;
+}
+.container{
+  background: url('http://coder.51tui.vip/Public/miniProgram/bg.png');
+  background-size: cover;
+}
+.container-header{
+  background: #57b7ec;
+  border-radius: 20rpx;
+  margin:20rpx;
+  padding: 20rpx;
+}
+.container-content{margin: 100rpx auto;}
+.container-content .start{
+  padding:20rpx;
+  background:#ffed00;
+  color:#595959;
+  border-radius: 45rpx;
+  margin:20rpx auto;
+  width:180rpx;
+  box-sizing: content-box;
+  line-height: 50rpx;
+}
