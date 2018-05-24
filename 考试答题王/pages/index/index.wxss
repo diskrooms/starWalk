@@ -44,6 +44,8 @@
   border-radius: 45rpx;
   margin:20rpx 0rpx;
   height: 50rpx;
+  box-sizing: content-box;
+  line-height: 50rpx;
 }
 .container-content .invite{
   padding:20rpx;

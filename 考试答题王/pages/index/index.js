@@ -135,7 +135,7 @@ Page({
   start:function(){
     if(app.globalData.userInfo.ticket > 0){
       wx.navigateTo({
-        url: '/pages/play/index',
+        url: '/pages/play/prePlay',
       })
     } else {
       this.setData({'showSharePanel':1});

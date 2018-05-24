@@ -21,7 +21,7 @@
 </view>
 
 <!-- 职业选择框 -->
-<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" bindtap="cancelSubmit" wx:if="{{showJobChoosePanel}}"></view>
+<!--<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" bindtap="cancelSubmit" wx:if="{{showJobChoosePanel}}"></view>
 <view class="modal-dialog" wx:if="{{showJobChoosePanel}}">
   <view class="modal-title">选择您擅长的领域(可多选)</view>
   <view class="modal-content">
@@ -34,12 +34,10 @@
       <button class="input {{jobChoose.jing > 0 ? 'on':''}}" bindtap="chooseJob" id="jing">经</button>
     </view>
     
-    <!--<view class="modal-input">
-      <button class="input {{jobChoose.python > 0 ? 'on':''}}" bindtap="chooseJob" id="python">Python</button>
-    </view>-->
+
     <view class='submit' bindtap='submitJob'>完成</view>
   </view>
-</view>
+</view>-->
 
 <!-- 分享提示框 -->
 <view class="modal-mask" bindtap="hideModal" bindtap='cancelShowShare' wx:if="{{showSharePanel}}"></view>

@@ -5,7 +5,8 @@
     "pages/my/index",
     "pages/list/index",
     "pages/play/index",
-    "pages/explain/index"
+    "pages/explain/index",
+    "pages/play/prePlay"
   ],
   "window": {
     "backgroundTextStyle": "light",

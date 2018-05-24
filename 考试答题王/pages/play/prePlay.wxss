@@ -1,0 +1,21 @@
+/* pages/play/prePlay.wxss */
+page{background: transparent;}
+
+.container{position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 700rpx;
+    width: 70%;
+    border-radius: 0rpx;
+  }
+.container .class_icon{width:80rpx;height: 80rpx;color:#fff;display: inline}
+.container .item{margin-bottom:80rpx;}
+.container .image_container{width:150rpx;height: 150rpx;line-height: 150rpx;text-align: center;padding:20rpx;border-radius: 95rpx;}
+.container .class_name{margin-top:20rpx;}
+.container .image_container.wen{background: #5581ea;}
+.container .image_container.shi{background: #fcf782;}
+.container .image_container.zhe{background: #26a8b5;}
+.container .image_container.jing{background: #ae48c8;}
