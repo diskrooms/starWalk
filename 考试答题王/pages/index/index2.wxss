@@ -42,14 +42,22 @@
   background: url('http://coder.51tui.vip/Public/miniProgram/bg.png');
   background-size: cover;
 }
-.container-header{
+.login .container-header{
   background: #57b7ec;
   border-radius: 20rpx;
   margin:20rpx;
   padding: 20rpx;
 }
-.container-content{margin: 100rpx auto;}
-.container-content .start{
+.login .container-content{
+
+}
+.login .container-content .class_name{
+  color:#fff;
+  font-family: 'zcool';
+}
+
+.nologin .container-content{margin: 100rpx auto;}
+.nologin .container-content .start{
   padding:20rpx;
   background:#ffed00;
   color:#595959;
@@ -58,4 +66,5 @@
   width:180rpx;
   box-sizing: content-box;
   line-height: 50rpx;
+  font-family: zcool;
 }

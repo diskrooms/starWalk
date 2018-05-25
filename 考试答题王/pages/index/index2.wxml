@@ -10,31 +10,31 @@
         <image src="../../images/coin.png" class="coins"></image>
         <div class="count">100</div>
       </view>
-
-      
     </view>
 
-    <view class='flex item'>
-        <view class="text-align-center">
-            <view class="image_container wen"><image src="../../images/wen.png" class="class_icon"></image></view>
-            <view class="class_name px-26">四书五经</view>
+    <view class="container-content">
+      <view class='flex item'>
+          <view class="text-align-center">
+              <view class="image_container wen"><image src="../../images/wen.png" class="class_icon"></image></view>
+              <view class="class_name px-26">四书五经</view>
+          </view>
+          <view class="text-align-center">
+              <view class="image_container shi"><image src="../../images/shi.png" class="class_icon"></image></view>
+              <view class="class_name px-26">以史为鉴</view>
+          </view>
         </view>
-        <view class="text-align-center">
-            <view class="image_container shi"><image src="../../images/shi.png" class="class_icon"></image></view>
-            <view class="class_name px-26">以史为鉴</view>
+        <view class="flex item">
+          <view class="text-align-center">
+              <view class="image_container zhe"><image src="../../images/zhe.png" class="class_icon"></image></view>
+              <view class="class_name px-26">古哲先贤</view>
+          </view>
+          <view class="text-align-center">
+              <view class="image_container jing"><image src="../../images/jing.png" class="class_icon"></image></view>
+              <view class="class_name px-26">经济适用</view>
+          </view>
         </view>
       </view>
-      <view class="flex item">
-        <view class="text-align-center">
-            <view class="image_container zhe"><image src="../../images/zhe.png" class="class_icon"></image></view>
-            <view class="class_name px-26">古哲先贤</view>
-        </view>
-        <view class="text-align-center">
-            <view class="image_container jing"><image src="../../images/jing.png" class="class_icon"></image></view>
-            <view class="class_name px-26">经济适用</view>
-        </view>
-      </view>
-  </view>
+    </view>
 
   <view wx:if="{{showAuthPanel}}" class="nologin">
     <view class="container-content text-align-center">
