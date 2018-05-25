@@ -55,12 +55,12 @@ Page({
 
   },
 
-
   //开始答题
-  start: function () {
+  start: function (e) {
     if (app.globalData.userInfo.ticket > 0) {
+      var cate = e.currentTarget.dataset.cate;
       wx.navigateTo({
-        url: '/pages/play/prePlay',
+        url: '/pages/play/index?cate='+cate,
       })
     } else {
       this.setData({ 'showSharePanel': 1 });

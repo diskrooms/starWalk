@@ -1,15 +1,4 @@
-/* pages/index/index2.wxss */
-.nologin{
-  position:absolute;
-  top:0;
-  bottom:0;
-  left:0;
-  right:0;
-  margin:auto;
-  height:400rpx;
-  width:70%;
-  border-radius:0rpx;
-}
+/* 登录样式 */
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -55,7 +44,53 @@
   color:#fff;
   font-family: 'zcool';
 }
-
+.login .container-content .computer .class_name{
+  color:#595959;
+}
+.login .container-content .image_container .class_icon{width:150rpx;height: 150rpx;}
+.login .container-content .test{
+  padding:20rpx;
+  width:100%;
+  box-sizing:border-box;
+}
+.login .container-content .farm{
+  margin:20rpx;
+}
+.login .container-content .test .item{
+  border-radius: 20rpx;
+  padding:10rpx 30rpx;
+}
+.login .container-content .test .item.wen{
+  background:#5581ea;
+}
+.login .container-content .test .item.shi{
+  background:#57b7ec;
+}
+.login .container-content .test .item.zhe{
+  background:#26a8b5;
+}
+.login .container-content .test .item.jing{
+  background:#ae48c8;
+}
+.login .container-content .test .item.computer{
+  background:#fcf782;
+  color:#000;
+}
+.login .container-content .test .item.nature{
+  background:#57b7ec;
+}
+/* 未登录样式 */
+.nologin{
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  margin:auto;
+  height:400rpx;
+  width:70%;
+  border-radius:0rpx;
+}
 .nologin .container-content{margin: 100rpx auto;}
 .nologin .container-content .start{
   padding:20rpx;

@@ -12,25 +12,45 @@
       </view>
     </view>
 
-    <view class="container-content">
-      <view class='flex item'>
-          <view class="text-align-center">
-              <view class="image_container wen"><image src="../../images/wen.png" class="class_icon"></image></view>
-              <view class="class_name px-26">四书五经</view>
+    <view class="container-content flex flex-column">
+       <view class='flex flex-row test'>
+          <view class="text-align-center item wen" bindtap="start" data-cate="1">
+              <view class="image_container"><image src="../../images/wen.png" class="class_icon"></image></view>
+              <view class="class_name px-32">四书五经</view>
           </view>
-          <view class="text-align-center">
-              <view class="image_container shi"><image src="../../images/shi.png" class="class_icon"></image></view>
-              <view class="class_name px-26">以史为鉴</view>
+          <view class="text-align-center item shi" bindtap="start" data-cate="2">
+              <view class="image_container"><image src="../../images/shi.png" class="class_icon"></image></view>
+              <view class="class_name px-32">以史为鉴</view>
+          </view>
+
+          <view class="text-align-center item zhe" bindtap="start" data-cate="3">
+              <view class="image_container"><image src="../../images/zhe.png" class="class_icon"></image></view>
+              <view class="class_name px-32">古哲先贤</view>
           </view>
         </view>
-        <view class="flex item">
-          <view class="text-align-center">
-              <view class="image_container zhe"><image src="../../images/zhe.png" class="class_icon"></image></view>
-              <view class="class_name px-26">古哲先贤</view>
+       <view class="flex flex-row test">
+          <view class="text-align-center item jing" bindtap="start" data-cate="4">
+              <view class="image_container"><image src="../../images/jing.png" class="class_icon"></image></view>
+              <view class="class_name px-32">经济适用</view>
+          </view>
+          <view class="text-align-center item computer" bindtap="start" data-cate="5">
+              <view class="image_container"><image src="../../images/computer.png" class="class_icon"></image></view>
+              <view class="class_name px-32">软件开发</view>
+          </view>
+          <view class="text-align-center item nature" bindtap="start" data-cate="6">
+              <view class="image_container"><image src="../../images/nature.png" class="class_icon"></image></view>
+              <view class="class_name px-32">自然科学</view>
+          </view>
+        </view>
+
+        <view class="flex flex-column farm">
+            <view class="text-align-center">
+              <view class="image_container jing"><image src="../../images/jing.png" class="class_icon"></image></view>
+              <view class="class_name px-32">我的花园</view>
           </view>
           <view class="text-align-center">
               <view class="image_container jing"><image src="../../images/jing.png" class="class_icon"></image></view>
-              <view class="class_name px-26">经济适用</view>
+              <view class="class_name px-32">种子商店</view>
           </view>
         </view>
       </view>

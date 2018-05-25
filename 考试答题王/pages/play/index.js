@@ -32,11 +32,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //console.log('onLoad');
+    //console.log(options);
     var that = this;
     wx.request({
       url: app.globalData.apiDomain + '/question/index',
-      data: {'token': wx.getStorageSync('token') },
+      data: {'token': wx.getStorageSync('token'),'cate':options.cate,'app':2 },
       method: 'POST',
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       dataType: 'json',
