@@ -44,13 +44,14 @@
         </view>
 
         <view class="flex flex-column farm">
-            <view class="text-align-center">
-              <view class="image_container jing"><image src="../../images/jing.png" class="class_icon"></image></view>
-              <view class="class_name px-32">我的花园</view>
+          <view class="text-align-center item garden">
+              <!--<view class="class_name px-32">我的花园</view>-->
           </view>
-          <view class="text-align-center">
-              <view class="image_container jing"><image src="../../images/jing.png" class="class_icon"></image></view>
-              <view class="class_name px-32">种子商店</view>
+          <view class="text-align-center item shop">
+              <!--<view class="class_name px-32">种子商店</view>-->
+              <image src="../../images/lock.png"></image>
+              <view class="layer"></view>
+              <text>马上回来</text>
           </view>
         </view>
       </view>

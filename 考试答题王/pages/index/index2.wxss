@@ -48,7 +48,7 @@
   color:#595959;
 }
 .login .container-content .image_container .class_icon{width:150rpx;height: 150rpx;}
-.login .container-content .test{
+.login .container-content .test,.farm{
   padding:20rpx;
   width:100%;
   box-sizing:border-box;
@@ -78,6 +78,35 @@
 }
 .login .container-content .test .item.nature{
   background:#57b7ec;
+}
+.login .container-content .farm .item{
+  width:100%;
+  height: 180rpx;
+  border-radius: 20rpx;
+}
+.login .container-content .farm .item.garden{
+  background: url("http://coder.51tui.vip/Public/garden_simple3.png");
+  background-size:cover;
+  border:3rpx solid #fff;
+}
+.login .container-content .farm .item.shop{
+  background: url("http://coder.51tui.vip/Public/shop1.png");
+  background-size:cover;
+  border:3rpx solid #fff;
+  margin-top:30rpx;
+  position: relative;
+}
+.login .container-content .farm .item.shop .layer{
+  width:100%;
+  height: 100%;
+  background: #0000005f;
+}
+.login .container-content .farm .item.shop  image{
+  width: 96rpx;
+  height: 96rpx;
+  position: absolute;
+  top:20rpx;
+  z-index: 9999;
 }
 /* 未登录样式 */
 .nologin{
