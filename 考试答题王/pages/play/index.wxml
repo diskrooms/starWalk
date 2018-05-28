@@ -43,7 +43,7 @@
   <!-- 失败弹窗 -->
   <view class="modal-mask" wx:if="{{showFailPanel}}"></view>
   <view class="modal-dialog" wx:if="{{showFailPanel}}">
-    <view class="modal-title"><image class="modal-image vertical-align-middle" src="/images/emoji-cry.png"></image><text class="vertical-align-middle">离金币一步之遥</text></view>
+    <view class="modal-title"><image class="modal-image vertical-align-middle" src="/images/cry.png"></image><text class="vertical-align-middle">离金币一步之遥</text></view>
     <view class="modal-content">
       <button class="submit" open-type="share">邀请好友</button>
       <block wx:if="{{userInfo.card > 0}}">
@@ -78,7 +78,7 @@
   <!-- 挑战成功弹窗 -->
   <view class="modal-mask" wx:if="{{showSuccPanel}}"></view>
   <view class="modal-dialog" wx:if="{{showSuccPanel}}">
-    <view class="modal-title"><image class="modal-image vertical-align-middle" src="/images/emoji-cry.png"></image><text class="vertical-align-middle">挑战成功,获得金币{{coins_random}}枚,可以购买更多种子了！</text></view>
+    <view class="modal-title"><image class="modal-image vertical-align-middle" src="/images/smile.png"></image><text class="vertical-align-middle">挑战成功,获得金币{{coins_random}}枚,可以购买更多种子了！</text></view>
     <view class="modal-content">
       
       <button class="submit" bindtap="restart">确定</button>

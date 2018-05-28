@@ -49,7 +49,10 @@
 .login .container-content .computer .class_name{
   color:#595959;
 }
-.login .container-content .image_container .class_icon{width:150rpx;height: 150rpx;}
+.login .container-content .image_container .class_icon{
+  width: 80rpx;
+  height: 80rpx;
+  }
 .login .container-content .test,.farm{
   padding:20rpx;
   width:100%;
@@ -60,7 +63,7 @@
 }
 .login .container-content .test .item{
   border-radius: 20rpx;
-  padding:10rpx 30rpx;
+  padding:20rpx;
 }
 .login .container-content .test .item.wen{
   background:#5581ea;
@@ -80,6 +83,9 @@
 }
 .login .container-content .test .item.nature{
   background:#57b7ec;
+}
+.login .container-content .test .item.doubt{
+  background:#3c3c3c;
 }
 .login .container-content .farm .item{
   width:100%;
