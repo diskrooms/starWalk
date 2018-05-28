@@ -76,10 +76,18 @@
 
 <view class="modal-mask" bindtap="hideModal" bindtap='cancelSignShare' wx:if="{{showSignPanel}}"></view>
 <view class="modal-dialog day-sign" wx:if="{{showSignPanel}}">
-  <view class="modal-title">每日登录奖励</view>
+  <image src="../../images/day.png" class="modal-title" mode="widthFix"></image>
   <view class="modal-content">
-    <view>蒲公英种子x1</view>
-    <view>金币x10</view>
+    <view class="flex flex-row">
+      <view class="flex-item text-align-center">
+        <image src="../../images/seeds.png"></image>
+        <view class="px-30">种子 x1</view>
+      </view>
+      <view class="flex-item text-align-center">
+        <image src="../../images/coin.png"></image>
+        <view class="px-30">金币 x10</view>
+      </view>
+    </view>
   </view>
 
 </view>

@@ -137,11 +137,29 @@
 
 /* 每日登录奖励 */
 .day-sign{
-  background: url('http://coder.51tui.vip/Public/miniProgram/day.png') no-repeat;
-  background-size:100% auto;
-  top:30%;
+  /*background: url('http://coder.51tui.vip/Public/miniProgram/day.png') no-repeat;
+  background-size:100% auto;*/
+  top:50%;
+  background: none;
 }
-.day-sign modal-content{
+.day-sign .modal-title{
+  margin:0rpx;
+  width:100%;
+}
+.day-sign .modal-content{
     border-radius: 20rpx;
-    background: #fff;
+    background: #57b7ec;
+    margin:-70rpx auto 0;
+    /*height: 600rpx;*/
+    padding:100rpx 50rpx;
+}
+.day-sign .modal-content .flex-item{
+  background: #fff;
+  border-radius: 20rpx;
+  padding:10rpx;
+}
+
+.day-sign .modal-content .flex-item image{
+  width: 96rpx;
+  height: 96rpx;
 }
