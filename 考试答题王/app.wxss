@@ -41,6 +41,8 @@ page{width:100%;height: 100%}
 .px-32{font-size: 32rpx;}
 .px-34{font-size: 34rpx;}
 .px-36{font-size: 36rpx;}
+.px-38{font-size: 38rpx;}
+.px-40{font-size: 40rpx;}
 .left{float:left}
 .right{float:right}
 .inline{display: inline;}
@@ -103,7 +105,7 @@ page{width:100%;height: 100%}
   top:0rpx;
 }
 .modal-title {
-  margin: 60rpx 0rpx 30rpx 0rpx;
+  margin: 20rpx 0rpx 20rpx 0rpx;
   font-size: 32rpx;
   color: #030303;
   text-align: center;
@@ -117,8 +119,8 @@ page{width:100%;height: 100%}
   background: burlywood;
 }
 .modal-image{
-  width:160rpx;
-  height: 160rpx;
+  width:100rpx;
+  height: 100rpx;
 }
 .modal-input {
   display: flex;

@@ -14,7 +14,8 @@ Page({
     },
     showJobChoosePanel: 0,    //职业选择框显示开关
     showSharePanel: 0,        //分享提示框开关
-    showAuthPanel: 0
+    showAuthPanel: 0,
+    showSignPanel:1           //每日签到
   },
   //事件处理函数
   bindViewTap: function () {
@@ -119,5 +120,10 @@ Page({
       },
 
     })
+  },
+  //进入种子商店
+  goToSeedShop:function(e){
+    util.alert('马上回来，敬请期待');
+    return;
   }
 })

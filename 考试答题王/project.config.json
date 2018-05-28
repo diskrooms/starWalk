@@ -46,6 +46,12 @@
 					"name": "题型选择页",
 					"pathName": "pages/play/prePlay",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "答题页",
+					"pathName": "pages/play/index",
+					"query": ""
 				}
 			]
 		}

@@ -6,9 +6,9 @@
         <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatar}}" background-size="cover"></image>
         <text class="userinfo-nickname px-30">{{userInfo.nickname}}({{userInfo.id}})</text>
       </view>
-      <view class="userCoins right">
+      <view class="userCoins right text-align-center">
         <image src="../../images/coin.png" class="coins"></image>
-        <div class="count">100</div>
+        <div class="count">{{userInfo.coins}}</div>
       </view>
     </view>
 
@@ -44,14 +44,12 @@
         </view>
 
         <view class="flex flex-column farm">
-          <view class="text-align-center item garden">
+          <view class="text-align-center item garden" bindtap="goToMyGarden">
               <!--<view class="class_name px-32">我的花园</view>-->
           </view>
-          <view class="text-align-center item shop">
+          <view class="text-align-center item shop" bindtap="goToSeedShop">
               <!--<view class="class_name px-32">种子商店</view>-->
-              <image src="../../images/lock.png"></image>
               <view class="layer"></view>
-              <text>马上回来</text>
           </view>
         </view>
       </view>
@@ -72,6 +70,16 @@
   <view class="modal-content">
     <button class="submit" bindtap="buyTicket" data-price='200' data-title='购买10次挑战次数'>打赏奖励(+10)</button>
     <button class="submit share" open-type="share">分享到不同的群(+1)</button>
+  </view>
+
+</view>
+
+<view class="modal-mask" bindtap="hideModal" bindtap='cancelSignShare' wx:if="{{showSignPanel}}"></view>
+<view class="modal-dialog day-sign" wx:if="{{showSignPanel}}">
+  <view class="modal-title">每日登录奖励</view>
+  <view class="modal-content">
+    <view>蒲公英种子x1</view>
+    <view>金币x10</view>
   </view>
 
 </view>

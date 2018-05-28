@@ -1,7 +1,9 @@
 // pages/play/index.js
 var WxParse = require('../../wxParse/wxParse.js');
 var lighter = require('../../utils/code-lighter.js');
+var md5 = require('../../utils/md5.js');
 const app = getApp()
+const total = 10;   //总题目数量
 
 Page({
 
@@ -22,10 +24,11 @@ Page({
     arcRadius:20,          //圆环半径
     questions:[],         //全部问题数据
     index:0,              //当前问题索引
+    curQuestion:'',       //当前问题题干
     status:0,             //是否已经作答 1 已作答 0 未作答
     showFailPanel:0,      //回答失败弹窗
-    showCardPanel:0,       //复活弹窗
-    showCardPanel2: 1,
+    showSuccPanel:0,      //挑战成功弹窗
+    coins_random:0
   },
 
   /**
@@ -41,18 +44,19 @@ Page({
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       dataType: 'json',
       success:function(res){
-        that.setData({'questions':res.data.msg});
         var _index = that.data.index;
-        var code = res.data.msg[_index].question;
+        var code = res.data.msg[_index].question;   //当前题目
+        that.setData({ 'questions': res.data.msg,'curQuestion':code});   //所有题目
         //console.log(code)
-        var _code = lighter.code({
+        /*var _code = lighter.code({
           target: code,
           language: 'php',
           style: 'light'
         });
         var _parese = _code.on();
         //console.log(article)
-        WxParse.wxParse('wxParseData', 'html', _parese, that, 5)     //'wxParseData'为绑定数据键名
+        WxParse.wxParse('wxParseData', 'html', _parese, that, 5)     //'wxParseData'为绑定数据键名*/
+        
       }
     })
   },
@@ -62,7 +66,7 @@ Page({
    */
   onReady: function () {
     //console.log('onReady');
-    //this.drawProgressbg()
+    this.drawProgressbg()
     //this.drawCircle(1)
     this.countInterval()
   },
@@ -116,24 +120,26 @@ Page({
     // 使用 wx.createContext 获取绘图上下文 context
     var ctx = wx.createCanvasContext('canvasProgressbg')
     ctx.setLineWidth(4);// 设置圆环的宽度
-    ctx.setStrokeStyle('#20183b'); // 设置圆环的颜色
-    ctx.setLineCap('round') // 设置圆环端点的形状
+    ctx.setFillStyle('#fff'); // 设置圆环的颜色    //setStrokeStyle 设置描边颜色
+    //ctx.setLineCap('round') // 设置圆环端点的形状
     ctx.beginPath();//开始一个新的路径
-    ctx.arc(110, 110, 100, 0, 2 * Math.PI, false);
+    ctx.arc(this.data.arcPointX, this.data.arcPointY, this.data.arcRadius, 0, 2 * Math.PI, false);
     //设置一个原点(100,100)，半径为90的圆的路径到当前路径
-    ctx.stroke();//对当前路径进行描边
-    ctx.draw();
+    ctx.fill();//对当前路径进行描边
+
+    //ctx.draw()
   },
   //绘制圆环
   drawCircle: function (step) {
     var context = wx.createCanvasContext('canvasProgress');
     // 设置渐变
     var gradient = context.createLinearGradient(200, 100, 100, 200);
-    gradient.addColorStop("0", "#2661DD");
+    //gradient.addColorStop("1", "#fb9126");
     //gradient.addColorStop("0.5", "#40ED94");
     //gradient.addColorStop("1.0", "#5956CC");
     context.setLineWidth(this.data.arcWidth);
-    context.setStrokeStyle(gradient);
+    //context.setStrokeStyle(gradient);
+    context.setStrokeStyle("#fb9126");
     context.setLineCap('round')
     context.beginPath();
     // 参数step 为绘制的圆环周长，从0到2为一周 。 -Math.PI / 2 将起始角设在12点钟位置 ，结束角 通过改变 step 的值确定
@@ -238,6 +244,7 @@ Page({
       }
     })
   },
+
   //回答正确 下一题
   goNext:function(index){
     //console.log(typeof index) number
@@ -245,28 +252,43 @@ Page({
       var index = this.data.index;
       //console.log(index)
     }
-   
-      //初始化变量
-    this.setData({ 'index': index + 1, 'status': 0, 'count': 0, 'remains': 60, 'showFailPanel': 0,'showCardPanel':0})
+    if(index >= total-1){
+      //挑战成功
+      var timestamp = parseInt(Date.parse(new Date()) / 1000);
+      var random = Math.ceil(Math.random() * 100000) + 1 + '';
+      var sign = md5.md5(timestamp + random + 'datiwang');
+      wx.request({
+        url: app.globalData.apiDomain + '/my/success',
+        data: {
+          token: wx.getStorageSync('token'),
+          timestamp: timestamp,
+          random: random,
+          sign: sign,
+          app:2
+        },
+        method: 'POST',
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
+        dataType: 'json',
+        success: (res) => {
+          this.setData({'coins_random':res.data.msg[1]});
+        }
+      })
+      this.setData({'showSuccPanel':1,'showFailPanel':0})
+    } else {
+      //展示下一题
       var code = this.data.questions[index+1].question;
-      //console.log(code)
-      var _code = lighter.code({
-        target: code,
-        language: 'php',
-        style: 'light'
-      });
-      //console.log(_code)
-      var _parese = _code.on();
-      //console.log(_parese)
-      WxParse.wxParse('wxParseData', 'html', _parese, this, 5)     //'wxParseData'为绑定数据键名
+      this.setData({ 'index': index + 1, 'status': 0, 'count': 0, 'remains': 60, 'showFailPanel': 0, 'showCardPanel': 0 ,'curQuestion':code})
       this.countInterval()
+    }
   },
+
   //重新开始
   restart:function(){
     wx.reLaunch({
       url: '/pages/index/index',
     })
   },
+
   //使用复活卡
   usecard:function(){
     var that = this;
@@ -282,9 +304,10 @@ Page({
       dataType: 'json',
       success:function(res){
         if(res.data.status > 0){
-            //that.goNext(_question_index)
+            that.goNext(_question_index)
+            //that.setData({ 'showFailPanel': 0});
             //that.alert('使用成功');
-            that.setData({'showFailPanel':0,'showCardPanel':1,'userInfo':res.data.msg[1]});
+            //that.setData({'showFailPanel':0,'showCardPanel':1,'userInfo':res.data.msg[1]});
         } else {
             that.alert('使用失败')
         }
@@ -304,7 +327,7 @@ Page({
         token: wx.getStorageSync('token'),
         title: title,
         price: price,
-        'type':2
+        type:2
       },
       method: 'POST',
       header: { "Content-Type": "application/x-www-form-urlencoded" },

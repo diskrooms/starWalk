@@ -1,6 +1,71 @@
 /* pages/play/index.wxss */
 @import '/utils/code-lighter.wxss';
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10rpx 0 0 20rpx;
+}
+.userCoins{
+  margin: 20rpx 20rpx 0 0;
+}
+.userCoins .coins{
+    width: 64rpx;
+    height: 64rpx;
+    display: block;
+}
+.userCoins .count{
+  color:#fff;
+  font-weight: bolder;
+}
+.userinfo-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 0rpx 0 10rpx 0;
+  border: 5rpx solid #fff;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #fff;
+  font-weight: bold;
+}
+.container{
+  background: url('http://coder.51tui.vip/Public/miniProgram/play_index_bg.png');
+  background-size: cover;
+}
+.container-header{
+  background: #57b7ec;
+  border-radius: 20rpx;
+  margin:20rpx;
+  padding: 20rpx;
+}
+.container-middle{
+  position: relative;
+  z-index: 1000;
+  bottom:-60rpx;
+  margin-top:-50rpx;
+}
+.container-middle .title{
+  margin:0 auto;
+  width:550rpx;
+  height:115rpx;
+  display: block;
+}
+.container-middle .indexq{
+  position: absolute;
+  top:30rpx;
+  left:330rpx;
+  color:#fff;
+}
+.container-content{
+  margin: 20rpx;
+  background: #fff;
+  border-radius: 20rpx;
+}
+
 .progress_box{
+  float: left;
   position: relative;
   width:50px;
   height: 50px; /* 这里的宽高是必须大于等于canvas圆环的直径 否则绘制到盒子外面就看不见了
@@ -9,12 +74,12 @@
   display: flex; 
   align-items: center;
   justify-content: center;
-  background-color: #fff;
-  margin: 0 auto;
+  /*background-color: #fff;*/
+  margin: 20rpx 120rpx;
 }
 .progress_bg{
   position: absolute;
-    width:50px;
+  width:50px;
   height: 50px;
 }
 .progress_canvas{
@@ -25,7 +90,8 @@
   position: absolute;
   display: flex; 
   align-items: center;
-  justify-content: center
+  justify-content: center;
+  z-index: 10100;
 }
 .progress_info{  
   font-size: 36rpx;
@@ -40,8 +106,7 @@
 }
 
 .question{
-  font-size: 34rpx;
-  padding:20rpx;
+  padding:70rpx 30rpx 10rpx 30rpx;
 }
 .answer{
   padding: 0 20rpx;
