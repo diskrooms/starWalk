@@ -157,6 +157,8 @@
   background: #fff;
   border-radius: 20rpx;
   padding:10rpx;
+  width:180rpx;
+  height: 220rpx;
 }
 
 .day-sign .modal-content .flex-item image{
