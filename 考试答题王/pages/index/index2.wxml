@@ -52,13 +52,13 @@
           </view>
         </view>
 
-        <view class="flex flex-column farm">
+        <view class="flex flex-row farm">
           <view class="item garden" bindtap="goToMyGarden">
               <image src="../../images/garden.png" mode="widthFix"></image>
           </view>
           <view class="text-align-center item shop" bindtap="goToSeedShop">
               <view class="layer"></view>
-              <image></image>
+              <image src="../../images/shop.png" mode="widthFix"></image>
           </view>
         </view>
       </view>
