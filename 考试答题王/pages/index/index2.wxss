@@ -97,6 +97,7 @@
   /*background: url("http://coder.51tui.vip/Public/garden_simple5.png");*/
   background-size:cover;
   border:1rpx solid #fff;
+  z-index: 1;
 }
 
 .login .container-content .farm .item.shop{
@@ -189,9 +190,10 @@
 
 /* 登录奖励提示 */
 .modal-sign-tip{
-  background: url('http://coder.51tui.vip/Public/miniProgram/signTip.png?12');
+  background: url('http://coder.51tui.vip/Public/miniProgram/signTip2.png');
   position: absolute;
   top:0rpx;
   width:100%;
   height:100%;
+  z-index: 0;
 }

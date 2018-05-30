@@ -16,7 +16,8 @@ Page({
     showSharePanel: 0,        //分享提示框开关
     showAuthPanel: 0,
     showSignPanel:0,           //每日签到
-    showSignTip:1                 //领取提示
+    showSignData:'',           //每日签到数据
+    showSignTip:0              //领取提示
   },
   //事件处理函数
   bindViewTap: function () {
@@ -50,10 +51,23 @@ Page({
   //渲染页面
   render: function () {
     this.setData({ 'userInfo': app.globalData.userInfo })
-    var set_job = wx.getStorageSync('set_job')
-    if (!(set_job > 0)) {
-      this.setData({ "showJobChoosePanel": 1 })
-    }
+    wx.request({
+      url: app.globalData.apiDomain + '/my/sign',
+      data: {
+        token: wx.getStorageSync('token'),
+        app:2
+      },
+      method: 'POST',
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      dataType: 'json',
+      success:  (res)=> {
+        if(res.data.status > 0){
+          this.setData({ 'showSignPanel': 1,'showSignData':res.data.msg[1]['sign']})
+          app.globalData.userInfo = res.data.msg[1]['userInfo']
+        }
+      },
+
+    })
 
   },
 
@@ -126,5 +140,16 @@ Page({
   goToSeedShop:function(e){
     util.alert('马上回来，敬请期待');
     return;
+  },
+  //点击领取每日登录奖励
+  daySignGet:function(e){
+    this.setData({ 'showSignPanel': 0, 'userInfo': app.globalData.userInfo})
+    setTimeout(()=>{
+      this.setData({'showSignTip': 1 })
+    },500)
+  },
+  //关闭 "我的花园" 提示窗口
+  cancelSignTip:function(e){
+    //this.setData({ 'showSignTip': 0 })
   }
 })

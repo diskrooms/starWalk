@@ -88,16 +88,14 @@
   <image src="../../images/day.png" class="modal-title" mode="widthFix"></image>
   <view class="modal-content text-align-center">
     <view class="flex flex-row">
-      <view class="flex-item text-align-center">
-        <image src="../../images/seeds.png"></image>
-        <view class="px-30">种子 x1</view>
+
+      <view class="flex-item text-align-center" wx:for="{{showSignData}}">
+        <image src="../../images/{{item.icon}}.png"></image>
+        <view class="px-30">{{item.name}} x{{item.count}}</view>
       </view>
-      <view class="flex-item text-align-center">
-        <image src="../../images/coin.png"></image>
-        <view class="px-30">金币 x10</view>
-      </view>
+
     </view>
-    <image src="../../images/day-button.png" class="submit"></image>
+    <image src="../../images/day-button.png" class="submit" bindtap="daySignGet"></image>
   </view>
 
 </view>
