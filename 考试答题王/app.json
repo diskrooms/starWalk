@@ -6,7 +6,8 @@
     "pages/list/index",
     "pages/play/index",
     "pages/explain/index",
-    "pages/play/prePlay"
+    "pages/play/prePlay",
+    "pages/my/garden"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -14,6 +15,5 @@
     "navigationBarTitleText": "考试答题王",
     "navigationBarTextStyle": "#fff"
   },
-  
   "debug": false
 }

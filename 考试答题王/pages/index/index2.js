@@ -136,11 +136,20 @@ Page({
 
     })
   },
+
+  //进入我的花园
+  goToMyGarden: function (e) {
+     wx.navigateTo({
+       url: '/pages/my/garden',
+     })
+  },
+
   //进入种子商店
   goToSeedShop:function(e){
     util.alert('马上回来，敬请期待');
     return;
   },
+
   //点击领取每日登录奖励
   daySignGet:function(e){
     this.setData({ 'showSignPanel': 0, 'userInfo': app.globalData.userInfo})
@@ -148,8 +157,9 @@ Page({
       this.setData({'showSignTip': 1 })
     },500)
   },
+
   //关闭 "我的花园" 提示窗口
   cancelSignTip:function(e){
-    //this.setData({ 'showSignTip': 0 })
+    this.setData({ 'showSignTip': 0 })
   }
 })

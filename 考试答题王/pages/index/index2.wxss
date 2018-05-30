@@ -21,7 +21,7 @@
   width: 80rpx;
   height: 80rpx;
   margin: 0rpx;
-  border: 1rpx solid #ffed00;
+  border: 5rpx solid #fff;
   border-radius: 50%;
 }
 
@@ -174,13 +174,14 @@
   border-radius: 20rpx;
   padding:10rpx;
   width:180rpx;
-  height: 220rpx;
+  height: 200rpx;
   font-family: 'zcool'
 }
 
 .day-sign .modal-content .flex-item image{
   width: 96rpx;
   height: 96rpx;
+  margin:20rpx;
 }
 .day-sign .modal-content .submit{
   width:263rpx;
@@ -190,10 +191,17 @@
 
 /* 登录奖励提示 */
 .modal-sign-tip{
-  background: url('http://coder.51tui.vip/Public/miniProgram/signTip2.png');
+  /*background: url('http://coder.51tui.vip/Public/miniProgram/signTip2.png');*/
+  background: rgba(0, 0, 0, 0.6);
   position: absolute;
   top:0rpx;
   width:100%;
   height:100%;
   z-index: 0;
+}
+
+.modal-sign-tip image{
+  width:284rpx;
+  height:141rpx;
+  margin:500rpx 0 0 50rpx;
 }

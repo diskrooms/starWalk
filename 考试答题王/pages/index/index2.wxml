@@ -100,6 +100,8 @@
 
 </view>
 
-<view class="modal-sign-tip"  bindtap='cancelSignTip' wx:if="{{showSignTip}}"></view>
+<view class="modal-sign-tip"  bindtap='cancelSignTip' wx:if="{{showSignTip}}">
+    <image src="../../images/signTip.png" ></image>
+</view>
 
 
