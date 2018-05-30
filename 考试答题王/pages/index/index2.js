@@ -15,7 +15,8 @@ Page({
     showJobChoosePanel: 0,    //职业选择框显示开关
     showSharePanel: 0,        //分享提示框开关
     showAuthPanel: 0,
-    showSignPanel:0           //每日签到
+    showSignPanel:0,           //每日签到
+    showSignTip:1                 //领取提示
   },
   //事件处理函数
   bindViewTap: function () {
