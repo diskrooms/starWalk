@@ -1,2 +1,14 @@
 <!--pages/my/garden.wxml-->
-<text>pages/my/garden.wxml</text>
+<view>
+    <view class="container-header">
+      <view class="userinfo left">
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatar}}" background-size="cover"></image>
+        <text class="userinfo-nickname px-30">{{userInfo.nickname}}({{userInfo.id}})</text>
+      </view>
+      <view class="userCoins right text-align-center">
+        <image src="../../images/coin.png" class="coins"></image>
+        <div class="count">{{userInfo.coins}}</div>
+      </view>
+    </view>
+  <image src="../../images/one.png"></image>
+</view>
