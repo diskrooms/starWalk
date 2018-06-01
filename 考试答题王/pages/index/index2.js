@@ -5,7 +5,7 @@ const util = require('../../utils/util.js')
 
 Page({
   data: {
-    userInfo: {},
+    userInfo: {},           
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     jobChoose: {

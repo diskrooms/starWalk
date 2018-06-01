@@ -1,4 +1,7 @@
 /* pages/my/garden.wxss */
+page{
+  background: url('http://coder.51tui.vip/Public/miniProgram/garden_bg.png');
+}
 .userinfo {
   display: flex;
   flex-direction: column;
