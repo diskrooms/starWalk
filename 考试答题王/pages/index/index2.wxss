@@ -30,8 +30,15 @@
   font-weight: bold;
 }
 .container{
-  background: url('http://coder.51tui.vip/Public/miniProgram/bg.png');
   background-size: cover;
+}
+.container.nologin_con{
+    background: url('http://coder.51tui.vip/Public/miniProgram/bg.png');
+    background-size: cover;
+}
+.container.login_con{
+    background: url('http://coder.51tui.vip/Public/miniProgram/garden_bg.png');
+    background-size: cover;
 }
 .login .container-header{
   background: #57b7ec;

@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 0,
 			"list": [
 				{
 					"id": -1,
@@ -56,7 +56,14 @@
 				{
 					"id": -1,
 					"name": "动画页",
-					"pathName": "pages/my/demo"
+					"pathName": "pages/my/demo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的花园",
+					"pathName": "pages/my/garden",
+					"query": ""
 				}
 			]
 		}

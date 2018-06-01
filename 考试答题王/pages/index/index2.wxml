@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="container">
+<view class="container {{!showAuthPanel ? 'login_con' : 'nologin_con'}}">
   <view class="login" wx:if="{{!showAuthPanel}}">
     <view class="container-header">
       <view class="userinfo left">

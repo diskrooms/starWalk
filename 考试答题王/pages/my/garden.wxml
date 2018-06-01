@@ -1,14 +1,23 @@
 <!--pages/my/garden.wxml-->
-<view>
+<view class="container">
     <view class="container-header">
       <view class="userinfo left">
-        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatar}}" background-size="cover"></image>
-        <text class="userinfo-nickname px-30">{{userInfo.nickname}}({{userInfo.id}})</text>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="../../images/garden-avatar.png" ></image>
+        <!--<text class="userinfo-nickname px-30">{{userInfo.nickname}}({{userInfo.id}})</text>-->
+        <text>Lv.1</text>
       </view>
       <view class="userCoins right text-align-center">
         <image src="../../images/coin.png" class="coins"></image>
         <div class="count">{{userInfo.coins}}</div>
       </view>
     </view>
-  <image src="../../images/one.png"></image>
+
+    <view class="container-content">
+      <view class="plant-con">
+        <image src="../../images/plant-1-day.png" mode="widthFix" class="plant"></image>
+      </view>
+      <view class="thx-con">
+        <image src="../../images/thx.png" mode="widthFix" class="thx"></image>
+      </view>
+    </view>
 </view>

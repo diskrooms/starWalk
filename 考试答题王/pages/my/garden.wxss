@@ -1,6 +1,7 @@
 /* pages/my/garden.wxss */
-page{
+.container{
   background: url('http://coder.51tui.vip/Public/miniProgram/garden_bg.png');
+  background-size:cover;
 }
 .userinfo {
   display: flex;
@@ -26,6 +27,7 @@ page{
   margin: 0rpx;
   border: 5rpx solid #fff;
   border-radius: 50%;
+  background:#fff;
 }
 
 .userinfo-nickname {
@@ -37,4 +39,26 @@ page{
   border-radius: 20rpx;
   margin:20rpx;
   padding: 20rpx;
+}
+
+.container-content{
+  margin:20rpx;
+}
+.plant-con{
+  border-radius: 20rpx;
+  border:10rpx solid #5c371e;
+}
+.container-content .plant{
+  display:block;
+  width:100%;
+}
+.thx-con{
+  margin:20rpx 0 0;
+  padding: 20rpx 0 0;
+  border-radius: 20rpx;
+  background: #57b7ec;
+}
+.thx-con .thx{
+  width:100%;
+  display: block;
 }
