@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -52,6 +52,11 @@
 					"name": "答题页",
 					"pathName": "pages/play/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "动画页",
+					"pathName": "pages/my/demo"
 				}
 			]
 		}
