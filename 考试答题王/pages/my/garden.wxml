@@ -2,9 +2,14 @@
 <view class="container">
     <view class="container-header">
       <view class="userinfo left">
-        <image bindtap="bindViewTap" class="userinfo-avatar" src="../../images/garden-avatar.png" ></image>
+        <view class="flex flex-column">
+            <image class="garden-avatar" src="../../images/garden-avatar.png"></image>
+            <text class="px-30">Lv.{{userInfo.level}}</text>
+        </view>
         <!--<text class="userinfo-nickname px-30">{{userInfo.nickname}}({{userInfo.id}})</text>-->
-        <text>Lv.1</text>
+        <view class="flex flex-row energy-con">
+          <progress percent="{{userInfo.cur}}" color="#689f38" class="energy"/><view class="px-26 count"><text class="cur">{{userInfo.cur_energy}}</text> / <text class="full">{{userInfo.max}}</text></view>
+        </view>
       </view>
       <view class="userCoins right text-align-center">
         <image src="../../images/coin.png" class="coins"></image>
@@ -14,10 +19,44 @@
 
     <view class="container-content">
       <view class="plant-con">
-        <image src="../../images/plant-1-day.png" mode="widthFix" class="plant"></image>
+        <view class="do-icon do-fertilizer" wx:if="{{show_do_fertilizer}}">
+          <image src="../../images/do-fertilizer.png"></image>
+        </view>
+        <view class="do-icon do-watering" wx:if="{{show_do_watering}}">
+          <image src="../../images/watering.png"></image>
+        </view>
+        <image src="../../images/plant-{{userInfo.level}}-{{userInfo.time}}.png" mode="widthFix" class="plant"></image>
       </view>
       <view class="thx-con">
+        <view class="tools flex flex-row">
+            <view class="flex-item" bindtap="fertilizer"><image src="../../images/fertilizer.png"  class="watering"></image></view>
+            <view class="flex-item" bindtap="watering"><image src="../../images/watering.png"  class="fertilizer"></image></view>
+        </view>
         <image src="../../images/thx.png" mode="widthFix" class="thx"></image>
       </view>
     </view>
 </view>
+
+<!-- 是否进行施肥弹窗 -->
+  <view class="modal-mask" wx:if="{{showFertilizerPanel}}"></view>
+  <view class="modal-dialog" wx:if="{{showFertilizerPanel}}">
+    <view class="modal-title"><image class="modal-image vertical-align-middle" src="/images/smile.png"></image><view class="modal-text">施肥将消耗您 20 个金币
+    给小花提供 <text class="count">10</text> 点能量</view></view>
+    <view class="flex flex-row">
+      <button class="cancel" bindtap="cancelFertilizer">取消</button>
+      <button class="submit" bindtap="doFertilizer">确定</button>
+    </view>
+
+  </view>
+
+<!-- 是否进行浇水弹窗 -->
+  <view class="modal-mask" wx:if="{{showWateringPanel}}"></view>
+  <view class="modal-dialog" wx:if="{{showWateringPanel}}">
+    <view class="modal-title"><image class="modal-image vertical-align-middle" src="/images/smile.png"></image><view class="modal-text">浇水将消耗您 10 个金币
+    给小花提供 <text class="count">5</text> 点能量</view></view>
+    <view class="flex flex-row">
+      <button class="cancel" bindtap="cancelWatering">取消</button>
+      <button class="submit" bindtap="doWatering">确定</button>
+    </view>
+
+  </view>

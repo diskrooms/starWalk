@@ -1,4 +1,0 @@
-/* pages/explain/index.wxss */
-page{background: #fff;color: #000;}
-.container{padding: 20rpx;width:100%;margin:0;}
-.container .wxParse-p{margin:20rpx;text-indent: 2rem;}

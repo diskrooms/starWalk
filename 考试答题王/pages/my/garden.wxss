@@ -5,9 +5,10 @@
 }
 .userinfo {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   margin: 20rpx 0 0 20rpx;
+  color:#fff;
 }
 .userCoins{
   margin: 20rpx 20rpx 0 0;
@@ -21,7 +22,7 @@
   color:#fff;
   font-weight: bold;
 }
-.userinfo-avatar {
+.garden-avatar {
   width: 80rpx;
   height: 80rpx;
   margin: 0rpx;
@@ -29,6 +30,30 @@
   border-radius: 50%;
   background:#fff;
 }
+.energy-con{
+  position: relative;
+  top:-10rpx;
+  left:20rpx;
+  width:360rpx;
+  justify-content:left;
+}
+
+.energy-con .count{
+  color:pink;
+  margin:0 0 0 20rpx;
+}
+.energy-con .count .cur{
+  color:#fff;
+}
+.energy-con .count .full{
+  color: #fff;
+}
+
+.energy{
+  width:200rpx;
+}
+
+
 
 .userinfo-nickname {
   color: #fff;
@@ -47,6 +72,22 @@
 .plant-con{
   border-radius: 20rpx;
   border:10rpx solid #5c371e;
+  position: relative;
+}
+.plant-con .do-icon{
+  position: absolute;
+  top:260rpx;
+}
+.plant-con .do-icon image{
+  width:96rpx;
+  height: 96rpx;
+  display: block;
+}
+.plant-con .do-fertilizer{
+  left:260rpx;
+}
+.plant-con .do-watering{
+  left:400rpx;
 }
 .container-content .plant{
   display:block;
@@ -58,7 +99,36 @@
   border-radius: 20rpx;
   background: #57b7ec;
 }
+.thx-con .tools{
+  margin:0rpx 220rpx;
+}
+.thx-con .flex-item{
+  background:#fff;
+  border-radius: 58rpx;
+  padding: 10rpx;
+}
+.thx-con .flex-item image{
+  width:96rpx;
+  height: 96rpx;
+  display: block;
+}
 .thx-con .thx{
   width:100%;
   display: block;
+}
+.modal-image{
+  float:left;
+}
+.modal-title .modal-text{
+  line-height:50rpx;
+  width:330rpx;
+  float:left;
+  margin-left: 20rpx;
+}
+.modal-title .modal-text .count{
+  margin: 0rpx;
+  color:#c56528;
+}
+.submit{
+  margin-left:20rpx;
 }

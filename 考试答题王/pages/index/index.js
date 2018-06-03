@@ -5,18 +5,22 @@ const util = require('../../utils/util.js')
 
 Page({
   data: {
-    userInfo: {},
+    userInfo: {},           
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    jobChoose: { 'wen': 0, 'shi': 0, 'zhe': 0, 
-                'jing': 0
-               },
-    showJobChoosePanel:0,    //职业选择框显示开关
-    showSharePanel:0,        //分享提示框开关
-    showAuthPanel: 0
+    jobChoose: {
+      'wen': 0, 'shi': 0, 'zhe': 0,
+      'jing': 0
+    },
+    showJobChoosePanel: 0,    //职业选择框显示开关
+    showSharePanel: 0,        //分享提示框开关
+    showAuthPanel: 0,
+    showSignPanel:0,           //每日签到
+    showSignData:'',           //每日签到数据
+    showSignTip:0              //领取提示
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
@@ -31,13 +35,13 @@ Page({
           //直接登录
           app.onLaunch(that.render)
         } else {
-          that.setData({'showAuthPanel':1})
+          that.setData({ 'showAuthPanel': 1 })
         }
       }
     })
   },
-  onGotUserInfo:function(e){
-    if (e.detail.encryptedData){
+  onGotUserInfo: function (e) {
+    if (e.detail.encryptedData) {
       this.setData({ 'showAuthPanel': 0 })
       app.onLaunch(this.render)
     } else {
@@ -45,114 +49,51 @@ Page({
     }
   },
   //渲染页面
-  render:function(){
-    this.setData({'userInfo':app.globalData.userInfo})
-    var set_job = wx.getStorageSync('set_job')
-    if (!(set_job > 0)) {
-      this.setData({ "showJobChoosePanel": 1 })
-    }
-    
-  },
-  //职业选择
-  chooseJob:function(e){
-    var id = e.currentTarget.id
-    var jobChoose = this.data.jobChoose
-    if (jobChoose[id] > 0){
-      jobChoose[id] = 0;
-    } else {
-      jobChoose[id] = 1;
-    }
-    this.setData({ jobChoose: jobChoose })
-  },
-  //提交职业
-  submitJob:function(){
-    var that = this;
-    var jobs = [];
-    var jobChoose = this.data.jobChoose
-    for (var i in jobChoose){
-      if(jobChoose[i] >0){
-        jobs.push(i)
-      }
-    }
-    if(jobs.length == 0){
-      util.alert('请选择您擅长的领域');
-      return;
-    }
+  render: function () {
+    this.setData({ 'userInfo': app.globalData.userInfo })
     wx.request({
-      url: app.globalData.apiDomain+'/my/settings',
-      data:{'jobs':jobs,'token':wx.getStorageSync('token'),'app':2},
-      method:'POST',
+      url: app.globalData.apiDomain + '/my/sign',
+      data: {
+        token: wx.getStorageSync('token'),
+        app:2
+      },
+      method: 'POST',
       header: { "Content-Type": "application/x-www-form-urlencoded" },
-      dataType:'json',
-      success:function(res){
+      dataType: 'json',
+      success:  (res)=> {
         if(res.data.status > 0){
-          /*var t = setTimeout(function(){
-            that.setData({ 'showJobChoosePanel': 0 })
-            wx.setStorageSync('set_job', 1);
-            t = null;
-            if(t == null){
-              t = setTimeout(function () {
-                wx.showModal({
-                  title: '已设置职业',
-                  content: '如果想更改，可点击左上角进行设置',
-                  showCancel: false,
-                  success: function (res) {
-                    t = null
-                  }
-                })
-              }, 200);
-            }
-          },500)*/
-          wx.showToast({
-            title: '设置成功',
-            icon: 'success',
-            duration: 2000,
-            success:function(){
-              var t = setTimeout(function(){
-                that.setData({ 'showJobChoosePanel': 0 })
-                wx.setStorageSync('set_job', 1);
-                t = null;
-              },2000);
-            }
-          })
-        } else {
-          wx.showToast({
-            title: '未作设置',
-            icon: 'none',
-            duration: 2000,
-            success: function () {
-              var t = setTimeout(function () {
-                that.setData({ 'showJobChoosePanel': 0 })
-                t = null;
-              }, 2000);
-            }
-          })
+          this.setData({ 'showSignPanel': 1,'showSignData':res.data.msg[1]['sign']})
+          app.globalData.userInfo = res.data.msg[1]['userInfo']
         }
-      }
+      },
+
     })
+
   },
+
   //开始答题
-  start:function(){
-    if(app.globalData.userInfo.ticket > 0){
+  start: function (e) {
+    if (app.globalData.userInfo.ticket > 0) {
+      var cate = e.currentTarget.dataset.cate;
       wx.navigateTo({
-        url: '/pages/play/prePlay',
+        url: '/pages/play/index?cate='+cate,
       })
     } else {
-      this.setData({'showSharePanel':1});
+      this.setData({ 'showSharePanel': 1 });
     }
   },
   //取消分享提示框
-  cancelShowShare:function(){
+  cancelShowShare: function () {
     this.setData({ 'showSharePanel': 0 });
   },
-  
+
   onShareAppMessage: function (res) {
     res.type = 0;
-    return app.onShareAppMessage(res,this.afterShare)
+    return app.onShareAppMessage(res, this.afterShare)
   },
-  afterShare(ticket){
+  afterShare(ticket) {
     app.globalData.userInfo.ticket = ticket;
-    this.setData({ 'userInfo': app.globalData.userInfo,'showSharePanel':0 });
+    this.setData({ 'userInfo': app.globalData.userInfo, 'showSharePanel': 0 });
   },
 
   //购买挑战次数
@@ -180,11 +121,11 @@ Page({
           'paySign': res.data.paySign,
           'success': function (res) {
             if (res.errMsg == 'requestPayment:ok') {
-              setTimeout(function(){
+              setTimeout(function () {
                 wx.reLaunch({
                   url: '/pages/index/index',
                 })
-              },50);
+              }, 50);
             }
           },
           'fail': function (res) {
@@ -194,5 +135,31 @@ Page({
       },
 
     })
+  },
+
+  //进入我的花园
+  goToMyGarden: function (e) {
+     wx.navigateTo({
+       url: '/pages/my/garden',
+     })
+  },
+
+  //进入种子商店
+  goToSeedShop:function(e){
+    util.alert('马上回来，敬请期待');
+    return;
+  },
+
+  //点击领取每日登录奖励
+  daySignGet:function(e){
+    this.setData({ 'showSignPanel': 0, 'userInfo': app.globalData.userInfo})
+    setTimeout(()=>{
+      this.setData({'showSignTip': 1 })
+    },500)
+  },
+
+  //关闭 "我的花园" 提示窗口
+  cancelSignTip:function(e){
+    this.setData({ 'showSignTip': 0 })
   }
 })

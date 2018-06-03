@@ -97,7 +97,7 @@ function onLogin(app,callback){
       } else {
         //获取用户信息等系统数据
         wx.request({
-          url: app.globalData.apiDomain+'/my/userInfo',
+          url: app.globalData.apiDomain+'/my/userInfo2',
           data: { 'token': wx.getStorageSync('token'),'app':2 },
           method: 'POST',
           header: { "Content-Type": "application/x-www-form-urlencoded" },

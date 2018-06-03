@@ -1,44 +1,77 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="container-header">
-    <view class="userinfo">
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatar}}" background-size="cover"></image>
-      <text class="userinfo-nickname px-30">{{userInfo.nickname}}</text>
+<view class="container {{!showAuthPanel ? 'login_con' : 'nologin_con'}}">
+  <view class="login" wx:if="{{!showAuthPanel}}">
+    <view class="container-header">
+      <view class="userinfo left">
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatar}}" background-size="cover"></image>
+        <text class="userinfo-nickname px-30">{{userInfo.nickname}}({{userInfo.id}})</text>
+      </view>
+      <view class="userCoins right text-align-center">
+        <image src="../../images/coin.png" class="coins"></image>
+        <div class="count">{{userInfo.coins}}</div>
+      </view>
     </view>
-    <view class="instruction text-align-center px-36">
-      <view class="px-30 title">每周六/月末晚上20:00点开奖</view>
-      <view class="px-30 info">请联系客服拿奖吧！</view>
+
+    <view class="container-content flex flex-column">
+       <view class='flex flex-row test'>
+          <view class="text-align-center item wen" bindtap="start" data-cate="1">
+              <view class="image_container"><image src="../../images/wen.png" class="class_icon"></image></view>
+              <view class="class_name px-32">四书五经</view>
+          </view>
+          <view class="text-align-center item shi" bindtap="start" data-cate="2">
+              <view class="image_container"><image src="../../images/shi.png" class="class_icon"></image></view>
+              <view class="class_name px-32">以史为鉴</view>
+          </view>
+
+          <view class="text-align-center item zhe" bindtap="start" data-cate="3">
+              <view class="image_container"><image src="../../images/zhe.png" class="class_icon"></image></view>
+              <view class="class_name px-32">古哲先贤</view>
+          </view>
+          <view class="text-align-center item jing" bindtap="start" data-cate="4">
+              <view class="image_container"><image src="../../images/jing.png" class="class_icon"></image></view>
+              <view class="class_name px-32">经济适用</view>
+          </view>
+        </view>
+       <view class="flex flex-row test">
+          
+          <view class="text-align-center item computer" bindtap="start" data-cate="5">
+              <view class="image_container"><image src="../../images/computer.png" class="class_icon"></image></view>
+              <view class="class_name px-32">软件开发</view>
+          </view>
+          <view class="text-align-center item nature" bindtap="start" data-cate="6">
+              <view class="image_container"><image src="../../images/nature.png" class="class_icon"></image></view>
+              <view class="class_name px-32">自然科学</view>
+          </view>
+          <view class="text-align-center item doubt" bindtap="start" data-cate="6">
+              <view class="image_container"><image src="../../images/doubt.png" class="class_icon"></image></view>
+              <view class="class_name px-32">即将上线</view>
+          </view>
+          <view class="text-align-center item doubt" bindtap="start" data-cate="6">
+              <view class="image_container"><image src="../../images/doubt.png" class="class_icon"></image></view>
+              <view class="class_name px-32">即将上线</view>
+          </view>
+        </view>
+
+        <view class="flex flex-row farm">
+          <view class="item garden" bindtap="goToMyGarden">
+              <image src="../../images/garden.png" mode="widthFix"></image>
+          </view>
+          <view class="text-align-center item shop" bindtap="goToSeedShop">
+              <view class="layer"></view>
+              <image src="../../images/shop.png" mode="widthFix"></image>
+          </view>
+        </view>
+      </view>
     </view>
-    
-  </view>
-  <view class="container-content text-align-center">
-  
-    <button wx:if="{{showAuthPanel}}" class="start" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">开始答题</button>
-    <view wx:else class="start" bindtap="start">开始答题</view>
-    <view class="remains">剩余挑战次数:{{userInfo.ticket}}次</view>
-    <button open-type="share" class="invite px-32">分享给小伙伴，一起来挑战</button>
+
+  <view wx:if="{{showAuthPanel}}" class="nologin">
+    <view class="container-content text-align-center">
+      <button class="start" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">开考了</button>
+      <!--<view class="remains">剩余挑战次数:{{userInfo.ticket}}次</view>
+      <button open-type="share" class="invite px-32">分享给小伙伴，一起来挑战</button>-->
+    </view>
   </view>
 </view>
-
-<!-- 职业选择框 -->
-<!--<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" bindtap="cancelSubmit" wx:if="{{showJobChoosePanel}}"></view>
-<view class="modal-dialog" wx:if="{{showJobChoosePanel}}">
-  <view class="modal-title">选择您擅长的领域(可多选)</view>
-  <view class="modal-content">
-    <view class="modal-input">
-      <button class="input {{jobChoose.wen > 0 ? 'on':''}}" bindtap="chooseJob" id="wen">文</button>
-      <button class="input {{jobChoose.shi > 0 ? 'on':''}}" bindtap="chooseJob" id="shi">史</button>
-    </view>
-    <view class="modal-input">
-      <button class="input {{jobChoose.zhe > 0 ? 'on':''}}" bindtap="chooseJob" id="zhe">哲</button>
-      <button class="input {{jobChoose.jing > 0 ? 'on':''}}" bindtap="chooseJob" id="jing">经</button>
-    </view>
-    
-
-    <view class='submit' bindtap='submitJob'>完成</view>
-  </view>
-</view>-->
-
 <!-- 分享提示框 -->
 <view class="modal-mask" bindtap="hideModal" bindtap='cancelShowShare' wx:if="{{showSharePanel}}"></view>
 <view class="modal-dialog" wx:if="{{showSharePanel}}">
@@ -47,24 +80,28 @@
     <button class="submit" bindtap="buyTicket" data-price='200' data-title='购买10次挑战次数'>打赏奖励(+10)</button>
     <button class="submit share" open-type="share">分享到不同的群(+1)</button>
   </view>
-  <!--<view class="modal-footer">
-    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
-    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
-  </view>-->
+
 </view>
 
-<!--<view class="modal-mask" bindtap='cancelAuth' wx:if="{{showAuthPanel}}"></view>
-<view class="modal-dialog" wx:if="{{showAuthPanel}}">
-  <view class="modal-title">小提示</view>
-  <view class="modal-content">
-    <view class="modal-input">
-        若不授权微信登录，将无法正常使用本小程序；点击授权，则可重新使用。若还是点击不授权，之后还想使用的话，请在微信【发现】-【小程序】-删掉本小程序，重新授权登录，方可使用
-        若不授权微信登录，将无法正常使用本小程序；点击登录，允许授权才能使用小程序哦
+<view class="modal-mask" bindtap="hideModal" bindtap='cancelSignShare' wx:if="{{showSignPanel}}"></view>
+<view class="modal-dialog day-sign" wx:if="{{showSignPanel}}">
+  <image src="../../images/day.png" class="modal-title" mode="widthFix"></image>
+  <view class="modal-content text-align-center">
+    <view class="flex flex-row {{showSignData.length == 1 ? modal-container :'' }}">
+
+      <view class="flex-item text-align-center" wx:for="{{showSignData}}">
+        <image src="../../images/{{item.icon}}.png"></image>
+        <view class="px-30">{{item.name}} x{{item.count}}</view>
+      </view>
+
     </view>
-    <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" class="modal-title">登录</button>
+    <image src="../../images/day-button.png" class="submit" bindtap="daySignGet"></image>
   </view>
-  <view class="modal-footer">
-    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
-    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
-  </view>
-</view>-->
+
+</view>
+
+<view class="modal-sign-tip"  bindtap='cancelSignTip' wx:if="{{showSignTip}}">
+    <image src="../../images/signTip.png" ></image>
+</view>
+
+

@@ -1,11 +1,9 @@
 {
   "pages": [
-    "pages/index/index2",
+    "pages/index/index",
     "pages/logs/logs",
     "pages/list/index",
     "pages/play/index",
-    "pages/explain/index",
-    "pages/play/prePlay",
     "pages/my/garden",
     "pages/my/demo"
   ],

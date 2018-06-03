@@ -1,5 +1,4 @@
 /* pages/play/index.wxss */
-@import '/utils/code-lighter.wxss';
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -31,7 +30,7 @@
   font-weight: bold;
 }
 .container{
-  background: url('http://coder.51tui.vip/Public/miniProgram/play_index_bg.png');
+  background: url('http://coder.51tui.vip/Public/miniProgram/garden_bg.png');
   background-size: cover;
 }
 .container-header{

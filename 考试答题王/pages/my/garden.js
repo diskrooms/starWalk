@@ -7,7 +7,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo:''
+    userInfo:'',
+    showFertilizerPanel:0,
+    showWateringPanel:0,
+    show_do_fertilizer:0,
+    show_do_watering: 0,
   },
 
   /**
@@ -28,7 +32,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-      this.setData({'userInfo':app.globalData.userInfo});
+      this.setData({'userInfo':app.globalData.userInfo}); 
   },
 
   /**
@@ -63,6 +67,74 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    return app.onShareAppMessage();
+  },
+
+  //施肥弹窗
+  fertilizer: function () {
+    this.setData({ 'showFertilizerPanel': 1 })
+  },
+
+  //取消施肥弹窗
+  cancelFertilizer:function(){
+    this.setData({'showFertilizerPanel':0})
+  },
+
+  //取消浇水弹窗
+  watering: function () {
+    this.setData({ 'showWateringPanel': 1 })
+  },
+
+  //取消浇水弹窗
+  cancelWatering: function () {
+    this.setData({ 'showWateringPanel': 0 })
+  },
+
+  //执行施肥
+  doFertilizer:function(){
+    wx.request({
+      url: app.globalData.apiDomain + '/my/doFertilizer',
+      data: {
+        token: wx.getStorageSync('token'),
+        app: 2
+      },
+      method: 'POST',
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      dataType: 'json',
+      success: (res) => {
+        
+      }
+    })
+    this.setData({'showFertilizerPanel':0})
+      setTimeout(()=>{
+        this.setData({'show_do_fertilizer':1})
+        setTimeout(() => {
+          this.setData({ 'show_do_fertilizer': 0 })
+        },2000)
+      },500)
+  },
   
+  //执行浇水
+  doWatering:function(){
+    wx.request({
+      url: app.globalData.apiDomain + '/my/doWatering',
+      data: {
+        token: wx.getStorageSync('token'),
+        app: 2
+      },
+      method: 'POST',
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      dataType: 'json',
+      success: (res) => {
+
+      }
+    })
+    this.setData({ 'showWateringPanel': 0 })
+    setTimeout(() => {
+      this.setData({ 'show_do_watering': 1 })
+      setTimeout(() => {
+        this.setData({ 'show_do_watering': 0 })
+      }, 2000)
+    }, 500)
   }
 })

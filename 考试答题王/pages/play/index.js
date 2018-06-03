@@ -1,6 +1,4 @@
 // pages/play/index.js
-var WxParse = require('../../wxParse/wxParse.js');
-var lighter = require('../../utils/code-lighter.js');
 var md5 = require('../../utils/md5.js');
 const app = getApp()
 const total = 10;   //总题目数量
