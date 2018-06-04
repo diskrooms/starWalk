@@ -63,6 +63,7 @@ Page({
       success:  (res)=> {
         if(res.data.status > 0){
           this.setData({ 'showSignPanel': 1,'showSignData':res.data.msg[1]['sign']})
+          console.log(this.data.showSignData.length)
           app.globalData.userInfo = res.data.msg[1]['userInfo']
         }
       },
