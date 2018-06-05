@@ -1,5 +1,5 @@
 // pages/my/garden.js
-
+const util = require('../../utils/util.js')
 const app = getApp()
 Page({
 
@@ -32,7 +32,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-      this.setData({'userInfo':app.globalData.userInfo}); 
+    this.setData({'userInfo':app.globalData.userInfo}); 
   },
 
   /**
@@ -102,16 +102,23 @@ Page({
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       dataType: 'json',
       success: (res) => {
-        
+        this.setData({ 'showFertilizerPanel': 0 })
+        if(res.data.status > 0){
+            setTimeout(() => {
+              this.setData({ 'show_do_fertilizer': 1 })
+              setTimeout(() => {
+                app.globalData.userInfo = res.data.msg;
+                this.setData({ 'show_do_fertilizer': 0, 'userInfo': app.globalData.userInfo})
+                
+              }, 2000)
+            }, 500)
+        } else {
+          util.alert(res.data.msg[0]);
+        }
       }
+      //success
     })
-    this.setData({'showFertilizerPanel':0})
-      setTimeout(()=>{
-        this.setData({'show_do_fertilizer':1})
-        setTimeout(() => {
-          this.setData({ 'show_do_fertilizer': 0 })
-        },2000)
-      },500)
+    
   },
   
   //执行浇水
@@ -126,15 +133,22 @@ Page({
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       dataType: 'json',
       success: (res) => {
+        this.setData({ 'showWateringPanel': 0 })
+        if (res.data.status > 0) {
+          setTimeout(() => {
+            this.setData({ 'show_do_watering': 1 })
+            setTimeout(() => {
+              app.globalData.userInfo = res.data.msg;
+              this.setData({ 'show_do_watering': 0, 'userInfo': app.globalData.userInfo })
 
+            }, 2000)
+          }, 500)
+        } else {
+          util.alert(res.data.msg[0]);
+        }
       }
+      //success
     })
-    this.setData({ 'showWateringPanel': 0 })
-    setTimeout(() => {
-      this.setData({ 'show_do_watering': 1 })
-      setTimeout(() => {
-        this.setData({ 'show_do_watering': 0 })
-      }, 2000)
-    }, 500)
+    
   }
 })

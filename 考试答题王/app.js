@@ -1,4 +1,5 @@
 //app.js
+const util = require('./utils/util.js')
 
 function login(app,callback) {
   // 登录
@@ -61,6 +62,7 @@ function login(app,callback) {
                     wx.setStorageSync('token', res.data.msg.auth)
                     wx.setStorageSync('sessionid', res.data.msg.sessionid)
                     wx.setStorageSync('csrfToken', res.data.msg.csrfToken)
+                    //console.log(res.data.msg.userInfo)
                     app.globalData.userInfo = res.data.msg.userInfo
                     if (typeof callback == 'function') {
                       callback();
@@ -171,10 +173,11 @@ App({
       success:function(res){
       }
     })
+    
     return {
-      title: '学长,帮帮忙,这道编程题不会做',
+      title: util.share()['share_title'],
       path: '/pages/index/index',
-      imageUrl:'http://coder.51tui.vip/Public/share_work.jpg',
+      imageUrl: util.share()['share_image'],
       success: function (res) {
         // 转发成功
         var shareTickets = res.shareTickets;

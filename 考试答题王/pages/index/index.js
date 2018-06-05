@@ -63,8 +63,9 @@ Page({
       success:  (res)=> {
         if(res.data.status > 0){
           this.setData({ 'showSignPanel': 1,'showSignData':res.data.msg[1]['sign']})
-          console.log(this.data.showSignData.length)
-          app.globalData.userInfo = res.data.msg[1]['userInfo']
+          //console.log(res.data.msg[1]['userInfo']['coins'])
+          app.globalData.userInfo.new = res.data.msg[1]['userInfo']['new']
+          app.globalData.userInfo.coins = res.data.msg[1]['userInfo']['coins']
         }
       },
 
@@ -105,10 +106,11 @@ Page({
     wx.request({
       url: app.globalData.apiDomain + '/pay/index',
       data: {
-        token: wx.getStorageSync('token'),
-        title: title,
-        price: price,
-        'type': 1
+       'token': wx.getStorageSync('token'),
+        'title': title,
+        'price': price,
+        'type': 1,
+        'app': 2
       },
       method: 'POST',
       header: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -153,10 +155,15 @@ Page({
 
   //点击领取每日登录奖励
   daySignGet:function(e){
+    //console.log(app.globalData.userInfo)
     this.setData({ 'showSignPanel': 0, 'userInfo': app.globalData.userInfo})
-    setTimeout(()=>{
-      this.setData({'showSignTip': 1 })
-    },500)
+    if (app.globalData.userInfo.new > 0){
+      setTimeout(()=>{
+        this.setData({'showSignTip': 1 })
+      },500)
+    } else {
+      util.alert('领取金币成功');
+    }
   },
 
   //关闭 "我的花园" 提示窗口
