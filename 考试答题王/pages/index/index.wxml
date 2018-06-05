@@ -77,8 +77,8 @@
 <view class="modal-dialog" wx:if="{{showSharePanel}}">
   <view class="modal-title">挑战机会不足</view>
   <view class="modal-content">
-    <button class="submit" bindtap="buyTicket" data-price='200' data-title='购买10次挑战次数'>打赏奖励(+10)</button>
-    <button class="submit share" open-type="share">分享到不同的群(+1)</button>
+    <button class="submit" bindtap="buyTicket" data-price='200' data-title='购买10次挑战次数'>打赏￥2元(+10次挑战机会)</button>
+    <button class="submit share" open-type="share">邀请好友(+1挑战机会)</button>
   </view>
 
 </view>

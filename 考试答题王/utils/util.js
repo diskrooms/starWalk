@@ -30,7 +30,9 @@ function share(){
                 '寓教于乐，你见过把考试当游戏玩的吗？',
                 '答题还能种菜养花？是的，你没看错',
                 '考试通过后才有资格做一个快乐的农夫',
-                '一边考试，一边种菜，你会吗？'
+                '一边考试，一边种菜，你会吗？',
+                '你挑水来我浇园，夫妻双双把菜种',
+                '生活妙招365，你能答对多少？'
   ];
   var random = parseInt(_title.length * Math.random());
   var share_title = _title[random];
