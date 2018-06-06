@@ -195,7 +195,8 @@ App({
                   encryptedData_ : res.encryptedData,
                   iv_ : res.iv,
                   from:params.from,      //nenu右上角 button按钮
-                  type:params.type
+                  type:params.type,
+                  app:2
                 },
                 method: 'POST',
                 header: { "Content-Type": "application/x-www-form-urlencoded" },

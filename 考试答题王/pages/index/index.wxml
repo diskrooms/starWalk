@@ -3,8 +3,13 @@
   <view class="login" wx:if="{{!showAuthPanel}}">
     <view class="container-header">
       <view class="userinfo left">
+        <text class="userinfo-id px-26">ID:{{userInfo.id}}</text>
         <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatar}}" background-size="cover"></image>
-        <text class="userinfo-nickname px-30">{{userInfo.nickname}}({{userInfo.id}})</text>
+        <text class="userinfo-nickname px-30">{{userInfo.nickname}}</text>
+      </view>
+      <view class="userinfo-ticket flex flex-column px-26 left">
+        <view>挑战机会  <text class="c-yellow">{{userInfo.ticket}}</text> 次</view>
+        <view>复活卡数  <text class="c-yellow">{{userInfo.card}}</text> 张</view>
       </view>
       <view class="userCoins right text-align-center">
         <image src="../../images/coin.png" class="coins"></image>

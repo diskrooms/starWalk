@@ -69,7 +69,7 @@ view{
 .text-align-left{text-align: left;}
 .text-align-right{text-align: right;}
 .vertical-align-middle{vertical-align:middle;}
-
+.c-yellow{color:#ff8f00}
 
 /* 遮罩层公共样式 */
 .modal-mask {
