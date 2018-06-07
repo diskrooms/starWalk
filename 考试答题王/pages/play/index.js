@@ -1,5 +1,6 @@
 // pages/play/index.js
 var md5 = require('../../utils/md5.js');
+var utils = require('../../utils/util.js');
 const app = getApp()
 const total = 10;   //总题目数量
 
@@ -11,8 +12,8 @@ Page({
   data: {
     right_collect: [101, 102, 106, 111, 123, 128, 129, 150, 151, 167],
     userInfo:null,
-    totalTime:60,     //总计时间  一个常量
-    remains: 60,      //答题保留时间
+    totalTime:30,     //总计时间  一个常量
+    remains: 30,      //答题保留时间
     count: 0,         // 设置 计数器 初始为0
     countTimer: null,  // 设置 定时器 初始为null
     freq:100,           //绘制频率 ms
@@ -73,7 +74,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    //console.log(app.globalData.userInfo);
+    console.log(app.globalData.userInfo);
     this.setData({ 'userInfo': app.globalData.userInfo});
   },
 
@@ -295,13 +296,17 @@ Page({
     wx.request({
       url: app.globalData.apiDomain + '/my/usecard',
       data: {
-        token: wx.getStorageSync('token'), 
+        token: wx.getStorageSync('token'),
+        app:2
       },
       method: 'POST',
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       dataType: 'json',
       success:function(res){
         if(res.data.status > 0){
+            utils.alert('复活成功');
+            app.globalData.userInfo = res.data.msg[1];
+            that.setData({ 'userInfo': app.globalData.userInfo });
             that.goNext(_question_index)
             //that.setData({ 'showFailPanel': 0});
             //that.alert('使用成功');
@@ -325,7 +330,8 @@ Page({
         token: wx.getStorageSync('token'),
         title: title,
         price: price,
-        type:2
+        type:2,
+        app:2
       },
       method: 'POST',
       header: { "Content-Type": "application/x-www-form-urlencoded" },

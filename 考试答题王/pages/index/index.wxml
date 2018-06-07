@@ -47,11 +47,11 @@
               <view class="image_container"><image src="../../images/nature.png" class="class_icon"></image></view>
               <view class="class_name px-32">自然科学</view>
           </view>
-          <view class="text-align-center item doubt" bindtap="start" data-cate="6">
+          <view class="text-align-center item doubt" bindtap="goToSeedShop" data-cate="6">
               <view class="image_container"><image src="../../images/doubt.png" class="class_icon"></image></view>
               <view class="class_name px-32">即将上线</view>
           </view>
-          <view class="text-align-center item doubt" bindtap="start" data-cate="6">
+          <view class="text-align-center item doubt" bindtap="goToSeedShop" data-cate="6">
               <view class="image_container"><image src="../../images/doubt.png" class="class_icon"></image></view>
               <view class="class_name px-32">即将上线</view>
           </view>

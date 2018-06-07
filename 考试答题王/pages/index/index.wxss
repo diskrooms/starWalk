@@ -30,13 +30,14 @@
   font-weight: bold;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width:100rpx;
+  width:120rpx;
   overflow: hidden;
 }
 
 .userinfo-ticket{
   color:#fff;
   margin: 55rpx 0 0 15rpx;
+  align-items: left;
 }
 
 .userinfo-id{
