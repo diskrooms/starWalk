@@ -5,7 +5,8 @@
     "pages/list/index",
     "pages/play/index",
     "pages/my/garden",
-    "pages/my/demo"
+    "pages/my/demo",
+    "pages/my/wheat"
   ],
   "window": {
     "backgroundTextStyle": "light",

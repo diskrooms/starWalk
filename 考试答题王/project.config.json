@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -57,6 +57,12 @@
 					"id": -1,
 					"name": "我的花园",
 					"pathName": "pages/my/garden",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "麦子熟了",
+					"pathName": "pages/my/wheat",
 					"query": ""
 				}
 			]
