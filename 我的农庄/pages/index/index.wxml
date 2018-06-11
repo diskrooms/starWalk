@@ -1,7 +1,11 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="top">
-  
+  <view class="flex flex-row top">
+    <view class="level">
+      <progress percent="60" color="#689f38" class="energy"/><view class="px-26 count"><text class="cur">{{userInfo.cur_energy}}</text> / <text class="full">{{userInfo.max}}</text></view>
+    </view>
+
+
   </view>
 
 </view>
