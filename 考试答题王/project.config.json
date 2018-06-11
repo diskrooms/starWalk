@@ -33,11 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-<<<<<<< HEAD
-			"current": 4,
-=======
 			"current": 2,
->>>>>>> f7e6fa73fcc2c9b683f63f151e9f873fd65306db
 			"list": [
 				{
 					"id": -1,
@@ -52,9 +48,9 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "动画页",
-					"pathName": "pages/my/demo",
+					"id": 2,
+					"name": "我的农庄",
+					"pathName": "pages/my/wheat",
 					"query": ""
 				},
 				{

@@ -1,0 +1,5 @@
+/**index.wxss**/
+.container{
+  background:url('http://coder.51tui.vip/Public/miniProgram/new_bg.png');
+  
+}
