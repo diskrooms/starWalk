@@ -16,6 +16,14 @@ Page({
     })
   },
   onLoad: function () {
+    wx.getSystemInfo({
+      success: function(res) {
+        console.log(res)
+      },
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+    
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
