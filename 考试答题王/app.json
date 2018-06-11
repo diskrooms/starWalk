@@ -11,7 +11,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#393386",
-    "navigationBarTitleText": "考试答题王",
+    "navigationBarTitleText": "demo",
     "navigationBarTextStyle": "#fff"
   },
   "debug": false
