@@ -3,7 +3,7 @@
     <view class="page-section">
 
       <view class="animation-element-wrapper">
-        <view class="animation-element" animation="{{animation}}"></view>
+        <view class="animation-element" animation="{{animationData}}"></view>
       </view>
       <scroll-view class="animation-buttons" scroll-y="true">
         <button class="animation-button" bindtap="rotate">旋转</button>

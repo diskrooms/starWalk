@@ -11,7 +11,7 @@
   width: 200rpx;
   height: 200rpx;
   /*background-color: #1AAD19;*/
-  background:url('http://coder.51tui.vip/Public/miniProgram/watering.png') no-repeat;
+  background:url('http://coder.51tui.vip/Public/miniProgram/fengche.png') no-repeat;
   background-size:cover;
 }
 .animation-buttons {
