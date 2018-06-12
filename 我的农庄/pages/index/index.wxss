@@ -1,7 +1,9 @@
 /**index.wxss 样式根据pixelRatio不同而调整 **/
-.container{
-  background:url('http://coder.51tui.vip/Public/miniProgram/my_garden/bg.png');
+.header{
+  background:url('http://coder.51tui.vip/Public/miniProgram/my_garden/bg_1.png') no-repeat;
+  background-size: 100% auto;
   /*padding:40rpx 30rpx;*/
+  height: 850rpx;
 }
 .top{
   height: 105rpx;
@@ -136,7 +138,7 @@
   width: 218rpx;
   height: 230rpx;
   position: relative;
-  top:-110rpx;
+  top:-50rpx;
   left:40rpx;
 }
 .mill-leaf{
@@ -145,4 +147,15 @@
   width: 218rpx;
   height: 218rpx;
 
+}
+
+/* 下半部分 */
+.content{
+  background:url('http://coder.51tui.vip/Public/miniProgram/my_garden/bg_2.png') no-repeat 0 500rpx;
+  /*padding:40rpx 30rpx;*/
+  background-size: 100% auto;
+  position: absolute;
+  width: 100%;
+  top:0rpx;
+  height: 1300rpx;
 }

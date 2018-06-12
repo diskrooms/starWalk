@@ -7,7 +7,9 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    animation:'',         //风车动画
+    animationData:'',     //风车动画
   },
   //事件处理函数
   bindViewTap: function() {
@@ -18,7 +20,7 @@ Page({
   onLoad: function () {
     wx.getSystemInfo({
       success: function(res) {
-        console.log(res)
+        //console.log(res)
       },
       fail: function(res) {},
       complete: function(res) {},
@@ -58,7 +60,36 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
 
-  
+  onShow: function () {
+    this.animation = wx.createAnimation({
+      duration: 500,
+      timingFunction: 'ease',
+    })
+    // animation.scale(2, 2).rotate(45).step()
+    this.setData({
+      animationData: this.animation.export()
+    })
+    var n = 0;
+    var t = null;
+    //连续动画需要添加定时器,所传参数每次+1就行
+    t = setInterval(function () {
+      // animation.translateY(-60).step()
+      n = n + 1;
+      //console.log(n)
+      if (n > 10000) {
+        clearInterval(t)
+      }
+      this.animation.rotate(10 * n).step()
+      this.setData({
+        animationData: this.animation.export()
+      })
+    }.bind(this), 100)
+  },
+
+  //每日奖励
+  award:function(e){
+    console.log('award');
+  }
 })

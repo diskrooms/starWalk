@@ -1,5 +1,9 @@
 <!--index.wxml-->
-<view class="container">
+<view class="header">
+  
+</view>
+
+<view class="content">
   <view class="flex flex-row top">
     <view class="level-con">
       <view class="level text-align-center bolder">1</view>
@@ -20,11 +24,11 @@
       </view>
       <view class="flex flex-column">
         <view class="friends"></view>
-        <view class="award"></view>
+        <view class="award" bindtap="award"></view>
       </view>
   </view>
-
+  
   <view class="mill-base">
-    <view class="mill-leaf"></view>
+      <view class="mill-leaf" animation="{{animationData}}"></view>
   </view>
 </view>
