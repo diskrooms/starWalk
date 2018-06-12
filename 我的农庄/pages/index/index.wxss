@@ -1,20 +1,148 @@
-/**index.wxss**/
+/**index.wxss 样式根据pixelRatio不同而调整 **/
 .container{
-  background:url('http://coder.51tui.vip/Public/miniProgram/new_bg.png');
+  background:url('http://coder.51tui.vip/Public/miniProgram/my_garden/bg.png');
+  /*padding:40rpx 30rpx;*/
 }
 .top{
-  margin-top:20rpx;
-  height: 70rpx;
+  height: 105rpx;
+  margin:10rpx 10rpx 0rpx 20rpx;
 }
+.level-con{
+  width: 200rpx;
+  height: 66rpx;
+  position: relative;
+}
+
 .energy{
-  width:200rpx;
+  width:150rpx;
+  position: absolute;
+  top:21rpx;
+  left:30rpx;
+  z-index: 1;
 }
 .level{
-  height: 44rpx;
-  width: 44rpx;
-  line-height: 44rpx;
-  border-radius: 22rpx;
+  height: 66rpx;   
+  width: 66rpx;
+  line-height: 66rpx;
+  border-radius: 33rpx;
   background: #F0F2A7;
   color:#3A3A3A;
+  font-size: 12pt;
+  z-index: 8;
+  position: relative;
+}
+.count{
+  color:#3A3A3A;
+  position: absolute;
+  top:20rpx;
+  left:100rpx;
+  z-index: 10;
+}
+
+/*  金币 */
+.coin-con{
+  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/coin.png') no-repeat;
+  background-size: 48rpx 48rpx;
+  width: 70rpx;
+  height: 48rpx;
+  line-height: 48rpx;
   font-size: 9pt;
+  color:3A3A3A;
+  padding-left: 58rpx;
+}
+
+/* 钻石 */
+.diamond-con{
+  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/diamond-x2.png') no-repeat;
+  background-size: 42rpx 42rpx;
+  width: 70rpx;
+  height: 42rpx;
+  line-height: 42rpx;
+  font-size: 9pt;
+  color:3A3A3A;
+  padding-left: 52rpx;
+}
+
+/* 智慧值 */
+.smart-con{
+  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/smart-x2.png') no-repeat;
+  background-size: 32rpx 52rpx;
+  width: 70rpx;
+  height: 52rpx;
+  line-height: 52rpx;
+  font-size: 9pt;
+  color:3A3A3A;
+  padding-left: 42rpx;
+}
+
+/* 联系客服 */
+.contact{
+  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/contact-x3.png') no-repeat;
+  background-size: 105rpx 105rpx;
+  width: 105rpx;
+  height: 105rpx;
+}
+
+/* 致谢 */
+.thanks{
+  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/thanks-x3.png') no-repeat;
+  background-size: 51rpx 82rpx;
+  width: 51rpx;
+  height: 82rpx;
+}
+
+.icon-button{
+  margin-top:12rpx;
+}
+
+/* 排行榜 */
+.ranklist{
+  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/ranklist-x3.png') no-repeat;
+  background-size: 110rpx 100rpx;
+  width:110rpx;
+  height: 100rpx;
+  margin: 0rpx 0rpx 20rpx 20rpx;
+}
+/* 商店 */
+.shop{
+  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/shop-x3.png') no-repeat;
+  background-size: 79rpx 99rpx;
+  width:79rpx;
+  height: 99rpx;
+}
+
+/* 好友 */
+.friends{
+  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/friends-x3.png') no-repeat;
+  background-size: 61rpx 96rpx;
+  width:61rpx;
+  height: 96rpx;
+  margin-bottom: 20rpx;
+}
+
+/* 每日奖励 */
+.award{
+  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/award-x3.png') no-repeat;
+  background-size: 116rpx 89rpx;
+  width:116rpx;
+  height: 89rpx;
+  margin-right: 10rpx;
+}
+
+/* 磨坊 */
+.mill-base{
+  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/mill-base-x2.png') no-repeat center bottom;
+  background-size: 86rpx 138rpx;
+  width: 218rpx;
+  height: 230rpx;
+  position: relative;
+  top:-110rpx;
+  left:40rpx;
+}
+.mill-leaf{
+  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/mill-leaf-x2.png') no-repeat;
+  background-size: 218rpx 218rpx;
+  width: 218rpx;
+  height: 218rpx;
+
 }
