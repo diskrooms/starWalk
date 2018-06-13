@@ -53,8 +53,8 @@ Page({
       })
     }
   },
+
   getUserInfo: function(e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -62,7 +62,7 @@ Page({
     })
   },
 
-  onShow: function () {
+  onReady:function(){
     this.animation = wx.createAnimation({
       duration: 500,
       timingFunction: 'ease',
@@ -88,8 +88,38 @@ Page({
     }.bind(this), 100)
   },
 
+  onShow: function () {
+    //直接登录
+    app.onLaunch(this.render)
+  },
+
   //每日奖励
   award:function(e){
-    console.log('award');
-  }
+    
+  },
+
+  //渲染页面
+  render: function () {
+    this.setData({ 'userInfo': app.globalData.userInfo })
+    /*wx.request({
+      url: app.globalData.apiDomain + '/my/sign',
+      data: {
+        token: wx.getStorageSync('token'),
+        app: 2
+      },
+      method: 'POST',
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      dataType: 'json',
+      success: (res) => {
+        if (res.data.status > 0) {
+          this.setData({ 'showSignPanel': 1, 'showSignData': res.data.msg[1]['sign'] })
+          //console.log(res.data.msg[1]['userInfo']['coins'])
+          app.globalData.userInfo.new = res.data.msg[1]['userInfo']['new']
+          app.globalData.userInfo.coins = res.data.msg[1]['userInfo']['coins']
+        }
+      },
+
+    })*/
+
+  },
 })
