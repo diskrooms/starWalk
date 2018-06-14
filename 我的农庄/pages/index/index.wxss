@@ -120,6 +120,7 @@
   width:61rpx;
   height: 96rpx;
   margin-bottom: 20rpx;
+  position: static;
 }
 
 /* 每日奖励 */

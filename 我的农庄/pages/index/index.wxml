@@ -23,7 +23,8 @@
         <view class="shop"></view>
       </view>
       <view class="flex flex-column">
-        <view class="friends"></view>
+        <button  class="friends" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"></button>
+        <view class="friends" wx:else></view>
         <view class="award" bindtap="award"></view>
       </view>
   </view>
