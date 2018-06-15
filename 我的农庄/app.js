@@ -127,6 +127,7 @@ function onLogin(app, callback) {
           header: { "Content-Type": "application/x-www-form-urlencoded" },
           dataType: 'json',
           success: function (res) {
+            //console.log(res)
             app.globalData.userInfo = res.data.msg;
             if (typeof callback == 'function') {
               callback();

@@ -6,10 +6,11 @@ Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
-    hasUserInfo: false,
+    hasUserInfoAuth: 1,                           //是否授权用户信息
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     animation:'',         //风车动画
     animationData:'',     //风车动画
+
   },
   //事件处理函数
   bindViewTap: function() {
@@ -41,26 +42,100 @@ Page({
         })
       }
     } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
+
     }
   },
 
   getUserInfo: function(e) {
-   // console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+    if (e.detail.userInfo != undefined){
+      //允许授权
+      var userInfo = e.detail.userInfo
+      this._updateUserInfo(userInfo)
+    }
+    
+  },
+
+  _updateUserInfo:function(userInfo){
+    if(userInfo != null && userInfo != undefined && userInfo !=''){
+      var _userInfo = app.globalData.userInfo
+      _userInfo['nickname'] = userInfo.nickName
+      _userInfo['avatarurl'] = userInfo.avatarUrl
+      _userInfo['status'] = 1
+      app.globalData.userInfo = _userInfo
+      this.setData({ 'userInfo': _userInfo,'hasUserInfoAuth':1 })
+      wx.request({
+        url: app.globalData.apiDomain + '/my/updateLite',
+        data: {
+          token: wx.getStorageSync('token'),
+          nickname: _userInfo.nickname,
+          avatarurl: _userInfo.avatarurl,
+          app: 2
+        },
+        method: 'POST',
+        header: { "Content-Type": "application/x-www-form-urlencoded" },
+        dataType: 'json',
+        success: (res) => {
+          if (res.data.status > 0) {
+            wx.navigateTo({
+              url: '/pages/friends/index',
+            })
+          }
+        },
+
+      })
+    }
+  },
+
+  onShow: function () {
+    //直接登录
+    app.onLaunch(this.render)
+  },
+
+  //渲染页面
+  render: function () {
+    var that = this;
+    console.log(app.globalData.userInfo)
+    this.setData({ 'userInfo':app.globalData.userInfo })
+    //用户status为0时才需要检查是否授过权
+    
+    if (this.data.userInfo.status == 0) {
+      wx.getSetting({
+        success(res) {
+          var hasUserInfoAuth = res.authSetting['scope.userInfo'] ? 1 : 0;
+          that.setData({ 'hasUserInfoAuth': hasUserInfoAuth })
+          //授过权的直接调用 getUserInfo 获取昵称和头像
+          if (hasUserInfoAuth > 0) {
+            
+            wx.getUserInfo({
+              withCredentials: true,
+              success: function (res) {
+                that._updateUserInfo(res.userInfo)
+              }
+            })
+          }
+        }
+      })
+    }
+    /*wx.request({
+      url: app.globalData.apiDomain + '/my/sign',
+      data: {
+        token: wx.getStorageSync('token'),
+        app: 2
+      },
+      method: 'POST',
+      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      dataType: 'json',
+      success: (res) => {
+        if (res.data.status > 0) {
+          this.setData({ 'showSignPanel': 1, 'showSignData': res.data.msg[1]['sign'] })
+          //console.log(res.data.msg[1]['userInfo']['coins'])
+          app.globalData.userInfo.new = res.data.msg[1]['userInfo']['new']
+          app.globalData.userInfo.coins = res.data.msg[1]['userInfo']['coins']
+        }
+      },
+
+    })*/
+
   },
 
   onReady:function(){
@@ -89,38 +164,17 @@ Page({
     }.bind(this), 100)
   },
 
-  onShow: function () {
-    //直接登录
-    app.onLaunch(this.render)
-  },
 
   //每日奖励
   award:function(e){
     
   },
 
-  //渲染页面
-  render: function () {
-    this.setData({ 'userInfo': app.globalData.userInfo })
-    /*wx.request({
-      url: app.globalData.apiDomain + '/my/sign',
-      data: {
-        token: wx.getStorageSync('token'),
-        app: 2
-      },
-      method: 'POST',
-      header: { "Content-Type": "application/x-www-form-urlencoded" },
-      dataType: 'json',
-      success: (res) => {
-        if (res.data.status > 0) {
-          this.setData({ 'showSignPanel': 1, 'showSignData': res.data.msg[1]['sign'] })
-          //console.log(res.data.msg[1]['userInfo']['coins'])
-          app.globalData.userInfo.new = res.data.msg[1]['userInfo']['new']
-          app.globalData.userInfo.coins = res.data.msg[1]['userInfo']['coins']
-        }
-      },
-
-    })*/
-
+  //跳转到好友页
+  toFriends:function(e){
+    wx.navigateTo({
+      url: '/pages/friends/index',
+    })
   },
+
 })

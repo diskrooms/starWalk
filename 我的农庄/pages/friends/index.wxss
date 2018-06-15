@@ -1,0 +1,38 @@
+/* pages/firends/index.wxss */
+.container{
+  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/friends-bg.png') no-repeat 0 0;
+  background-size: 100% 100%; 
+}
+.scroll{
+  margin:100rpx auto;
+  width:600rpx;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10rpx;
+  padding:20rpx;
+  /*background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/friends-scroll-bg.png') no-repeat 0 0;*/
+}
+.friends-avatar{width: 96rpx;height: 96rpx;border-radius: 48rpx;}
+.friends-look{
+  background:url('http://coder.51tui.vip/Public/miniProgram/my_garden/friends-button-bg.png') no-repeat 0 0;
+  background-size:100% 100%; 
+  width:212rpx;
+  height: 75rpx;
+}
+.no-friends{
+  background:url('http://coder.51tui.vip/Public/miniProgram/my_garden/no-friends.png') no-repeat 0 0;
+  background-size:298rpx 294rpx;
+  width:298rpx;
+  height: 294rpx;
+  color:#fff;
+}
+
+.no-friends .text{
+  width: 200rpx;
+}
+
+.invite-friends{
+  background:url('http://coder.51tui.vip/Public/miniProgram/my_garden/invite-friends.png') no-repeat 0 0;
+  background-size:211rpx 73rpx; 
+  width: 211rpx;
+  height: 73rpx;
+}
