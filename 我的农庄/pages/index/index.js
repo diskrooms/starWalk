@@ -94,7 +94,7 @@ Page({
   //渲染页面
   render: function () {
     var that = this;
-    console.log(app.globalData.userInfo)
+    //console.log(app.globalData.userInfo)
     this.setData({ 'userInfo':app.globalData.userInfo })
     //用户status为0时才需要检查是否授过权
     

@@ -177,20 +177,21 @@ App({
 
     return {
       title: util.share()['share_title'],
-      path: '/pages/index/index',
+      path: '/pages/index/index?above=' + that.globalData.userInfo.id,
       imageUrl: util.share()['share_image'],
       success: function (res) {
         // 转发成功
         var shareTickets = res.shareTickets;
         if (shareTickets.length == 0) {
-          //console.log('转发获取tickets失败')
+          console.log('转发获取tickets失败')
           return false;
         }
         wx.getShareInfo({
           shareTicket: shareTickets[0],
           success: function (res) {
+            console.log(res)
             wx.request({
-              url: that.globalData.apiDomain + '/my/share',
+              url: that.globalData.apiDomain + '/my/shareLite',
               data: {
                 token: wx.getStorageSync('token'),
                 encryptedData_: res.encryptedData,
@@ -204,9 +205,11 @@ App({
               dataType: 'json',
               success: (res) => {
                 if (res.data.status > 0) {
-                  alert(res.data.msg[0]);   //todo换对话框
+                  //alert(res.data.msg[0]);   //todo换对话框
                   setTimeout(() => {
-                    callback(res.data.msg[1])
+                    if(typeof callback == 'function'){
+                      callback(res.data.msg[1])
+                    }
                   }, 1000)
                 } else {
                   alert(res.data.msg[0]);

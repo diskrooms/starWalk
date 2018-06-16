@@ -47,6 +47,11 @@ view{
 .px-36{font-size: 36rpx;}
 .px-38{font-size: 38rpx;}
 .px-40{font-size: 40rpx;}
+.px-42{font-size: 42rpx;}
+.px-44{font-size: 44rpx;}
+.px-46{font-size: 46rpx;}
+.px-48{font-size: 48rpx;}
+.px-50{font-size: 50rpx;}
 .left{float:left}
 .right{float:right}
 .inline{display: inline;}

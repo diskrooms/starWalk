@@ -19,15 +19,17 @@
   height: 75rpx;
 }
 .no-friends{
-  background:url('http://coder.51tui.vip/Public/miniProgram/my_garden/no-friends.png') no-repeat 0 0;
-  background-size:298rpx 294rpx;
-  width:298rpx;
-  height: 294rpx;
-  color:#fff;
+  margin:0rpx auto;
 }
 
 .no-friends .text{
-  width: 200rpx;
+  background:url('http://coder.51tui.vip/Public/miniProgram/my_garden/no-friends.png') no-repeat 0 0;
+  background-size:596rpx 588rpx;
+  width:596rpx;
+  height: 588rpx;
+  line-height: 488rpx;
+  color:#fff;
+  margin: 60rpx auto;
 }
 
 .invite-friends{
@@ -35,4 +37,9 @@
   background-size:211rpx 73rpx; 
   width: 211rpx;
   height: 73rpx;
+  margin: 0 auto;
+}
+/* 去除小程序 button 默认边框 */
+.invite-friends::after{
+  border: none;   
 }

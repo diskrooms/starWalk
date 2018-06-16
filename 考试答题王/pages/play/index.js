@@ -111,7 +111,7 @@ Page({
    * 用户分享
    */
   onShareAppMessage: function (res) {
-    res.type = 1;          
+    res.type = 1;       //分享场景 0 +挑战次数   1复活卡 2邀请好友
     return app.onShareAppMessage(res,this.goNext)
   },
   //绘制圆
