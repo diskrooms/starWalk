@@ -9,8 +9,8 @@
             <view class="friends-look"></view>
         </view>
     </scroll-view>
-    <view class="no-friends text-align-center" wx:else>
-      <view class="px-42 text">你看起来有点孤独~</view>
+    <view class="no-friends" wx:else>
+      <view class="px-50 text text-align-center">你看起来有点孤独~</view>
       <button class="invite-friends" open-type="share"></button>
     </view>
 </view>

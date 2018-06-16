@@ -75,17 +75,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function (res) {
-    res.type = 2;                   //分享场景 0 +挑战次数   1复活卡 2邀请好友
-    return app.onShareAppMessage(res, this.onShareCallBack)
-  },
-
-  /**
-   * 用户执行分享后的回调
-   */
-  onShareCallBack:function(){
-      wx.redirectTo({
-        url: '/pages/index/index',
-      })
+  onShareAppMessage: function () {
+  
   }
 })
