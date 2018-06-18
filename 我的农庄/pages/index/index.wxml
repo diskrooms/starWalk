@@ -32,4 +32,37 @@
   <view class="mill-base">
       <view class="mill-leaf" animation="{{animationData}}"></view>
   </view>
+
+  <!-- 农作物 -->
+  <view class="flex flex-column crop">
+    <view class="flex flex-row">
+      <view class="crop-item crop-dig"></view>
+      <view class="crop-item crop-undig-shovel"></view>
+      <view class="crop-item crop-undig"></view>
+      <view class="crop-item crop-undig shovel"></view>
+    </view>
+    <view class="flex flex-row">
+      <view class="crop-item crop-undig"></view>
+      <view class="crop-item crop-undig-shovel"></view>
+      <view class="crop-item crop-undig-shovel"></view>
+      <view class="crop-item crop-undig"></view>
+    </view>
+    <view class="flex flex-row">
+      <view class="crop-item crop-undig-shovel"></view>
+      <view class="crop-item crop-undig"></view>
+      <view class="crop-item crop-undig shovel"></view>
+      <view class="crop-item crop-undig"></view>
+    </view>
+  </view>
+
+  <!--是否开辟土地对话框 -->
+  <view class="dig-dialog-con">
+    <view class="dig-dialog text-align-center px-30">
+      <view>开辟土地将花费50个金币</view>
+      <view class="sure">确定</view>
+    </view>
+    <view class="close"></view>
+  </view>
+  <view class="layer"></view>
 </view>
+

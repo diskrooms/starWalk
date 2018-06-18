@@ -18,7 +18,8 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
+  onLoad: function (opt) {
+    //console.log(opt)
     wx.getSystemInfo({
       success: function(res) {
         //console.log(res)

@@ -11,6 +11,9 @@
   padding:20rpx;
   /*background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/friends-scroll-bg.png') no-repeat 0 0;*/
 }
+.friends-nickname{
+  margin-left:-160rpx;
+}
 .friends-avatar{width: 96rpx;height: 96rpx;border-radius: 48rpx;}
 .friends-look{
   background:url('http://coder.51tui.vip/Public/miniProgram/my_garden/friends-button-bg.png') no-repeat 0 0;

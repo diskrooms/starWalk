@@ -5,7 +5,7 @@
             <view class="flex friends-image-container">
                   <image src="{{item.avatar}}" class="friends-avatar"></image>
               </view>
-            <view class="friends-nickname">{{item.nickname}}</view>
+            <view class="friends-nickname px-28">{{item.nickname}}</view>
             <view class="friends-look"></view>
         </view>
     </scroll-view>

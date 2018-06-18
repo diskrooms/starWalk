@@ -75,7 +75,17 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
+  onShareAppMessage: function (res) {
+    res.type = 2;
+    return app.onShareAppMessage(res, this.onShareCallback)
+  },
+
+  /**
+   * 分享后的回调函数
+   */
+  onShareCallback:function(){
+      wx.redirectTo({
+        url: '/pages/index/index',
+      })
   }
 })

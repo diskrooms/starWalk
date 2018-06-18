@@ -86,25 +86,65 @@ function login(app, callback) {
 
       //不使用getUserInfo获取详细信息 直接用openid注册用户
       // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      wx.request({
-        url: app.globalData.apiDomain + '/user/loginLite',
-        data: {
-          'code': code,
-          'app': 2
-        },
-        success: function (res) {
-          //console.log(res)
-          wx.setStorageSync('token', res.data.msg.auth)
-          wx.setStorageSync('sessionid', res.data.msg.sessionid)
-          wx.setStorageSync('csrfToken', res.data.msg.csrfToken)
-          //console.log(res.data.msg.userInfo)
-          app.globalData.userInfo = res.data.msg.userInfo
-          if (typeof callback == 'function') {
-            callback();
+      var above = app.globalData.opt.query.above ? app.globalData.opt.query.above : 0
+      if (app.globalData.opt.scene == 1044) {
+            //群登录
+            wx.getShareInfo({
+              shareTicket: app.globalData.opt.shareTicket,
+              complete(res) {
+                var wechatGroupInfo = res
+                // 发送 res.code 到后台换取 openId, sessionKey, unionId
+                //console.log(res)
+                wx.request({
+                  url: app.globalData.apiDomain + '/user/loginLite',
+                  method:'POST',
+                  header: { "Content-Type": "application/x-www-form-urlencoded" },
+                  dataType: 'json',
+                  data: {
+                    'code': code,
+                    'encryptedData_': wechatGroupInfo.encryptedData,
+                    'iv_': wechatGroupInfo.iv,
+                    'above':above,
+                    'app': 2
+                  },
+                  success: function (res) {
+                    //console.log(res)
+                    wx.setStorageSync('token', res.data.msg.auth)
+                    wx.setStorageSync('sessionid', res.data.msg.sessionid)
+                    wx.setStorageSync('csrfToken', res.data.msg.csrfToken)
+                    app.globalData.userInfo = res.data.msg.userInfo
+                    if (typeof callback == 'function') {
+                      callback();
+                    }
+                  }
+                })
+              }
+            })
+      } else {
+        //个人登录
+        wx.request({
+          url: app.globalData.apiDomain + '/user/loginLite',
+          method: 'POST',
+          header: { "Content-Type": "application/x-www-form-urlencoded" },
+          dataType: 'json',
+          data: {
+            'code': code,
+            'above': above,
+            'app': 2
+          },
+          success: function (res) {
+            //console.log(res)
+            wx.setStorageSync('token', res.data.msg.auth)
+            wx.setStorageSync('sessionid', res.data.msg.sessionid)
+            wx.setStorageSync('csrfToken', res.data.msg.csrfToken)
+            //console.log(res.data.msg.userInfo)
+            app.globalData.userInfo = res.data.msg.userInfo
+            if (typeof callback == 'function') {
+              callback();
+            }
           }
-        }
-      })
-
+        })
+      }
     }
   })
 }
@@ -148,6 +188,7 @@ function onLogin(app, callback) {
 App({
   onLaunch: function (opt) {
     //console.log(opt)
+    //var above = opt.query.above;
     // 展示本地存储能力
     //var logs = wx.getStorageSync('logs') || []
     //logs.unshift(Date.now())
@@ -180,44 +221,53 @@ App({
       path: '/pages/index/index?above=' + that.globalData.userInfo.id,
       imageUrl: util.share()['share_image'],
       success: function (res) {
-        // 转发成功
+        //console.log(res) 分享到群有tickets 分享到个人没有tickets
         var shareTickets = res.shareTickets;
-        if (shareTickets.length == 0) {
-          console.log('转发获取tickets失败')
+        if (shareTickets == '' || shareTickets == undefined || shareTickets == null || shareTickets.length == 0) {
+          //分享到个人
+          //console.log('没有获取到tickets,分享给个人或者获取失败') 
+          alert('邀请成功');
+          setTimeout(() => {
+            if (typeof callback == 'function') {
+              callback()
+            }
+          }, 1000)
           return false;
-        }
-        wx.getShareInfo({
-          shareTicket: shareTickets[0],
-          success: function (res) {
-            console.log(res)
-            wx.request({
-              url: that.globalData.apiDomain + '/my/shareLite',
-              data: {
-                token: wx.getStorageSync('token'),
-                encryptedData_: res.encryptedData,
-                iv_: res.iv,
-                from: params.from,      //nenu右上角 button按钮
-                type: params.type,
-                app: 2
-              },
-              method: 'POST',
-              header: { "Content-Type": "application/x-www-form-urlencoded" },
-              dataType: 'json',
-              success: (res) => {
-                if (res.data.status > 0) {
-                  //alert(res.data.msg[0]);   //todo换对话框
-                  setTimeout(() => {
-                    if(typeof callback == 'function'){
-                      callback(res.data.msg[1])
-                    }
-                  }, 1000)
-                } else {
-                  alert(res.data.msg[0]);
+        } else {
+          //分享到群
+          wx.getShareInfo({
+            shareTicket: shareTickets[0],
+            success: function (res) {
+              //console.log(res)
+              wx.request({
+                url: that.globalData.apiDomain + '/my/shareLite',
+                data: {
+                  token: wx.getStorageSync('token'),
+                  encryptedData_: res.encryptedData,
+                  iv_: res.iv,
+                  from: params.from,      //nenu右上角 button按钮
+                  type: params.type,
+                  app: 2
+                },
+                method: 'POST',
+                header: { "Content-Type": "application/x-www-form-urlencoded" },
+                dataType: 'json',
+                success: (res) => {
+                  if (res.data.status > 0) {
+                    //alert(res.data.msg[0]);   //todo换对话框
+                    setTimeout(() => {
+                      if(typeof callback == 'function'){
+                        callback(res.data.msg[1])
+                      }
+                    }, 1000)
+                  } else {
+                    alert(res.data.msg[0]);
+                  }
                 }
-              }
-            })
-          }
-        })
+              })
+            }
+          })
+        }
       },
       fail: function (res) {
         // 转发失败
