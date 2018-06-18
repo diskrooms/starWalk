@@ -59,9 +59,9 @@
   <view class="dig-dialog-con">
     <view class="dig-dialog text-align-center px-30">
       <view>开辟土地将花费50个金币</view>
-      <view class="sure">确定</view>
+      <view class="sure" bindtap="sureDig">确定</view>
     </view>
-    <view class="close"></view>
+    <view class="close" bindtap="closeDig"></view>
   </view>
   <view class="layer"></view>
 </view>

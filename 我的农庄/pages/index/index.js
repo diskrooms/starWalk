@@ -178,4 +178,10 @@ Page({
     })
   },
 
+  sureDig:function(){
+
+  },
+  closeDig:function(){
+    
+  }
 })

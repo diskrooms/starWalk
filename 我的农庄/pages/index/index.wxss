@@ -188,12 +188,13 @@
   position: absolute;
   top:500rpx;
   left:100rpx;
-  width:600rpx;
-  height: 200rpx;
+  width:520rpx;
+  height: 250rpx;
+  padding:20rpx;
 }
 .dig-dialog{
-  /*width:500rpx;
-  height: 200rpx;*/
+  width:500rpx;
+  height: 200rpx;
   line-height: 100rpx;
   background:url('http://coder.51tui.vip/Public/miniProgram/my_garden/ui/dig-dialog.png') no-repeat 0 0;
   position: absolute;
@@ -220,6 +221,7 @@
   position: absolute;
   top:0rpx;
   right:0rpx;
+  z-index: 101;
 }
 /* 遮罩层 */
 .layer{
