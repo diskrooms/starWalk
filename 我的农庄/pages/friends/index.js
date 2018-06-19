@@ -76,7 +76,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (res) {
-    res.type = 2;
+    res.type = 2;     //邀请场景 0 增加挑战次数 1 复活卡 2 邀请好友
     return app.onShareAppMessage(res, this.onShareCallback)
   },
 

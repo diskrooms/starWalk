@@ -42,9 +42,24 @@ function share() {
   return { 'share_title': share_title, 'share_image': share_image }
 }
 
+//封装请求方法
+function request(url,method,data,succ_callback){
+  wx.request({
+    url: url,
+    data: data,
+    method: method,
+    header: { "Content-Type": "application/x-www-form-urlencoded" },
+    dataType: 'json',
+    success: (res) => {
+      succ_callback(res)
+    },
+
+  })
+}
 
 module.exports = {
   formatTime: formatTime,
   alert: alert,
-  share: share
+  share: share,
+  request:request
 }

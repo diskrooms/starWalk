@@ -10,9 +10,9 @@
       <wxc-progress class="energy" percent="60" stroke-width="24" radius="12" active-color="#3ACE3A" background-color="#fff"></wxc-progress>
       <view class="px-24 count"><text class="cur">{{userInfo.cur_energy ? userInfo.cur_energy : 0}}</text> / <text class="full">{{userInfo.max ? userInfo.max : 0}}</text></view>
     </view>
-    <view class="coin-con">100</view>
-    <view class="diamond-con">120</view>
-    <view class="smart-con">150</view>
+    <view class="coin-con">{{userInfo.coins}}</view>
+    <view class="diamond-con">{{userInfo.diamond}}</view>
+    <view class="smart-con">{{userInfo.smart}}</view>
     <view class="contact"></view>
     <!--<view class="thanks"></view>-->
   </view>
@@ -35,9 +35,8 @@
 
   <!-- 农作物 -->
   <view class="flex flex-column crop">
-    
-    <view class="flex flex-row" wx:for="{{crop-data}}">
-      <view class="crop-item {{item2.crop-status}}" wx:for="{{item.data}}" wx:for-item="item2"></view>
+    <view class="flex flex-row" wx:for="{{userInfo.crop_data}}">
+      <view class="crop-item {{item2.crop_status}}" wx:for="{{item}}" wx:for-item="item2" bindtap="crop_action" data-status="{{item2.crop_status}}"></view>
     </view>
     <!--<view class="flex flex-row">
       <view class="crop-item crop-undig"></view>
@@ -48,19 +47,20 @@
     <view class="flex flex-row">
       <view class="crop-item crop-undig-shovel"></view>
       <view class="crop-item crop-undig"></view>
-      <view class="crop-item crop-undig shovel"></view>
+      <view class="crop-item crop-undig-shovel"></view>
       <view class="crop-item crop-undig"></view>
     </view>-->
   </view>
 
   <!--是否开辟土地对话框 -->
-  <view class="dig-dialog-con">
+  <view class="dig-dialog-con {{dialog_status}}">
     <view class="dig-dialog text-align-center px-30">
-      <view>开辟土地将花费50个金币</view>
-      <view class="sure" bindtap="sureDig">确定</view>
+      <view>{{dialog_text}}</view>
+      <view class="sure" bindtap="sureDialog" wx:if="{{dialog_btn == 0}}">确定</view>
+      <button class="sure" open-type="share" wx:else>邀请好友</button>
     </view>
-    <view class="close" bindtap="closeDig"></view>
+    <view class="close" bindtap="closeDialog"></view>
   </view>
-  <view class="layer"></view>
+  <view class="layer {{dialog_status}}"></view>
 </view>
 

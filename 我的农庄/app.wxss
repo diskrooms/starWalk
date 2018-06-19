@@ -213,3 +213,8 @@ input-holder {
 .card{
   background: #fb9126;
 }
+
+/* 去掉 button 默认边框 */
+button::after{
+  border: none;   
+}

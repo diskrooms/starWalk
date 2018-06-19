@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
+const util = require('../../utils/util.js')
 
 Page({
   data: {
@@ -11,6 +12,11 @@ Page({
     animation:'',         //风车动画
     animationData:'',     //风车动画
 
+    dialog_status:'hide',           //对话框状态
+    dialog_text:'',                 //对话框内容
+    dialog_sure:function(){},       //确定键回调函数
+    dialog_btn:0,                   //确定键类型 0 普通按钮 1 分享按钮
+    dialog_close:function(){},      //关闭键回调函数
   },
   //事件处理函数
   bindViewTap: function() {
@@ -178,10 +184,69 @@ Page({
     })
   },
 
-  sureDig:function(){
-
+  //分享
+  onShareAppMessage: function (res) {
+    res.type = 2;     //邀请场景 0 增加挑战次数 1 复活卡 2 邀请好友
+    return app.onShareAppMessage(res, this.onShareCallback)
   },
-  closeDig:function(){
-    
+
+  //种植行为
+  crop_action:function(e){
+      var crop_status = e.currentTarget.dataset.status;
+      if (crop_status == 'crop-undig' || crop_status == 'crop-undig-shovel'){
+        this.dig();
+      }  
+  },
+
+  //确定对话框
+  sureDialog:function(){
+    if (typeof this.data.dialog_sure == 'function'){
+      this.data.dialog_sure();
+    }
+  },
+
+  //封装关闭对话框
+  closeDialog:function(){
+    if (typeof this.data.dialog_close == 'function') {
+      this.data.dialog_close();
+    }
+  },
+
+  //底层关闭对话框
+  _closeDialog:function(){
+    this.setData({'dialog_status':'hide'})
+  },
+  
+  //开垦荒地
+  dig:function(){
+      this.setData({
+      'dialog_status':'show',
+      'dialog_text':'开荒将花费您50金币',
+      'dialog_sure':this._dig_sure,
+      'dialog_close':this._closeDialog
+    })
+  },
+  //确定开垦荒地
+  _dig_sure:function(){
+    var url = app.globalData.apiDomain+'/my/dig_sure'
+    var data = { 'token': wx.getStorageSync('token'),'app':2}
+    util.request(url,'POST',data,this._dig_sure_callback)
+  },
+  //确定开垦荒地回调函数
+  _dig_sure_callback:function(res){
+    if(res.data.status > 0){
+      
+    } else{
+      this.setData({'dialog_status':'hide'})
+      setTimeout(()=>{
+        this.setData({
+          'dialog_status':'show',
+          'dialog_text': res.data.msg[0],
+          'dialog_btn': 1,
+          'dialog_close': this._closeDialog
+        })
+      },500)
+      
+    }
   }
 })
