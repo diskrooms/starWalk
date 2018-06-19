@@ -35,13 +35,11 @@
 
   <!-- 农作物 -->
   <view class="flex flex-column crop">
-    <view class="flex flex-row">
-      <view class="crop-item crop-dig"></view>
-      <view class="crop-item crop-undig-shovel"></view>
-      <view class="crop-item crop-undig"></view>
-      <view class="crop-item crop-undig shovel"></view>
+    
+    <view class="flex flex-row" wx:for="{{crop-data}}">
+      <view class="crop-item {{item2.crop-status}}" wx:for="{{item.data}}" wx:for-item="item2"></view>
     </view>
-    <view class="flex flex-row">
+    <!--<view class="flex flex-row">
       <view class="crop-item crop-undig"></view>
       <view class="crop-item crop-undig-shovel"></view>
       <view class="crop-item crop-undig-shovel"></view>
@@ -52,7 +50,7 @@
       <view class="crop-item crop-undig"></view>
       <view class="crop-item crop-undig shovel"></view>
       <view class="crop-item crop-undig"></view>
-    </view>
+    </view>-->
   </view>
 
   <!--是否开辟土地对话框 -->

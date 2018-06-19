@@ -215,9 +215,9 @@
 }
 .dig-dialog-con .close{
   background:url('http://coder.51tui.vip/Public/miniProgram/my_garden/ui/dialog-close.png') no-repeat 0 0;
-  background-size:80rpx 80rpx;
-  width:80rpx;
-  height: 83rpx;
+  background-size:76rpx 75rpx;
+  width:76rpx;
+  height: 75rpx;
   position: absolute;
   top:0rpx;
   right:0rpx;
