@@ -36,7 +36,7 @@
   <!-- 农作物 -->
   <view class="flex flex-column crop">
     <view class="flex flex-row" wx:for="{{userInfo.crop_data}}">
-      <view class="crop-item {{item2.crop_status}}" wx:for="{{item}}" wx:for-item="item2" bindtap="crop_action" data-status="{{item2.crop_status}}"></view>
+      <view class="crop-item {{item2.crop_status}}" wx:for="{{item}}" wx:for-item="item2" bindtap="crop_action" data-status="{{item2.crop_status}}" data-index="{{item2.crop_index}}"></view>
     </view>
     <!--<view class="flex flex-row">
       <view class="crop-item crop-undig"></view>
@@ -52,9 +52,9 @@
     </view>-->
   </view>
 
-  <!--是否开辟土地对话框 -->
+  <!--种植操作交互对话框 -->
   <view class="dig-dialog-con {{dialog_status}}">
-    <view class="dig-dialog text-align-center px-30">
+    <view class="dig-dialog text-align-center px-28">
       <view>{{dialog_text}}</view>
       <view class="sure" bindtap="sureDialog" wx:if="{{dialog_btn == 0}}">确定</view>
       <button class="sure" open-type="share" wx:else>邀请好友</button>
@@ -64,3 +64,25 @@
   <view class="layer {{dialog_status}}"></view>
 </view>
 
+<!-- 背包 -->
+<view class="bag">
+    <scroll-view bindscroll="scroll" scroll-y class="scroll" wx:if="{{bagData.length > 0}}">
+      <view wx:for="{{bagData}}"  class="flex">
+          <view class="flex item-image-container">
+                <image src="{{item.avatar}}" class="bag-item"></image>
+            </view>
+          <view class="item-name px-28">{{item.nickname}}</view>
+          <view class="plant-it"></view>
+      </view>
+  </scroll-view>
+  <view class="no-item" wx:else>
+    <view class="px-50 text text-align-center">你的背包空空如也~去买点种子吧</view>
+    <view bindtap="seedShop">买种子</view>
+  </view>
+</view>
+
+
+<!-- 商店 -->
+<view class="shop">
+  
+</view>

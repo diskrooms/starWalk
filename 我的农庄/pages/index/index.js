@@ -17,6 +17,10 @@ Page({
     dialog_sure:function(){},       //确定键回调函数
     dialog_btn:0,                   //确定键类型 0 普通按钮 1 分享按钮
     dialog_close:function(){},      //关闭键回调函数
+
+    crop_index:0,                   //当前操作的土块索引
+    bag_status:0,                   //背包打开状态
+    shop_status:0,                  //商店打开状态
   },
   //事件处理函数
   bindViewTap: function() {
@@ -190,12 +194,20 @@ Page({
     return app.onShareAppMessage(res, this.onShareCallback)
   },
 
+  //邀请好友后的回调
+  onShareCallback:function(){
+    //util.alert('分享成功')
+  },
+
   //种植行为
   crop_action:function(e){
       var crop_status = e.currentTarget.dataset.status;
+      var crop_index = e.currentTarget.dataset.index;
       if (crop_status == 'crop-undig' || crop_status == 'crop-undig-shovel'){
-        this.dig();
-      }  
+        this.dig(crop_index);
+      } else if(crop_status == 'crop-dig'){
+        this.plant(crop_index)
+      }
   },
 
   //确定对话框
@@ -218,24 +230,32 @@ Page({
   },
   
   //开垦荒地
-  dig:function(){
+  dig: function (crop_index){
       this.setData({
       'dialog_status':'show',
       'dialog_text':'开荒将花费您50金币',
-      'dialog_sure':this._dig_sure,
-      'dialog_close':this._closeDialog
+      'dialog_btn':0,
+      'dialog_sure': this._dig_sure,
+      'dialog_close':this._closeDialog,
+      'crop_index':crop_index
     })
   },
   //确定开垦荒地
-  _dig_sure:function(){
+  _dig_sure: function (){
     var url = app.globalData.apiDomain+'/my/dig_sure'
-    var data = { 'token': wx.getStorageSync('token'),'app':2}
+    var data = { 'token': wx.getStorageSync('token'),'crop_index':this.data.crop_index,'app':2}
     util.request(url,'POST',data,this._dig_sure_callback)
   },
   //确定开垦荒地回调函数
   _dig_sure_callback:function(res){
     if(res.data.status > 0){
-      
+      this.setData({ 'dialog_status': 'hide' })
+      setTimeout(()=>{
+          util.alert('开垦成功')
+          app.globalData.userInfo = res.data.msg;
+          this.setData({ 'userInfo': res.data.msg})
+      },300)
+    
     } else{
       this.setData({'dialog_status':'hide'})
       setTimeout(()=>{
@@ -248,5 +268,14 @@ Page({
       },500)
       
     }
-  }
+  },
+
+  //种植
+  plant:function(crop_index){
+    this.setData({'crop_index':crop_index,'bag_status':1});
+  },
+  //打开种子商店
+  seedShop:function(){
+    this.setData({'bag_status':0,'shop_status':1})
+  },
 })

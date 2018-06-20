@@ -1,16 +1,16 @@
 <!--pages/firends/index.wxml-->
 <view class="container">
   <scroll-view bindscroll="scroll" scroll-y class="scroll" wx:if="{{friendsData.length > 0}}">
-        <view wx:for="{{friendsData}}"  class="flex">
-            <view class="flex friends-image-container">
-                  <image src="{{item.avatar}}" class="friends-avatar"></image>
-              </view>
-            <view class="friends-nickname px-28">{{item.nickname}}</view>
-            <view class="friends-look"></view>
-        </view>
-    </scroll-view>
-    <view class="no-friends" wx:else>
-      <view class="px-50 text text-align-center">你看起来有点孤独~</view>
-      <button class="invite-friends" open-type="share"></button>
-    </view>
+      <view wx:for="{{friendsData}}"  class="flex">
+          <view class="flex friends-image-container">
+                <image src="{{item.avatar}}" class="friends-avatar"></image>
+            </view>
+          <view class="friends-nickname px-28">{{item.nickname}}</view>
+          <view class="friends-look"></view>
+      </view>
+  </scroll-view>
+  <view class="no-friends" wx:else>
+    <view class="px-50 text text-align-center">你看起来有点孤独~</view>
+    <button class="invite-friends" open-type="share"></button>
+  </view>
 </view>

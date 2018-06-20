@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="210mm" height="297mm" version="1.1" viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <linearGradient id="a">
+   <stop stop-color="#d65500" offset="0"/>
+   <stop stop-color="#db5700" offset=".41892"/>
+   <stop stop-color="#dc5800" offset=".47155"/>
+   <stop stop-color="#fd6500" offset=".52896"/>
+   <stop stop-color="#f60" offset="1"/>
+  </linearGradient>
+  <linearGradient id="h" x1="44.98" x2="45.008" y1="100.32" y2="74.9" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
+  <linearGradient id="i" x1="44.98" x2="45.008" y1="100.32" y2="74.9" gradientTransform="translate(105.83)" gradientUnits="userSpaceOnUse" xlink:href="#a"/>
+  <linearGradient id="j" x1="152.46" x2="152.59" y1="139.08" y2="163.5" gradientTransform="scale(3.7795)" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#f95" offset="0"/>
+   <stop stop-color="#d45500" offset="1"/>
+  </linearGradient>
+  <linearGradient id="k" x1="152.11" x2="152.25" y1="162.47" y2="139.77" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#ff7f2a" offset="0"/>
+   <stop stop-color="#f60" offset="1"/>
+  </linearGradient>
+  <linearGradient id="l" x1="154.87" x2="155.17" y1="172.21" y2="194.56" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#ffb380" offset="0"/>
+   <stop stop-color="#f60" offset=".32809"/>
+   <stop stop-color="#f60" offset="1"/>
+  </linearGradient>
+  <radialGradient id="m" cx="130.53" cy="175.76" r="3.6114" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#ffe6d5" offset="0"/>
+   <stop stop-color="#ffe6d5" stop-opacity="0" offset="1"/>
+  </radialGradient>
+ </defs>
+ <path transform="scale(.26458)" d="m55.328 643.95l-3.9004 95.713 9.0996-77.516 130.9-8.9219-136.1-9.2754z" fill="#f95"/>
+ <rect x="13.607" y="75.128" width="74.083" height="25.324" ry="1.3376" fill="url(#h)"/>
+ <path transform="scale(.26458)" d="m56.484 403.95c-2.8008 0-5.0566 2.2558-5.0566 5.0566v41.582h280v-41.582c0-2.8008-2.2539-5.0566-5.0547-5.0566z" fill="#f60"/>
+ <path transform="scale(.26458)" d="m51.428 450.59v44.021c0 2.8008 2.2558 5.0547 5.0566 5.0547h269.89c2.8008 0 5.0547-2.2539 5.0547-5.0547v-44.021h-280z" fill="#d45500"/>
+ <path transform="scale(.26458)" d="m56.484 403.95c-2.8008 0-5.0566 2.2558-5.0566 5.0566v14.875a213.71 76.523 9.491 0 0 138.78 43.609 213.71 76.523 9.491 0 0 141.22 4.5078v-62.992c0-2.8008-2.2539-5.0566-5.0547-5.0566h-269.89z" fill="#ff7f2a" fill-opacity=".50476"/>
+ <path transform="scale(.26458)" d="m56.484 523.95c-2.8008 0-5.0566 2.2558-5.0566 5.0566v77.088l280-61.848v-15.24c0-2.8008-2.2539-5.0566-5.0547-5.0566z" fill="#ff7f2a"/>
+ <path transform="scale(.26458)" d="m331.43 544.24l-280 61.848v8.5156c0 2.8008 2.2558 5.0547 5.0566 5.0547h269.89c2.8008 0 5.0547-2.2539 5.0547-5.0547v-70.363z" fill="#f60"/>
+ <path d="m16.015 175.19 70.644-4.8152 1.0318 25.324h-74.083z" fill="#f60"/>
+ <path transform="scale(.26458)" d="m59.037 674.84l-7.6094 64.82h280l-0.99023-24.316-271.4-40.504z" fill="#d45500"/>
+ <path transform="scale(.26458)" d="m55.328 643.95l-3.9004 95.713h280l-0.99023-24.316-2.9082-71.396-136.1 9.2754-136.1-9.2754z" fill="none" stroke="#a14100" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.7795"/>
+ <rect x="119.44" y="75.128" width="74.083" height="25.324" ry="12.662" fill="url(#i)"/>
+ <path transform="scale(.26458)" d="m499.29 403.95c-26.513 0-47.857 21.345-47.857 47.857 0 7.1868 1.58 13.989 4.3945 20.094h271.21c2.8143-6.1049 4.3926-12.907 4.3926-20.094 0-26.513-21.345-47.857-47.857-47.857z" fill="#f60"/>
+ <path transform="scale(.26458)" d="m455.82 471.9c7.5685 16.417 24.137 27.764 43.463 27.764h184.29c19.326 0 35.896-11.346 43.465-27.764h-271.21z" fill="#d45500"/>
+ <path transform="scale(.26458)" d="m499.29 523.95c-26.513 0-47.857 21.345-47.857 47.857 0 26.513 21.345 47.857 47.857 47.857h184.29c26.513 0 47.857-21.345 47.857-47.857 0-26.513-21.345-47.857-47.857-47.857h-184.29zm4.5352 4.5508h175.21c23.992 0 43.309 19.314 43.309 43.307s-19.316 43.309-43.309 43.309h-175.21c-23.992 0-43.307-19.316-43.307-43.309s19.314-43.307 43.307-43.307z" fill="url(#j)"/>
+ <rect x="121.84" y="139.83" width="69.276" height="22.917" ry="11.458" fill="url(#k)"/>
+ <rect x="119.44" y="170.38" width="74.083" height="25.324" ry="12.662" fill="#f60"/>
+ <rect x="121.33" y="171.93" width="70.3" height="22.229" ry="11.114" fill="url(#l)"/>
+ <circle cx="130.53" cy="175.76" r="3.6114" fill="url(#m)"/>
+</svg>
