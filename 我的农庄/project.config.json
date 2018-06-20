@@ -40,11 +40,6 @@
 					"name": "好友",
 					"pathName": "pages/friends/index",
 					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "渐隐动画",
-					"pathName": "pages/index/train"
 				}
 			]
 		}

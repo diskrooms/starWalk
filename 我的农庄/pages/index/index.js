@@ -278,4 +278,20 @@ Page({
   seedShop:function(){
     this.setData({'bag_status':0,'shop_status':1})
   },
+  //渐隐效果
+  fadeOut: function () {
+    var animation = wx.createAnimation({
+      duration: 800,
+      timingFunction: 'linear'
+    })
+
+    this.animation = animation
+
+    animation.opacity(0).step()
+
+    this.setData({
+      animationData: animation.export(),
+
+    })
+  },
 })
