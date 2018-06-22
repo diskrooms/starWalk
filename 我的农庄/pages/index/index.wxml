@@ -74,15 +74,14 @@
         </view>
     </scroll-view>
     <view class="no-item" wx:else>
-      <view class="px-50 text text-align-center"></view>
-      <view bindtap="seedShop">买种子</view>
+      <view bindtap="goShop" class="goShop"></view>
     </view>
   </view>
   <!--背包bag end-->
 
   <!-- 商店 -->
   <view class="shops" wx:if="{{shops_status}}">
-    
+     这是商店
   </view>
   <view class="layer" wx:if="{{lay_status}}"></view>
 </view>

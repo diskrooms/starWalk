@@ -20,7 +20,7 @@ Page({
 
     crop_index:0,                   //当前操作的土块索引
     bag_status:0,                   //背包打开状态
-    shop_status:0,                  //商店打开状态
+    shops_status:0,                  //商店打开状态
 
     lay_status:0,                   //遮罩层状态
   },
@@ -296,4 +296,8 @@ Page({
 
     })
   },
+  //去商店购买种子
+  goShop:function(){
+    this.setData({'shops_status':1,'bag_status':0})
+  }
 })

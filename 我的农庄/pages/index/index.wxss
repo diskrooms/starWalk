@@ -236,6 +236,14 @@
   left:100rpx;
   z-index: 100;
 }
+
+.bag .goShop{
+  width: 211rpx;
+  height: 73rpx;
+  position: absolute;
+  bottom:29rpx;
+  left:163rpx;
+}
 /* 遮罩层 */
 .layer{
   position: absolute;
