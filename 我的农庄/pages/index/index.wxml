@@ -55,7 +55,7 @@
   <!--种植操作交互对话框 -->
   <view class="dig-dialog-con {{dialog_status}}">
     <view class="dig-dialog text-align-center px-28">
-      <view>{{dialog_text}}</view>
+      <view class="px-32">{{dialog_text}}</view>
       <view class="sure" bindtap="sureDialog" wx:if="{{dialog_btn == 0}}">确定</view>
       <button class="sure" open-type="share" wx:else>邀请好友</button>
     </view>
