@@ -61,28 +61,32 @@
     </view>
     <view class="close" bindtap="closeDialog"></view>
   </view>
-  <view class="layer {{dialog_status}}"></view>
-</view>
 
-<!-- 背包 -->
-<view class="bag">
-    <scroll-view bindscroll="scroll" scroll-y class="scroll" wx:if="{{bagData.length > 0}}">
-      <view wx:for="{{bagData}}"  class="flex">
-          <view class="flex item-image-container">
-                <image src="{{item.avatar}}" class="bag-item"></image>
-            </view>
-          <view class="item-name px-28">{{item.nickname}}</view>
-          <view class="plant-it"></view>
-      </view>
-  </scroll-view>
-  <view class="no-item" wx:else>
-    <view class="px-50 text text-align-center">你的背包空空如也~去买点种子吧</view>
-    <view bindtap="seedShop">买种子</view>
+  <!-- 背包bag start-->
+  <view class="bag" wx:if="{{bag_status}}">
+      <scroll-view bindscroll="scroll" scroll-y class="scroll" wx:if="{{bagData.length > 0}}">
+        <view wx:for="{{bagData}}"  class="flex">
+            <view class="flex item-image-container">
+                  <image src="{{item.avatar}}" class="bag-item"></image>
+              </view>
+            <view class="item-name px-28">{{item.nickname}}</view>
+            <view class="plant-it"></view>
+        </view>
+    </scroll-view>
+    <view class="no-item" wx:else>
+      <view class="px-50 text text-align-center"></view>
+      <view bindtap="seedShop">买种子</view>
+    </view>
   </view>
+  <!--背包bag end-->
+
+  <!-- 商店 -->
+  <view class="shops" wx:if="{{shops_status}}">
+    
+  </view>
+  <view class="layer" wx:if="{{lay_status}}"></view>
 </view>
 
 
-<!-- 商店 -->
-<view class="shop">
-  
-</view>
+
+

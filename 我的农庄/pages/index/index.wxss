@@ -224,6 +224,18 @@
   right:0rpx;
   z-index: 101;
 }
+
+/* 背包bag */
+.bag{
+  width:521rpx;
+  height: 425rpx;
+  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/ui/bag-bg.png') no-repeat center center;
+  background-size:521rpx 425rpx;
+  position: absolute;
+  top:300rpx;
+  left:100rpx;
+  z-index: 100;
+}
 /* 遮罩层 */
 .layer{
   position: absolute;

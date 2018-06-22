@@ -21,6 +21,8 @@ Page({
     crop_index:0,                   //当前操作的土块索引
     bag_status:0,                   //背包打开状态
     shop_status:0,                  //商店打开状态
+
+    lay_status:0,                   //遮罩层状态
   },
   //事件处理函数
   bindViewTap: function() {
@@ -272,7 +274,7 @@ Page({
 
   //种植
   plant:function(crop_index){
-    this.setData({'crop_index':crop_index,'bag_status':1});
+    this.setData({'crop_index':crop_index,'bag_status':1,'lay_status':1});
   },
   //打开种子商店
   seedShop:function(){
