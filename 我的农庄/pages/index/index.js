@@ -11,6 +11,7 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     animation:'',         //风车动画
     animationData:'',     //风车动画
+    bag_animationData:'', //背包窗口关闭渐隐动画
 
     dialog_status:'hide',           //对话框状态
     dialog_text:'',                 //对话框内容
@@ -248,6 +249,7 @@ Page({
     var data = { 'token': wx.getStorageSync('token'),'crop_index':this.data.crop_index,'app':2}
     util.request(url,'POST',data,this._dig_sure_callback)
   },
+
   //确定开垦荒地回调函数
   _dig_sure_callback:function(res){
     if(res.data.status > 0){
@@ -276,28 +278,40 @@ Page({
   plant:function(crop_index){
     this.setData({'crop_index':crop_index,'bag_status':1,'lay_status':1});
   },
+
   //打开种子商店
   seedShop:function(){
     this.setData({'bag_status':0,'shop_status':1})
   },
+
   //渐隐效果
-  fadeOut: function () {
+  fadeOut: function (key) {
     var animation = wx.createAnimation({
-      duration: 800,
+      duration: 500,
       timingFunction: 'linear'
     })
-
-    this.animation = animation
-
+    //this.animation = animation
     animation.opacity(0).step()
-
     this.setData({
-      animationData: animation.export(),
-
+      [key]: animation.export(),
     })
   },
+  
+  //渐显效果
+  fadeIn: function (key) {
+    var animation = wx.createAnimation({
+      duration: 500,
+      timingFunction: 'linear'
+    })
+    animation.opacity(1).step()
+    this.setData({
+      [key]: animation.export(),
+    })
+  },
+
   //去商店购买种子
   goShop:function(){
-    this.setData({'shops_status':1,'bag_status':0})
+    this.fadeOut('bag_animationData');
+    //this.setData({'shops_status':1,'bag_status':0})
   }
 })

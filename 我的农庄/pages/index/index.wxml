@@ -29,6 +29,7 @@
       </view>
   </view>
   
+  <!-- 风车 -->
   <view class="mill-base">
       <view class="mill-leaf" animation="{{animationData}}"></view>
   </view>
@@ -63,7 +64,7 @@
   </view>
 
   <!-- 背包bag start-->
-  <view class="bag" wx:if="{{bag_status}}">
+  <view class="bag" wx:if="{{bag_status}}" animation="{{bag_animationData}}">
       <scroll-view bindscroll="scroll" scroll-y class="scroll" wx:if="{{bagData.length > 0}}">
         <view wx:for="{{bagData}}"  class="flex">
             <view class="flex item-image-container">
