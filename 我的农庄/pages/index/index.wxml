@@ -82,7 +82,49 @@
 
   <!-- 商店 -->
   <view class="shops" wx:if="{{shops_status}}">
-     这是商店
+      <view class="flex flex-row menus">
+        <view class="{{shops_cur_menu == 'crop'?'cur':''}} item px-30 text-align-center" bindtap="chooseItem" data-menu="crop">作物</view>
+        <view class="{{shops_cur_menu == 'material'?'cur':''}} item px-30 text-align-center" bindtap="chooseItem" data-menu="material">杂物</view>
+        <view class="{{shops_cur_menu == 'others'?'cur':''}} item px-30 text-align-center" bindtap="chooseItem" data-menu="others">其他</view>
+      </view>
+      <view class="flex flex-column goods">
+        <view class="flex flex-row">
+          <view class="good">
+            <view class="img-con">
+              <image src="../../images/seeds-bag/wheat-x2.png" class="img"></image>
+              <view class="name">小麦种子</view>
+              <view class="price"><image src="../../images/ui/coin.png"></image>10</view>
+            </view>
+            <view class="buy"><image src="../../images/ui/button-bg.png"></image></view>
+          </view>
+          <view class="good">
+            <view class="img-con">
+              <image src="../../images/seeds-bag/crop-x2.png" class="img"></image>
+              <view class="name">玉米种子</view>
+              <view class="price"><image src="../../images/ui/coin.png"></image>25</view>
+            </view>
+            <view class="buy"><image src="../../images/ui/button-bg.png"></image></view>
+          </view>
+        </view>
+        <view class="flex flex-row">
+          <view class="good">
+            <view class="img-con">
+              <image src="../../images/seeds-bag/cabbage-x2.png" class="img"></image>
+              <view class="name">卷心菜种子</view>
+              <view class="price"><image src="../../images/ui/coin.png"></image>50</view>
+            </view>
+            <view class="buy"><image src="../../images/ui/button-bg.png"></image></view>
+          </view>
+          <view class="good">
+            <view class="img-con">
+              <image src="../../images/seeds-bag/carrot-x2.png" class="img"></image>
+              <view class="name">胡萝卜种子</view>
+              <view class="price"><image src="../../images/ui/coin.png"></image>80</view>
+            </view>
+            <view class="buy"><image src="../../images/ui/button-bg.png"></image></view>
+          </view>
+        </view>
+      </view>
   </view>
   <view class="layer" wx:if="{{lay_status}}"></view>
 </view>

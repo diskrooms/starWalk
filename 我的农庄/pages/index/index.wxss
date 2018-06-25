@@ -244,6 +244,69 @@
   bottom:29rpx;
   left:163rpx;
 }
+
+/* 商店shops */
+.shops{
+  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/ui/shops-bg.png') no-repeat center center;
+  background-size: 615rpx 851rpx;
+  width:651rpx;
+  height: 851rpx;
+  position: absolute;
+  top:100rpx;
+  left:50rpx;
+  z-index: 100;
+}
+
+/* 商店菜单 */
+.shops{
+  
+}
+.shops .menus{
+  position: absolute;
+  top:90rpx;
+  left:100rpx;
+}
+
+.shops .menus .item{
+  color:#E5AC2E;
+  background:#fff;
+  border-radius: 18rpx;
+  width:87rpx;
+  height: 36rpx;
+  margin-right: 80rpx;
+  line-height: 36rpx;
+  border:2rpx solid #00A0E9;
+}
+
+.shops .menus .item.cur{
+  color:#fff;
+  background:#bd3d39;
+}
+.shops .goods{
+  padding: 160rpx 50rpx;
+}
+.shops .good .img-con{
+  width:192rpx;
+  height: 207rpx;
+  background: #1772AF;
+  border-radius: 5rpx;
+  color: #fff;
+  font-size: 28rpx;
+  text-align: center;
+}
+.shops .good .img-con .img{
+  width:100rpx;
+  height: 120rpx;
+}
+.shops .good .img-con .price image{
+  width:48rpx;
+  height: 48rpx;
+}
+.shops .good .buy image{
+  width:191rpx;
+  height: 66rpx;
+}
+
 /* 遮罩层 */
 .layer{
   position: absolute;

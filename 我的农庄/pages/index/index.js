@@ -21,9 +21,11 @@ Page({
 
     crop_index:0,                   //当前操作的土块索引
     bag_status:0,                   //背包打开状态
-    shops_status:0,                  //商店打开状态
+    shops_status:0,                 //商店打开状态
 
     lay_status:0,                   //遮罩层状态
+
+    shops_cur_menu:'crop'                 //商店当前所选菜单
   },
   //事件处理函数
   bindViewTap: function() {
@@ -311,7 +313,13 @@ Page({
 
   //去商店购买种子
   goShop:function(){
-    this.fadeOut('bag_animationData');
-    //this.setData({'shops_status':1,'bag_status':0})
+    //this.fadeOut('bag_animationData');
+    this.setData({'shops_status':1,'bag_status':0})
+  },
+
+  //商店切换选项卡
+  chooseItem:function(e){
+     var shops_cur_menu = e.currentTarget.dataset.menu
+     this.setData({ 'shops_cur_menu': shops_cur_menu})
   }
 })
