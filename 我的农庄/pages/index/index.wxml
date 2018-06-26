@@ -82,11 +82,12 @@
 
   <!-- 商店 -->
   <view class="shops" wx:if="{{shops_status}}">
-      <view class="flex flex-row menus">
+      <!--<view class="flex flex-row menus">
         <view class="{{shops_cur_menu == 'crop'?'cur':''}} item px-30 text-align-center" bindtap="chooseItem" data-menu="crop">作物</view>
         <view class="{{shops_cur_menu == 'material'?'cur':''}} item px-30 text-align-center" bindtap="chooseItem" data-menu="material">杂物</view>
         <view class="{{shops_cur_menu == 'others'?'cur':''}} item px-30 text-align-center" bindtap="chooseItem" data-menu="others">其他</view>
-      </view>
+      </view>-->
+      
       <view class="flex flex-column goods">
         <view class="flex flex-row">
           <view class="good">

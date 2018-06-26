@@ -247,13 +247,13 @@
 
 /* 商店shops */
 .shops{
-  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/ui/shops-bg.png?r=3') no-repeat center center;
-  background-size: 600rpx 664rpx;
-  width:600rpx;
-  height: 664rpx;
+  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/ui/shops-bg.png') no-repeat center center;
+  background-size: 688rpx 797rpx;
+  width:688rpx;
+  height: 797rpx;
   position: absolute;
-  top:100rpx;
-  left:50rpx;
+  top:150rpx;
+  left:30rpx;
   z-index: 100;
 }
 
