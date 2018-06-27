@@ -317,9 +317,12 @@ Page({
     this.setData({'shops_status':1,'bag_status':0})
   },
 
-  //商店切换选项卡
+  //商店切换选项卡(暂时废弃)
   chooseItem:function(e){
      var shops_cur_menu = e.currentTarget.dataset.menu
      this.setData({ 'shops_cur_menu': shops_cur_menu})
-  }
+  },
+
+  //打开背包
+  
 })

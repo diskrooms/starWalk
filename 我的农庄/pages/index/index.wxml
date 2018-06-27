@@ -80,7 +80,7 @@
   </view>
   <!--背包bag end-->
 
-  <!-- 商店 -->
+  <!-- 商店 start-->
   <view class="shops" wx:if="{{shops_status}}">
       <!--<view class="flex flex-row menus">
         <view class="{{shops_cur_menu == 'crop'?'cur':''}} item px-30 text-align-center" bindtap="chooseItem" data-menu="crop">作物</view>
@@ -126,7 +126,13 @@
           </view>
         </view>
       </view>
+    <!--打开包裹 start-->
+      <view class="open-bag-con">
+        <image src="../../images/ui/open-bag.png" class="open-bag" bindtap="open_bag"></image>
+      </view>
+    <!--打开包裹 end-->
   </view>
+  <!-- 商店 end -->
   <view class="layer" wx:if="{{lay_status}}"></view>
 </view>
 

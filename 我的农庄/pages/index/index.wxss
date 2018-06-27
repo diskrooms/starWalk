@@ -227,10 +227,10 @@
 
 /* 背包bag */
 .bag{
-  width:521rpx;
-  height: 425rpx;
+  width:411rpx;
+  height: 569rpx;
   background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/ui/bag-bg.png') no-repeat center center;
-  background-size:521rpx 425rpx;
+  background-size:411rpx 569rpx;
   position: absolute;
   top:300rpx;
   left:100rpx;
@@ -283,7 +283,10 @@
   background:#bd3d39;
 }
 .shops .goods{
-  padding: 160rpx 50rpx;
+  position: absolute;
+  width:100%;
+  text-align: center;
+  bottom: 10rpx;
 }
 .shops .good .img-con{
   width:192rpx;
@@ -305,6 +308,18 @@
 .shops .good .buy image{
   width:191rpx;
   height: 66rpx;
+}
+/* 打开包裹 */
+.shops .open-bag-con{
+  position: absolute;
+  width:108rpx;
+  height: 153rpx;
+  bottom: 0rpx;
+  right:10rpx;
+}
+.shops .open-bag-con .open-bag{
+  width:108rpx;
+  height: 153rpx;
 }
 
 /* 遮罩层 */
