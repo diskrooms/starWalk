@@ -20,7 +20,7 @@
   <view class="flex flex-row icon-button">
       <view class="flex flex-column">
         <view class="ranklist"></view>
-        <view class="shop"></view>
+        <view class="shop" bindtap="seedShop"></view>
       </view>
       <view class="flex flex-column">
         <button  class="friends" wx:if="{{!hasUserInfoAuth && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"></button>
@@ -37,20 +37,8 @@
   <!-- 农作物 -->
   <view class="flex flex-column crop">
     <view class="flex flex-row" wx:for="{{userInfo.crop_data}}">
-      <view class="crop-item {{item2.crop_status}}{{item2.crop_index==current_crop_index ? '-current':''}}" wx:for="{{item}}" wx:for-item="item2" bindtap="crop_action" data-status="{{item2.crop_status}}" data-index="{{item2.crop_index}}"></view>
+      <view class="crop-item {{item2.crop_status}}{{item2.crop_index==crop_index ? '-current':''}}" wx:for="{{item}}" wx:for-item="item2" bindtap="crop_action" data-status="{{item2.crop_status}}" data-index="{{item2.crop_index}}"></view>
     </view>
-    <!--<view class="flex flex-row">
-      <view class="crop-item crop-undig"></view>
-      <view class="crop-item crop-undig-shovel"></view>
-      <view class="crop-item crop-undig-shovel"></view>
-      <view class="crop-item crop-undig"></view>
-    </view>
-    <view class="flex flex-row">
-      <view class="crop-item crop-undig-shovel"></view>
-      <view class="crop-item crop-undig"></view>
-      <view class="crop-item crop-undig-shovel"></view>
-      <view class="crop-item crop-undig"></view>
-    </view>-->
   </view>
 
   <!--种植操作交互对话框 -->
@@ -63,7 +51,7 @@
     <view class="close" bindtap="closeDialog"></view>
   </view>
 
-  <!-- 背包bag start-->
+  <!-- 背包 start-->
   <view class="bag" wx:if="{{bag_status}}" animation="{{bag_animationData}}">
       <scroll-view bindscroll="scroll" scroll-y class="scroll" wx:if="{{bagData.length > 0}}">
         <view wx:for="{{bagData}}"  class="flex">
@@ -75,63 +63,88 @@
         </view>
     </scroll-view>
     <view class="no-item" wx:else>
-      <view>包裹里什么也没有 快去商店 Shopping~</view>
-      <image bindtap="goShop" class="goShop" src="../../images/ui/goShop.png"></image>
+      <image class="bag-no-item" src="../../images/ui/bag-no-item.png"></image>
     </view>
+    <image bindtap="goShop" class="goShop" src="../../images/ui/goShop.png"></image>
   </view>
-  <!--背包bag end-->
+  <!--背包 end-->
 
   <!-- 商店 start-->
   <view class="shops" wx:if="{{shops_status}}">
-      <!--<view class="flex flex-row menus">
-        <view class="{{shops_cur_menu == 'crop'?'cur':''}} item px-30 text-align-center" bindtap="chooseItem" data-menu="crop">作物</view>
-        <view class="{{shops_cur_menu == 'material'?'cur':''}} item px-30 text-align-center" bindtap="chooseItem" data-menu="material">杂物</view>
-        <view class="{{shops_cur_menu == 'others'?'cur':''}} item px-30 text-align-center" bindtap="chooseItem" data-menu="others">其他</view>
-      </view>-->
-      
       <view class="flex flex-column goods">
         <view class="flex flex-row">
-          <view class="good">
+          <view class="good" bindtap="buy" data-id="1" data-level='1' data-price="10">
             <view class="img-con">
-              <image src="../../images/seeds-bag/wheat-x2.png" class="img"></image>
+              <view class="seed-con"><image src="../../images/seeds-bag/wheat.png" class="img wheat"></image></view>
               <view class="name">小麦种子</view>
-              <view class="price"><image src="../../images/ui/coin.png"></image>10</view>
+              <view class="price">
+                <image src="../../images/ui/coin.png"></image>
+                <text class="price-count {{userInfo.coins < 10 ? 'c-red' : ''}}">10</text>
+              </view>
+              <view class="buy"><image src="../../images/ui/buy.png"></image></view>
             </view>
-            <view class="buy"><image src="../../images/ui/button-bg.png"></image></view>
           </view>
-          <view class="good">
+          <view class="good" bindtap="buy" data-id="2" data-level='1' data-price="20">
             <view class="img-con">
-              <image src="../../images/seeds-bag/crop-x2.png" class="img"></image>
+              <view class="seed-con"><image src="../../images/seeds-bag/corn.png" class="img corn"></image></view>
               <view class="name">玉米种子</view>
-              <view class="price"><image src="../../images/ui/coin.png"></image>25</view>
+              <view class="price">
+                <image src="../../images/ui/coin.png"></image>
+                <text class="price-count {{userInfo.coins < 20 ? 'c-red' : ''}}">20</text>
+              </view>
+              <view class="buy"><image src="../../images/ui/buy.png"></image></view>
             </view>
-            <view class="buy"><image src="../../images/ui/button-bg.png"></image></view>
+            
           </view>
         </view>
         <view class="flex flex-row">
-          <view class="good">
+          <view class="good" bindtap="buy" data-id="3" data-level='2' data-price="50">
             <view class="img-con">
-              <image src="../../images/seeds-bag/cabbage-x2.png" class="img"></image>
-              <view class="name">卷心菜种子</view>
-              <view class="price"><image src="../../images/ui/coin.png"></image>50</view>
-            </view>
-            <view class="buy"><image src="../../images/ui/button-bg.png"></image></view>
-          </view>
-          <view class="good">
-            <view class="img-con">
-              <image src="../../images/seeds-bag/carrot-x2.png" class="img"></image>
+              <view class="seed-con"><image src="../../images/seeds-bag/carrot.png" class="img carrot"></image></view>
               <view class="name">胡萝卜种子</view>
-              <view class="price"><image src="../../images/ui/coin.png"></image>80</view>
+              <view class="price">
+                <image src="../../images/ui/coin.png"></image>
+                <text class="price-count {{userInfo.coins < 50 ? 'c-red' : ''}}">50</text>
+              </view>
+              <view class="buy"><image src="../../images/ui/buy.png"></image></view>
+              <!-- 等级锁 start-->
+              <view class="lock-layer">
+                <image src="../../images/ui/lock-layer.png"></image>
+                <view class="level-req">2</view>
+              </view>
+              <!-- 等级锁 end-->
             </view>
-            <view class="buy"><image src="../../images/ui/button-bg.png"></image></view>
+            
           </view>
+          <view class="good" bindtap="buy" data-id="4" data-level='3' data-price="80">
+            <view class="img-con">
+              <view class="seed-con"><image src="../../images/seeds-bag/cabbage.png" class="img cabbage"></image></view>
+              <view class="name">卷心菜种子</view>
+              <view class="price">
+                <image src="../../images/ui/coin.png"></image>
+                <text class="price-count {{userInfo.coins < 80 ? 'c-red' : ''}}">80</text>
+              </view>
+              <view class="buy"><image src="../../images/ui/buy.png"></image></view>
+              <!-- 等级锁 start-->
+              <view class="lock-layer">
+                <image src="../../images/ui/lock-layer.png"></image>
+                <view class="level-req">3</view>
+              </view>
+              <!-- 等级锁 end-->
+            </view>
+          </view>
+          
         </view>
       </view>
-    <!--打开包裹 start-->
-      <view class="open-bag-con">
+      <!--打开包裹 start-->
+      <!--<view class="open-bag-con">
         <image src="../../images/ui/open-bag.png" class="open-bag" bindtap="openBag"></image>
-      </view>
-    <!--打开包裹 end-->
+      </view>-->
+      <!--打开包裹 end-->
+
+      <!-- 关闭商店 start-->
+      <view class="close" bindtap="closeShop"></view>
+      <!-- 关闭商店 end-->
   </view>
   <!-- 商店 end -->
   <view class="layer" wx:if="{{lay_status}}"></view>

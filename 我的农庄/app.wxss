@@ -75,6 +75,7 @@ view{
 .text-align-right{text-align: right;}
 .vertical-align-middle{vertical-align:middle;}
 .c-yellow{color:#ff8f00}
+.c-red{color:#ec5300}
 
 /* 遮罩层公共样式 */
 .modal-mask {

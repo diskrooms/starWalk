@@ -19,14 +19,13 @@ Page({
     dialog_btn:0,                   //确定键类型 0 普通按钮 1 分享按钮
     dialog_close:function(){},      //关闭键回调函数
 
-    crop_index:0,                   //当前操作的土块索引
+    crop_index:-1,                  //当前操作的土块索引  -1  表示没有选中任何土块
     bag_status:0,                   //背包打开状态
     shops_status:0,                 //商店打开状态
 
     lay_status:0,                   //遮罩层状态
 
     shops_cur_menu:'crop',          //商店当前所选菜单(暂时废弃)
-    current_crop_index:0,             //当前操作作物id
   },
   //事件处理函数
   bindViewTap: function() {
@@ -214,7 +213,7 @@ Page({
       } else if(crop_status == 'crop-dig'){
         this.plant(crop_index)
       }
-      this.setData({'current_crop_index':crop_index});
+      this.setData({'crop_index':crop_index});
   },
 
   //确定对话框
@@ -280,12 +279,17 @@ Page({
 
   //种植
   plant:function(crop_index){
-    this.setData({'crop_index':crop_index,'bag_status':1,'lay_status':1});
+    this.setData({'crop_index':crop_index,'shops_status':1,'lay_status':1});
   },
 
   //打开种子商店
   seedShop:function(){
-    this.setData({'bag_status':0,'shop_status':1})
+    this.setData({'bag_status':0,'shops_status':1})
+  },
+
+  //关闭商店
+  closeShop: function () {
+    this.setData({ 'shops_status': 0,'lay_status':0})
   },
 
   //渐隐效果
@@ -330,4 +334,27 @@ Page({
     //this.fadeOut('bag_animationData');
     this.setData({ 'shops_status': 0, 'bag_status': 1 })
   },
+  //购买
+  buy:function(e){  
+     var id = e.currentTarget.dataset.id;           //物品id
+     var level = e.currentTarget.dataset.level;
+     var price = e.currentTarget.dataset.price;
+     if(parseInt(this.data.userInfo.level) < parseInt(level)){
+       util.alert('您的等级不足，赶紧种菜升级吧~')
+       return false;
+     }
+     if(parseInt(this.data.userInfo.coins) < parseInt(price)) {
+       util.alert('您的金币不足，赶紧邀请好友吧~')
+       return false;
+     }
+     var url = app.globalData.apiDomain + '/my/buy_sure'
+     var data = { 'token': wx.getStorageSync('token'), 'crop_index': this.data.crop_index, 'app': 2, 'item_id':id,}
+     util.request(url, 'POST', data, this._buy_sure_callback)
+     
+  },
+
+  //购买回调
+  _buy_sure_callback(){
+
+  }
 })

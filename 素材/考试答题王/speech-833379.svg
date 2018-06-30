@@ -1,8 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
-<svg enable-background="new 0 0 600 600" version="1.1" viewBox="0 0 600 600" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
-<path d="m277.7 167.33c0-46.202-45.668-83.656-102-83.656s-102.01 37.456-102.01 83.656c0 35.87 27.529 66.462 66.202 78.353l-11.271 40.931 49.317-35.651c55.3-0.98 99.76-38.04 99.76-83.63z" fill="#D7DF23"/>
-<path d="m547.49 83.672h-178.54c-6.627 0-12 5.373-12 12v143.31c0 6.627 5.373 12 12 12h47.829l-4.666 42.577 37.255-42.577h98.119c6.627 0 12-5.373 12-12v-143.31c0.01-6.625-5.37-11.998-11.99-11.998z" fill="#F99BA7"/>
-<polygon points="56.727 312.12 291.18 354.15 277.7 480.22 167.32 496.81 100.96 546.58 134.14 491.28 56.727 457" fill="#9FE0F4"/>
-<polygon points="343.5 361.31 363.4 503.62 472.05 480.67 531.73 546.58 510.3 473.02 580.7 429.35 545.5 312.12" fill="#FBB040"/>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="1000px" height="1000px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
+<path fill="#D7DF23" d="M380.833,282.884c0-77.004-76.113-139.427-170-139.427S40.817,205.884,40.817,282.884
+	c0,59.783,45.882,110.77,110.337,130.588l-18.785,68.219l82.195-59.419c92.166-1.633,166.266-63.399,166.266-139.383
+	L380.833,282.884z"/>
+<path fill="#F99BA7" d="M857.128,118.687H559.562c-11.045,0-20,8.955-20,20v238.851c0,11.045,8.955,20,20,20h79.715L695.5,450.5
+	l-1.908-52.962h163.531c11.046,0,20-8.955,20-20V138.687c0.017-11.041-8.949-19.996-19.983-19.996L857.128,118.687z"/>
+<polygon fill="#9FE0F4" points="12.545,524.2 403.3,594.25 380.833,804.367 196.866,832.017 86.267,914.967 141.567,822.801 
+	12.545,765.667 "/>
+<polygon fill="#FBB040" points="490.5,606.183 523.666,843.367 704.749,805.117 804.216,914.967 768.5,792.367 885.833,719.584 
+	827.166,524.2 "/>
+<text transform="matrix(1 0 0 1 574.5002 192.4998)"><tspan x="0" y="0" fill="#FFFFFF" font-family="'HappyZcool-2016'" font-size="36">你的背包里</tspan><tspan x="0" y="43.2" fill="#FFFFFF" font-family="'HappyZcool-2016'" font-size="36">什么也没有</tspan><tspan x="0" y="86.4" fill="#FFFFFF" font-family="'HappyZcool-2016'" font-size="36">快去商店Shopping </tspan><tspan x="0" y="129.6" fill="#FFFFFF" font-family="'HappyZcool-2016'" font-size="36">吧~</tspan></text>
 </svg>
