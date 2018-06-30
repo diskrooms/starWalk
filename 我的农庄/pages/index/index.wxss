@@ -227,22 +227,22 @@
 
 /* 背包bag */
 .bag{
-  width:411rpx;
-  height: 569rpx;
-  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/ui/bag-bg.png') no-repeat center center;
-  background-size:411rpx 569rpx;
+  width:615rpx;
+  height: 851rpx;
+  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/ui/bag-bg.png?r=1') no-repeat center center;
+  background-size:615rpx 851rpx;
   position: absolute;
-  top:300rpx;
-  left:100rpx;
+  top:100rpx;
+  left:70rpx;
   z-index: 100;
 }
 
 .bag .goShop{
-  width: 211rpx;
-  height: 73rpx;
+  width: 138rpx;
+  height: 144rpx;
   position: absolute;
-  bottom:29rpx;
-  left:163rpx;
+  bottom:0rpx;
+  right:0rpx;
 }
 
 /* 商店shops */

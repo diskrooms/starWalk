@@ -37,7 +37,7 @@
   <!-- 农作物 -->
   <view class="flex flex-column crop">
     <view class="flex flex-row" wx:for="{{userInfo.crop_data}}">
-      <view class="crop-item {{item2.crop_status}}" wx:for="{{item}}" wx:for-item="item2" bindtap="crop_action" data-status="{{item2.crop_status}}" data-index="{{item2.crop_index}}"></view>
+      <view class="crop-item {{item2.crop_status}}{{item2.crop_index==current_crop_index ? '-current':''}}" wx:for="{{item}}" wx:for-item="item2" bindtap="crop_action" data-status="{{item2.crop_status}}" data-index="{{item2.crop_index}}"></view>
     </view>
     <!--<view class="flex flex-row">
       <view class="crop-item crop-undig"></view>
@@ -75,7 +75,8 @@
         </view>
     </scroll-view>
     <view class="no-item" wx:else>
-      <view bindtap="goShop" class="goShop"></view>
+      <view>包裹里什么也没有 快去商店 Shopping~</view>
+      <image bindtap="goShop" class="goShop" src="../../images/ui/goShop.png"></image>
     </view>
   </view>
   <!--背包bag end-->
@@ -128,7 +129,7 @@
       </view>
     <!--打开包裹 start-->
       <view class="open-bag-con">
-        <image src="../../images/ui/open-bag.png" class="open-bag" bindtap="open_bag"></image>
+        <image src="../../images/ui/open-bag.png" class="open-bag" bindtap="openBag"></image>
       </view>
     <!--打开包裹 end-->
   </view>

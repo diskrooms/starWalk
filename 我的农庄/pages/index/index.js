@@ -25,7 +25,8 @@ Page({
 
     lay_status:0,                   //遮罩层状态
 
-    shops_cur_menu:'crop'                 //商店当前所选菜单
+    shops_cur_menu:'crop',          //商店当前所选菜单(暂时废弃)
+    current_crop_index:0,             //当前操作作物id
   },
   //事件处理函数
   bindViewTap: function() {
@@ -213,6 +214,7 @@ Page({
       } else if(crop_status == 'crop-dig'){
         this.plant(crop_index)
       }
+      this.setData({'current_crop_index':crop_index});
   },
 
   //确定对话框
@@ -324,5 +326,8 @@ Page({
   },
 
   //打开背包
-  
+  openBag: function () {
+    //this.fadeOut('bag_animationData');
+    this.setData({ 'shops_status': 0, 'bag_status': 1 })
+  },
 })
