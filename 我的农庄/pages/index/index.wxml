@@ -36,8 +36,13 @@
 
   <!-- 农作物 -->
   <view class="flex flex-column crop">
-    <view class="flex flex-row" wx:for="{{userInfo.crop_data}}">
-      <view class="crop-item {{item2.crop_status}}{{item2.crop_index==crop_index ? '-current':''}}" wx:for="{{item}}" wx:for-item="item2" bindtap="crop_action" data-status="{{item2.crop_status}}" data-index="{{item2.crop_index}}"></view>
+    <view class="flex flex-row" wx:for="{{userInfo.crop_data}}" wx:key="index">
+      <view class="crop-item {{item2.crop_status}}{{item2.crop_index==crop_index ? '-current':''}}" wx:for="{{item}}" wx:for-item="item2" wx:key="index" bindtap="crop_action" data-status="{{item2.crop_status}}" data-index="{{item2.crop_index}}">
+            <block wx:if="{{item2.crop_seeding}}">
+              <wxc-progress class="crop_progress" percent="{{item2.percent}}" stroke-width="24" radius="12" active-color="#3ACE3A" background-color="#fff"></wxc-progress>
+              <view class="crop_pregress_time px-20">{{item2.hour}}:{{item2.minute}}:{{item2.second}}</view>
+            </block>
+      </view>
     </view>
   </view>
 

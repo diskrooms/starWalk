@@ -15,6 +15,21 @@
   position: relative;
 }
 
+/* 庄园进度条和作物进度条 */
+.crop_progress{
+  width:120rpx;
+  position: absolute;
+  top:21rpx;
+  left:15rpx;
+  z-index: 1;
+}
+.crop_pregress_time{
+  position: absolute;
+  z-index: 2;
+  top:16rpx;
+  left:35rpx;
+  text-align: center;
+}
 .energy{
   width:150rpx;
   position: absolute;
@@ -22,6 +37,8 @@
   left:30rpx;
   z-index: 1;
 }
+
+/**/
 .level{
   height: 66rpx;   
   width: 66rpx;
@@ -171,7 +188,9 @@
 .crop-item{
   width:150rpx;
   height: 102rpx;
+  position: relative;
 }
+
 .crop-dig{
   background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/crop/soil-dig.png') no-repeat center bottom;
   background-size: 150rpx 42rpx;
@@ -195,6 +214,72 @@
 .crop-undig-shovel-current{
     background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/crop/soil-undig2-current.png') no-repeat center bottom;
     background-size:150rpx 96rpx;
+}
+.crop-wheat{
+    background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/crop/wheat-seeding.png') no-repeat center bottom;
+    background-size:146rpx 73rpx;
+}
+.crop-wheat-current{
+    background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/crop/wheat-seeding-current.png') no-repeat center bottom;
+    background-size:146rpx 73rpx;
+}
+.crop-wheat-m{
+    background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/crop/wheat-grown.png') no-repeat center bottom;
+    background-size:146rpx 73rpx;
+}
+.crop-wheat-m-current{
+  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/crop/wheat-grown-current.png') no-repeat center bottom;
+    background-size:146rpx 73rpx;
+}
+.crop-corn{
+    background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/crop/corn-seeding.png') no-repeat center bottom;
+    background-size:146rpx 75rpx;
+}
+.crop-corn-current{
+    background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/crop/corn-seeding-current.png') no-repeat center bottom;
+    background-size:146rpx 75rpx;
+}
+.crop-corn-m{
+    background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/crop/corn-grown.png') no-repeat center bottom;
+    background-size:146rpx 78rpx;
+}
+.crop-corn-m-current{
+  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/crop/corn-grown-current.png') no-repeat center bottom;
+    background-size:146rpx 78rpx;
+}
+/* 胡萝卜 */
+.crop-carrot{
+    background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/crop/carrot-seeding.png') no-repeat center bottom;
+    background-size:147rpx 81rpx;
+}
+.crop-carrot-current{
+    background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/crop/carrot-seeding-current.png') no-repeat center bottom;
+    background-size:147rpx 81rpx;
+}
+.crop-carrot-m{
+    background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/crop/carrot-grown.png') no-repeat center bottom;
+    background-size:146rpx 77rpx;
+}
+.crop-carrot-m-current{
+  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/crop/carrot-grown-current.png') no-repeat center bottom;
+    background-size:146rpx 77rpx;
+}
+/* 卷心菜 */
+.crop-cabbage{
+    background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/crop/cabbage-seeding.png') no-repeat center bottom;
+    background-size:146rpx 595rpx;
+}
+.crop-cabbage-current{
+    background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/crop/cabbage-seeding-current.png') no-repeat center bottom;
+    background-size:146rpx 59rpx;
+}
+.crop-cabbage-m{
+    background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/crop/cabbage-grown.png') no-repeat center bottom;
+    background-size:146rpx 49rpx;
+}
+.crop-cabbage-m-current{
+  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/crop/cabbage-grown-current.png') no-repeat center bottom;
+    background-size:146rpx 49rpx;
 }
 
 /* 开垦土地对话框 */
@@ -318,6 +403,7 @@
   text-align: center;
   margin: 25rpx;
   position: relative;
+  font-family: zcool;
 }
 .shops .good .img-con .seed-con{
   width:80rpx;

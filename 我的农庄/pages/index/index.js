@@ -151,7 +151,8 @@ Page({
       },
 
     })*/
-
+    //作物生长进度
+    this._timer_growing(this.data.userInfo)
   },
 
   onReady:function(){
@@ -350,11 +351,86 @@ Page({
      var url = app.globalData.apiDomain + '/my/buy_sure'
      var data = { 'token': wx.getStorageSync('token'), 'crop_index': this.data.crop_index, 'app': 2, 'item_id':id,}
      util.request(url, 'POST', data, this._buy_sure_callback)
-     
   },
 
   //购买回调
-  _buy_sure_callback(){
+  _buy_sure_callback(res){
+      if(res.data.status > 0){
+        setTimeout(() => { 
+          app.globalData.userInfo = res.data.msg[1];
+          var data = this.data.userInfo;
+          var crop_data = this.data.userInfo.crop_data;
+          for (var i in crop_data){
+            for (var j in crop_data[i]){
+              if (crop_data[i][j]['crop_index'] == res.data.msg[2]){
+                crop_data[i][j] = res.data.msg[1]['crop_data'][0][0]
+              }
+            }
+          }
+          data.crop_data = crop_data
+          this.setData({ 'userInfo': data,'shops_status':0,'lay_status':0 })
+        }, 300)
+        util.alert(res.data.msg[0])
+        //作物生长进度
+        //console.log(res.data.msg[2])
+        
+        this._timer_growing(this.data.userInfo, res.data.msg[2])
+      }
+  },
+  //生长倒计时
+  _timer_growing(data,crop_index=''){
+    var that = this;
+      var i,j;
+      for(i in data['crop_data']){
+        for(j in data['crop_data'][i]){
+          if (crop_index != '' && data['crop_data'][i][j]['crop_index']!=crop_index){
+            continue;
+          }
+          console.log(i)
+          console.log(j)
+          console.log(data['crop_data'][i][j])
+          if (data['crop_data'][i][j]['crop_seeding']){
+            
+            var totalSecond = data['crop_data'][i][j]['crop_remains'];
+            (function(i,j){
+              var interval = setInterval(function () {
+                var second = totalSecond //总秒数
+                /*var day = Math.floor(second / 3600 / 24);
+                var dayStr = day.toString();
+                if (dayStr.length == 1) dayStr = '0' + dayStr;*/
+                var day = 0;
 
+                var hr = Math.floor((second - day * 3600 * 24) / 3600); //小时
+                var hrStr = hr.toString();
+                if (hrStr.length == 1) hrStr = '0' + hrStr;
+                var min = Math.floor((second - day * 3600 * 24 - hr * 3600) / 60);//分
+                var minStr = min.toString();
+                if (minStr.length == 1) minStr = '0' + minStr;
+                var sec = second - day * 3600 * 24 - hr * 3600 - min * 60;  //秒
+                var secStr = sec.toString();
+                if (secStr.length == 1) secStr = '0' + secStr;
+                //console.log(i)
+                data = that.data.userInfo
+                data['crop_data'][i][j].hour = hrStr    //不知为何赋值不成功 又莫名其妙好了 神奇
+                data['crop_data'][i][j].minute = minStr
+                data['crop_data'][i][j].second = secStr
+                //console.log(data['crop_data'][i][j])
+                //console.log(data)
+                that.setData({
+                  'userInfo':data
+                });
+
+                totalSecond--;
+                if (totalSecond < 0) {
+                  clearInterval(interval);
+                  //发送ajax请求改变状态
+
+                }
+            }.bind(this), 1000);
+            })(i,j)
+          }
+        }
+      }
   }
+  
 })
