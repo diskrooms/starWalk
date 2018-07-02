@@ -210,11 +210,16 @@ Page({
       var crop_status = e.currentTarget.dataset.status;
       var crop_index = e.currentTarget.dataset.index;
       if (crop_status == 'crop-undig' || crop_status == 'crop-undig-shovel'){
+        //开垦
         this.dig(crop_index);
       } else if(crop_status == 'crop-dig'){
+        //种植
         this.plant(crop_index)
+      } else if(crop_status == 'crop-wheat-m' || crop_status == 'crop-corn-m' || crop_status == 'crop-carrot-m' || crop_status == 'crop-cabbage-m'){
+        //收获
+        this.harvest(crop_index)
       }
-      this.setData({'crop_index':crop_index});
+      this.setData({'crop_index':crop_index});    //当前操作土块索引
   },
 
   //确定对话框
@@ -282,6 +287,7 @@ Page({
   plant:function(crop_index){
     this.setData({'crop_index':crop_index,'shops_status':1,'lay_status':1});
   },
+
 
   //打开种子商店
   seedShop:function(){
@@ -368,6 +374,7 @@ Page({
             }
           }
           //都放入setTimeout内部，否则会因为setTimeout的异步性而造成数据不同步
+          data = res.data.msg[1]
           data.crop_data = crop_data
           this.setData({ 'userInfo': data,'shops_status':0,'lay_status':0 })
           util.alert(res.data.msg[0])
@@ -423,7 +430,7 @@ Page({
                   clearInterval(interval);
                   //发送请求改变作物状态
                   var data = { 'token': wx.getStorageSync('token'), 'crop_index': data['crop_data'][i][j]['crop_index'], 'app': 2 }
-                  util.request(app.globalData.apiDomain + '/my/harvest_sure', 'POST', data, that._harvest_sure_callback)
+                  util.request(app.globalData.apiDomain + '/my/mature_sure', 'POST', data, that._mature_sure_callback)
                 }
             }.bind(this), 1000);
             })(i,j)
@@ -432,8 +439,8 @@ Page({
       }
   },
 
-  //作物丰收
-  _harvest_sure_callback:function(res){
+  //作物成熟回调
+  _mature_sure_callback:function(res){
     var data = this.data.userInfo;
     var crop_data = this.data.userInfo.crop_data;
     for (var i in crop_data) {
@@ -445,5 +452,28 @@ Page({
     }
     data.crop_data = crop_data
     this.setData({ 'userInfo': data})
+  },
+
+  //收割作物
+  harvest: function (crop_index) {
+    var url = app.globalData.apiDomain + '/my/harvest_sure'
+    var data = { 'token': wx.getStorageSync('token'), 'crop_index': crop_index, 'app': 2 }
+    util.request(url, 'POST', data, this._harvest_sure_callback)
+  },
+
+  //收割作物回调
+  _harvest_sure_callback:function(res){
+    var data = this.data.userInfo;
+    var crop_data = this.data.userInfo.crop_data;
+    for (var i in crop_data) {
+      for (var j in crop_data[i]) {
+        if (crop_data[i][j]['crop_index'] == res.data.msg[2]) {
+          crop_data[i][j] = res.data.msg[1]['crop_data'][0][0]
+        }
+      }
+    }
+    data = res.data.msg[1]
+    data.crop_data = crop_data
+    this.setData({ 'userInfo': data })
   }
 })

@@ -1,1 +1,13 @@
-/* pages/index/animate.wxss */
+/* pages/cooltimer/cooltimer.wxss */
+.v-cooltimer{
+    height: 200px;
+    background-color: beige;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.canvas-ct{
+    height: 180px;
+    width: 300px;
+    background-color: whitesmoke;
+}

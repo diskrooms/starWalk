@@ -1,2 +1,4 @@
-<!--pages/index/animate.wxml-->
-<text>pages/index/animate.wxml</text>
+<!--pages/cooltimer/cooltimer.wxml-->
+<view class="v-cooltimer">
+        <canvas canvas-id="canvas_ct" style="{{canvas_ct_style}}" class="canvas-ct"/>
+</view>

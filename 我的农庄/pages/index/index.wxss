@@ -30,6 +30,10 @@
   left:35rpx;
   text-align: center;
 }
+.harvest{
+  width:100rpx;
+  position: relative;
+}
 .energy{
   width:150rpx;
   position: absolute;
@@ -189,6 +193,7 @@
   width:150rpx;
   height: 102rpx;
   position: relative;
+  text-align: center;
 }
 
 .crop-dig{

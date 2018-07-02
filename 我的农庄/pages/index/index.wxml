@@ -6,7 +6,7 @@
 <view class="content">
   <view class="flex flex-row top">
     <view class="level-con">
-      <view class="level text-align-center bolder">1</view>
+      <view class="level text-align-center bolder">{{userInfo.level}}</view>
       <wxc-progress class="energy" percent="60" stroke-width="24" radius="12" active-color="#3ACE3A" background-color="#fff"></wxc-progress>
       <view class="px-24 count"><text class="cur">{{userInfo.cur_energy ? userInfo.cur_energy : 0}}</text> / <text class="full">{{userInfo.max ? userInfo.max : 0}}</text></view>
     </view>
@@ -41,6 +41,9 @@
             <block wx:if="{{item2.crop_seeding}}">
               <wxc-progress class="crop_progress" percent="{{item2.percent}}" stroke-width="24" radius="12" active-color="#3ACE3A" background-color="#fff"></wxc-progress>
               <view class="crop_pregress_time px-20">{{item2.hour}}:{{item2.minute}}:{{item2.second}}</view>
+            </block>
+            <block wx:if="{{item2.crop_harvest}}">
+              <image class="harvest" src="../../images/ui/harvest.png"  mode="widthFix"></image>
             </block>
       </view>
     </view>

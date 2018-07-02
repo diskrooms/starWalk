@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/friends/index",
-    "pages/index/animate"
+    "pages/index/animate",
+    "pages/index/animate2"
   ],
   "window": {
     "backgroundTextStyle": "light",
