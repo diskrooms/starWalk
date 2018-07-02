@@ -57,8 +57,8 @@
 .count{
   color:#3A3A3A;
   position: absolute;
-  top:20rpx;
-  left:100rpx;
+  top:18rpx;
+  left:80rpx;
   z-index: 10;
 }
 

@@ -8,7 +8,7 @@
     <view class="level-con">
       <view class="level text-align-center bolder">{{userInfo.level}}</view>
       <wxc-progress class="energy" percent="60" stroke-width="24" radius="12" active-color="#3ACE3A" background-color="#fff"></wxc-progress>
-      <view class="px-24 count"><text class="cur">{{userInfo.cur_energy ? userInfo.cur_energy : 0}}</text> / <text class="full">{{userInfo.max ? userInfo.max : 0}}</text></view>
+      <view class="px-20 count"><text class="cur">{{userInfo.cur_energy ? userInfo.cur_energy : 0}}</text> / <text class="full">{{userInfo.max ? userInfo.max : 0}}</text></view>
     </view>
     <view class="coin-con">{{userInfo.coins}}</view>
     <view class="diamond-con">{{userInfo.diamond}}</view>
