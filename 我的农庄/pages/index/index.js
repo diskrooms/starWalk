@@ -367,16 +367,15 @@ Page({
               }
             }
           }
+          //都放入setTimeout内部，否则会因为setTimeout的异步性而造成数据不同步
           data.crop_data = crop_data
           this.setData({ 'userInfo': data,'shops_status':0,'lay_status':0 })
+          util.alert(res.data.msg[0])
+          this._timer_growing(this.data.userInfo, res.data.msg[2])
         }, 300)
-        util.alert(res.data.msg[0])
-        //作物生长进度
-        //console.log(res.data.msg[2])
-        
-        this._timer_growing(this.data.userInfo, res.data.msg[2])
       }
   },
+
   //生长倒计时
   _timer_growing(data,crop_index=''){
     var that = this;
@@ -386,11 +385,10 @@ Page({
           if (crop_index != '' && data['crop_data'][i][j]['crop_index']!=crop_index){
             continue;
           }
-          console.log(i)
-          console.log(j)
-          console.log(data['crop_data'][i][j])
+          //console.log(i)
+          //console.log(j)
+          //console.log(data['crop_data'][i][j])
           if (data['crop_data'][i][j]['crop_seeding']){
-            
             var totalSecond = data['crop_data'][i][j]['crop_remains'];
             (function(i,j){
               var interval = setInterval(function () {
@@ -411,7 +409,7 @@ Page({
                 if (secStr.length == 1) secStr = '0' + secStr;
                 //console.log(i)
                 data = that.data.userInfo
-                data['crop_data'][i][j].hour = hrStr    //不知为何赋值不成功 又莫名其妙好了 神奇
+                data['crop_data'][i][j].hour = hrStr    //这里注意 setInterval 的异步性  使用闭包
                 data['crop_data'][i][j].minute = minStr
                 data['crop_data'][i][j].second = secStr
                 //console.log(data['crop_data'][i][j])
@@ -423,14 +421,29 @@ Page({
                 totalSecond--;
                 if (totalSecond < 0) {
                   clearInterval(interval);
-                  //发送ajax请求改变状态
-
+                  //发送请求改变作物状态
+                  var data = { 'token': wx.getStorageSync('token'), 'crop_index': data['crop_data'][i][j]['crop_index'], 'app': 2 }
+                  util.request(app.globalData.apiDomain + '/my/harvest_sure', 'POST', data, that._harvest_sure_callback)
                 }
             }.bind(this), 1000);
             })(i,j)
           }
         }
       }
+  },
+
+  //作物丰收
+  _harvest_sure_callback:function(res){
+    var data = this.data.userInfo;
+    var crop_data = this.data.userInfo.crop_data;
+    for (var i in crop_data) {
+      for (var j in crop_data[i]) {
+        if (crop_data[i][j]['crop_index'] == res.data.msg[2]) {
+          crop_data[i][j] = res.data.msg[1]['crop_data'][0][0]
+        }
+      }
+    }
+    data.crop_data = crop_data
+    this.setData({ 'userInfo': data})
   }
-  
 })
