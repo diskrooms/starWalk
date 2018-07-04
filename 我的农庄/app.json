@@ -4,7 +4,8 @@
     "pages/logs/logs",
     "pages/friends/index",
     "pages/index/animate",
-    "pages/index/animate2"
+    "pages/index/animate2",
+    "pages/index/gift"
   ],
   "window": {
     "backgroundTextStyle": "light",

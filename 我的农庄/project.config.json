@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -52,6 +52,11 @@
 					"name": "动画",
 					"pathName": "pages/index/animate2",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "抽奖转盘",
+					"pathName": "pages/index/gift"
 				}
 			]
 		}

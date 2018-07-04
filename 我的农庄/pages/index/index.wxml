@@ -13,7 +13,7 @@
     <view class="coin-con">{{userInfo.coins}}</view>
     <view class="diamond-con">{{userInfo.diamond}}</view>
     <view class="smart-con">{{userInfo.smart}}</view>
-    <view class="contact"></view>
+    <button class="contact" open-type="contact"></button>
     <!--<view class="thanks"></view>-->
   </view>
 
@@ -78,8 +78,33 @@
   <!--背包 end-->
 
   <!-- 商店 start-->
-  <view class="shops" wx:if="{{shops_status}}">
+  <scroll-view class="shops" wx:if="{{shops_status}}" scroll-y>
       <view class="flex flex-column goods">
+      <view class="flex flex-row">
+          <view class="good" bindtap="buy" data-id="1" data-level='1' data-price="10">
+            <view class="img-con">
+              <view class="seed-con"><image src="../../images/seeds-bag/wheat.png" class="img wheat"></image></view>
+              <view class="name">一捧金币</view>
+              <view class="price">
+                <image src="../../images/ui/coin.png"></image>
+                <text class="price-count {{userInfo.coins < 10 ? 'c-red' : ''}}">10</text>
+              </view>
+              <view class="buy"><image src="../../images/ui/buy.png"></image></view>
+            </view>
+          </view>
+          <view class="good" bindtap="buy" data-id="2" data-level='1' data-price="20">
+            <view class="img-con">
+              <view class="seed-con"><image src="../../images/seeds-bag/corn.png" class="img corn"></image></view>
+              <view class="name">一袋金币</view>
+              <view class="price">
+                <image src="../../images/ui/coin.png"></image>
+                <text class="price-count {{userInfo.coins < 20 ? 'c-red' : ''}}">20</text>
+              </view>
+              <view class="buy"><image src="../../images/ui/buy.png"></image></view>
+            </view>
+            
+          </view>
+        </view>
         <view class="flex flex-row">
           <view class="good" bindtap="buy" data-id="1" data-level='1' data-price="10">
             <view class="img-con">
@@ -153,7 +178,7 @@
       <!-- 关闭商店 start-->
       <view class="close" bindtap="closeShop"></view>
       <!-- 关闭商店 end-->
-  </view>
+  </scroll-view>
   <!-- 商店 end -->
   <view class="layer" wx:if="{{lay_status}}"></view>
 </view>
