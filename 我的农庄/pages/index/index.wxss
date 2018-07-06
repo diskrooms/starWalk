@@ -108,7 +108,7 @@
   height: 105rpx;
 }
 
-/* 致谢 */
+/* 致谢icon */
 .thanks{
   background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/thanks-x3.png') no-repeat;
   background-size: 51rpx 82rpx;
@@ -120,7 +120,7 @@
   margin-top:12rpx;
 }
 
-/* 排行榜 */
+/* 排行榜icon */
 .ranklist{
   background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/ranklist-x3.png') no-repeat;
   background-size: 110rpx 100rpx;
@@ -128,7 +128,7 @@
   height: 100rpx;
   margin: 0rpx 0rpx 20rpx 20rpx;
 }
-/* 商店 */
+/* 商店icon */
 .shop{
   background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/shop-x3.png') no-repeat;
   background-size: 79rpx 99rpx;
@@ -137,7 +137,7 @@
   z-index: 10;
 }
 
-/* 好友 */
+/* 好友icon */
 .friends{
   background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/friends-x3.png') no-repeat;
   background-size: 61rpx 96rpx;
@@ -147,7 +147,7 @@
   position: static;
 }
 
-/* 每日奖励 */
+/* 每日奖励icon */
 .award{
   background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/award-x3.png') no-repeat;
   background-size: 116rpx 89rpx;
@@ -156,7 +156,7 @@
   margin-right: 10rpx;
 }
 
-/* 磨坊 */
+/* 磨坊icon */
 .mill-base{
   background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/mill-base-x2.png') no-repeat center bottom;
   background-size: 86rpx 138rpx;
@@ -320,6 +320,7 @@
   line-height: 73rpx;
   color:#fff;
 }
+/*关闭按钮*/
  .close{
   background:url('http://coder.51tui.vip/Public/miniProgram/my_garden/ui/dialog-close.png') no-repeat 0 0;
   background-size:76rpx 75rpx;
@@ -360,7 +361,7 @@
 }
 
 /* 商店shops */
-.shops{
+.shops,.coins_shops{
   background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/ui/shops-bg.png') no-repeat center center;
   background-size: 688rpx 797rpx;
   width:688rpx;
@@ -399,6 +400,7 @@
   width:100%;
   text-align: center;
   top: 250rpx;
+  height: 500rpx;
 }
 .shops .good .img-con{
   width:157rpx;
@@ -467,6 +469,40 @@
   height: 34rpx;
 }
 
+.shops .flex-row{
+  justify-content:center;
+}
+
+/* 金币商店 */
+.coins_shops .coins_shops_scroll{
+  position: absolute;
+  width:70%;
+  text-align: center;
+  top: 250rpx;
+  height: 500rpx;
+  left: 100rpx;
+}
+.coins_shops .coins{
+  width:40rpx;
+  height: 40rpx;
+}
+.coins_shops .buy image{
+  width:150rpx;
+  height: 52rpx;
+}
+.coins_shops .flex-row{
+  background: #F0F2A7;
+  border-radius: 10rpx;
+  padding: 20rpx 10rpx;
+  margin: 20rpx 10rpx;
+}
+.coins_shops .title{
+  width: 100rpx;
+  margin: 20rpx auto;
+  padding: 10rpx;
+  background: #fff;
+  border-radius: 10rpx;
+}
 
 /* 打开包裹 */
 .shops .open-bag-con{
@@ -480,6 +516,7 @@
   width:108rpx;
   height: 153rpx;
 }
+
 
 /* 遮罩层 */
 .layer{

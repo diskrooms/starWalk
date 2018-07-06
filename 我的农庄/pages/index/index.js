@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp()
 const util = require('../../utils/util.js')
+var MD5 = require('../../utils/md5.js');
 
 Page({
   data: {
@@ -22,7 +23,8 @@ Page({
     crop_index:-1,                  //当前操作的土块索引  -1  表示没有选中任何土块
     bag_status:0,                   //背包打开状态
     shops_status:0,                 //商店打开状态
-
+    coins_shops_status:0,           //货币商店打开状态
+    coins_buy_lock:0,               //货币商店购买锁  为false时才可以点击购买
     lay_status:0,                   //遮罩层状态
 
     shops_cur_menu:'crop',          //商店当前所选菜单(暂时废弃)
@@ -296,7 +298,7 @@ Page({
 
   //关闭商店
   closeShop: function () {
-    this.setData({ 'shops_status': 0,'lay_status':0})
+    this.setData({'coins_shops_status':0, 'shops_status': 0,'lay_status':0})
   },
 
   //渐隐效果
@@ -341,7 +343,7 @@ Page({
     //this.fadeOut('bag_animationData');
     this.setData({ 'shops_status': 0, 'bag_status': 1 })
   },
-  //购买
+  //购买种子
   buy:function(e){  
      var id = e.currentTarget.dataset.id;           //物品id
      var level = e.currentTarget.dataset.level;
@@ -351,7 +353,8 @@ Page({
        return false;
      }
      if(parseInt(this.data.userInfo.coins) < parseInt(price)) {
-       util.alert('您的金币不足，赶紧邀请好友吧~')
+       //util.alert('您的金币不足，赶紧邀请好友吧~')
+       this.setData({'shops_status':0,'coins_shops_status':1});
        return false;
      }
      var url = app.globalData.apiDomain + '/my/buy_sure'
@@ -359,7 +362,7 @@ Page({
      util.request(url, 'POST', data, this._buy_sure_callback)
   },
 
-  //购买回调
+  //购买种子回调
   _buy_sure_callback(res){
       if(res.data.status > 0){
         setTimeout(() => { 
@@ -381,6 +384,46 @@ Page({
           this._timer_growing(this.data.userInfo, res.data.msg[2])
         }, 300)
       }
+  },
+
+  //购买金币,钻石和智慧值
+  buyCoins:function(e){
+    var that = this;
+    var title = e.currentTarget.dataset.title;
+    var type = e.currentTarget.dataset.type;
+    var price = e.currentTarget.dataset.price;
+    var timestamp = parseInt(Date.parse(new Date()) / 1000);    //参数签名
+    var random = Math.ceil(Math.random() * 100000) + 1 + '';    //强制转换字符
+    var sign = MD5.md5(timestamp + random + price + type + 'mygarden')
+    if(!this.data.coins_buy_lock){
+      this.setData({'coins_buy_lock':1})                        //锁住 购买完成/取消前不能重复点击发请求
+      var url = app.globalData.apiDomain + '/pay/index2'
+      var data = { 'token': wx.getStorageSync('token'), 'app': 2, 'timestamp': timestamp, 'random': random,'sign':sign,'type':type,'price':price}
+      util.request(url, 'POST', data, this._buycoins_sure_callback)
+    }
+  },
+
+  //购买金币,钻石及智慧值回调
+  _buycoins_sure_callback:function(res){
+    wx.requestPayment({
+      'timeStamp': res.data.timeStamp + '',
+      'nonceStr': res.data.nonceStr,
+      'package': res.data.package,
+      'signType': 'MD5',
+      'paySign': res.data.paySign,
+      'success': function (res) {
+        if (res.errMsg == 'requestPayment:ok') {
+          setTimeout(function () {
+            wx.reLaunch({
+              url: '/pages/index/index',
+            })
+          }, 100);
+        }
+      },
+      'fail': function (res) {
+        //console.log(res)
+      }
+    })
   },
 
   //生长倒计时

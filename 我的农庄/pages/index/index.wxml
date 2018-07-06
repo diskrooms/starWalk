@@ -78,33 +78,8 @@
   <!--背包 end-->
 
   <!-- 商店 start-->
-  <scroll-view class="shops" wx:if="{{shops_status}}" scroll-y>
-      <view class="flex flex-column goods">
-      <view class="flex flex-row">
-          <view class="good" bindtap="buy" data-id="1" data-level='1' data-price="10">
-            <view class="img-con">
-              <view class="seed-con"><image src="../../images/seeds-bag/wheat.png" class="img wheat"></image></view>
-              <view class="name">一捧金币</view>
-              <view class="price">
-                <image src="../../images/ui/coin.png"></image>
-                <text class="price-count {{userInfo.coins < 10 ? 'c-red' : ''}}">10</text>
-              </view>
-              <view class="buy"><image src="../../images/ui/buy.png"></image></view>
-            </view>
-          </view>
-          <view class="good" bindtap="buy" data-id="2" data-level='1' data-price="20">
-            <view class="img-con">
-              <view class="seed-con"><image src="../../images/seeds-bag/corn.png" class="img corn"></image></view>
-              <view class="name">一袋金币</view>
-              <view class="price">
-                <image src="../../images/ui/coin.png"></image>
-                <text class="price-count {{userInfo.coins < 20 ? 'c-red' : ''}}">20</text>
-              </view>
-              <view class="buy"><image src="../../images/ui/buy.png"></image></view>
-            </view>
-            
-          </view>
-        </view>
+  <view class="shops" wx:if="{{shops_status}}">
+      <scroll-view class="flex flex-column goods" scroll-y>
         <view class="flex flex-row">
           <view class="good" bindtap="buy" data-id="1" data-level='1' data-price="10">
             <view class="img-con">
@@ -141,7 +116,7 @@
               </view>
               <view class="buy"><image src="../../images/ui/buy.png"></image></view>
               <!-- 等级锁 start-->
-              <view class="lock-layer">
+              <view class="lock-layer" wx:if="{{userInfo.level < 2}}">
                 <image src="../../images/ui/lock-layer.png"></image>
                 <view class="level-req">2</view>
               </view>
@@ -159,7 +134,7 @@
               </view>
               <view class="buy"><image src="../../images/ui/buy.png"></image></view>
               <!-- 等级锁 start-->
-              <view class="lock-layer">
+              <view class="lock-layer" wx:if="{{userInfo.level < 3}}">
                 <image src="../../images/ui/lock-layer.png"></image>
                 <view class="level-req">3</view>
               </view>
@@ -168,18 +143,81 @@
           </view>
           
         </view>
-      </view>
+      </scroll-view>
       <!--打开包裹 start-->
       <!--<view class="open-bag-con">
         <image src="../../images/ui/open-bag.png" class="open-bag" bindtap="openBag"></image>
       </view>-->
       <!--打开包裹 end-->
 
-      <!-- 关闭商店 start-->
       <view class="close" bindtap="closeShop"></view>
-      <!-- 关闭商店 end-->
-  </scroll-view>
+  </view>
   <!-- 商店 end -->
+
+  <!-- 金币商店 start-->
+  <view class="coins_shops px-28" wx:if="{{coins_shops_status}}">
+      <scroll-view class="flex flex-column coins_shops_scroll" scroll-y>
+        <view class="title">金币</view>
+        <view class="flex flex-row" data-price="5" data-type="3" bindtap="buyCoins">
+          <view class="seed-con"><image src="../../images/ui/coin.png" class="coins"></image></view>
+          <view class="name">+10 金币</view>
+          <view class="price">￥5.0</view>
+          <view class="buy"><image src="../../images/ui/button-bg.png"></image></view>
+        </view>
+        <view class="flex flex-row" data-price="10" data-type="4" bindtap="buyCoins">
+          <view class="seed-con"><image src="../../images/ui/coin.png" class="coins"></image></view>
+          <view class="name">+50 金币</view>
+          <view class="price">￥10.0</view>
+          <view class="buy"><image src="../../images/ui/button-bg.png"></image></view>
+        </view>
+        <view class="flex flex-row" data-price="20" data-type="5" bindtap="buyCoins">
+          <view class="seed-con"><image src="../../images/ui/coin.png" class="coins"></image></view>
+          <view class="name">+200 金币</view>
+          <view class="price">￥20.0</view>
+          <view class="buy"><image src="../../images/ui/button-bg.png"></image></view>
+        </view>
+        <view class="title">钻石</view>
+        <view class="flex flex-row" data-price="15" data-type="6" bindtap="buyCoins">
+          <view class="seed-con"><image src="../../images/ui/diamond-x2.png" class="coins"></image></view>
+          <view class="name">+20 钻石</view>
+          <view class="price">￥15.0</view>
+          <view class="buy"><image src="../../images/ui/button-bg.png"></image></view>
+        </view>
+        <view class="flex flex-row" data-price="30" data-type="7" bindtap="buyCoins">
+          <view class="seed-con"><image src="../../images/ui/diamond-x2.png" class="coins"></image></view>
+          <view class="name">+50 钻石</view>
+          <view class="price">￥30.0</view>
+          <view class="buy"><image src="../../images/ui/button-bg.png"></image></view>
+        </view>
+        <view class="flex flex-row" data-price="50" data-type="8" bindtap="buyCoins"> 
+          <view class="seed-con"><image src="../../images/ui/diamond-x2.png" class="coins"></image></view>
+          <view class="name">+200 钻石</view>
+          <view class="price">￥50.0</view>
+          <view class="buy"><image src="../../images/ui/button-bg.png"></image></view>
+        </view>
+        <view class="title">智慧</view>
+        <view class="flex flex-row" data-price="10" data-type="9" bindtap="buyCoins">
+          <view class="seed-con"><image src="../../images/ui/smart-x2.png" class="coins"></image></view>
+          <view class="name">+20 智慧</view>
+          <view class="price">￥10.0</view>
+          <view class="buy"><image src="../../images/ui/button-bg.png"></image></view>
+        </view>
+        <view class="flex flex-row" data-price="20" data-type="10" bindtap="buyCoins">
+          <view class="seed-con"><image src="../../images/ui/smart-x2.png" class="coins"></image></view>
+          <view class="name">+50 智慧</view>
+          <view class="price">￥20.0</view>
+          <view class="buy"><image src="../../images/ui/button-bg.png"></image></view>
+        </view>
+        <view class="flex flex-row" data-price="30" data-type="11" bindtap="buyCoins">
+          <view class="seed-con"><image src="../../images/ui/smart-x2.png" class="coins"></image></view>
+          <view class="name">+100 智慧</view>
+          <view class="price">￥30.0</view>
+          <view class="buy"><image src="../../images/ui/button-bg.png"></image></view>
+        </view>
+      </scroll-view>
+      <view class="close" bindtap="closeShop"></view>
+  </view>
+  <!-- 金币商店 end-->
   <view class="layer" wx:if="{{lay_status}}"></view>
 </view>
 
