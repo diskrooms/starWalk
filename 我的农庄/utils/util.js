@@ -43,7 +43,7 @@ function share() {
 }
 
 //封装请求方法
-function request(url,method,data,succ_callback){
+function request(url,method,data,succ_callback,fail_callback){
   wx.request({
     url: url,
     data: data,
@@ -53,7 +53,9 @@ function request(url,method,data,succ_callback){
     success: (res) => {
       succ_callback(res)
     },
-
+    fail:(res)=>{
+      fail_callback(res)
+    }
   })
 }
 

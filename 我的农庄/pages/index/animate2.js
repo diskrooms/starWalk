@@ -4,8 +4,6 @@ var factor = {
   speed: .008,  // 运动速度，值越小越慢
   t: 0    //  贝塞尔函数系数
 };
-
-
 var timer = null;  // 循环定时器
 
 Page({
@@ -98,9 +96,9 @@ Page({
       that.startTimer();
     } else {
       timer = requestAnimationFrame(function () {
-        that.drawImage([[{ x: 30, y: 400 }, { x: 70, y: 300 }, { x: -50, y: 150 }, { x: 30, y: 0 }], 
-        [{ x: 30, y: 400 }, { x: 30, y: 300 }, { x: 80, y: 150 }, { x: 30, y: 0 }], 
-        [{ x: 30, y: 400 }, { x: 0, y: 90 }, { x: 80, y: 100 }, { x: 30, y: 0 }]])
+        that.drawImage([[{ x: 400, y: 400 }, { x: 70, y: 300 }, { x: 50, y: 150 }, { x: 30, y: 0 }], 
+        [{ x: 400, y: 400 }, { x: 30, y: 300 }, { x: 80, y: 150 }, { x: 30, y: 0 }], 
+        [{ x: 400, y: 400 }, { x: 0, y: 90 }, { x: 80, y: 100 }, { x: 30, y: 0 }]])
       })
     }
 
@@ -122,15 +120,15 @@ Page({
 
   startTimer: function () {
     var that = this
-    that.setData({
+    /*that.setData({
       style_img: 'transform:scale(1.3);'
     })
     setTimeout(function () {
       that.setData({
         style_img: 'transform:scale(1);'
       })
-    }, 500)
-    that.drawImage([[{ x: 30, y: 400 }, { x: 70, y: 300 }, { x: -50, y: 150 }, { x: 30, y: 0 }], [{ x: 30, y: 400 }, { x: 30, y: 300 }, { x: 80, y: 150 }, { x: 30, y: 0 }], [{ x: 30, y: 400 }, { x: 0, y: 90 }, { x: 80, y: 100 }, { x: 30, y: 0 }]])
+    }, 500)*/
+    that.drawImage([[{ x: 630, y: 400 }, { x: 300, y: 300 }, { x: 50, y: 150 }, { x: 30, y: 0 }], [{ x: 30, y: 400 }, { x: 30, y: 300 }, { x: 80, y: 150 }, { x: 30, y: 0 }], [{ x: 30, y: 400 }, { x: 0, y: 90 }, { x: 80, y: 100 }, { x: 30, y: 0 }]])
 
   }
 

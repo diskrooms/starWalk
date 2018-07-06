@@ -7,7 +7,7 @@
 
 .myCanvas{
   background-color: transparent;
-  width: 200rpx;
+  width: 800rpx;
   height:800rpx;
 }
 
@@ -15,7 +15,7 @@
     position: fixed;
     right: 20rpx;
     bottom: 60rpx;
-    width: 200rpx;
+    width: 800rpx;
     background-color: transparent;
 }
 
