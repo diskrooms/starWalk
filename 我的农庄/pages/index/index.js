@@ -239,7 +239,7 @@ Page({
         this.plant(crop_index)
       } else if(crop_status == 'crop-wheat-m' || crop_status == 'crop-corn-m' || crop_status == 'crop-carrot-m' || crop_status == 'crop-cabbage-m'){
         //收获
-        this.harvest(crop_index)
+        this.harvest(crop_index,crop_status)
       }
       this.setData({'crop_index':crop_index});    //当前操作土块索引
   },
@@ -521,9 +521,9 @@ Page({
   },
 
   //收割作物
-  harvest: function (crop_index) {
+  harvest: function (crop_index,crop_status) {
     var url = app.globalData.apiDomain + '/my/harvest_sure'
-    var data = { 'token': wx.getStorageSync('token'), 'crop_index': crop_index, 'app': 2 }
+    var data = { 'token': wx.getStorageSync('token'), 'crop_index': crop_index, 'crop_status': crop_status, 'app': 2 }
     util.request(url, 'POST', data, this._harvest_sure_callback)
   },
 
@@ -542,17 +542,18 @@ Page({
     data.crop_data = crop_data
     this.setData({ 'userInfo': data })
     //丰收动画
+    var crop_prev_status = res.data.msg[3];
     ctx = wx.createCanvasContext('canvas_wi')
-    this.startTimer();
+    this.startTimer(crop_prev_status);
   },
 
   //丰收动画计时器
-  startTimer: function () {
-    this.drawImage(this.data.Bézier_data)
+  startTimer: function (crop_prev_status) {
+    this.drawImage(this.data.Bézier_data, crop_prev_status)
   },
 
   //绘制动画帧
-  drawImage: function (data) {
+  drawImage: function (data, crop_prev_status) {
     var that = this
     var p10 = data[0][0];   // 三阶贝塞尔曲线起点坐标值
     var p11 = data[0][1];   // 三阶贝塞尔曲线第一个控制点坐标值
@@ -608,17 +609,17 @@ Page({
     var xt3 = ax3 * (t * t * t) + bx3 * (t * t) + cx3 * t + p30.x;
     var yt3 = ay3 * (t * t * t) + by3 * (t * t) + cy3 * t + p30.y;
     factor.t += factor.speed;
-    ctx.drawImage("../../images/heart1.png", xt1, yt1, 30, 30);
-    ctx.drawImage("../../images/heart2.png", xt2, yt2, 30, 30);
-    ctx.drawImage("../../images/heart3.png", xt3, yt3, 30, 30);
+    ctx.drawImage("../../images/" + crop_prev_status+"1.png", xt1, yt1, 30, 30);
+    ctx.drawImage("../../images/" + crop_prev_status+"2.png", xt2, yt2, 30, 30);
+    ctx.drawImage("../../images/" + crop_prev_status+"3.png", xt3, yt3, 30, 30);
     ctx.draw();
     if (factor.t > 1) {
       factor.t = 0;
       cancelAnimationFrame(timer);
-      that.startTimer();
+      that.startTimer(crop_prev_status);
     } else {
       timer = requestAnimationFrame(function () {
-        that.drawImage(that.data.Bézier_data)
+        that.drawImage(that.data.Bézier_data, crop_prev_status)
       })
     }
 
