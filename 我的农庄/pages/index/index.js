@@ -175,9 +175,23 @@ Page({
     })*/
     //作物生长进度
     this._timer_growing(this.data.userInfo)
+    //播放背景音乐
+    this.playBGM()
+  },
+
+  //播放背景音乐
+  playBGM:function(){
+    var bgm = wx.getBackgroundAudioManager()
+    bgm.src = 'http://coder.51tui.vip/Public/miniProgram/my_garden/music/stream.mp3'
+    bgm.play();
+    /*bgm.onEnded(()=>{
+      bgm.src = 'http://coder.51tui.vip/Public/miniProgram/my_garden/music/stream.mp3'
+      bgm.play();
+    })*/
   },
 
   onReady:function(){
+    //风车动画
     this.animation = wx.createAnimation({
       duration: 500,
       timingFunction: 'ease',
@@ -201,6 +215,7 @@ Page({
         animationData: this.animation.export()
       })
     }.bind(this), 100)
+    
   },
 
 
