@@ -34,6 +34,8 @@
       <view class="mill-leaf" animation="{{animationData}}"></view>
   </view>
 
+  <!-- 农作物丰收动画canvas -->
+  <canvas canvas-id="canvas_wi"  class="myCanvas"/>
   <!-- 农作物 -->
   <view class="flex flex-column crop">
     <view class="flex flex-row" wx:for="{{userInfo.crop_data}}" wx:key="index">
@@ -218,6 +220,11 @@
       <view class="close" bindtap="closeShop"></view>
   </view>
   <!-- 金币商店 end-->
+
+  <!-- 磨坊窗口 -->
+  <view class="mill-content">
+    
+  </view>
   <view class="layer" wx:if="{{lay_status}}"></view>
 </view>
 

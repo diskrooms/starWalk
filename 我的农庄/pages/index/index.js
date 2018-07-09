@@ -37,11 +37,71 @@ Page({
 
     shops_cur_menu:'crop',          //商店当前所选菜单(暂时废弃)
 
-    /*丰收动画参数*/
+    /* 丰收动画参数 TODO 用函数初始化参数 */
     style_img: '',
-    Bézier_data: [[{ x: 400, y: 400 }, { x: 70, y: 300 }, { x: 50, y: 150 }, { x: 30, y: 0 }],
-    [{ x: 400, y: 400 }, { x: 30, y: 300 }, { x: 80, y: 150 }, { x: 30, y: 0 }],
-    [{ x: 400, y: 400 }, { x: 0, y: 90 }, { x: 80, y: 100 }, { x: 30, y: 0 }]]//贝塞尔曲线坐标数据
+    harvest_timer: [{ 'factor': { speed: 0.008, t: 0 }, 'timer': null }, { 'factor': { speed: 0.008, t: 0 }, 'timer': null }, { 'factor': { speed: 0.008, t: 0 }, 'timer': null }, { 'factor': { speed: 0.008, t: 0 }, 'timer': null }, { 'factor': { speed: 0.008, t: 0 }, 'timer': null }, { 'factor': { speed: 0.008, t: 0 }, 'timer': null }, { 'factor': { speed: 0.008, t: 0 }, 'timer': null }, { 'factor': { speed: 0.008, t: 0 }, 'timer': null }, { 'factor': { speed: 0.008, t: 0 }, 'timer': null }, { 'factor': { speed: 0.008, t: 0 }, 'timer': null }, { 'factor': { speed: 0.008, t: 0 }, 'timer': null }, { 'factor': { speed: 0.008, t: 0 }, 'timer': null }],
+    Bézier_data: [
+          [     //第一块
+            [{ x: 400, y: 400 }, { x: 70, y: 300 }, { x: 50, y: 150 }, { x: 50, y: 0 }],    //第一条线
+            [{ x: 400, y: 400 }, { x: 30, y: 300 }, { x: 80, y: 150 }, { x: 50, y: 0 }],    //第二条线
+            [{ x: 400, y: 400 }, { x: 0, y: 90 }, { x: 80, y: 100 }, { x: 50, y: 0 }]       //第三条线
+          ],
+          [     //第二块
+            [{ x: 400, y: 400 }, { x: 70, y: 300 }, { x: 50, y: 150 }, { x: 50, y: 0 }],    //第一条线
+            [{ x: 400, y: 400 }, { x: 30, y: 300 }, { x: 80, y: 150 }, { x: 50, y: 0 }],    //第二条线
+            [{ x: 400, y: 400 }, { x: 0, y: 90 }, { x: 80, y: 100 }, { x: 50, y: 0 }]       //第三条线
+          ],
+          [     //第三块
+            [{ x: 400, y: 400 }, { x: 70, y: 300 }, { x: 50, y: 150 }, { x: 50, y: 0 }],    //第一条线
+            [{ x: 400, y: 400 }, { x: 30, y: 300 }, { x: 80, y: 150 }, { x: 50, y: 0 }],    //第二条线
+            [{ x: 400, y: 400 }, { x: 0, y: 90 }, { x: 80, y: 100 }, { x: 50, y: 0 }]       //第三条线
+          ],
+          [     //第四块
+            [{ x: 400, y: 400 }, { x: 70, y: 300 }, { x: 50, y: 150 }, { x: 50, y: 0 }],    //第一条线
+            [{ x: 400, y: 400 }, { x: 30, y: 300 }, { x: 80, y: 150 }, { x: 50, y: 0 }],    //第二条线
+            [{ x: 400, y: 400 }, { x: 0, y: 90 }, { x: 80, y: 100 }, { x: 50, y: 0 }]       //第三条线
+          ],
+          [     //第五块
+            [{ x: 400, y: 400 }, { x: 70, y: 300 }, { x: 50, y: 150 }, { x: 50, y: 0 }],    //第一条线
+            [{ x: 400, y: 400 }, { x: 30, y: 300 }, { x: 80, y: 150 }, { x: 50, y: 0 }],    //第二条线
+            [{ x: 400, y: 400 }, { x: 0, y: 90 }, { x: 80, y: 100 }, { x: 50, y: 0 }]       //第三条线
+          ],
+          [     //第六块
+            [{ x: 400, y: 400 }, { x: 70, y: 300 }, { x: 50, y: 150 }, { x: 50, y: 0 }],    //第一条线
+            [{ x: 400, y: 400 }, { x: 30, y: 300 }, { x: 80, y: 150 }, { x: 50, y: 0 }],    //第二条线
+            [{ x: 400, y: 400 }, { x: 0, y: 90 }, { x: 80, y: 100 }, { x: 50, y: 0 }]       //第三条线
+          ],
+          [     //第七块
+            [{ x: 400, y: 400 }, { x: 70, y: 300 }, { x: 50, y: 150 }, { x: 50, y: 0 }],    //第一条线
+            [{ x: 400, y: 400 }, { x: 30, y: 300 }, { x: 80, y: 150 }, { x: 50, y: 0 }],    //第二条线
+            [{ x: 400, y: 400 }, { x: 0, y: 90 }, { x: 80, y: 100 }, { x: 50, y: 0 }]       //第三条线
+          ],
+          [     //第八块
+            [{ x: 400, y: 400 }, { x: 70, y: 300 }, { x: 50, y: 150 }, { x: 50, y: 0 }],    //第一条线
+            [{ x: 400, y: 400 }, { x: 30, y: 300 }, { x: 80, y: 150 }, { x: 50, y: 0 }],    //第二条线
+            [{ x: 400, y: 400 }, { x: 0, y: 90 }, { x: 80, y: 100 }, { x: 50, y: 0 }]       //第三条线
+          ],
+          [     //第九块
+            [{ x: 400, y: 400 }, { x: 70, y: 300 }, { x: 50, y: 150 }, { x: 50, y: 0 }],    //第一条线
+            [{ x: 400, y: 400 }, { x: 30, y: 300 }, { x: 80, y: 150 }, { x: 50, y: 0 }],    //第二条线
+            [{ x: 400, y: 400 }, { x: 0, y: 90 }, { x: 80, y: 100 }, { x: 50, y: 0 }]       //第三条线
+          ],
+          [     //第十块
+            [{ x: 400, y: 400 }, { x: 70, y: 300 }, { x: 50, y: 150 }, { x: 50, y: 0 }],    //第一条线
+            [{ x: 400, y: 400 }, { x: 30, y: 300 }, { x: 80, y: 150 }, { x: 50, y: 0 }],    //第二条线
+            [{ x: 400, y: 400 }, { x: 0, y: 90 }, { x: 80, y: 100 }, { x: 50, y: 0 }]       //第三条线
+          ],
+          [     //第十一块
+            [{ x: 400, y: 400 }, { x: 70, y: 300 }, { x: 50, y: 150 }, { x: 50, y: 0 }],    //第一条线
+            [{ x: 400, y: 400 }, { x: 30, y: 300 }, { x: 80, y: 150 }, { x: 50, y: 0 }],    //第二条线
+            [{ x: 400, y: 400 }, { x: 0, y: 90 }, { x: 80, y: 100 }, { x: 50, y: 0 }]       //第三条线
+          ],
+          [     //第十二块
+            [{ x: 400, y: 400 }, { x: 70, y: 300 }, { x: 50, y: 150 }, { x: 50, y: 0 }],    //第一条线
+            [{ x: 400, y: 400 }, { x: 30, y: 300 }, { x: 80, y: 150 }, { x: 50, y: 0 }],    //第二条线
+            [{ x: 400, y: 400 }, { x: 0, y: 90 }, { x: 80, y: 100 }, { x: 50, y: 0 }]       //第三条线
+          ]
+    ]              
   },
   //事件处理函数
   bindViewTap: function() {
@@ -80,7 +140,7 @@ Page({
 
   onUnload:function(){
     if (timer != null) {
-      cancelAnimationFrame(timer);
+      this.cancelAnimationFrame(timer);
     }
   },
 
@@ -559,17 +619,14 @@ Page({
     //丰收动画
     var crop_prev_status = res.data.msg[3];
     ctx = wx.createCanvasContext('canvas_wi')
-    this.startTimer(crop_prev_status);
+    this.drawImage(res.data.msg[2]-1, crop_prev_status)
   },
 
-  //丰收动画计时器
-  startTimer: function (crop_prev_status) {
-    this.drawImage(this.data.Bézier_data, crop_prev_status)
-  },
 
-  //绘制动画帧
-  drawImage: function (data, crop_prev_status) {
+  //绘制作物丰收动画
+  drawImage: function (crop_index, crop_prev_status) {
     var that = this
+    var data = this.data.Bézier_data[crop_index]
     var p10 = data[0][0];   // 三阶贝塞尔曲线起点坐标值
     var p11 = data[0][1];   // 三阶贝塞尔曲线第一个控制点坐标值
     var p12 = data[0][2];   // 三阶贝塞尔曲线第二个控制点坐标值
@@ -585,7 +642,7 @@ Page({
     var p32 = data[2][2];
     var p33 = data[2][3];
 
-    var t = factor.t;
+    var t = that.data.harvest_timer[crop_index]['factor']['t'];
 
     /*计算多项式系数 （下同）*/
     var cx1 = 3 * (p11.x - p10.x);
@@ -623,21 +680,36 @@ Page({
     /*计算xt yt的值 */
     var xt3 = ax3 * (t * t * t) + bx3 * (t * t) + cx3 * t + p30.x;
     var yt3 = ay3 * (t * t * t) + by3 * (t * t) + cy3 * t + p30.y;
-    factor.t += factor.speed;
-    ctx.drawImage("../../images/" + crop_prev_status+"1.png", xt1, yt1, 30, 30);
-    ctx.drawImage("../../images/" + crop_prev_status+"2.png", xt2, yt2, 30, 30);
-    ctx.drawImage("../../images/" + crop_prev_status+"3.png", xt3, yt3, 30, 30);
+    that.data.harvest_timer[crop_index]['factor']['t'] += that.data.harvest_timer[crop_index]['factor']['speed'];
+    //各作物丰收图片尺寸
+    var _size = {'crop-wheat-m':[7,36,8,45,9,37],'crop-corn-m':[10,42,22,53,21,41]}  
+
+    ctx.drawImage("../../images/" + crop_prev_status + "1.png", xt1, yt1, _size[crop_prev_status][0], _size[crop_prev_status][1]);
+    ctx.drawImage("../../images/" + crop_prev_status + "2.png", xt2, yt2, _size[crop_prev_status][2], _size[crop_prev_status][3]);
+    ctx.drawImage("../../images/" + crop_prev_status + "3.png", xt3, yt3, _size[crop_prev_status][4], _size[crop_prev_status][5]);
     ctx.draw();
-    if (factor.t > 1) {
-      factor.t = 0;
-      cancelAnimationFrame(timer);
-      that.startTimer(crop_prev_status);
+    if (that.data.harvest_timer[crop_index]['factor']['t'] > 1) {
+      that.data.harvest_timer[crop_index]['factor']['t'] = 0;
+      that.cancelAnimationFrame(that.data.harvest_timer[crop_index]['timer']);
+      //that.startTimer(crop_prev_status);
     } else {
-      timer = requestAnimationFrame(function () {
-        that.drawImage(that.data.Bézier_data, crop_prev_status)
-      })
+      //console.log(that.data.harvest_timer[crop_index])
+      if (that.data.harvest_timer[crop_index]['timer'] == null){
+        that.data.harvest_timer[crop_index]['timer'] = that.requestAnimationFrame(function () {
+          that.drawImage(crop_index, crop_prev_status)
+        })
+      }
     }
 
 
   },
+  //requestAnimationFrame 函数兼容性处理
+  requestAnimationFrame: function (callback) {
+    return setInterval(callback, 1000 / 60);
+  },
+
+  //cancelAnimationFrame 函数兼容性处理
+  cancelAnimationFrame: function (t) {
+    clearInterval(t)
+  }
 })

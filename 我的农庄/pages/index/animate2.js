@@ -24,7 +24,7 @@ Page({
 
   onUnload: function () {
     if (timer != null) {
-      cancelAnimationFrame(timer);
+      this.cancelAnimationFrame_(timer);
     }
 
   },
@@ -92,10 +92,11 @@ Page({
     ctx.draw();
     if (factor.t > 1) {
       factor.t = 0;
-      cancelAnimationFrame(timer);
+      that.cancelAnimationFrame_(timer);
       that.startTimer();
     } else {
-      timer = requestAnimationFrame(function () {
+
+      timer = that.requestAnimationFrame_(function () {
         that.drawImage([[{ x: 400, y: 400 }, { x: 70, y: 300 }, { x: 50, y: 150 }, { x: 30, y: 0 }], 
         [{ x: 400, y: 400 }, { x: 30, y: 300 }, { x: 80, y: 150 }, { x: 30, y: 0 }], 
         [{ x: 400, y: 400 }, { x: 0, y: 90 }, { x: 80, y: 100 }, { x: 30, y: 0 }]])
@@ -130,8 +131,19 @@ Page({
     }, 500)*/
     that.drawImage([[{ x: 630, y: 400 }, { x: 300, y: 300 }, { x: 50, y: 150 }, { x: 30, y: 0 }], [{ x: 30, y: 400 }, { x: 30, y: 300 }, { x: 80, y: 150 }, { x: 30, y: 0 }], [{ x: 30, y: 400 }, { x: 0, y: 90 }, { x: 80, y: 100 }, { x: 30, y: 0 }]])
 
+  },
+
+  //requestAnimationFrame 函数兼容性处理
+  requestAnimationFrame_ : function (callback) {
+      
+       timer = setTimeout(callback, 1000 / 60);
+      
+  },
+
+  //cancelAnimationFrame 函数兼容性处理
+  cancelAnimationFrame_:function(t){
+    
+      clearTimeout(t)
+    
   }
-
-
-
 })

@@ -1,5 +1,6 @@
 //app.js
 const util = require('./utils/util.js')
+var aldstat = require("./utils/ald-stat.js");
 
 function login(app, callback) {
   // 登录

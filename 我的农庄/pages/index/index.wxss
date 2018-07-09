@@ -289,6 +289,16 @@
     background-size:146rpx 49rpx;
 }
 
+/* 农作物丰收canvas */
+.myCanvas{
+  background-color: transparent;
+  width: 400px;
+  height:400px;
+  position: absolute;
+  bottom: 0rpx;
+  left: 0rpx;
+}
+
 /* 开垦土地对话框 */
 .dig-dialog-con{
   position: absolute;
