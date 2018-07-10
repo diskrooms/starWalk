@@ -33,7 +33,37 @@
   <view class="mill-base">
       <view class="mill-leaf" animation="{{animationData}}"></view>
   </view>
+  <!-- 鱼竿 -->
+  <view class="fishing" bindtap="fishing">
+    <view class="fishing-bait">{{fishing == 0 ? '点击下饵':(fishing == 1 ? '等鱼上钩 '+fishing_min +':' + fishing_sec : '收鱼啦')}}</view>
+    <!--<wxc-progress class="fishing-bait" percent="60" stroke-width="24" radius="12" active-color="#00A0E9" background-color="#fff"></wxc-progress>-->
+    <image src="../../images/fishing-float.png" class="fishing-float"></image>
+  </view>
+  <!--渔获 -->
+  <view class="fish-res">
+    <block wx:if="{{fish_res < 0 }}">
+      <image src="../../images/fish/cry.png" class="cry"></image>
+      <view>{{fish_desc}}</view>
+      <!--<view class="tips">
+        提示:购买鱼苗投放可以显著提高渔获数量和几率
+      </view>-->
+      <view class="closeFish" bindtap="closeFish">关闭</view>
+    </block>
 
+    <block wx:if="{{fish_res == 1}}">
+      <image src="../../images/fish/success.png"></image>
+      <image src="../../images/fish/{{fish_type}}.png"></image>
+      <view>获得<view>{{fish_type2}}</view>一条,体长 {{fish_size}} 公分</view>
+      <view class="notice" wx:if="{{fish_size <= 8}}">
+         <image></image>
+         <view>警告：体长没有超过8公分的鱼必须放生，否则将受到惩罚！</view>
+      </view>
+      <view class="flex flex-row">
+        <view>抓鱼</view>
+        <view>放生</view>
+      </view>
+    </block>
+  </view>
   <!-- 农作物丰收动画canvas -->
   <canvas canvas-id="canvas_wi"  class="myCanvas"/>
   <!-- 农作物 -->

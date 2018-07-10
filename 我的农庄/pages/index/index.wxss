@@ -172,7 +172,49 @@
   background-size: 218rpx 218rpx;
   width: 218rpx;
   height: 218rpx;
+}
 
+/* 钓鱼 */
+.fishing{
+  position: absolute;
+  right:0rpx;
+  top:700rpx;
+  z-index: 99;
+}
+.fishing-bait{
+  position: absolute;
+  color:#fff;
+  font-size: 10px;
+  background-color: #00A0E9;
+  border-radius: 25rpx;
+  padding:5rpx 10rpx;
+}
+.fishing-float{
+  width:100rpx;
+  height: 70rpx;
+  margin:25rpx 0 0 20rpx;
+}
+/* 渔获 */
+.fish-res{
+  z-index: 101;
+  position: absolute;
+  color:#fff;
+  text-align: center;
+  left:150rpx;
+  font-size: 18px;
+  font-family: zcool;
+}
+.fish-res .closeFish{
+  background:url('http://coder.51tui.vip/Public/miniProgram/my_garden/ui/button-bg.png') no-repeat 0 0;
+  background-size:211rpx 73rpx;
+  width:211rpx;
+  height: 73rpx;
+  line-height: 73rpx;
+  margin:20rpx auto;
+}
+.fish-res .cry{
+  width:112rpx;
+  height: 123rpx;
 }
 
 /* 下半部分 */
@@ -293,7 +335,7 @@
 .myCanvas{
   background-color: transparent;
   width: 400px;
-  height:400px;
+  height:420px;
   position: absolute;
   bottom: 0rpx;
   left: 0rpx;
