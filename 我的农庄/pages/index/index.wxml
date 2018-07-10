@@ -51,8 +51,8 @@
     </block>
 
     <block wx:if="{{fish_res == 1}}">
-      <image src="../../images/fish/success.png"></image>
-      <image src="../../images/fish/{{fish_type}}.png"></image>
+      <image src="../../images/fish/success.png" class="success"></image>
+      <image src="../../images/fish/{{fish_type}}.png" class="fish_type" mode="widthFix"></image>
       <view>获得<view>{{fish_type2}}</view>一条,体长 {{fish_size}} 公分</view>
       <view class="notice" wx:if="{{fish_size <= 8}}">
          <image></image>

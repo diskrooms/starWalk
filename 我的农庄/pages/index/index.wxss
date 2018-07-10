@@ -216,6 +216,10 @@
   width:112rpx;
   height: 123rpx;
 }
+.fish-res .success{
+  width:295rpx;
+  height: 334rpx;
+}
 
 /* 下半部分 */
 .content{
