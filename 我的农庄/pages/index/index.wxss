@@ -200,9 +200,10 @@
   position: absolute;
   color:#fff;
   text-align: center;
-  left:150rpx;
   font-size: 18px;
   font-family: zcool;
+  left:50rpx;
+  top:100rpx;
 }
 .fish-res .closeFish{
   background:url('http://coder.51tui.vip/Public/miniProgram/my_garden/ui/button-bg.png') no-repeat 0 0;
@@ -217,8 +218,30 @@
   height: 123rpx;
 }
 .fish-res .success{
-  width:295rpx;
-  height: 334rpx;
+  width:590rpx;
+  height: 666rpx;
+}
+.fish-res .fish_type{
+  width:100rpx;
+  position: absolute;
+  top:500rpx;
+  left:200rpx;
+}
+.fish-res .warn-icon{
+  width:64rpx;
+  height: 64rpx;
+}
+.fish-res .warn-txt{
+  font-family: Arial, Helvetica, sans-serif;
+}
+.fish-res .btn{
+  background:url('http://coder.51tui.vip/Public/miniProgram/my_garden/ui/button-bg.png') no-repeat 0 0;
+  background-size:211rpx 73rpx;
+  width:211rpx;
+  height: 73rpx;
+  margin:0 auto;
+  line-height: 73rpx;
+  color:#fff;
 }
 
 /* 下半部分 */
@@ -376,6 +399,7 @@
   line-height: 73rpx;
   color:#fff;
 }
+
 /*关闭按钮*/
  .close{
   background:url('http://coder.51tui.vip/Public/miniProgram/my_garden/ui/dialog-close.png') no-repeat 0 0;

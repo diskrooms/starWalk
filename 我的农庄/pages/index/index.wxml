@@ -53,14 +53,14 @@
     <block wx:if="{{fish_res == 1}}">
       <image src="../../images/fish/success.png" class="success"></image>
       <image src="../../images/fish/{{fish_type}}.png" class="fish_type" mode="widthFix"></image>
-      <view>获得<view>{{fish_type2}}</view>一条,体长 {{fish_size}} 公分</view>
+      <view class="px-36">获得<text class="px-42 c-yellow"> {{fish_type2}} </text>一条,体长 <text class="px-42 c-yellow"> {{fish_size}} </text> 公分</view>
       <view class="notice" wx:if="{{fish_size <= 8}}">
-         <image></image>
-         <view>警告：体长没有超过8公分的鱼必须放生，否则将受到惩罚！</view>
+         <image class="warn-icon" src="../../images/fish/warn.png"></image>
+         <view class="warn-txt px-26">警告：体长没有超过 8 公分的鱼必须放生，否则将受到惩罚！</view>
       </view>
       <view class="flex flex-row">
-        <view>抓鱼</view>
-        <view>放生</view>
+        <view class="btn">抓鱼</view>
+        <view class="btn">放生</view>
       </view>
     </block>
   </view>
