@@ -109,7 +109,10 @@ Page({
             [{ x: 400, y: 400 }, { x: 30, y: 300 }, { x: 80, y: 150 }, { x: 60, y: 0 }],    //第二条线
             [{ x: 400, y: 400 }, { x: 0, y: 90 }, { x: 80, y: 100 }, { x: 60, y: 0 }]       //第三条线
           ]
-    ]              
+    ],
+
+    /* 渔获丰收动画 */
+    
   },
   //事件处理函数
   bindViewTap: function() {
@@ -708,9 +711,8 @@ Page({
         })
       }
     }
-
-
   },
+
   //requestAnimationFrame 函数兼容性处理
   requestAnimationFrame: function (callback) {
     return setInterval(callback, 1000 / 60);
@@ -769,5 +771,28 @@ Page({
   //关闭渔获窗口
   closeFish:function(){
     this.setData({ 'fish_res': 0, 'lay_status': 0 })
+  },
+
+  abandonFish:function(){
+    this.closeFish();
+    setTimeout(()=>(
+      util.alert('鱼儿很感激，说不定以后会报答你')
+    ),500)
+    
+  },
+  //抓鱼
+  catchFish:function(){
+    this.closeFish();
+    var data = { 'token': wx.getStorageSync('token'), 'app': 2,'fish_size':this.data.fish_size}
+    util.request(app.globalData.apiDomain + '/my/catchFish', 'POST', data, this._catch_fish_callback)
+  },
+
+  //抓鱼回调
+  _catch_fish_callback:function(res){
+      if(res.data.status > 0){
+
+      } else {
+        util.alert(res.data.msg[0])
+      }
   }
 })

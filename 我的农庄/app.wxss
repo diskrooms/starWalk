@@ -56,11 +56,14 @@ view{
 .right{float:right}
 .inline{display: inline;}
 .block{display:block}
+.inline-block{display:inline-block}
+
 .bolder{font-weight: bolder;}
+
 .flex{display:flex;align-items:center;justify-content:space-between;}
 .flex-row{flex-direction:row;}
 .flex-column{flex-direction:column;}
-.inline-block{display:inline-block}
+
 .show{display: auto;}
 .hide{display: none;}
 .clearfix:after {
