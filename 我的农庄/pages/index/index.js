@@ -32,6 +32,8 @@ Page({
     bag_status:0,                   //背包打开状态
     shops_status:0,                 //商店打开状态
     coins_shops_status:0,           //货币商店打开状态
+    warehouse_status:0,             //磨坊仓储状态 
+    warehouse_data:null,            //磨坊仓储数据
     coins_buy_lock:0,               //货币商店购买锁  为false时才可以点击购买
     lay_status:0,                   //遮罩层状态
 
@@ -783,7 +785,7 @@ Page({
   //抓鱼
   catchFish:function(){
     this.closeFish();
-    var data = { 'token': wx.getStorageSync('token'), 'app': 2,'fish_size':this.data.fish_size}
+    var data = { 'token': wx.getStorageSync('token'), 'app': 2, 'fish_size': this.data.fish_size, 'fish_type': this.data.fish_type}
     util.request(app.globalData.apiDomain + '/my/catchFish', 'POST', data, this._catch_fish_callback)
   },
 
@@ -794,5 +796,47 @@ Page({
       } else {
         util.alert(res.data.msg[0])
       }
+  },
+  
+  //打开磨坊仓储
+  openWarehouse:function(){
+    var data = { 'token': wx.getStorageSync('token'), 'app': 2}
+    util.request(app.globalData.apiDomain + '/my/warehouse', 'POST', data, (res)=>{
+      this.setData({ 'warehouse_data':res.data.msg[1],'warehouse_status': 1, 'lay_status': 1 })
+    })
+    
+  },
+  //关闭仓储
+  closeWarehouse:function(){
+    this.setData({ 'warehouse_status': 0, 'lay_status': 0 })
+  },
+  //仓储减少售卖
+  minus:function(e){
+    var _index = e.currentTarget.dataset.index
+    var warehouse_data = this.data.warehouse_data
+    var sell_count = warehouse_data[_index]['item_sell_count']
+    sell_count = (sell_count > 1) ? sell_count - 1 : 1
+    warehouse_data[_index]['item_sell_count'] = sell_count
+    this.setData({'warehouse_data':warehouse_data})
+  },
+  //仓储增加售卖
+  plus: function (e) {
+    var _index = e.currentTarget.dataset.index
+    var warehouse_data = this.data.warehouse_data
+    var sell_count = warehouse_data[_index]['item_sell_count']
+    var item_count = warehouse_data[_index]['item_count']
+    sell_count = (sell_count < item_count) ? sell_count + 1 : item_count
+    warehouse_data[_index]['item_sell_count'] = sell_count
+    this.setData({ 'warehouse_data': warehouse_data })
+  },
+  //仓储售卖
+  sell:function(e){
+    var _index = e.currentTarget.dataset.index
+    var id = this.data.warehouse_data[_index]['id']
+    var sell_count = this.data.warehouse_data[_index]['item_sell_count']
+    var data = { 'token': wx.getStorageSync('token'), 'app': 2,'id':id,'sell_count':sell_count }
+    util.request(app.globalData.apiDomain + '/my/warehouse', 'POST', data, (res) => {
+      this.setData({ 'warehouse_data': res.data.msg[1] })
+    })
   }
 })

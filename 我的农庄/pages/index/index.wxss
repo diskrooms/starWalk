@@ -462,7 +462,6 @@
   padding: 20rpx 0;
 }
 
-/* 商店菜单 */
 .shops .menus{
   position: absolute;
   top:90rpx;
@@ -618,6 +617,77 @@
   height: 153rpx;
 }
 
+/* 磨坊仓储 */
+.warehouse{
+  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/ui/warehouse-bg.png') no-repeat center center;
+  background-size: 688rpx 797rpx;
+  width:688rpx;
+  height: 797rpx;
+  position: absolute;
+  top:150rpx;
+  left:30rpx;
+  z-index: 100;
+  padding: 20rpx 0;
+  font-family: zcool;
+}
+.warehouse .sell-con{
+  position: relative;
+}
+.warehouse .sell-img{
+  width:150rpx;
+  height: 52rpx;
+}
+.warehouse .sell-txt{
+  position: absolute;
+  left:50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+}
+.warehouse .items{
+  position: absolute;
+  width:80%;
+  text-align: center;
+  top: 250rpx;
+  height: 500rpx;
+  transform:translate(-50%,0);
+  left:50%;
+}
+.warehouse .item .item-con{
+  width:157rpx;
+  height: 200rpx;
+  background: #1772AF;
+  border-radius: 25rpx;
+  color: #fff;
+  font-size: 24rpx;
+  text-align: center;
+  padding: 10rpx;
+  position: relative;
+  font-family: zcool;
+}
+.warehouse .item{
+  float: left;
+  margin: 5rpx;
+}
+.warehouse .item .img-con{
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.warehouse .item .img-con .item-img{
+  vertical-align: middle;
+  width:80rpx;
+}
+.warehouse .minus{
+  margin-right: 10rpx;
+}
+.warehouse .sell_count{
+  background: #fff;
+  width:80rpx;
+  color:#000;
+  border-radius: 5rpx;
+}
+.warehouse .plus{
+  margin-left: 10rpx;
+}
 
 /* 遮罩层 */
 .layer{

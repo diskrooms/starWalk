@@ -30,7 +30,7 @@
   </view>
   
   <!-- 风车 -->
-  <view class="mill-base">
+  <view class="mill-base" bindtap="openWarehouse">
       <view class="mill-leaf" animation="{{animationData}}"></view>
   </view>
   <!-- 鱼竿 -->
@@ -253,10 +253,26 @@
   </view>
   <!-- 金币商店 end-->
 
-  <!-- 磨坊窗口 -->
-  <view class="mill-content">
-    
+  <!-- 磨坊仓储 start -->
+  <view class="warehouse" wx:if="{{warehouse_status}}">
+      <scroll-view class="flex flex-column items" scroll-y>
+
+          <view wx:for="{{warehouse_data}}" class="item" bindtap="sell" data-id="1" data-level='1' data-price="10">
+            <view class="item-con">
+              <view class="img-con"><image src="../../images/{{item.item_icon_folder}}/{{item.item_icon}}.png" class="item-img" mode="widthFix"></image></view>
+              <view class="name">{{item.item_name}} x{{item.item_count}}</view>
+              <view><view class="minus inline-block" bindtap="minus"  data-index="{{index}}">-</view><view class="sell_count inline-block">{{item.item_sell_count}}</view><view class="plus inline-block" bindtap="plus" data-index="{{index}}">+</view></view>
+              <view class="sell-con" bindtap="sell" data-index="{{index}}"><image src="../../images/ui/button-bg.png" class="sell-img"></image><text class="sell-txt">出售</text></view>
+            </view>
+          </view>
+
+          
+          
+      </scroll-view>
+      <view class="close" bindtap="closeWarehouse"></view>
   </view>
+  <!-- 磨坊仓储 start -->
+  
   <view class="layer" wx:if="{{lay_status}}"></view>
 </view>
 
