@@ -80,6 +80,7 @@ view{
 .c-yellow{color:#ff8f00}
 .c-red{color:#ec5300}
 .c-orange{color:#ec5300}
+.c-blue{color:blue}
 
 /* 遮罩层公共样式 */
 .modal-mask {

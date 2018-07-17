@@ -3,9 +3,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/friends/index",
-    "pages/index/animate",
-    "pages/index/animate2",
-    "pages/index/gift"
+    "pages/school/index",
+    "pages/school/study"
   ],
   "window": {
     "backgroundTextStyle": "light",

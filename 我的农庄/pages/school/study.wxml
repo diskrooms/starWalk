@@ -1,0 +1,92 @@
+<!--<import src="../../wxParse/wxParse.wxml"/>-->
+<view class="container">
+  <view class="container-header">
+        <view class="title text-align-center px-28">答满10道题，随机得<text class="c-blue">智慧值</text></view>
+        <view class="userinfo">
+          <!--<image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatar}}" background-size="cover"></image>-->
+          <view class="userinfo-nickname px-30">
+            <view>已答对{{index}}道题</view> 
+          </view>
+        </view>
+        <!--倒计时 -->
+        <view class='progress_box'>
+          <canvas class="progress_bg"   canvas-id="canvasProgressbg">  </canvas>
+          <canvas class="progress_canvas"   canvas-id="canvasProgress">  </canvas> 
+          <view class="progress_text">
+              <!--<view class="progress_dot"></view>-->
+              <text class='progress_info'>{{remains}}</text>
+          </view>    
+        </view>
+        <view class="userCoins right text-align-center">
+          <image src="../../images/ui/smart-x2.png" class="coins"></image>
+          <view class="count">{{userInfo.smart}}</view>
+        </view>
+  </view>
+  <view class="container-middle">
+    <image class="title" src="../../images/play_index_title_blue.png"></image>
+    <view class="indexq px-40">第{{index+1}}题</view>
+  </view>
+  <view class="container-content">
+      <!-- 题目 -->
+      <view class="question px-36 text-align-center">
+        <!--<template is="wxParse" data="{{wxParseData:wxParseData.nodes}}"/>-->
+        {{curQuestion}}
+      </view>
+      <!-- 答案 -->
+      <view class="answer">
+        <block wx:for="{{questions[index].answers}}">
+          <view class="answer-item {{item.flag}}" bindtap="choose_answer" id="{{index}}">{{item.answer}}</view>
+        </block>
+      </view>
+  </view>
+
+  <!-- 失败弹窗 -->
+  <view class="modal-mask" wx:if="{{showFailPanel}}"></view>
+  <view class="modal-dialog" wx:if="{{showFailPanel}}">
+    <view class="modal-title"><image class="modal-image vertical-align-middle" src="/images/cry.png"></image><text class="vertical-align-middle">离金币一步之遥</text></view>
+    <view class="modal-content">
+      <button class="submit" open-type="share">好友帮忙</button>
+      <block wx:if="{{userInfo.card > 0}}">
+        <button class="submit card" bindtap="usecard">马上复活</button>
+      </block>
+      <block wx:if="{{userInfo.card == 0}}">
+        <button class="submit card" bindtap="buycard" data-price='200' data-title='购买两张复活卡'>购买复活卡 ￥2(+5张)</button>
+        <button class="submit card" bindtap="buycard" data-price='500' data-title='购买五张复活卡'>购买复活卡 ￥5(+15张)</button>
+      </block>
+      <button class="submit" bindtap="restart">重新开始</button>
+    </view>
+    <!--<view class="modal-footer">
+      <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+      <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+    </view>-->
+  </view>
+
+  <!-- 使用复活卡弹窗 -->
+  <view class="modal-mask"  wx:if="{{showCardPanel}}" bindtap="showCardModal"></view>
+  <view class="modal-dialog" wx:if="{{showCardPanel && showCardPanel2}}">
+    <image src="../../images/close.png" class="modal-close" bindtap="hideCardModal"></image>
+    <view class="modal-title"><image class="modal-image vertical-align-middle" src="/images/success-480.png"></image><text class="vertical-align-middle">复活成功</text></view>
+    <!--<view class="modal-content">
+      <view class='submit' bindtap='explain'>是否查看详细解答？</view>
+    </view>-->
+    <view class="modal-footer">
+      <view class="btn-cancel" bindtap="explain">查看解答</view>
+      <view class="btn-confirm" bindtap="goNext">直接下一题</view>
+    </view>
+  </view>
+
+  <!-- 挑战成功弹窗 -->
+  <view class="modal-mask" wx:if="{{showSuccPanel}}"></view>
+  <view class="modal-dialog" wx:if="{{showSuccPanel}}">
+    <view class="modal-title"><image class="modal-image vertical-align-middle" src="/images/smile.png"></image><text class="vertical-align-middle">挑战成功,获得金币{{coins_random}}枚,可以购买更多种子了！</text></view>
+    <view class="modal-content">
+      
+      <button class="submit" bindtap="restart">确定</button>
+    </view>
+
+  </view>
+</view>
+
+
+
+

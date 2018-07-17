@@ -66,6 +66,31 @@
       </view>
     </block>
   </view>
+
+  <!--学校 -->
+  <view class="school" bindtap="goToSchool">
+    <image src="../../images/school.png" class="school-icon" mode='widthFix'></image>
+  </view>
+
+  <!--每日奖励 -->
+  <view class="canvas-container" wx:if="{{award_status}}">
+    <view  animation="{{awardAnimationData}}" class="canvas-content" >
+      <canvas style="width: 300px; height: 300px;" class="canvas-element" canvas-id="lotteryCanvas"></canvas>
+
+      <view class="canvas-line">
+        <view class="canvas-litem" wx:for="{{awardsList}}" wx:key="unique" style="-webkit-transform: rotate({{item.lineTurn}});transform: rotate({{item.lineTurn}})"></view>
+      </view>
+
+      <view class="canvas-list">
+        <view class="canvas-item" wx:for="{{awardsList}}" wx:key="unique">
+            <view class="canvas-item-text" style="-webkit-transform: rotate({{item.turn}});transform: rotate({{item.turn}})">{{item.name}}</view>
+        </view>
+      </view>
+      
+    </view>
+    <view bindtap="getLottery" class="canvas-btn {{awardBtnDisabled}}">转</view>
+	</view>
+
   <!-- 农作物丰收动画canvas -->
   <canvas canvas-id="canvas_wi"  class="myCanvas"/>
   <!-- 农作物 -->

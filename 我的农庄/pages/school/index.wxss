@@ -1,0 +1,231 @@
+/* 登录样式 */
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  margin: 10rpx 0 0 20rpx;
+}
+.userCoins{
+  font-size: 24rpx;
+}
+.userCoins .coins{
+    width: 32rpx;
+    height: 32rpx;
+    display: block;
+}
+.userCoins .count{
+  color:#fff;
+}
+.userinfo-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  margin: 0rpx;
+  border: 5rpx solid #fff;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #fff;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width:120rpx;
+  overflow: hidden;
+}
+
+.userinfo-ticket{
+  color:#fff;
+  align-items: left;
+}
+
+.userinfo-id{
+  color:#efd99d;
+  text-align: center;
+}
+
+.container{
+  background-size: cover;
+}
+.container.nologin_con{
+    background: url('http://coder.51tui.vip/Public/miniProgram/bg.png');
+    background-size: cover;
+}
+.container.login_con{
+    background: url('http://coder.51tui.vip/Public/miniProgram/garden_bg.png');
+    background-size: cover;
+}
+.login .container-header{
+  background: #57b7ec;
+  border-radius: 20rpx;
+  margin:20rpx;
+  padding: 20rpx;
+}
+.login .container-content{
+
+}
+.login .container-content .class_name{
+  color:#efd99d;
+  font-family: 'zcool';
+}
+.login .container-content .computer .class_name{
+  color:#595959;
+}
+.login .container-content .image_container .class_icon{
+  width: 80rpx;
+  height: 80rpx;
+  }
+.login .container-content .test,.farm{
+  padding:20rpx;
+  width:100%;
+  box-sizing:border-box;
+}
+.login .container-content .farm{
+  margin:20rpx;
+}
+.login .container-content .test .item{
+  border-radius: 20rpx;
+  padding:20rpx;
+}
+.login .container-content .test .item.wen{
+  background:#5581ea;
+}
+.login .container-content .test .item.shi{
+  background:#57b7ec;
+}
+.login .container-content .test .item.zhe{
+  background:#26a8b5;
+}
+.login .container-content .test .item.jing{
+  background:#ae48c8;
+}
+.login .container-content .test .item.computer{
+  background:#fcf782;
+  color:#000;
+}
+.login .container-content .test .item.nature{
+  background:#57b7ec;
+}
+.login .container-content .test .item.doubt{
+  background:#3c3c3c;
+}
+.login .container-content .farm .item{
+  width:48%;
+  border-radius: 20rpx;
+  height: 200rpx;
+  overflow: hidden;
+}
+.login .container-content .farm .item.garden{
+  /*background: url("http://coder.51tui.vip/Public/garden_simple5.png");*/
+  background-size:cover;
+  border:1rpx solid #fff;
+  z-index: 1;
+}
+
+.login .container-content .farm .item.shop{
+  /*background: url("http://coder.51tui.vip/Public/shop2.png");*/
+  background-size:cover;
+  border:3rpx solid #fff;
+  position: relative;
+}
+.login .container-content .farm .item.shop .layer{
+  width:100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+}
+.login .container-content .farm .item image{
+  width:100%;
+  display: block;
+}
+.login .container-content .farm .item.shop  image{
+  width: 100%;
+  /*position: absolute;
+  top:20rpx;
+  z-index: 9999;*/
+}
+
+
+
+
+/* 未登录样式 */
+.nologin{
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  margin:auto;
+  height:400rpx;
+  width:70%;
+  border-radius:0rpx;
+}
+.nologin .container-content{margin: 100rpx auto;}
+.nologin .container-content .start{
+  padding:20rpx;
+  background:#ffed00;
+  color:#595959;
+  border-radius: 45rpx;
+  margin:20rpx auto;
+  width:180rpx;
+  box-sizing: content-box;
+  line-height: 50rpx;
+  font-family: zcool;
+}
+
+/* 每日登录奖励 */
+.day-sign{
+  /*background: url('http://coder.51tui.vip/Public/miniProgram/day.png') no-repeat;
+  background-size:100% auto;*/
+  top:40%;
+  background: none;
+}
+.day-sign .modal-title{
+  margin:0rpx;
+  width:100%;
+}
+.day-sign .modal-content{
+    border-radius: 20rpx;
+    background: #57b7ec;
+    margin:-70rpx auto 0;
+    /*height: 600rpx;*/
+    padding:100rpx 50rpx 60rpx 50rpx;
+}
+.day-sign .modal-content .flex-item{
+  background: #fff;
+  border-radius: 20rpx;
+  padding:10rpx;
+  width:180rpx;
+  height: 200rpx;
+  font-family: 'zcool'
+}
+
+.day-sign .modal-content .flex-item image{
+  width: 96rpx;
+  height: 96rpx;
+  margin:20rpx;
+}
+.day-sign .modal-content .submit{
+  width:263rpx;
+  height: 95rpx;
+  margin: 50rpx auto 0rpx;
+}
+.day-sign .modal-content .modal-container{
+  justify-content:center;
+}
+
+/* 登录奖励提示 */
+.modal-sign-tip{
+  /*background: url('http://coder.51tui.vip/Public/miniProgram/signTip2.png');*/
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top:0rpx;
+  width:100%;
+  height:100%;
+  z-index: 0;
+}
+
+.modal-sign-tip image{
+  width:284rpx;
+  height:141rpx;
+  margin:500rpx 0 0 50rpx;
+}

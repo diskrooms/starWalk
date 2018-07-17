@@ -34,6 +34,7 @@ Page({
     coins_shops_status:0,           //货币商店打开状态
     warehouse_status:0,             //磨坊仓储状态 
     warehouse_data:null,            //磨坊仓储数据
+    award_status:0,                 //抽奖面板状态
     coins_buy_lock:0,               //货币商店购买锁  为false时才可以点击购买
     lay_status:0,                   //遮罩层状态
 
@@ -115,6 +116,18 @@ Page({
 
     /* 渔获丰收动画 */
     
+    /* 每日奖励数据 */
+    awards: [
+      { 'index': 0, 'name': '10金币' },
+      { 'index': 1, 'name': '20金币' },
+      { 'index': 2, 'name': '5钻石' },
+      { 'index': 3, 'name': '5智慧' },
+      { 'index': 4, 'name': '1次入学机会' },
+      { 'index': 5, 'name': '2次挑战复活' }
+    ],
+    awardBtnDisabled:'',            //抽奖按钮状态
+    awardsList:[],                  //转盘分区样式
+    awardAnimationData:{},          //转盘动画
   },
   //事件处理函数
   bindViewTap: function() {
@@ -294,7 +307,14 @@ Page({
 
   //每日奖励
   award:function(e){
-    
+    var len = this.data.awards.length,
+    rotateDeg = 360 / len / 2 + 90,
+    html = [],
+    turnNum = 1 / len  // 文字旋转 turn 值
+    for (var i = 0; i < len; i++) {
+      html.push({ turn: i * turnNum + 'turn', lineTurn: i * turnNum + turnNum / 2 + 'turn', name: this.data.awards[i].name }); 
+    }
+    this.setData({ 'award_status': 1, 'lay_status': 1,'awardsList':html})
   },
 
   //跳转到好友页
@@ -775,6 +795,7 @@ Page({
     this.setData({ 'fish_res': 0, 'lay_status': 0 })
   },
 
+  //TODO 放鱼加经验
   abandonFish:function(){
     this.closeFish();
     setTimeout(()=>(
@@ -789,11 +810,25 @@ Page({
     util.request(app.globalData.apiDomain + '/my/catchFish', 'POST', data, this._catch_fish_callback)
   },
 
-  //抓鱼回调
+  //抓鱼回调 TODO 升级动画
   _catch_fish_callback:function(res){
-      if(res.data.status > 0){
-
+      if(res.data.status < 0){
+        var _coins = res.data.msg[1]
+        app.globalData.userInfo.coins = _coins
+        var _userInfo = app.globalData.userInfo
+        util.alert(res.data.msg[0] +',金币 -5')
+        this.setData({ 'userInfo': _userInfo})
       } else {
+        var _energy = res.data.msg[1]
+        var _level = res.data.msg[2]
+        var _cur_energy = res.data.msg[3]
+        var _max = res.data.msg[4]
+        app.globalData.userInfo.energy = _energy
+        app.globalData.userInfo.level = _level
+        app.globalData.userInfo.cur_energy = _cur_energy
+        app.globalData.userInfo.max = _max
+        var _userInfo = app.globalData.userInfo
+        this.setData({ 'userInfo': _userInfo })
         util.alert(res.data.msg[0])
       }
   },
@@ -835,8 +870,19 @@ Page({
     var id = this.data.warehouse_data[_index]['id']
     var sell_count = this.data.warehouse_data[_index]['item_sell_count']
     var data = { 'token': wx.getStorageSync('token'), 'app': 2,'id':id,'sell_count':sell_count }
-    util.request(app.globalData.apiDomain + '/my/warehouse', 'POST', data, (res) => {
-      this.setData({ 'warehouse_data': res.data.msg[1] })
+    util.request(app.globalData.apiDomain + '/my/sell', 'POST', data, (res) => {
+      var _coins = res.data.msg[2]
+      app.globalData.userInfo.coins = _coins
+      var _userInfo = app.globalData.userInfo
+      util.alert('金币+' + res.data.msg[3])
+      this.setData({ 'warehouse_data': res.data.msg[1],'userInfo': _userInfo })
+    })
+  },
+
+  //去学校上学
+  goToSchool:function(){
+    wx.navigateTo({
+      url: '/pages/school/index',
     })
   }
 })
