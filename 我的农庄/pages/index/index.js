@@ -118,16 +118,19 @@ Page({
     
     /* 每日奖励数据 */
     awards: [
-      { 'index': 0, 'name': '10金币' },
-      { 'index': 1, 'name': '20金币' },
-      { 'index': 2, 'name': '5钻石' },
-      { 'index': 3, 'name': '5智慧' },
-      { 'index': 4, 'name': '1次入学机会' },
-      { 'index': 5, 'name': '2次挑战复活' }
+      { 'name': '10个金币', 'type':1, 'count':10 },
+      { 'name': '20个金币', 'type': 1, 'count': 20 },
+      { 'name': '5颗钻石', 'type': 2, 'count': 5 },
+      { 'name': '5点智慧', 'type': 3, 'count': 5 },
+      { 'name': '2张入学卡', 'type': 4, 'count': 2 },
+      { 'name': '2张过关卡', 'type': 5, 'count': 2 },
+      { 'name': '2点智慧', 'type': 3, 'count': 2 },
+      { 'name': '2颗钻石', 'type': 2, 'count': 2 }
     ],
     awardBtnDisabled:'',            //抽奖按钮状态
-    awardsList:[],                  //转盘分区样式
+    awardsList:[],                  //转盘分区数据
     awardAnimationData:{},          //转盘动画
+    awardDegree:0,                  //转盘旋转角度
   },
   //事件处理函数
   bindViewTap: function() {
@@ -305,16 +308,93 @@ Page({
   },
 
 
-  //每日奖励
+  //每日奖励-打开转盘
   award:function(e){
     var len = this.data.awards.length,
-    rotateDeg = 360 / len / 2 + 90,
     html = [],
     turnNum = 1 / len  // 文字旋转 turn 值
+    const ctx = wx.createCanvasContext('awardCanvas')
+    const color = ['#9C67FF', '#EC5858', '#34CCFD', '#FFC000', '#9C67FF', '#EC5858', '#34CCFD', '#FFC000']
+
     for (var i = 0; i < len; i++) {
       html.push({ turn: i * turnNum + 'turn', lineTurn: i * turnNum + turnNum / 2 + 'turn', name: this.data.awards[i].name }); 
+      //画扇形
+      var curDegree = (i * turnNum + turnNum / 2) * 2 * Math.PI - Math.PI/2
+      var nextDegree = ((i + 1) * turnNum + turnNum / 2) * 2 * Math.PI - Math.PI / 2
+      ctx.beginPath();
+      ctx.moveTo(150, 150)
+      ctx.setFillStyle(color[i])
+      ctx.arc(150, 150, 150, curDegree, nextDegree)
+      ctx.fill();     
+      //画指针
+      ctx.beginPath();
+      ctx.moveTo(150, 150)
+      ctx.arc(150,150,10,0,2*Math.PI)
+      ctx.fill()
+
+      
     }
+    //ctx.drawImage('../../images/award/pointer.png', 134, 52, 16, 57) //模糊 效果不佳
+    ctx.draw()
     this.setData({ 'award_status': 1, 'lay_status': 1,'awardsList':html})
+  },
+  //每日奖励-点击抽奖-每日5次抽奖
+  getAward: function () {
+    var data = { 'token': wx.getStorageSync('token'), 'app': 2 }
+    util.request(app.globalData.apiDomain + '/my/hasAward', 'POST', data, (res) => {
+        if(res.data){
+          var awardIndex = Math.random() * this.data.awards.length >>> 0;   //>>>0 右移0位等同于取整 parseInt
+          //console.log(awardIndex)
+          var runNum = 8
+          var degree = this.data.awardDegree || 0;
+          degree = degree + (360 - degree % 360) + (360 * runNum - awardIndex * (360 / this.data.awards.length))
+          var animationRun = wx.createAnimation({
+            duration: 4000,
+            timingFunction: 'ease'
+          })
+          //that.animationRun = animationRun
+          animationRun.rotate(degree).step()
+          this.setData({
+            awardAnimationData: animationRun.export(),
+            awardBtnDisabled: 'disabled',
+            awardDegree: degree
+          })
+          //抽奖结果提示
+          setTimeout(() => {
+            var data = { 'token': wx.getStorageSync('token'), 'app': 2, 'award_index': awardIndex }
+            util.request(app.globalData.apiDomain + '/my/getAward', 'POST', data, (res) => {
+              util.alert('恭喜获得' + (this.data.awards[awardIndex].name))
+              var _type = this.data.awards[awardIndex].type
+              var _count = this.data.awards[awardIndex].count
+              if(_type == 1){
+                app.globalData.userInfo.coins = parseInt(app.globalData.userInfo.coins)  + _count 
+              } else if(_type == 2){
+                app.globalData.userInfo.diamond = parseInt(app.globalData.userInfo.diamond)  + _count 
+              } else if (_type == 3){
+                app.globalData.userInfo.smart = parseInt(app.globalData.userInfo.smart)  + _count 
+              } else if (_type == 4){
+                app.globalData.userInfo.ticket = parseInt(app.globalData.userInfo.ticket)  + _count 
+              } else if(_type == 5){
+                app.globalData.userInfo.card = parseInt(app.globalData.userInfo.card) + _count 
+              } else {
+                return;
+              }
+              this.setData({
+                userInfo: app.globalData.userInfo,
+                awardBtnDisabled: ''
+              })
+            })
+          }, 4000);
+        } else {
+          util.alert('今天的抽奖机会用完了，明天再来吧~')
+        }
+    })
+
+    
+  },
+  //关闭抽奖
+  closeAward: function () {
+    this.setData({ 'award_status': 0, 'lay_status': 0 })
   },
 
   //跳转到好友页
@@ -884,5 +964,6 @@ Page({
     wx.navigateTo({
       url: '/pages/school/index',
     })
-  }
+  },
+  
 })

@@ -40,6 +40,12 @@
 					"name": "好友",
 					"pathName": "pages/friends/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "canvas测试",
+					"pathName": "pages/index/test",
+					"query": ""
 				}
 			]
 		}

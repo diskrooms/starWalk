@@ -34,7 +34,7 @@ Page({
     // 旋转抽奖
     app.runDegs = app.runDegs || 0
     //console.log('deg', app.runDegs)
-    //app.runDegs = app.runDegs + (360 - app.runDegs % 360) + (360 * runNum - awardIndex * (360 / 6))
+    app.runDegs = app.runDegs + (360 - app.runDegs % 360) + (360 * runNum - awardIndex * (360 / 6))
     //console.log('deg', app.runDegs)
 
     var animationRun = wx.createAnimation({

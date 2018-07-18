@@ -819,7 +819,7 @@
   text-shadow: 0 -1px 1px rgba(0,0,0,.6);
   box-shadow: 0 3px 5px rgba(0,0,0,.6);
   text-decoration: none;
-  overflow: visible;
+  overflow: visible;  /* overflow 为auto或其他值将无法得到预期目标*/
 }
 .canvas-btn::after{
   position: absolute;
