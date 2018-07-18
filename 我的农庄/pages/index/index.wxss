@@ -188,6 +188,8 @@
   background-color: #00A0E9;
   border-radius: 25rpx;
   padding:5rpx 10rpx;
+  width:80rpx;
+  text-align: center;
 }
 .fishing-float{
   width:100rpx;

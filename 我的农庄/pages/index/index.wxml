@@ -35,7 +35,7 @@
   </view>
   <!-- 鱼竿 -->
   <view class="fishing" bindtap="fishing">
-    <view class="fishing-bait">{{fishing == 0 ? '点击下饵':(fishing == 1 ? '等鱼上钩 '+fishing_min +':' + fishing_sec : '收鱼啦')}}</view>
+    <view class="fishing-bait">{{fishing == 0 ? '点击下饵':(fishing == 1 ? '等鱼上钩 '+fishing_min +':' + fishing_sec : '收鱼啦~')}}</view>
     <!--<wxc-progress class="fishing-bait" percent="60" stroke-width="24" radius="12" active-color="#00A0E9" background-color="#fff"></wxc-progress>-->
     <image src="../../images/fishing-float.png" class="fishing-float"></image>
   </view>
