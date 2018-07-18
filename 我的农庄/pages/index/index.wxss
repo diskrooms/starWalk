@@ -736,6 +736,7 @@
   box-shadow: 0 2px 3px #333,
               0 0 2px #000;
   z-index: 200;
+  overflow: visible;
 }
 .canvas-content{
   position: absolute;

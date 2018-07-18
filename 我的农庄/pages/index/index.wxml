@@ -84,9 +84,10 @@
             <view class="canvas-item-text" style="-webkit-transform: rotate({{item.turn}});transform: rotate({{item.turn}})">{{item.name}}</view>
         </view>
       </view>
-    </view>
-    <view bindtap="getAward" class="canvas-btn {{awardBtnDisabled}}">转</view>-->
-    <canvas style="width: 300px; height: 300px;" class="canvas-element" canvas-id="awardCanvas" bindtap="getAward"></canvas>
+    </view>-->
+      
+    <view bindtap="getAward" class="canvas-btn {{awardBtnDisabled}}">转</view>
+    <canvas style="width: 300px; height: 300px;" class="canvas-element" canvas-id="awardCanvas" animation="{{awardAnimationData}}"></canvas>
     
     <view class="close" bindtap="closeAward"></view>
 	</view>
