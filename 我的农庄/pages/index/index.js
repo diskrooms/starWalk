@@ -314,7 +314,7 @@ Page({
     html = [],
     turnNum = 1 / len  // 文字旋转 turn 值
     const ctx = wx.createCanvasContext('awardCanvas')
-    const color = ['#9C67FF', '#EC5858', '#34CCFD', '#FFC000', '#9C67FF', '#EC5858', '#34CCFD', '#FFC000']
+    const color = ['#9C67FF', '#767070', '#34CCFD', '#FFC000', '#9C67FF', '#767070', '#34CCFD', '#FFC000']
 
     for (var i = 0; i < len; i++) {
       html.push({ turn: i * turnNum + 'turn', lineTurn: i * turnNum + turnNum / 2 + 'turn', name: this.data.awards[i].name }); 
@@ -327,12 +327,24 @@ Page({
       ctx.arc(150, 150, 150, curDegree, nextDegree)
       ctx.fill();     
       //画指针
-      ctx.beginPath();
+      ctx.beginPath();  //先画箭头
+      ctx.moveTo(150, 60)
+      ctx.setFillStyle('#d52127')
+      ctx.arc(150, 60, 100, Math.PI / 2 - 0.1, Math.PI / 2 + 0.1)
+      ctx.fill()
+
+      ctx.beginPath();  //再画大圆
       ctx.moveTo(150, 150)
+      ctx.setFillStyle('#2a2a29')
+      ctx.arc(150, 150, 20, 0, 2 * Math.PI)
+      ctx.fill()
+
+      ctx.beginPath();  //最后画小圆
+      ctx.moveTo(150, 150)
+      ctx.setFillStyle('#434243')
       ctx.arc(150,150,10,0,2*Math.PI)
       ctx.fill()
 
-      
     }
     //ctx.drawImage('../../images/award/pointer.png', 134, 52, 16, 57) //模糊 效果不佳
     ctx.draw()
