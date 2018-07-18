@@ -208,6 +208,7 @@ App({
     apiDomain: 'https://coder.51tui.vip',     //api主域名
     showAuthPanel: 0
   },
+
   onShareAppMessage: function (params, callback) {
     var that = this
     //console.log(params)
@@ -216,18 +217,17 @@ App({
       success: function (res) {
       }
     })
-
     return {
       title: util.share()['share_title'],
       path: '/pages/index/index?above=' + that.globalData.userInfo.id,
       imageUrl: util.share()['share_image'],
       success: function (res) {
-        //console.log(res) 分享到群有tickets 分享到个人没有tickets
+        //console.log(res) //分享到群有tickets 分享到个人没有tickets
         var shareTickets = res.shareTickets;
         if (shareTickets == '' || shareTickets == undefined || shareTickets == null || shareTickets.length == 0) {
           //分享到个人
           //console.log('没有获取到tickets,分享给个人或者获取失败') 
-          alert('邀请成功');
+          //alert('邀请成功');
           setTimeout(() => {
             if (typeof callback == 'function') {
               callback()
@@ -241,7 +241,7 @@ App({
             success: function (res) {
               //console.log(res)
               wx.request({
-                url: that.globalData.apiDomain + '/my/shareLite',
+                url: that.globalData.apiDomain + '/my/share',
                 data: {
                   token: wx.getStorageSync('token'),
                   encryptedData_: res.encryptedData,

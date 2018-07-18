@@ -32,6 +32,9 @@ Page({
     bag_status:0,                   //背包打开状态
     shops_status:0,                 //商店打开状态
     coins_shops_status:0,           //货币商店打开状态
+    warehouse_status:0,             //磨坊仓储状态 
+    warehouse_data:null,            //磨坊仓储数据
+    award_status:0,                 //抽奖面板状态
     coins_buy_lock:0,               //货币商店购买锁  为false时才可以点击购买
     lay_status:0,                   //遮罩层状态
 
@@ -113,6 +116,21 @@ Page({
 
     /* 渔获丰收动画 */
     
+    /* 每日奖励数据 */
+    awards: [
+      { 'name': '10个金币', 'type':1, 'count':10 },
+      { 'name': '20个金币', 'type': 1, 'count': 20 },
+      { 'name': '5颗钻石', 'type': 2, 'count': 5 },
+      { 'name': '5点智慧', 'type': 3, 'count': 5 },
+      { 'name': '2张入学卡', 'type': 4, 'count': 2 },
+      { 'name': '2张过关卡', 'type': 5, 'count': 2 },
+      { 'name': '2点智慧', 'type': 3, 'count': 2 },
+      { 'name': '2颗钻石', 'type': 2, 'count': 2 }
+    ],
+    awardBtnDisabled:'',            //抽奖按钮状态
+    awardsList:[],                  //转盘分区数据
+    awardAnimationData:{},          //转盘动画
+    awardDegree:0,                  //转盘旋转角度
   },
   //事件处理函数
   bindViewTap: function() {
@@ -290,9 +308,105 @@ Page({
   },
 
 
-  //每日奖励
+  //每日奖励-打开转盘
   award:function(e){
+    var len = this.data.awards.length,
+    html = [],
+    turnNum = 1 / len  // 文字旋转 turn 值
+    const ctx = wx.createCanvasContext('awardCanvas')
+    const color = ['#9C67FF', '#767070', '#34CCFD', '#FFC000', '#9C67FF', '#767070', '#34CCFD', '#FFC000']
+
+    for (var i = 0; i < len; i++) {
+      html.push({ turn: i * turnNum + 'turn', lineTurn: i * turnNum + turnNum / 2 + 'turn', name: this.data.awards[i].name }); 
+      //画扇形
+      var curDegree = (i * turnNum + turnNum / 2) * 2 * Math.PI - Math.PI/2
+      var nextDegree = ((i + 1) * turnNum + turnNum / 2) * 2 * Math.PI - Math.PI / 2
+      ctx.beginPath();
+      ctx.moveTo(150, 150)
+      ctx.setFillStyle(color[i])
+      ctx.arc(150, 150, 150, curDegree, nextDegree)
+      ctx.fill();     
+      //画指针
+      ctx.beginPath();  //先画箭头
+      ctx.moveTo(150, 60)
+      ctx.setFillStyle('#d52127')
+      ctx.arc(150, 60, 100, Math.PI / 2 - 0.1, Math.PI / 2 + 0.1)
+      ctx.fill()
+
+      ctx.beginPath();  //再画大圆
+      ctx.moveTo(150, 150)
+      ctx.setFillStyle('#2a2a29')
+      ctx.arc(150, 150, 20, 0, 2 * Math.PI)
+      ctx.fill()
+
+      ctx.beginPath();  //最后画小圆
+      ctx.moveTo(150, 150)
+      ctx.setFillStyle('#434243')
+      ctx.arc(150,150,10,0,2*Math.PI)
+      ctx.fill()
+
+    }
+    //ctx.drawImage('../../images/award/pointer.png', 134, 52, 16, 57) //模糊 效果不佳
+    ctx.draw()
+    this.setData({ 'award_status': 1, 'lay_status': 1,'awardsList':html})
+  },
+  //每日奖励-点击抽奖-每日5次抽奖
+  getAward: function () {
+    var data = { 'token': wx.getStorageSync('token'), 'app': 2 }
+    util.request(app.globalData.apiDomain + '/my/hasAward', 'POST', data, (res) => {
+        if(res.data){
+          var awardIndex = Math.random() * this.data.awards.length >>> 0;   //>>>0 右移0位等同于取整 parseInt
+          //console.log(awardIndex)
+          var runNum = 8
+          var degree = this.data.awardDegree || 0;
+          degree = degree + (360 - degree % 360) + (360 * runNum - awardIndex * (360 / this.data.awards.length))
+          var animationRun = wx.createAnimation({
+            duration: 4000,
+            timingFunction: 'ease'
+          })
+          //that.animationRun = animationRun
+          animationRun.rotate(degree).step()
+          this.setData({
+            awardAnimationData: animationRun.export(),
+            awardBtnDisabled: 'disabled',
+            awardDegree: degree
+          })
+          //抽奖结果提示
+          setTimeout(() => {
+            var data = { 'token': wx.getStorageSync('token'), 'app': 2, 'award_index': awardIndex }
+            util.request(app.globalData.apiDomain + '/my/getAward', 'POST', data, (res) => {
+              util.alert('恭喜获得' + (this.data.awards[awardIndex].name))
+              var _type = this.data.awards[awardIndex].type
+              var _count = this.data.awards[awardIndex].count
+              if(_type == 1){
+                app.globalData.userInfo.coins = parseInt(app.globalData.userInfo.coins)  + _count 
+              } else if(_type == 2){
+                app.globalData.userInfo.diamond = parseInt(app.globalData.userInfo.diamond)  + _count 
+              } else if (_type == 3){
+                app.globalData.userInfo.smart = parseInt(app.globalData.userInfo.smart)  + _count 
+              } else if (_type == 4){
+                app.globalData.userInfo.ticket = parseInt(app.globalData.userInfo.ticket)  + _count 
+              } else if(_type == 5){
+                app.globalData.userInfo.card = parseInt(app.globalData.userInfo.card) + _count 
+              } else {
+                return;
+              }
+              this.setData({
+                userInfo: app.globalData.userInfo,
+                awardBtnDisabled: ''
+              })
+            })
+          }, 4000);
+        } else {
+          util.alert('今天的抽奖机会用完了，明天再来吧~')
+        }
+    })
+
     
+  },
+  //关闭抽奖
+  closeAward: function () {
+    this.setData({ 'award_status': 0, 'lay_status': 0 })
   },
 
   //跳转到好友页
@@ -773,6 +887,7 @@ Page({
     this.setData({ 'fish_res': 0, 'lay_status': 0 })
   },
 
+  //TODO 放鱼加经验
   abandonFish:function(){
     this.closeFish();
     setTimeout(()=>(
@@ -783,16 +898,84 @@ Page({
   //抓鱼
   catchFish:function(){
     this.closeFish();
-    var data = { 'token': wx.getStorageSync('token'), 'app': 2,'fish_size':this.data.fish_size}
+    var data = { 'token': wx.getStorageSync('token'), 'app': 2, 'fish_size': this.data.fish_size, 'fish_type': this.data.fish_type}
     util.request(app.globalData.apiDomain + '/my/catchFish', 'POST', data, this._catch_fish_callback)
   },
 
-  //抓鱼回调
+  //抓鱼回调 TODO 升级动画
   _catch_fish_callback:function(res){
-      if(res.data.status > 0){
-
+      if(res.data.status < 0){
+        var _coins = res.data.msg[1]
+        app.globalData.userInfo.coins = _coins
+        var _userInfo = app.globalData.userInfo
+        util.alert(res.data.msg[0] +',金币 -5')
+        this.setData({ 'userInfo': _userInfo})
       } else {
+        var _energy = res.data.msg[1]
+        var _level = res.data.msg[2]
+        var _cur_energy = res.data.msg[3]
+        var _max = res.data.msg[4]
+        app.globalData.userInfo.energy = _energy
+        app.globalData.userInfo.level = _level
+        app.globalData.userInfo.cur_energy = _cur_energy
+        app.globalData.userInfo.max = _max
+        var _userInfo = app.globalData.userInfo
+        this.setData({ 'userInfo': _userInfo })
         util.alert(res.data.msg[0])
       }
-  }
+  },
+  
+  //打开磨坊仓储
+  openWarehouse:function(){
+    var data = { 'token': wx.getStorageSync('token'), 'app': 2}
+    util.request(app.globalData.apiDomain + '/my/warehouse', 'POST', data, (res)=>{
+      this.setData({ 'warehouse_data':res.data.msg[1],'warehouse_status': 1, 'lay_status': 1 })
+    })
+    
+  },
+  //关闭仓储
+  closeWarehouse:function(){
+    this.setData({ 'warehouse_status': 0, 'lay_status': 0 })
+  },
+  //仓储减少售卖
+  minus:function(e){
+    var _index = e.currentTarget.dataset.index
+    var warehouse_data = this.data.warehouse_data
+    var sell_count = warehouse_data[_index]['item_sell_count']
+    sell_count = (sell_count > 1) ? sell_count - 1 : 1
+    warehouse_data[_index]['item_sell_count'] = sell_count
+    this.setData({'warehouse_data':warehouse_data})
+  },
+  //仓储增加售卖
+  plus: function (e) {
+    var _index = e.currentTarget.dataset.index
+    var warehouse_data = this.data.warehouse_data
+    var sell_count = warehouse_data[_index]['item_sell_count']
+    var item_count = warehouse_data[_index]['item_count']
+    sell_count = (sell_count < item_count) ? sell_count + 1 : item_count
+    warehouse_data[_index]['item_sell_count'] = sell_count
+    this.setData({ 'warehouse_data': warehouse_data })
+  },
+  //仓储售卖
+  sell:function(e){
+    var _index = e.currentTarget.dataset.index
+    var id = this.data.warehouse_data[_index]['id']
+    var sell_count = this.data.warehouse_data[_index]['item_sell_count']
+    var data = { 'token': wx.getStorageSync('token'), 'app': 2,'id':id,'sell_count':sell_count }
+    util.request(app.globalData.apiDomain + '/my/sell', 'POST', data, (res) => {
+      var _coins = res.data.msg[2]
+      app.globalData.userInfo.coins = _coins
+      var _userInfo = app.globalData.userInfo
+      util.alert('金币+' + res.data.msg[3])
+      this.setData({ 'warehouse_data': res.data.msg[1],'userInfo': _userInfo })
+    })
+  },
+
+  //去学校上学
+  goToSchool:function(){
+    wx.navigateTo({
+      url: '/pages/school/index',
+    })
+  },
+  
 })

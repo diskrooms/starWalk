@@ -1,0 +1,109 @@
+<!--index.wxml-->
+<view class="container {{!showAuthPanel ? 'login_con' : 'nologin_con'}}">
+  <view class="login" wx:if="{{!showAuthPanel}}">
+    <view class="container-header flex">
+      <view class="userinfo left">
+        <text class="userinfo-id px-26">ID:{{userInfo.id}}</text>
+      </view>
+      <view class="userinfo-ticket flex flex-column px-26 left">
+        <view>挑战机会  <text class="c-yellow">{{userInfo.ticket}}</text> 次</view>
+        <view>复活卡数  <text class="c-yellow">{{userInfo.card}}</text> 张</view>
+      </view>
+      <view class="userCoins right text-align-center">
+        <image src="../../images/ui/coin.png" class="coins"></image>
+        <view class="count">{{userInfo.coins}}</view>
+      </view>
+      <view class="userCoins right text-align-center">
+        <image src="../../images/ui/diamond-x2.png" class="coins"></image>
+        <view class="count">{{userInfo.diamond}}</view>
+      </view>
+      <view class="userCoins right text-align-center">
+        <image src="../../images/ui/smart-x2.png" class="coins"></image>
+        <view class="count">{{userInfo.smart}}</view>
+      </view>
+    </view>
+
+    <view class="container-content flex flex-column">
+       <view class='flex flex-row test'>
+          <view class="text-align-center item wen" bindtap="start" data-cate="1">
+              <view class="image_container"><image src="../../images/school/wen.png" class="class_icon"></image></view>
+              <view class="class_name px-32">四书五经</view>
+          </view>
+          <view class="text-align-center item shi" bindtap="start" data-cate="2">
+              <view class="image_container"><image src="../../images/school/shi.png" class="class_icon"></image></view>
+              <view class="class_name px-32">以史为鉴</view>
+          </view>
+
+          <view class="text-align-center item zhe" bindtap="start" data-cate="3">
+              <view class="image_container"><image src="../../images/school/zhe.png" class="class_icon"></image></view>
+              <view class="class_name px-32">古哲先贤</view>
+          </view>
+          <view class="text-align-center item jing" bindtap="start" data-cate="4">
+              <view class="image_container"><image src="../../images/school/jing.png" class="class_icon"></image></view>
+              <view class="class_name px-32">经济适用</view>
+          </view>
+        </view>
+       <view class="flex flex-row test">
+          
+          <view class="text-align-center item computer" bindtap="start" data-cate="5">
+              <view class="image_container"><image src="../../images/school/computer.png" class="class_icon"></image></view>
+              <view class="class_name px-32">软件开发</view>
+          </view>
+          <view class="text-align-center item nature" bindtap="start" data-cate="6">
+              <view class="image_container"><image src="../../images/school/nature.png" class="class_icon"></image></view>
+              <view class="class_name px-32">自然科学</view>
+          </view>
+          <view class="text-align-center item doubt" bindtap="goToSeedShop" data-cate="6">
+              <view class="image_container"><image src="../../images/school/doubt.png" class="class_icon"></image></view>
+              <view class="class_name px-32">即将上线</view>
+          </view>
+          <view class="text-align-center item doubt" bindtap="goToSeedShop" data-cate="6">
+              <view class="image_container"><image src="../../images/school/doubt.png" class="class_icon"></image></view>
+              <view class="class_name px-32">即将上线</view>
+          </view>
+        </view>
+
+      </view>
+    </view>
+
+  <view wx:if="{{showAuthPanel}}" class="nologin">
+    <view class="container-content text-align-center">
+      <button class="start" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">开考了</button>
+      <!--<view class="remains">剩余挑战次数:{{userInfo.ticket}}次</view>
+      <button open-type="share" class="invite px-32">分享给小伙伴，一起来挑战</button>-->
+    </view>
+  </view>
+</view>
+<!-- 分享提示框 -->
+<view class="modal-mask" bindtap="hideModal" bindtap='cancelShowShare' wx:if="{{showSharePanel}}"></view>
+<view class="modal-dialog" wx:if="{{showSharePanel}}">
+  <view class="modal-title">挑战机会不足</view>
+  <view class="modal-content">
+    <button class="submit" bindtap="buyTicket" data-price='200' data-title='购买10次挑战次数'>打赏￥2元(+10次挑战机会)</button>
+    <button class="submit share" open-type="share">邀请好友(+1挑战机会)</button>
+  </view>
+
+</view>
+
+<view class="modal-mask" bindtap="hideModal" bindtap='cancelSignShare' wx:if="{{showSignPanel}}"></view>
+<view class="modal-dialog day-sign" wx:if="{{showSignPanel}}">
+  <image src="../../images/day.png" class="modal-title" mode="widthFix"></image>
+  <view class="modal-content text-align-center">
+    <view class="flex flex-row {{showSignData.length == 1 ? 'modal-container' :'' }}">
+
+      <view class="flex-item text-align-center" wx:for="{{showSignData}}">
+        <image src="../../images/{{item.icon}}.png"></image>
+        <view class="px-30">{{item.name}} x{{item.count}}</view>
+      </view>
+
+    </view>
+    <image src="../../images/day-button.png" class="submit" bindtap="daySignGet"></image>
+  </view>
+
+</view>
+
+<view class="modal-sign-tip"  bindtap='cancelSignTip' wx:if="{{showSignTip}}">
+    <image src="../../images/signTip.png" ></image>
+</view>
+
+
