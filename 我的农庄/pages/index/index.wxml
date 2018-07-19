@@ -35,7 +35,7 @@
   </view>
   <!-- 鱼竿 -->
   <view class="fishing" bindtap="fishing">
-    <view class="fishing-bait">{{fishing == 0 ? '点击下饵':(fishing == 1 ? '等鱼上钩 '+fishing_min +':' + fishing_sec : '收鱼啦')}}</view>
+    <view class="fishing-bait">{{fishing == 0 ? '点击下饵':(fishing == 1 ? '等鱼上钩 '+fishing_min +':' + fishing_sec : '收鱼啦~')}}</view>
     <!--<wxc-progress class="fishing-bait" percent="60" stroke-width="24" radius="12" active-color="#00A0E9" background-color="#fff"></wxc-progress>-->
     <image src="../../images/fishing-float.png" class="fishing-float"></image>
   </view>
@@ -84,9 +84,10 @@
             <view class="canvas-item-text" style="-webkit-transform: rotate({{item.turn}});transform: rotate({{item.turn}})">{{item.name}}</view>
         </view>
       </view>
-    </view>
-    <view bindtap="getAward" class="canvas-btn {{awardBtnDisabled}}">转</view>-->
-    <canvas style="width: 300px; height: 300px;" class="canvas-element" canvas-id="awardCanvas" bindtap="getAward"></canvas>
+    </view>-->
+      
+    <view bindtap="getAward" class="canvas-btn {{awardBtnDisabled}}">转</view>
+    <canvas style="width: 300px; height: 300px;" class="canvas-element" canvas-id="awardCanvas" animation="{{awardAnimationData}}"></canvas>
     
     <view class="close" bindtap="closeAward"></view>
 	</view>

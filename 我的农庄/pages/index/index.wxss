@@ -190,6 +190,8 @@
   background-color: #00A0E9;
   border-radius: 25rpx;
   padding:5rpx 10rpx;
+  width:80rpx;
+  text-align: center;
 }
 .fishing-float{
   width:100rpx;
@@ -734,6 +736,7 @@
   box-shadow: 0 2px 3px #333,
               0 0 2px #000;
   z-index: 200;
+  overflow: visible;
 }
 .canvas-content{
   position: absolute;

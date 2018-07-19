@@ -327,7 +327,7 @@ Page({
       ctx.arc(150, 150, 150, curDegree, nextDegree)
       ctx.fill();     
       //画指针
-      ctx.beginPath();  //先画箭头
+      /*ctx.beginPath();  //先画箭头
       ctx.moveTo(150, 60)
       ctx.setFillStyle('#d52127')
       ctx.arc(150, 60, 100, Math.PI / 2 - 0.1, Math.PI / 2 + 0.1)
@@ -343,7 +343,7 @@ Page({
       ctx.moveTo(150, 150)
       ctx.setFillStyle('#434243')
       ctx.arc(150,150,10,0,2*Math.PI)
-      ctx.fill()
+      ctx.fill()*/
 
     }
     //ctx.drawImage('../../images/award/pointer.png', 134, 52, 16, 57) //模糊 效果不佳
@@ -571,6 +571,7 @@ Page({
   },
   //购买种子
   buy:function(e){  
+    console.log(e)
      var id = e.currentTarget.dataset.id;           //物品id
      var level = e.currentTarget.dataset.level;
      var price = e.currentTarget.dataset.price;
