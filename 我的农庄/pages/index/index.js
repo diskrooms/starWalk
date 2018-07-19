@@ -4,6 +4,10 @@ const app = getApp()
 const util = require('../../utils/util.js')
 var MD5 = require('../../utils/md5.js');
 
+//wxDraw 动画库调用
+var wxDraw = require("../../utils/wxdraw.min.js").wxDraw;
+var Shape = require("../../utils/wxdraw.min.js").Shape;
+var sectors = []
 //丰收动画参数
 var ctx = null;   //丰收动画canvas实例
 var factor = {
@@ -131,6 +135,8 @@ Page({
     awardsList:[],                  //转盘分区数据
     awardAnimationData:{},          //转盘动画
     awardDegree:0,                  //转盘旋转角度
+
+    //sector:[]                       //存放wxDraw生成的扇形对象
   },
   //事件处理函数
   bindViewTap: function() {
@@ -307,27 +313,36 @@ Page({
     
   },
 
-
   //每日奖励-打开转盘
   award:function(e){
     var len = this.data.awards.length,
     html = [],
     turnNum = 1 / len  // 文字旋转 turn 值
-    const ctx = wx.createCanvasContext('awardCanvas')
-    const color = ['#9C67FF', '#767070', '#34CCFD', '#FFC000', '#9C67FF', '#767070', '#34CCFD', '#FFC000']
-
+    //const ctx = wx.createCanvasContext('awardCanvas')
+    //const color = ['#9C67FF', '#767070', '#34CCFD', '#FFC000', '#9C67FF', '#767070', '#34CCFD', '#FFC000']
+    //this.wxDraw = new wxDraw(ctx, 0, 0, 300, 300)
     for (var i = 0; i < len; i++) {
       html.push({ turn: i * turnNum + 'turn', lineTurn: i * turnNum + turnNum / 2 + 'turn', name: this.data.awards[i].name }); 
       //画扇形
-      var curDegree = (i * turnNum + turnNum / 2) * 2 * Math.PI - Math.PI/2
+      /*var curDegree = (i * turnNum + turnNum / 2) * 2 * Math.PI - Math.PI/2
       var nextDegree = ((i + 1) * turnNum + turnNum / 2) * 2 * Math.PI - Math.PI / 2
       ctx.beginPath();
       ctx.moveTo(150, 150)
       ctx.setFillStyle(color[i])
       ctx.arc(150, 150, 150, curDegree, nextDegree)
-      ctx.fill();     
+      ctx.fill()
+      var sector = new Shape('circle', {
+          x: 150, y: 150, r: 150, sA: curDegree, eA: nextDegree,
+          fillStyle: color[i],
+          strokeStyle: "#CC333F", rotate: 0, lineWidth: 0, needGra: 'line',
+          closePath:true
+        },
+        'fill', true)
+      sectors.push(sector)
+      this.wxDraw.add(sector)
+
       //画指针
-      /*ctx.beginPath();  //先画箭头
+      ctx.beginPath();  //先画箭头
       ctx.moveTo(150, 60)
       ctx.setFillStyle('#d52127')
       ctx.arc(150, 60, 100, Math.PI / 2 - 0.1, Math.PI / 2 + 0.1)
@@ -347,8 +362,19 @@ Page({
 
     }
     //ctx.drawImage('../../images/award/pointer.png', 134, 52, 16, 57) //模糊 效果不佳
-    ctx.draw()
-    this.setData({ 'award_status': 1, 'lay_status': 1,'awardsList':html})
+    /*ctx.setFillStyle('#fff')
+    ctx.setFontSize(16)
+    for(var i = 0;i<len;i++){
+      ctx.save()
+      var metrics = ctx.measureText(this.data.awards[i].name)
+      var hwidth = metrics.width / 2;     //字体宽度
+      ctx.translate(150 + 100 * Math.sin(i * turnNum * 2 * Math.PI) , 150 - 100 * Math.cos(i * turnNum * 2 * Math.PI)) ;                 //以字体中间为旋转点 计算出坐标
+      ctx.rotate(i * turnNum * 2 * Math.PI);
+      ctx.fillText(this.data.awards[i].name, -hwidth, -10);   //metrics不返回高度值 预估10
+      ctx.restore()
+    }
+    ctx.draw()*/
+    this.setData({ 'award_status': 1, 'lay_status': 1, 'awardsList': html})
   },
 
   //每日奖励-点击抽奖-每日5次抽奖
@@ -356,27 +382,35 @@ Page({
     var data = { 'token': wx.getStorageSync('token'), 'app': 2 }
     util.request(app.globalData.apiDomain + '/my/hasAward', 'POST', data, (res) => {
         if(res.data){
+          //动画1
           var awardIndex = Math.random() * this.data.awards.length >>> 0;   //>>>0 右移0位等同于取整 parseInt
-          //console.log(awardIndex)
-          var runNum = 8
+          var runNum = this.data.awards.length
           var degree = this.data.awardDegree || 0;
-          degree = degree + (360 - degree % 360) + (360 * runNum - awardIndex * (360 / this.data.awards.length))
+          degree = degree + (360 - degree % 360) + (360 * runNum - awardIndex * (360 / runNum))
+          //console.log(degree)
           var animationRun = wx.createAnimation({
             duration: 4000,
             timingFunction: 'ease'
           })
-          //that.animationRun = animationRun
           animationRun.rotate(degree).step()
+          
           this.setData({
             awardAnimationData: animationRun.export(),
             awardBtnDisabled: 'disabled',
             awardDegree: degree
           })
+          //动画2
+          /*for(var i in sectors){
+            sectors[i].animate("rotate", degree*Math.PI/180, { duration: 4000 }).start();
+          }*/
+
           //抽奖结果提示
           setTimeout(() => {
             var data = { 'token': wx.getStorageSync('token'), 'app': 2, 'award_index': awardIndex }
             util.request(app.globalData.apiDomain + '/my/getAward', 'POST', data, (res) => {
               if(res.data.status > 0){
+                
+                
                 util.alert('恭喜获得' + (this.data.awards[awardIndex].name))
                 var _type = this.data.awards[awardIndex].type
                 var _count = this.data.awards[awardIndex].count
