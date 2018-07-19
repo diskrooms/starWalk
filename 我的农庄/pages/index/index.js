@@ -350,6 +350,7 @@ Page({
     ctx.draw()
     this.setData({ 'award_status': 1, 'lay_status': 1,'awardsList':html})
   },
+
   //每日奖励-点击抽奖-每日5次抽奖
   getAward: function () {
     var data = { 'token': wx.getStorageSync('token'), 'app': 2 }
@@ -375,28 +376,33 @@ Page({
           setTimeout(() => {
             var data = { 'token': wx.getStorageSync('token'), 'app': 2, 'award_index': awardIndex }
             util.request(app.globalData.apiDomain + '/my/getAward', 'POST', data, (res) => {
-              util.alert('恭喜获得' + (this.data.awards[awardIndex].name))
-              var _type = this.data.awards[awardIndex].type
-              var _count = this.data.awards[awardIndex].count
-              if(_type == 1){
-                app.globalData.userInfo.coins = parseInt(app.globalData.userInfo.coins)  + _count 
-              } else if(_type == 2){
-                app.globalData.userInfo.diamond = parseInt(app.globalData.userInfo.diamond)  + _count 
-              } else if (_type == 3){
-                app.globalData.userInfo.smart = parseInt(app.globalData.userInfo.smart)  + _count 
-              } else if (_type == 4){
-                app.globalData.userInfo.ticket = parseInt(app.globalData.userInfo.ticket)  + _count 
-              } else if(_type == 5){
-                app.globalData.userInfo.card = parseInt(app.globalData.userInfo.card) + _count 
+              if(res.data.status > 0){
+                util.alert('恭喜获得' + (this.data.awards[awardIndex].name))
+                var _type = this.data.awards[awardIndex].type
+                var _count = this.data.awards[awardIndex].count
+                if(_type == 1){
+                  app.globalData.userInfo.coins = parseInt(app.globalData.userInfo.coins)  + _count 
+                } else if(_type == 2){
+                  app.globalData.userInfo.diamond = parseInt(app.globalData.userInfo.diamond)  + _count 
+                } else if (_type == 3){
+                  app.globalData.userInfo.smart = parseInt(app.globalData.userInfo.smart)  + _count 
+                } else if (_type == 4){
+                  app.globalData.userInfo.ticket = parseInt(app.globalData.userInfo.ticket)  + _count 
+                } else if(_type == 5){
+                  app.globalData.userInfo.card = parseInt(app.globalData.userInfo.card) + _count 
+                } else {
+                  return;
+                }
+                this.setData({
+                  userInfo: app.globalData.userInfo,
+                  awardBtnDisabled: ''
+                })
               } else {
-                return;
+                util.alert(res.data.msg[0]);
               }
-              this.setData({
-                userInfo: app.globalData.userInfo,
-                awardBtnDisabled: ''
-              })
             })
           }, 4000);
+        
         } else {
           util.alert('今天的抽奖机会用完了，明天再来吧~')
         }
