@@ -5,10 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    'imagePath': '../../images/ice.png',
+    'imagePath': '../../images/sheep.svg',
     'canvasPixelsData':[],
-    'imageWidth':69,
-    'imageHeight':122,
+    'imageWidth':100,
+    'imageHeight':94,
     'count':0,
     'pointerStack':[]     //点堆栈
   },
