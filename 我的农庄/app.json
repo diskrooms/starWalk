@@ -5,7 +5,8 @@
     "pages/friends/index",
     "pages/school/index",
     "pages/school/study",
-    "pages/index/test"
+    "pages/index/test",
+    "pages/index/test2"
   ],
   "window": {
     "backgroundTextStyle": "light",

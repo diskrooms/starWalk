@@ -749,7 +749,7 @@
   border-radius: inherit;
   background-clip: padding-box;
   /*background-color: #ffcb3f;*/
-  overflow: hidden;
+  overflow: hidden
 }
 .canvas-content::before{
   content: "";
@@ -762,7 +762,6 @@
   background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/award-bg.png') 0 0 no-repeat;
   -webkit-transform: rotate(22.5deg);
   transform: rotate(22.5deg);
-  overflow: hidden;
 }
 .canvas-element{
   position: relative;
