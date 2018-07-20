@@ -9,7 +9,8 @@ Page({
     'canvasPixelsData':[],
     'imageWidth':69,
     'imageHeight':122,
-    'count':0
+    'count':0,
+    'pointerStack':[]     //点堆栈
   },
 
   /**
@@ -96,9 +97,13 @@ Page({
       return
     }
     //this._fill(e.detail.x,e.detail.y,[255,0,0,255],[0,0,0,255])
-    var temp = this._findXPoints(e.detail.x, e.detail.y, [0, 0, 0, 255]);
+    //var temp = this._findXPoints(e.detail.x, e.detail.y, [0, 0, 0, 255]);
     //console.log(temp)
-    this._fillOneLine(temp[0], temp[1], e.detail.y, [255, 0, 0, 255])
+    this._fillOneLine(e.detail.x, e.detail.y, [255, 0, 0, 255], [0, 0, 0, 255])
+    while(this.data.pointerStack.length > 0){
+      var _temp = this.data.pointerStack.shift()
+      this._fillOneLine(_temp[0], _temp[1], [255, 0, 0, 255], [0, 0, 0, 255])
+    }
   },
 
   //初始化图像数据
@@ -170,25 +175,40 @@ Page({
 
   /**
    * 填充一条线
-   * x1 线段与图形左交点x坐标
-   * x2 线段与图形右交点x坐标
+   * x  线段与图形左交点x坐标
    * y  线段y坐标
    * fillColor 一个像素点的图像数据 一维数组
    */
-  _fillOneLine(x1, x2, y, fillColor){
-      var pointsCount = x2 - x1;
-      fillColor = this._concat(fillColor, pointsCount)
-      var data = new Uint8ClampedArray(fillColor)
-      wx.canvasPutImageData({
-        canvasId: 'myCanvas',
-        x: x1,
-        y: y,
-        width: x2-x1,
-        height:1,
-        data: data,
-        success(res) { },
-        complete(res) { }
-      })
+  _fillOneLine(x, y, fillColor,boundColor){
+    var left = 0
+    var right = 0
+    for (var i = 1; ; i++) {
+      if (this._getPixel(this.data.canvasPixelsData, this.data.imageWidth, x + i, y).toString() == boundColor.toString()) {
+        right = x + i;
+        break;
+      }
+    }
+    for (var i = 1; ; i++) {
+      if (this._getPixel(this.data.canvasPixelsData, this.data.imageWidth, x - i, y).toString() == boundColor.toString()) {
+        left = x - i + 1;
+        break;
+      }
+    }
+
+    var pointsCount = right - left;
+    fillColor = this._concat(fillColor, pointsCount)
+    var data = new Uint8ClampedArray(fillColor)
+    wx.canvasPutImageData({
+      canvasId: 'myCanvas',
+      x: left,
+      y: y,
+      width: right - left,
+      height:1,
+      data: data,
+      success(res) { },
+      complete(res) { }
+    })
+    this._pushToStack(left, right, y, fillColor, boundColor)
   },
 
   /**
@@ -255,8 +275,49 @@ Page({
 
   //根据线段的左右两个端点找到关联点并推入栈
   _pushToStack(x1, x2, y, fillColor, boundColor){
+    var left_top = []
+    var right_top = []
+    var left_bottom = []
+    var right_bottom = []
     for(var i = 0;;i++){
-      
+      var left_top = this._getPixel(this.data.canvasPixelsData, this.data.imageWidth, x1 + i, y - 1)
+      if (left_top.toString() == fillColor.toString()){
+        break
+      }
+      if (this._colorDataSwitch(left_top) == '#00000000'){
+        this.data.pointerStack.push([x1+i,y-1])
+        break
+      }
+    }
+    for (var i = 0; ; i++) {
+      var right_top = this._getPixel(this.data.canvasPixelsData, this.data.imageWidth, x2 - i, y - 1)
+      if (right_top.toString() == fillColor.toString()) {
+        break
+      }
+      if (this._colorDataSwitch(right_top) == '#00000000') {
+        this.data.pointerStack.push([x2 - i, y - 1])
+        break
+      }
+    }
+    for (var i = 0; ; i++) {
+      var left_bottom = this._getPixel(this.data.canvasPixelsData, this.data.imageWidth, x1 + i, y + 1)
+      if (left_bottom.toString() == fillColor.toString()) {
+        break
+      }
+      if (this._colorDataSwitch(left_bottom) == '#00000000') {
+        this.data.pointerStack.push([x1 + i, y + 1])
+        break
+      }
+    }
+    for (var i = 0; ; i++) {
+      var right_bottom = this._getPixel(this.data.canvasPixelsData, this.data.imageWidth, x2 - i, y + 1)
+      if (right_bottom.toString() == fillColor.toString()) {
+        break
+      }
+      if (this._colorDataSwitch(right_bottom) == '#00000000') {
+        this.data.pointerStack.push([x2 - i, y + 1])
+        break
+      }
     }
   }
   
