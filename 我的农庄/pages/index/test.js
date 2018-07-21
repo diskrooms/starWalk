@@ -5,12 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    'imagePath': '../../images/sheep.svg',
+    'imagePath': '../../images/sheep.png',
     'canvasPixelsData':[],
-    'imageWidth':100,
-    'imageHeight':94,
+    'imageWidth':69,
+    'imageHeight':122,
     'count':0,
-    'pointerStack':[]     //点堆栈
+    'pointerStack':[],      //点堆栈
+    'shiftPointerStack':[], //存放已弹出的栈元素
   },
 
   /**
@@ -96,14 +97,24 @@ Page({
     if(this.data.canvasPixelsData.length == 0){
       return
     }
-    //this._fill(e.detail.x,e.detail.y,[255,0,0,255],[0,0,0,255])
-    //var temp = this._findXPoints(e.detail.x, e.detail.y, [0, 0, 0, 255]);
-    //console.log(temp)
+
+    //this._fill(e.touches[0].x,e.touches[0].y,[255,0,0,255],[0,0,0,255])
+    //var temp = this._findXPoints(e.touches[0].x, e.touches[0].y, [0, 0, 0, 255]);
+    //e.detail.x = 30  //38
+    //e.detail.y = 41  //66
+    
     this._fillOneLine(e.detail.x, e.detail.y, [255, 0, 0, 255], [0, 0, 0, 255])
-    while(this.data.pointerStack.length > 0){
+    //console.log(this.data.pointerStack)
+    /*for (var i in this.data.pointerStack){
+      console.log(this._getPixel(this.data.canvasPixelsData, this.data.imageWidth, this.data.pointerStack[i][0], this.data.pointerStack[i][1]))
+    }*/
+
+    while (this.data.pointerStack.length > 0){
       var _temp = this.data.pointerStack.shift()
+      //this.data.shiftPointerStack.push(_temp)
       this._fillOneLine(_temp[0], _temp[1], [255, 0, 0, 255], [0, 0, 0, 255])
     }
+
   },
 
   //初始化图像数据
@@ -180,24 +191,36 @@ Page({
    * fillColor 一个像素点的图像数据 一维数组
    */
   _fillOneLine(x, y, fillColor,boundColor){
+    //console.log([x,y])
+    //检测是否已经填色 如果已经填色 直接返回
+    if (this._getPixel(this.data.canvasPixelsData, this.data.imageWidth, x, y).toString() == fillColor.toString()){
+      return
+    }
     var left = 0
     var right = 0
-    for (var i = 1; ; i++) {
+    var x = x >>> 0     //移动设备真机上为float类型 开发工具上为整形 注意区别 一定要取整
+    var y = y >>> 0
+    //var _console = [x,y]
+    //console.log(_console)
+    for (var i = 1; (x + i) < this.data.imageWidth ; i++) {
+      //console.log(this._getPixel(this.data.canvasPixelsData, this.data.imageWidth, x + i, y))
       if (this._getPixel(this.data.canvasPixelsData, this.data.imageWidth, x + i, y).toString() == boundColor.toString()) {
-        right = x + i;
-        break;
+        right = x + i    //TODO
+        //console.log('right')
+        break
       }
     }
-    for (var i = 1; ; i++) {
+    for (var i = 1; (x - i >= 0); i++) {
       if (this._getPixel(this.data.canvasPixelsData, this.data.imageWidth, x - i, y).toString() == boundColor.toString()) {
-        left = x - i + 1;
-        break;
+        left = x - i + 1
+        //console.log('left')
+        break
       }
     }
-
     var pointsCount = right - left;
-    fillColor = this._concat(fillColor, pointsCount)
-    var data = new Uint8ClampedArray(fillColor)
+    var _fillColor = this._concat(fillColor, pointsCount)
+    var data = new Uint8ClampedArray(_fillColor)
+    
     wx.canvasPutImageData({
       canvasId: 'myCanvas',
       x: left,
@@ -205,9 +228,17 @@ Page({
       width: right - left,
       height:1,
       data: data,
-      success(res) { },
-      complete(res) { }
+      success(res) { //console.log(res)
+      },
+      fail(res) { console.log(res)},
+      complete(res) { //console.log(res)
+      }
     })
+
+    //修改canvasPixelsData数据
+    var _tempCanvas = this._updateCanvasPixelsData(this.data.canvasPixelsData, this.data.imageWidth,left, right, y, fillColor)
+    this.setData({ 'canvasPixelsData': _tempCanvas})
+    //console.log([left, right, y])
     this._pushToStack(left, right, y, fillColor, boundColor)
   },
 
@@ -279,46 +310,131 @@ Page({
     var right_top = []
     var left_bottom = []
     var right_bottom = []
-    for(var i = 0;;i++){
+    //console.log(x1+'-'+x2+'-'+y)
+    for (var i = 0; i < 3; i++){    //3与边界宽度正比关联
       var left_top = this._getPixel(this.data.canvasPixelsData, this.data.imageWidth, x1 + i, y - 1)
       if (left_top.toString() == fillColor.toString()){
         break
       }
       if (this._colorDataSwitch(left_top) == '#00000000'){
-        this.data.pointerStack.push([x1+i,y-1])
+        var exist = 0
+        //栈中有相同元素 退出
+        for (var k = 0; k < this.data.pointerStack.length;k++){
+          if ([x1 + i, y - 1].toString() == this.data.pointerStack[k].toString()){
+            exist = 1
+            break;
+          }
+        }
+        for (var k = 0; k < this.data.shiftPointerStack.length;k++){
+          if ([x1 + i, y - 1].toString() == this.data.shiftPointerStack[k].toString()) {
+            exist = 1
+            break;
+          }
+        }
+        
+        if(exist == 0){
+          //console.log([x1 + i, y - 1])
+          this.data.pointerStack.push([x1+i,y-1])
+        }
         break
       }
     }
-    for (var i = 0; ; i++) {
+    for (var i = 0; i < 3 ; i++) {
       var right_top = this._getPixel(this.data.canvasPixelsData, this.data.imageWidth, x2 - i, y - 1)
       if (right_top.toString() == fillColor.toString()) {
         break
       }
       if (this._colorDataSwitch(right_top) == '#00000000') {
+        //栈中有相同元素 退出
+        /*for (var k = 0; k < this.data.pointerStack.length; k++) {
+          if ([x2 - i, y - 1].toString() == this.data.pointerStack[k].toString()) {
+            //console.log('exist')
+            exist = 1
+            break;
+          }
+        }
+        for (var k = 0; k < this.data.shiftPointerStack.length; k++) {
+          if ([x2 - i, y - 1].toString() == this.data.shiftPointerStack[k].toString()) {
+            //console.log('exist')
+            exist = 1
+            break;
+          }
+        }*/
+        //console.log([x2 - i, y - 1,i,x1,x2,y])
         this.data.pointerStack.push([x2 - i, y - 1])
         break
       }
     }
-    for (var i = 0; ; i++) {
+    for (var i = 0; i < 3; i++) { // 3与边界宽度正比关联
       var left_bottom = this._getPixel(this.data.canvasPixelsData, this.data.imageWidth, x1 + i, y + 1)
       if (left_bottom.toString() == fillColor.toString()) {
         break
       }
       if (this._colorDataSwitch(left_bottom) == '#00000000') {
+        //栈中有相同元素 退出
+        /*for (var k = 0; k < this.data.pointerStack.length; k++) {
+          if ([x1 + i, y + 1].toString() == this.data.pointerStack[k].toString()) {
+            //console.log('exist')
+            exist = 1
+            break;
+          }
+        }
+        for (var k = 0; k < this.data.shiftPointerStack.length; k++) {
+          if ([x1 + i, y + 1].toString() == this.data.shiftPointerStack[k].toString()) {
+            //console.log('exist')
+            exist = 1
+            break;
+          }
+        } */
         this.data.pointerStack.push([x1 + i, y + 1])
         break
       }
     }
-    for (var i = 0; ; i++) {
+    for (var i = 0; i < 3 ; i++) {
       var right_bottom = this._getPixel(this.data.canvasPixelsData, this.data.imageWidth, x2 - i, y + 1)
       if (right_bottom.toString() == fillColor.toString()) {
+        //console.log(right_bottom)
         break
       }
+      //console.log(right_bottom)
       if (this._colorDataSwitch(right_bottom) == '#00000000') {
+        //栈中有相同元素 退出
+        /*for (var k = 0; k < this.data.pointerStack.length; k++) {
+          if ([x2 - i, y + 1].toString() == this.data.pointerStack[k].toString()) {
+            //console.log('exist')
+            exist = 1
+            break;
+          }
+        }
+        for (var k = 0; k < this.data.shiftPointerStack.length; k++) {
+          if ([x2 - i, y + 1].toString() == this.data.shiftPointerStack[k].toString()) {
+            //console.log('exist')
+            exist = 1
+            break;
+          }
+        } */
         this.data.pointerStack.push([x2 - i, y + 1])
         break
       }
     }
-  }
+  },
+
+  //修改 canvasPixelsData 数据
+  _updateCanvasPixelsData(arr,width,left, right, y, fillColor){
+    var left_start = (width * y + left) * 4
+    var right_end = (width * y + right) * 4 + 4
+    for (var i = left_start; i < right_end;i++){
+      if((i % 4) == 0){
+        arr[i] = fillColor[0]
+      } else if((i % 4) == 1){
+        arr[i] = fillColor[1]
+      } else if((i % 4) == 2){
+        arr[i] = fillColor[2]
+      } else if ((i % 4) == 3){
+        arr[i] = fillColor[3]
+      }
+    }
+    return arr
+  },
   
 })
