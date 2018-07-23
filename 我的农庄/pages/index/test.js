@@ -1,17 +1,22 @@
 // pages/index/test.js
+const app = getApp()
+const util = require('../../utils/util.js')
+var canvasPixelsData1 = []
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    'imagePath': '../../images/sheep.png',
+    'imagePath': '../../images/flower.png',
     'canvasPixelsData':[],
-    'imageWidth':69,
-    'imageHeight':122,
+    'imageWidth':207,
+    'imageHeight':288,
     'count':0,
     'pointerStack':[],      //点堆栈
     'shiftPointerStack':[], //存放已弹出的栈元素
+    'colorIndex1': [],       //区域1颜色索引
+    'colorIndex2': [],
+    'colorIndex3': []
   },
 
   /**
@@ -103,18 +108,93 @@ Page({
     //e.detail.x = 30  //38
     //e.detail.y = 41  //66
     
-    this._fillOneLine(e.detail.x, e.detail.y, [255, 0, 0, 255], [0, 0, 0, 255])
-    //console.log(this.data.pointerStack)
-    /*for (var i in this.data.pointerStack){
-      console.log(this._getPixel(this.data.canvasPixelsData, this.data.imageWidth, this.data.pointerStack[i][0], this.data.pointerStack[i][1]))
-    }*/
-
+    /*this._fillOneLine(e.detail.x, e.detail.y, [255, 0, 0, 255], [0, 0, 0, 255])
     while (this.data.pointerStack.length > 0){
       var _temp = this.data.pointerStack.shift()
       //this.data.shiftPointerStack.push(_temp)
       this._fillOneLine(_temp[0], _temp[1], [255, 0, 0, 255], [0, 0, 0, 255])
-    }
+    }*/
 
+    //第二种填充算法 根据点击区域来直接填充像素点数据达到填充目的（效率低）
+        /*var _pixelPointers = [];
+        var _data = this.data.canvasPixelsData
+        for (var i = 0; i < _data.length; i = i + 4) {
+          var _temp = _data.slice(i, i + 4);
+          var _temp2 = [0,0,0,0]
+          _temp2[0] = _temp[0]
+          _temp2[1] = _temp[1]
+          _temp2[2] = _temp[2]
+          _temp2[3] = _temp[3]
+          _pixelPointers.push(_temp2)
+        }
+        console.log('a')
+        var _colorIndex1 = this.data.colorIndex1
+        //console.log(_colorIndex1)
+        for (var j in _colorIndex1){
+          _pixelPointers[_colorIndex1[j]] = [255,0,0,255]
+        }
+        console.log('b')
+          //合并数组元素
+          var _result = []
+          for (var k in _pixelPointers){
+            _result = _result.concat(_pixelPointers[k])
+          }
+          console.log('c')
+          _result = new Uint8ClampedArray(_result)
+          this.setData({'canvasPixelsData':_result})
+          //填充
+          console.log('d')
+          wx.canvasPutImageData({
+            canvasId: 'myCanvas',
+            x: 0,
+            y: 0,
+            width: 100,
+            data: _result,
+            success(res) { console.log(res) },
+            fail(res){ console.log(res)},
+            complete(res) { console.log(res)}
+          })*/
+
+    //第三种填充方法(效率高)
+    /*var _colorIndex1 = this.data.colorIndex1
+    for (var j in _colorIndex1) {
+      var _data = this.data.canvasPixelsData
+      _data[_colorIndex1[j] * 4] = 255
+      _data[_colorIndex1[j] * 4 + 1] = 0
+      _data[_colorIndex1[j] * 4 + 2] = 0
+      _data[_colorIndex1[j] * 4 + 3] = 255
+    }
+    //console.log(_data)
+    this.setData({ 'canvasPixelsData': _data })
+    //填充
+    wx.canvasPutImageData({
+      canvasId: 'myCanvas',
+      x: 0,
+      y: 0,
+      width: 100,
+      data: _data,
+      success(res) { console.log(res) },
+      fail(res) { console.log(res) },
+      complete(res) { console.log(res) }
+    })*/
+    //以下为获取像素点数据使用
+    var _pixelPointers = [];      //以像素点组织的数据
+    var _data = this.data.canvasPixelsData
+    for (var i=0;i< _data.length;i=i+4){
+      _pixelPointers.push(_data.slice(i,i+4))
+    }
+    //查找区域块像素点
+    var _pixelIndex = []
+    for (var j = 0; j < _pixelPointers.length; j++){
+      if (_pixelPointers[j].toString() == [255,0,0,255].toString()){
+        _pixelIndex.push(j)
+      }
+    }
+      //console.log(_pixelIndex)
+      var data = { 'token': wx.getStorageSync('token'), 'app': 2, '_pixelIndex': _pixelIndex }
+      util.request(app.globalData.apiDomain + '/my/collect', 'POST', data, (res) => {
+
+      })
   },
 
   //初始化图像数据
@@ -128,8 +208,9 @@ Page({
         width: width,
         height: height,
         success: (res) => {
-            //console.log(res.data)
-            this.setData({'canvasPixelsData':res.data})
+          //console.log(res.data)
+          //this.setData({ 'canvasPixelsData1': res.data }) //invokeWebviewMethod 最大长度 1048576 考虑分隔图像
+          canvasPixelsData1 = res.data
         }
       })
     }
@@ -419,7 +500,7 @@ Page({
     }
   },
 
-  //修改 canvasPixelsData 数据
+  //修改 canvasPixelsData 数据 (连续填充)
   _updateCanvasPixelsData(arr,width,left, right, y, fillColor){
     var left_start = (width * y + left) * 4
     var right_end = (width * y + right) * 4 + 4
