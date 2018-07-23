@@ -44,7 +44,11 @@
 				{
 					"id": 1,
 					"name": "canvas测试",
+<<<<<<< HEAD
 					"pathName": "pages/index/test2",
+=======
+					"pathName": "pages/index/test3",
+>>>>>>> 2b473478111f52526a01bb6438e25a484c51b49b
 					"query": ""
 				}
 			]
