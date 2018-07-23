@@ -1,2 +1,2 @@
 <!--pages/index/test3.wxml-->
-<text>pages/index/test3.wxml</text>
+<canvas canvas-id="myCanvas" style='width:414px;height:576px' bindtap='toFill'></canvas>

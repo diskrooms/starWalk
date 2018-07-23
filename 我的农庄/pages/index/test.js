@@ -7,11 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-<<<<<<< HEAD
+
     'imagePath': '../../images/flower.png',
-=======
-    'imagePath': '../../images/ice.png',
->>>>>>> f449db2efcb8bc2fb236dd94e3478f44a4a18cbc
     'canvasPixelsData':[],
     'imageWidth':207,
     'imageHeight':288,
