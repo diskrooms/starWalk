@@ -30,7 +30,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.drawImage()
+    this._drawImage()
   },
 
   /**
@@ -536,7 +536,7 @@ Page({
     return arr
   },
 
-  drawImage:function(){
+  _drawImage:function(){
     const ctx = wx.createCanvasContext('myCanvas')
     this.setData({ 'ctx': ctx })
     ctx.save();
@@ -722,4 +722,5 @@ Page({
     ctx.draw()
   }
 
+  
 })

@@ -1,0 +1,4 @@
+/**index.wxss**/
+.garden .img{}
+.garden .item{margin: 100rpx 0rpx}
+.garden .img_wrap{margin: 50rpx;}

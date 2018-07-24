@@ -1,0 +1,51 @@
+<!--index.wxml-->
+<view class="container">
+  <scroll-view class='text-align-center garden px-28'>
+      <view class='plant item'>
+          <view class='title'>
+            <view class='left left_title'></view>
+            <view class='title_name'>植物</view>
+            <view class='right right_title'></view>
+          </view>
+          <view class='img_con'>
+            <view class='img_wrap' bindtap='detail' data-name='flower1' data-width='207' data-height='288'>
+              <image src="../../images/flower1.png" mode="widthFix" style="width:300rpx" class='img'></image>
+            </view>
+            <view class='img_wrap' bindtap='detail'  data-name='flower2' data-width='261' data-height='219'>
+              <image src="../../images/flower2.png" mode='widthFix' style='width:300rpx'  class='img'></image>
+            </view>
+            <view class='img_wrap' bindtap='detail'  data-name='flower3' data-width='1400' data-height='980'>
+              <image src="../../images/flower3.png" mode='widthFix'  class='img'></image>
+            </view>
+          </view>
+      </view>
+      <view class='animal item'>
+          <view class='title'>
+            <view class='left left_title'></view>
+            <view class='title_name'>动物</view>
+            <view class='right right_title'></view>
+          </view>
+          <view class='img_con'>
+            <view class='img_wrap' bindtap='detail'  data-name='butterfly'>
+              <image src="../../images/butterfly.png" mode='widthFix' class='img'></image>
+            </view>
+            <view class='img_wrap' bindtap='detail'  data-name='owl' data-width='375' data-height='542'>
+              <image src="../../images/owl.png" mode='widthFix' class='img'></image>
+            </view>
+            <view class='img_wrap' bindtap='detail'  data-name='lion'>
+              <image src="../../images/lion.png" mode='widthFix' class='img'></image>
+            </view>
+          </view>
+      </view>
+      <view class='map item'>
+          <view class='title'>
+            <view class='left left_title'></view>
+            <view class='title_name'>地图</view>
+            <view class='right right_title'></view>
+          </view>
+          <view class='img_con'>
+            
+          </view>
+      </view>
+  </scroll-view>
+</view>
