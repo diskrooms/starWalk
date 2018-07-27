@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -45,6 +45,12 @@
 					"id": 1,
 					"name": "canvas测试",
 					"pathName": "pages/index/test3",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "websocket",
+					"pathName": "pages/index/stock",
 					"query": ""
 				}
 			]
