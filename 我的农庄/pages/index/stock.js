@@ -8,7 +8,7 @@ Page({
 
     //建立连接
     wx.connectSocket({
-      url: "wss://coder.51tui.vip:9502",
+      url: "wss://xcx3.zengcr.com:9502",
     })
 
     //连接成功
