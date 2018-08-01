@@ -13,9 +13,9 @@ Page({
 
     //连接成功
     wx.onSocketOpen(function (res) {
-      console.log(res)
+      //console.log(res)
       wx.sendSocketMessage({
-        data: 'stock',
+        'data':'{"cmd":"login","openid":"1111"}'
       })
     })
 

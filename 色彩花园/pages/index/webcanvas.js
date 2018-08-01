@@ -13,7 +13,7 @@ Page({
    */
   onLoad: function (options) {
       var name = options.name
-      this.setData({'src':'https://coder.51tui.vip/canvas/index2?name='+name})
+      this.setData({'src':'https://coder.51tui.vip/canvas/index?name='+name})
   },
 
   /**
