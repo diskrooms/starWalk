@@ -13,14 +13,14 @@ Page({
    */
   onLoad: function (options) {
       var name = options.name
-      this.setData({'src':'https://coder.51tui.vip/canvas/index?name='+name})
+      this.setData({'src':'https://coder.51tui.vip/canvas/index2?name='+name})
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+      
   },
 
   /**
@@ -41,7 +41,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+      
   },
 
   /**
@@ -63,5 +63,9 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  test:function(e){
+    alert('ab')
   }
 })

@@ -1,2 +1,2 @@
 <!--pages/index/webcanvas.wxml-->
-<web-view src="{{src}}"></web-view>
+<web-view src="{{src}}" bindmessage="test"></web-view>

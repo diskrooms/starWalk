@@ -29,4 +29,5 @@ Page({
         url: '/pages/index/webcanvas?name='+name+'&width='+width+'&height='+height,
       })
   },
+
 })
