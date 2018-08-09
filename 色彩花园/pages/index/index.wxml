@@ -32,7 +32,7 @@
               <view class="save"></view>
             </view>
             <view class='img_wrap' data-width='375' data-height='542'>
-              <image src="../../images/owl.png" mode='widthFix' class='img' bindtap='detail'  data-name='owl'></image>
+              <image src="../../images/owl.png" mode='widthFix' class='img' bindtap='detail'  data-name='猫头鹰'></image>
               <view class="share"><image src="../../images/share.png" mode='widthFix' class="share_icon"></image></view>
               <view class="save"><image src="../../images/download.png" mode='widthFix' class="save_icon"></image></view>
             </view>
