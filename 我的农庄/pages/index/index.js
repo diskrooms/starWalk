@@ -224,7 +224,7 @@ Page({
     app.onLaunch(this.render)
   },
 
-  //渲染页面
+  //渲染页面数据
   render: function () {
     var that = this;
     //console.log(app.globalData.userInfo)

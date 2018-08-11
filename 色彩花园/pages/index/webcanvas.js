@@ -12,8 +12,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      var name = options.name
-      this.setData({'src':'https://coder.51tui.vip/canvas/index2?name='+name})
+      var cname = options.cname
+      var ename = options.ename
+      var token = wx.getStorageSync('token')
+      this.setData({'src':'https://coder.51tui.vip/canvas/index?cname='+cname+'&ename='+ename+'&token='+token})
+    console.log('https://coder.51tui.vip/canvas/index?cname=' + cname + '&ename=' + ename + '&token=' + token)
   },
 
   /**

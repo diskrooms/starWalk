@@ -4,6 +4,8 @@
 .garden .img_wrap{margin: 50rpx;}
 
 .share{display: inline-block;}
-.share .share_icon{width: 128rpx;}
+.share .share_icon{width: 96rpx;}
 .save{display: inline-block;margin:0 0 0 50rpx;}
-.save .save_icon{width: 128rpx;}
+.save .save_icon{width: 96rpx;}
+
+.title_name{font-size: 30rpx;}

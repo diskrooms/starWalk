@@ -1,190 +1,6 @@
 //app.js
 const util = require('./utils/util.js')
 
-function login(app, callback) {
-  // 登录
-  wx.login({
-    success: res => {
-      var code = res.code
-      /*wx.getUserInfo({
-        'withCredentials': true,
-        'success': function (info) {
-          var wechatGroupInfo = ''
-          //获取群ID
-          wx.showShareMenu({
-            withShareTicket: true, //要求小程序返回分享目标信息
-            success: function () {
-              if (app.globalData.opt.scene == 1044) {
-                wx.getShareInfo({
-                  shareTicket: app.globalData.opt.shareTicket,
-                  complete(res) {
-                    wechatGroupInfo = res
-                    // 发送 res.code 到后台换取 openId, sessionKey, unionId
-                    wx.request({
-                      url: app.globalData.apiDomain + '/user/login',
-                      data: {
-                        'code': code,
-                        'rawData': info.rawData,
-                        'signature': info.signature,
-                        'encryptedData': info.encryptedData,
-                        'iv': info.iv,
-                        'encryptedData_': wechatGroupInfo.encryptedData,
-                        'iv_': wechatGroupInfo.iv,
-                        'app': 2
-                      },
-                      success: function (res) {
-                        //console.log(res)
-                        wx.setStorageSync('token', res.data.msg.auth)
-                        wx.setStorageSync('sessionid', res.data.msg.sessionid)
-                        wx.setStorageSync('csrfToken', res.data.msg.csrfToken)
-                        app.globalData.userInfo = res.data.msg.userInfo
-                        if (typeof callback == 'function') {
-                          callback();
-                        }
-                      }
-                    })
-                  }
-                })
-              } else {
-                // 发送 res.code 到后台换取 openId, sessionKey, unionId
-                wx.request({
-                  url: app.globalData.apiDomain + '/user/login',
-                  data: {
-                    'code': code,
-                    'rawData': info.rawData,
-                    'signature': info.signature,
-                    'encryptedData': info.encryptedData,
-                    'iv': info.iv,
-                    'app': 2
-                  },
-                  success: function (res) {
-                    //console.log(res)
-                    wx.setStorageSync('token', res.data.msg.auth)
-                    wx.setStorageSync('sessionid', res.data.msg.sessionid)
-                    wx.setStorageSync('csrfToken', res.data.msg.csrfToken)
-                    //console.log(res.data.msg.userInfo)
-                    app.globalData.userInfo = res.data.msg.userInfo
-                    if (typeof callback == 'function') {
-                      callback();
-                    }
-                  }
-                })
-              }
-            }
-          })
-
-        },
-        fail: function (FAIL) {
-          //console.log(fail) 取消授权
-          unAuthModal(app, callback)
-        },
-        complete: function (complete) {
-          //console.log('complete')
-        }
-      })*/
-      //getUserInfo 接口接口调用结束
-
-      //不使用getUserInfo获取详细信息 直接用openid注册用户
-      // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      var above = app.globalData.opt.query.above ? app.globalData.opt.query.above : 0
-      if (app.globalData.opt.scene == 1044) {
-        //群登录
-        wx.getShareInfo({
-          shareTicket: app.globalData.opt.shareTicket,
-          complete(res) {
-            var wechatGroupInfo = res
-            // 发送 res.code 到后台换取 openId, sessionKey, unionId
-            //console.log(res)
-            wx.request({
-              url: app.globalData.apiDomain + '/user/loginLite',
-              method: 'POST',
-              header: { "Content-Type": "application/x-www-form-urlencoded" },
-              dataType: 'json',
-              data: {
-                'code': code,
-                'encryptedData_': wechatGroupInfo.encryptedData,
-                'iv_': wechatGroupInfo.iv,
-                'above': above,
-                'app': 2
-              },
-              success: function (res) {
-                //console.log(res)
-                wx.setStorageSync('token', res.data.msg.auth)
-                wx.setStorageSync('sessionid', res.data.msg.sessionid)
-                wx.setStorageSync('csrfToken', res.data.msg.csrfToken)
-                app.globalData.userInfo = res.data.msg.userInfo
-                if (typeof callback == 'function') {
-                  callback();
-                }
-              }
-            })
-          }
-        })
-      } else {
-        //个人登录
-        wx.request({
-          url: app.globalData.apiDomain + '/user/loginLite',
-          method: 'POST',
-          header: { "Content-Type": "application/x-www-form-urlencoded" },
-          dataType: 'json',
-          data: {
-            'code': code,
-            'above': above,
-            'app': 2
-          },
-          success: function (res) {
-            //console.log(res)
-            wx.setStorageSync('token', res.data.msg.auth)
-            wx.setStorageSync('sessionid', res.data.msg.sessionid)
-            wx.setStorageSync('csrfToken', res.data.msg.csrfToken)
-            //console.log(res.data.msg.userInfo)
-            app.globalData.userInfo = res.data.msg.userInfo
-            if (typeof callback == 'function') {
-              callback();
-            }
-          }
-        })
-      }
-    }
-  })
-}
-
-function onLogin(app, callback) {
-  wx.checkSession({
-    success: function () {
-      //console.log('登录态有效')
-      //session 未过期，并且在本生命周期一直有效
-      //检测token是否存在
-      var token = wx.getStorageSync('token')
-      if (token == '' || token == null || token == undefined) {
-        login(app, callback)
-      } else {
-        //获取用户信息等系统数据
-        wx.request({
-          url: app.globalData.apiDomain + '/my/userInfo2',
-          data: { 'token': wx.getStorageSync('token'), 'app': 2 },
-          method: 'POST',
-          header: { "Content-Type": "application/x-www-form-urlencoded" },
-          dataType: 'json',
-          success: function (res) {
-            //console.log(res)
-            app.globalData.userInfo = res.data.msg;
-            if (typeof callback == 'function') {
-              callback();
-            }
-          }
-        })
-      }
-    },
-    fail: function () {
-      //登录态过期 重新登录
-      //console.log(opt)
-      login(app, callback)
-    }
-  })
-}
-
-
 App({
   onLaunch: function (opt) {
     //console.log(opt)
@@ -284,3 +100,115 @@ function alert(msg) {
     icon: 'none'
   })
 }
+
+/**
+ * 登录执行底层方法
+ */
+function login(app, callback) {
+  // 登录
+  wx.login({
+    success: res => {
+      var code = res.code
+      //不使用getUserInfo获取详细信息 直接用openid注册用户
+      // 发送 res.code 到后台换取 openId, sessionKey, unionId
+      var above = app.globalData.opt.query.above ? app.globalData.opt.query.above : 0
+      if (app.globalData.opt.scene == 1044) {
+        //群登录
+        wx.getShareInfo({
+          shareTicket: app.globalData.opt.shareTicket,
+          complete(res) {
+            var wechatGroupInfo = res
+            // 发送 res.code 到后台换取 openId, sessionKey, unionId
+            //console.log(res)
+            wx.request({
+              url: app.globalData.apiDomain + '/user/loginColor',
+              method: 'POST',
+              header: { "Content-Type": "application/x-www-form-urlencoded" },
+              dataType: 'json',
+              data: {
+                'code': code,
+                'encryptedData_': wechatGroupInfo.encryptedData,
+                'iv_': wechatGroupInfo.iv,
+                'above': above,
+                'app': 3
+              },
+              success: function (res) {
+                //console.log(res)
+                wx.setStorageSync('token', res.data.msg.auth)
+                wx.setStorageSync('sessionid', res.data.msg.sessionid)
+                wx.setStorageSync('csrfToken', res.data.msg.csrfToken)
+                app.globalData.userInfo = res.data.msg.userInfo
+                if (typeof callback == 'function') {
+                  callback();
+                }
+              }
+            })
+          }
+        })
+      } else {
+        //个人登录
+        wx.request({
+          url: app.globalData.apiDomain + '/user/loginColor',
+          method: 'POST',
+          header: { "Content-Type": "application/x-www-form-urlencoded" },
+          dataType: 'json',
+          data: {
+            'code': code,
+            'above': above,
+            'app': 3
+          },
+          success: function (res) {
+            //console.log(res)
+            wx.setStorageSync('token', res.data.msg.auth)
+            wx.setStorageSync('sessionid', res.data.msg.sessionid)
+            wx.setStorageSync('csrfToken', res.data.msg.csrfToken)
+            //console.log(res.data.msg.userInfo)
+            app.globalData.userInfo = res.data.msg.userInfo
+            if (typeof callback == 'function') {
+              callback();
+            }
+          }
+        })
+      }
+    }
+  })
+}
+
+/**
+ * 检测是否需要执行登录
+ */
+function onLogin(app, callback) {
+  wx.checkSession({
+    success: function () {
+      //console.log('登录态有效')
+      //session 未过期，并且在本生命周期一直有效
+      //检测token是否存在
+      var token = wx.getStorageSync('token')
+      if (token == '' || token == null || token == undefined) {
+        login(app, callback)
+      } else {
+        //获取用户信息等系统数据
+        wx.request({
+          url: app.globalData.apiDomain + '/my/userInfo3',
+          data: { 'token': wx.getStorageSync('token'), 'app': 3 },
+          method: 'POST',
+          header: { "Content-Type": "application/x-www-form-urlencoded" },
+          dataType: 'json',
+          success: function (res) {
+            //console.log(res)
+            app.globalData.userInfo = res.data.msg;
+            if (typeof callback == 'function') {
+              callback();
+            }
+          }
+        })
+      }
+    },
+    fail: function () {
+      //登录态过期 重新登录
+      //console.log(opt)
+      login(app, callback)
+    }
+  })
+}
+
