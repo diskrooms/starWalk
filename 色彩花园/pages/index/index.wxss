@@ -3,9 +3,9 @@
 .garden .item{margin: 100rpx 0rpx}
 .garden .img_wrap{margin: 50rpx;}
 
-.share{display: inline-block;}
+.share{display: inline-block;width: 96rpx;height: 96rpx;padding:0;background: none;}
 .share .share_icon{width: 96rpx;height: 96rpx;}
-.save{display: inline-block;margin:0 0 0 50rpx;}
+.save{display: inline-block;margin:20rpx 0 0 50rpx;padding: 0;background: none;height: 96rpx;}
 .save .save_icon{width: 96rpx;height: 96rpx; }
 
 .title_name{font-size: 30rpx;}
