@@ -1,5 +1,5 @@
 /**index.wxss**/
-.garden .img{}
+.garden{height: 100%;}
 .garden .item{margin: 100rpx 0rpx}
 .garden .img_wrap{margin: 50rpx;}
 
@@ -9,3 +9,19 @@
 .save .save_icon{width: 96rpx;height: 96rpx; }
 
 .title_name{font-size: 30rpx;}
+.download{position: absolute;left:0;right:0;margin:auto;z-index: 100;text-align: center;}
+.title2{
+  display: inline-block;
+  width:320px;
+  background-color:cornflowerblue;
+  color:#fff;
+  padding: 20rpx 0rpx;
+}
+/* 遮罩层 */
+.layer{
+  position: absolute;
+  width: 100%;
+  height: 150%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}

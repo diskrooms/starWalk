@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-  <scroll-view class='text-align-center garden px-28'>
+  <scroll-view class='text-align-center garden px-28' scroll-y="true">
       <view class='simple item'>
           <view class='title'>
             <view class='left left_title'></view>
@@ -76,4 +76,10 @@
           </view>
       </view>
   </scroll-view>
+
+  <view class="download" style="top:{{lay_top+50}}px" wx:if="{{lay_status}}" bindtap="closeLay">
+    <view class="title2">长按下方区域保存作品</view>
+    <image src="{{download}}" mode='widthFix' ></image>
+  </view>
+  <view class="layer" wx:if="{{lay_status}}" style="top:{{lay_top}}px"></view>
 </view>

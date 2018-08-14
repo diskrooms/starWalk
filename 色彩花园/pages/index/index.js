@@ -8,7 +8,10 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    imageData:{}
+    imageData:{},
+    lay_status: 0,             //遮罩层状态
+    lay_top:0,                 //遮罩层top值
+    download:'',               //
   },
   //事件处理函数
   bindViewTap: function() {
@@ -43,6 +46,7 @@ Page({
   //下载作品
   bindGetUserInfo:function(e){
     //console.log(e)
+    this.getScrollOffset()
     var userInfo = e.detail.userInfo
     var avatar = userInfo.avatarUrl
     var nickname = userInfo.nickName
@@ -59,9 +63,23 @@ Page({
         'ename':ename,
         'app': 3
       },
-      success: function (res) {
-
+      success: (res)=> {
+          var imgSrc = res.data
+          this.setData({'download':imgSrc,'lay_status':1})
       }
     })
+  },
+
+  //获取scoll-view滚动位置
+  getScrollOffset: function () {
+    var that = this
+    wx.createSelectorQuery().selectViewport().scrollOffset(function (res) {
+      that.setData({'lay_top':res.scrollTop})
+    }).exec()
+  },
+
+  //关闭浮层
+  closeLay:function(){
+    this.setData({ 'lay_status': 0 })
   }
 })
