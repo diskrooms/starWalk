@@ -14,7 +14,41 @@ Page({
     'count': 0,
     'pointerStack': [],      //点堆栈
     'shiftPointerStack': [], //存放已弹出的栈元素
-    
+    'oldDistance':0,
+    'oldScale':1,
+    'baseWidth':300,
+    'baseHeight':300,
+    'scaleWidth':300,
+    'scaleHeight':300,
+    'lock':0,
+    'start':0,
+  },
+
+  testMove:function(e){
+    //console.log('move')
+    //console.log(e)
+    if (e.touches.length > 1 && (this.data.lock == 0) && (this.data.start == 1)){
+      this.setData({'lock':1})
+      var xMove = e.touches[1].x - e.touches[0].x; 
+      var yMove = e.touches[1].y - e.touches[0].y; 
+      var newDistance = Math.sqrt(xMove * xMove + yMove * yMove);
+      
+      var newScale = this.data.oldScale + 0.005 * (newDistance - this.data.oldDistance) > 1 ?  this.data.oldScale + 0.005 * (newDistance - this.data.oldDistance) : 1
+      //console.log(newScale)
+      var scaleWidth = newScale * this.data.baseWidth
+      var scaleHeight = newScale * this.data.baseHeight
+      //console.log(scaleWidth)
+      this.setData({ 'oldDistance': newDistance, 'oldScale': newScale, 'scaleWidth': scaleWidth, 'scaleHeight': scaleHeight,'lock':0})
+      
+    }
+  },
+  testStart: function (e) {
+   //console.log('start')
+    this.setData({ 'start': 1 })
+  },
+  testEnd: function (e) {
+    //console.log('end')
+    this.setData({ 'start': 0,'oldScale':1,'oldDistance':0})
   },
 
   /**
@@ -27,7 +61,7 @@ Page({
     const ctx = wx.createCanvasContext('myCanvas')
     this.setData({ 'ctx': ctx })
     //ctx.scale(0.3,0.3)
-    ctx.drawImage('../../images/'+name+'.png', 0, 0, width, height)
+    ctx.drawImage('../../images/flower1.png', 0, 0, width, height)
     ctx.draw()
     //this._drawImage()
   },

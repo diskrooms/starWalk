@@ -31,8 +31,18 @@ Page({
       var width = e.currentTarget.dataset.width
       var height = e.currentTarget.dataset.height
       wx.navigateTo({
-        url: '/pages/index/webcanvas?cname='+cname+'&ename='+ename+'&width='+width+'&height='+height,
+        url: '/pages/index/webcanvas?cname=' + cname + '&ename=' + ename + '&width=' + width + '&height=' + height,
       })
+
+      /*if (e.detail.userInfo != undefined && e.detail.userInfo != '' && e.detail.userInfo != null){
+        //console.log(e.detail.userInfo)
+        var nickname = e.detail.userInfo.nickName;
+        var avatar = e.detail.userInfo.avatarUrl;
+        wx.navigateTo({
+          url: '/pages/index/webcanvas?cname=' + cname + '&ename=' + ename + '&width=' + width + '&height=' + height+'&nickname='+nickname+'&avatar='+avatar,
+        })
+      }*/
+      
   },
 
   onShow:function(e){
@@ -44,8 +54,11 @@ Page({
     this.setData({'imageData':app.globalData.userInfo})
   },
   //下载作品
-  bindGetUserInfo:function(e){
+  downloadGift:function(e){
     //console.log(e)
+    wx.showLoading({
+      title: '正在生成海报图...',
+    })
     this.getScrollOffset()
     var userInfo = e.detail.userInfo
     var avatar = userInfo.avatarUrl
@@ -65,9 +78,15 @@ Page({
       },
       success: (res)=> {
           var imgSrc = res.data
-          this.setData({'download':imgSrc,'lay_status':1})
+          this.setData({'download':imgSrc})
       }
     })
+  },
+
+  //图片加载监听事件
+  imgload:function(e){
+    wx.hideLoading();
+    this.setData({'lay_status': 1 })
   },
 
   //获取scoll-view滚动位置
@@ -81,5 +100,29 @@ Page({
   //关闭浮层
   closeLay:function(){
     this.setData({ 'lay_status': 0 })
-  }
+  },
+
+  //长按保存图片到相册
+  saveImgToPhotosAlbum: function (e) {
+    var img_url = e.currentTarget.dataset.src
+    wx.downloadFile({
+      url: img_url,
+      success: function (res) {
+        console.log(res)
+        wx.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          success: function (res) {
+            console.log(res)
+          },
+          fail: function (res) {
+            console.log(res)
+            console.log('fail')
+          }
+        })
+      },
+      fail: function () {
+        console.log('fail')
+      }
+    })
+  },
 })

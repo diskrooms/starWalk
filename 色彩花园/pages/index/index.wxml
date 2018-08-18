@@ -9,11 +9,12 @@
           </view>
           <view class='img_con'>
             <view class='img_wrap'  wx:for="{{imageData['simple']}}"  wx:for-item="image">
-                  <image src="{{image.src}}" mode='widthFix'  class='img' bindtap='detail' data-ename='{{image.ename}}' data-cname='{{image.cname}}'></image>
+                    <image src="{{image.src}}" mode='widthFix' bindtap='detail' class='img' data-ename='{{image.ename}}' data-cname='{{image.cname}}'></image>
+  
                   <button open-type="share" class="share">
                         <image src="../../images/share.png" mode="widthFix" class="share_icon"></image>
                   </button>
-                  <button class="save" data-ename="{{image.ename}}" bindgetuserinfo="bindGetUserInfo" open-type='getUserInfo'>
+                  <button class="save" data-ename="{{image.ename}}" bindgetuserinfo="downloadGift" open-type='getUserInfo'>
                       <image src="../../images/download.png" mode="widthFix" class="save_icon"></image>
                   </button>
             </view>
@@ -32,7 +33,7 @@
                   <button open-type="share" class="share">
                         <image src="../../images/share.png" mode="widthFix" class="share_icon"></image>
                   </button>
-                  <button class="save" data-ename="{{image.ename}}" bindgetuserinfo="bindGetUserInfo" open-type='getUserInfo'>
+                  <button class="save" data-ename="{{image.ename}}" bindgetuserinfo="downloadGift" open-type='getUserInfo'>
                       <image src="../../images/download.png" mode="widthFix" class="save_icon"></image>
                   </button>
             </view>
@@ -50,7 +51,7 @@
                   <button open-type="share" class="share">
                         <image src="../../images/share.png" mode="widthFix" class="share_icon"></image>
                   </button>
-                  <button class="save" data-ename="{{image.ename}}" bindgetuserinfo="bindGetUserInfo" open-type='getUserInfo'>
+                  <button class="save" data-ename="{{image.ename}}" bindgetuserinfo="downloadGift" open-type='getUserInfo'>
                       <image src="../../images/download.png" mode="widthFix" class="save_icon"></image>
                   </button>
             </view>
@@ -69,7 +70,7 @@
                   <button open-type="share" class="share">
                       <image src="../../images/share.png" mode="widthFix" class="share_icon"></image>
                   </button>
-                  <button class="save" data-ename="{{image.ename}}" bindgetuserinfo="bindGetUserInfo" open-type='getUserInfo'>
+                  <button class="save" data-ename="{{image.ename}}" bindgetuserinfo="downloadGift" open-type='getUserInfo'>
                       <image src="../../images/download.png" mode="widthFix" class="save_icon"></image>
                   </button>
             </view>
@@ -77,9 +78,9 @@
       </view>
   </scroll-view>
 
-  <view class="download" style="top:{{lay_top+50}}px" wx:if="{{lay_status}}" bindtap="closeLay">
+  <view class="download {{lay_status ? 'show' : 'hide'}}" style="top:{{lay_top+50}}px" bindtap="closeLay">
     <view class="title2">长按下方区域保存作品</view>
-    <image src="{{download}}" mode='widthFix' ></image>
+    <image src="{{download}}" mode='widthFix' bindload='imgload' bindlongtap='saveImgToPhotosAlbum' data-src='{{download}}'></image>
   </view>
   <view class="layer" wx:if="{{lay_status}}" style="top:{{lay_top}}px"></view>
 </view>

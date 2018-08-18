@@ -14,9 +14,12 @@ Page({
   onLoad: function (options) {
       var cname = options.cname
       var ename = options.ename
+      var nickname = options.nickname
+      var avatar = options.avatar
+
       var token = wx.getStorageSync('token')
-      this.setData({'src':'https://coder.51tui.vip/canvas/index?cname='+cname+'&ename='+ename+'&token='+token+'&app=3'})
-    console.log('https://coder.51tui.vip/canvas/index?cname=' + cname + '&ename=' + ename + '&token=' + token+'&app=3')
+      this.setData({'src':'https://coder.51tui.vip/canvas/index?cname='+cname+'&ename='+ename+'&token='+token+'&app=3'+'&nickname='+nickname+'&avatar='+avatar})
+    console.log('https://coder.51tui.vip/canvas/index?cname=' + cname + '&ename=' + ename + '&token=' + token + '&app=3' + '&nickname=' + nickname + '&avatar=' + avatar)
   },
 
   /**

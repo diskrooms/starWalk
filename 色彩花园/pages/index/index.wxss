@@ -1,7 +1,7 @@
 /**index.wxss**/
 .garden{height: 100%;}
 .garden .item{margin: 100rpx 0rpx}
-.garden .img_wrap{margin: 50rpx;}
+.garden .img_wrap{margin: 30rpx;}
 
 .share{display: inline-block;width: 96rpx;height: 96rpx;padding:0;background: none;}
 .share .share_icon{width: 96rpx;height: 96rpx;}
