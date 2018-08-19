@@ -12,7 +12,7 @@ App({
     if (opt != '' && opt != null && opt != undefined && (typeof opt != 'function')) {
       //第一次将opt存储起来
       this.globalData.opt = opt;
-    } else {
+    } else { 
       //第二次被外部直接调用 onLaunch 函数
       onLogin(this, opt)
     }
@@ -56,29 +56,18 @@ App({
             success: function (res) {
               //console.log(res)
               wx.request({
-                url: that.globalData.apiDomain + '/my/share',
+                url: that.globalData.apiDomain + '/my/shareLite',
                 data: {
                   token: wx.getStorageSync('token'),
                   encryptedData_: res.encryptedData,
                   iv_: res.iv,
-                  from: params.from,      //nenu右上角 button按钮
-                  type: params.type,
-                  app: 2
+                  app: 3
                 },
                 method: 'POST',
                 header: { "Content-Type": "application/x-www-form-urlencoded" },
                 dataType: 'json',
                 success: (res) => {
-                  if (res.data.status > 0) {
-                    //alert(res.data.msg[0]);   //todo换对话框
-                    setTimeout(() => {
-                      if (typeof callback == 'function') {
-                        callback(res.data.msg[1])
-                      }
-                    }, 1000)
-                  } else {
-                    alert(res.data.msg[0]);
-                  }
+                  alert('分享成功')
                 }
               })
             }

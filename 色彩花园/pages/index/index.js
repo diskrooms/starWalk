@@ -125,4 +125,9 @@ Page({
       }
     })
   },
+
+  //分享
+  onShareAppMessage(){
+    return app.onShareAppMessage()
+  }
 })
