@@ -8,17 +8,27 @@
             <view class='right right_title'></view>
           </view>
           <view class='img_con'>
-            <view class='img_wrap'  wx:for="{{imageData['simple']}}"  wx:for-item="image">
-                    <image src="{{image.src}}" mode='widthFix' bindtap='detail' class='img' data-ename='{{image.ename}}' data-cname='{{image.cname}}'></image>
+            <view class='img_wrap'>
+                  <image src="../../images/plane.png" mode='widthFix' bindtap='detail' class='img' data-ename='plane' data-cname='小飞机'></image>
   
                   <button open-type="share" class="share">
                         <image src="../../images/share.png" mode="widthFix" class="share_icon"></image>
                   </button>
-                  <button class="save" data-ename="{{image.ename}}" bindgetuserinfo="downloadGift" open-type='getUserInfo'>
+                  <button class="save" data-ename="plane" bindgetuserinfo="downloadGift" open-type='getUserInfo'>
                       <image src="../../images/download.png" mode="widthFix" class="save_icon"></image>
                   </button>
             </view>
 
+            <view class='img_wrap'>
+                  <image src="../../images/plane.png" mode='widthFix' bindtap='detail' class='img' data-ename='plane' data-cname='小飞机'></image>
+  
+                  <button open-type="share" class="share">
+                        <image src="../../images/share.png" mode="widthFix" class="share_icon"></image>
+                  </button>
+                  <button class="save" data-ename="plane" bindgetuserinfo="downloadGift" open-type='getUserInfo'>
+                      <image src="../../images/download.png" mode="widthFix" class="save_icon"></image>
+                  </button>
+            </view>
           </view>
       </view>
       <view class='plant item'>

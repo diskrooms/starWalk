@@ -16,10 +16,10 @@ Page({
       //console.log(res)
       wx.sendSocketMessage({
         /*'data':'{"cmd":"unlockProp","openid":"1112","propType":3,"unlocType":1}'*/
-       /*'data': '{"cmd":"uploadGold","uploadType":1,"offType":0,"gold":60,"scoreType":5,"openid":"1112"}'*/
+        'data': '{"cmd":"uploadGold","uploadType":4,"offType":0,"gold":60,"scoreType":5,"openid":"o26vW5fNPey3HGgjnnUpcN_hnq_w"}'
         /*'data': '{"cmd":"unlockProp","openid":"11311","propType":1,"unlocType":1}'*/
         /*'data': '{"cmd":"quitGame","openid":"o26vW5eokuIV3sjovfppMnSlWALw"}'*/
-        'data': '{"cmd":"login","openid":"o26vW5eokuIV3sjovfppMnSlWALw"}'
+        /*'data': '{"cmd":"login","openid":"o26vW5eokuIV3sjovfppMnSlWALw"}'*/
         
       })
     })
