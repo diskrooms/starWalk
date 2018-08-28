@@ -8,8 +8,16 @@
 .save{display: inline-block;margin:20rpx 0 0 50rpx;padding: 0;background: none;height: 96rpx;}
 .save .save_icon{width: 96rpx;height: 96rpx; }
 
-.title_name{font-size: 30rpx;}
+.title_name{
+  font-size: 30rpx;
+  padding: 5rpx;
+}
 .download{position: absolute;left:0;right:0;margin:auto;z-index: 100;text-align: center;}
+
+.title{
+  text-align: center;
+  margin: 10rpx;
+}
 .title2{
   display: inline-block;
   width:320px;
@@ -24,4 +32,41 @@
   height: 150%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 99;
+}
+
+.img_wrap{
+  width: 300rpx;
+  height: 300rpx;
+  background: blanchedalmond;
+  margin:10rpx;
+  font-size: 28rpx;
+  position: relative;
+  border-radius: 8rpx;
+}
+.img_wrap .img{
+  width: 250rpx;
+}
+.triangle-bottomright {
+  width: 0;
+  height: 0;
+  border-bottom: 45px solid  cornflowerblue;
+  border-left: 45px solid transparent;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.free{
+  position:absolute;
+  bottom:10rpx;
+  right:5rpx;
+  font-size:10px;
+  color:#fff;
+}
+.price{
+  width:50rpx;
+  bottom:5rpx;
+  right:5rpx;
+  text-align:right;
+  line-height:25rpx;
+  color:  blanchedalmond;
 }

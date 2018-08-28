@@ -1,51 +1,65 @@
 <!--index.wxml-->
 <view class="container">
-  <scroll-view class='text-align-center garden px-28' scroll-y="true">
       <view class='simple item'>
           <view class='title'>
             <view class='left left_title'></view>
-            <view class='title_name'>简笔画</view>
+            <text class='title_name'>简笔画</text>
             <view class='right right_title'></view>
           </view>
-          <view class='img_con'>
-            <view class='img_wrap'>
+          <view class='img_con flex flex-row'>
+            <view class='img_wrap flex flex-column'>
                   <image src="../../images/plane.png" mode='widthFix' bindtap='detail' class='img' data-ename='plane' data-cname='小飞机'></image>
-  
-                  <button open-type="share" class="share">
-                        <image src="../../images/share.png" mode="widthFix" class="share_icon"></image>
-                  </button>
-                  <button class="save" data-ename="plane" bindgetuserinfo="downloadGift" open-type='getUserInfo'>
-                      <image src="../../images/download.png" mode="widthFix" class="save_icon"></image>
-                  </button>
+                  <view class="triangle-bottomright"></view>
+                  <div class="free">免费</div>
             </view>
 
-            <view class='img_wrap'>
-                  <image src="../../images/plane.png" mode='widthFix' bindtap='detail' class='img' data-ename='plane' data-cname='小飞机'></image>
-  
-                  <button open-type="share" class="share">
-                        <image src="../../images/share.png" mode="widthFix" class="share_icon"></image>
-                  </button>
-                  <button class="save" data-ename="plane" bindgetuserinfo="downloadGift" open-type='getUserInfo'>
-                      <image src="../../images/download.png" mode="widthFix" class="save_icon"></image>
-                  </button>
+            <view class='img_wrap flex flex-column'>
+                  <image src="../../images/house.png" mode='widthFix' bindtap='detail' class='img' data-ename='house' data-cname='别墅'></image>
+                  <view class="triangle-bottomright"></view>
+                  <div class="free price">300智慧</div>
+            </view>
+          </view>
+          <view class='img_con flex flex-row'>
+            <view class='img_wrap flex flex-column'>
+                  <image src="../../images/rabbit.png" mode='widthFix' bindtap='detail' class='img' data-ename='rabbit' data-cname='小白兔'></image>
+                  <view class="triangle-bottomright"></view>
+                  <div class="free">免费</div>
+            </view>
+
+            <view class='img_wrap flex flex-column'>
+                  更多
             </view>
           </view>
       </view>
+
       <view class='plant item'>
           <view class='title'>
             <view class='left left_title'></view>
             <view class='title_name'>花纹</view>
             <view class='right right_title'></view>
           </view>
-          <view class='img_con'>
-            <view class='img_wrap'  wx:for="{{imageData['figures']}}"  wx:for-item="image">
-                  <image src="{{image.src}}" mode='widthFix'  class='img' bindtap='detail' data-ename='{{image.ename}}' data-cname='{{image.cname}}'></image>
-                  <button open-type="share" class="share">
-                        <image src="../../images/share.png" mode="widthFix" class="share_icon"></image>
-                  </button>
-                  <button class="save" data-ename="{{image.ename}}" bindgetuserinfo="downloadGift" open-type='getUserInfo'>
-                      <image src="../../images/download.png" mode="widthFix" class="save_icon"></image>
-                  </button>
+          <view class='img_con flex flex-row'>
+            <view class='img_wrap flex flex-column'>
+                  <image src="../../images/figure1.png" mode='widthFix' bindtap='detail' class='img' data-ename='figure1' data-cname='形状1'></image>
+                  <view class="triangle-bottomright"></view>
+                  <div class="free">免费</div>
+            </view>
+
+            <view class='img_wrap flex flex-column'>
+                  <image src="../../images/figure2.png" mode='widthFix' bindtap='detail' class='img' data-ename='figure2' data-cname='形状2'></image>
+                  <view class="triangle-bottomright"></view>
+                  <div class="free">免费</div>
+            </view>
+          </view>
+          <view class='img_con flex flex-row'>
+            <view class='img_wrap flex flex-column'>
+                  <image src="../../images/figure3.png" mode='widthFix' bindtap='detail' class='img' data-ename='figure3' data-cname='形状3'></image>
+                  <view class="triangle-bottomright"></view>
+                  <div class="free">免费</div>
+            </view>
+
+            <view class='img_wrap flex flex-column'>
+                  更多
             </view>
           </view>
       </view>
@@ -55,15 +69,27 @@
             <view class='title_name'>动物</view>
             <view class='right right_title'></view>
           </view>
-          <view class='img_con'>
-            <view class='img_wrap'  wx:for="{{imageData['animals']}}"  wx:for-item="image">
-                  <image src="{{image.src}}" mode='widthFix'  class='img' bindtap='detail' data-ename='{{image.ename}}' data-cname='{{image.cname}}'></image>
-                  <button open-type="share" class="share">
-                        <image src="../../images/share.png" mode="widthFix" class="share_icon"></image>
-                  </button>
-                  <button class="save" data-ename="{{image.ename}}" bindgetuserinfo="downloadGift" open-type='getUserInfo'>
-                      <image src="../../images/download.png" mode="widthFix" class="save_icon"></image>
-                  </button>
+          <view class='img_con flex flex-row'>
+            <view class='img_wrap flex flex-column'>
+                  <image src="../../images/owl.png" mode='widthFix' bindtap='detail' class='img' data-ename='owl' data-cname='猫头鹰'></image>
+                  <view class="triangle-bottomright"></view>
+                  <div class="free price">150智慧</div>
+            </view>
+
+            <view class='img_wrap flex flex-column'>
+                  <image src="../../images/lion.png" mode='widthFix' bindtap='detail' class='img' data-ename='lion' data-cname='狮子'></image>
+                  <view class="triangle-bottomright"></view>
+                  <div class="free price">200智慧</div>
+            </view>
+          </view>
+          <view class='img_con flex flex-row'>
+            <view class='img_wrap flex flex-column'>
+                  <image src="../../images/bird.png" mode='widthFix' bindtap='detail' class='img' data-ename='bird' data-cname='知更鸟'></image><view class="triangle-bottomright"></view>
+                  <div class="free">免费</div>
+            </view>
+
+            <view class='img_wrap flex flex-column'>
+                  更多
             </view>
           </view>
       </view>
@@ -74,19 +100,31 @@
             <view class='title_name'>地图</view>
             <view class='right right_title'></view>
           </view>
-          <view class='img_con'>
-            <view class='img_wrap' wx:for="{{imageData['maps']}}"  wx:for-item="image">
-                  <image src="{{image.src}}" mode='widthFix'  class='img' bindtap='detail' data-ename='{{image.ename}}' data-cname='{{image.cname}}' ></image>
-                  <button open-type="share" class="share">
-                      <image src="../../images/share.png" mode="widthFix" class="share_icon"></image>
-                  </button>
-                  <button class="save" data-ename="{{image.ename}}" bindgetuserinfo="downloadGift" open-type='getUserInfo'>
-                      <image src="../../images/download.png" mode="widthFix" class="save_icon"></image>
-                  </button>
+          <view class='img_con flex flex-row'>
+            <view class='img_wrap flex flex-column'>
+                  <image src="../../images/usa.png" mode='widthFix' bindtap='detail' class='img' data-ename='usa' data-cname='美国'></image>
+                  <view class="triangle-bottomright"></view>
+                  <div class="free">免费</div>
             </view>
+
+            <!--<view class='img_wrap flex flex-column'>
+                  <image src="../../images/plane.png" mode='widthFix' bindtap='detail' class='img' data-ename='plane' data-cname='小飞机'></image>
+                  <view class="triangle-bottomright"></view>
+                  <div class="free">免费</div>
+            </view>-->
           </view>
+          <!--<view class='img_con flex flex-row'>
+            <view class='img_wrap flex flex-column'>
+                  <image src="../../images/plane2.png" mode='widthFix' bindtap='detail' class='img' data-ename='plane' data-cname='小飞机'></image>
+                  <view class="triangle-bottomright"></view>
+                  <div class="free">免费</div>
+            </view>
+
+            <view class='img_wrap flex flex-column'>
+                  更多
+            </view>
+          </view>-->
       </view>
-  </scroll-view>
 
   <view class="download {{lay_status ? 'show' : 'hide'}}" style="top:{{lay_top+50}}px" bindtap="closeLay">
     <view class="title2">长按下方区域保存作品</view>

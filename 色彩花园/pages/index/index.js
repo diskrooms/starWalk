@@ -51,7 +51,7 @@ Page({
 
   //渲染页面数据
   render:function(){
-    this.setData({'imageData':app.globalData.userInfo})
+    this.setData({'userInfo':app.globalData.userInfo})
   },
   //下载作品
   downloadGift:function(e){
