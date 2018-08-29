@@ -1,5 +1,18 @@
 <!--index.wxml-->
 <view class="container">
+      <view class="flex flex-row top">
+        <view class="level-con">
+          <view class="level text-align-center bolder">{{userInfo.level}}</view>
+          <wxc-progress class="energy" percent="60" stroke-width="24" radius="12" active-color="#3ACE3A" background-color="#fff"></wxc-progress>
+          <view class="px-20 count"><text class="cur">{{userInfo.cur_energy ? userInfo.cur_energy : 0}}</text> / <text class="full">{{userInfo.max ? userInfo.max : 0}}</text></view>
+        </view>
+        <view class="smart-con">
+          <view class="smart">{{userInfo.smart}}<text class="add-smart">+</text></view>
+        </view>
+        <button class="contact" open-type="contact"></button>
+        <!--<view class="thanks"></view>-->
+      </view>
+
       <view class='simple item'>
           <view class='title'>
             <view class='left left_title'></view>
@@ -23,19 +36,25 @@
             <view class='img_wrap flex flex-column'>
                   <image src="../../images/rabbit.png" mode='widthFix' bindtap='detail' class='img' data-ename='rabbit' data-cname='小白兔'></image>
                   <view class="triangle-bottomright"></view>
-                  <div class="free">免费</div>
+                  <div class="free">免费</div> 
             </view>
 
             <view class='img_wrap flex flex-column'>
-                  更多
+                  <image src="../../images/rabbit.png" mode='widthFix' bindtap='detail' class='img' data-ename='rabbit' data-cname='小白兔'></image>
+                  <view class="triangle-bottomright"></view>
+                  <div class="free">免费</div>
             </view>
+            
+            <!--<view class='img_wrap flex flex-column'>
+                  更多
+            </view>-->
           </view>
       </view>
 
       <view class='plant item'>
           <view class='title'>
             <view class='left left_title'></view>
-            <view class='title_name'>花纹</view>
+            <text class='title_name'>花纹</text>
             <view class='right right_title'></view>
           </view>
           <view class='img_con flex flex-row'>
@@ -59,14 +78,19 @@
             </view>
 
             <view class='img_wrap flex flex-column'>
-                  更多
+                  <image src="../../images/figure3.png" mode='widthFix' bindtap='detail' class='img' data-ename='figure3' data-cname='形状3'></image>
+                  <view class="triangle-bottomright"></view>
+                  <div class="free">免费</div>
             </view>
+            <!--<view class='img_wrap flex flex-column'>
+                  更多
+            </view>-->
           </view>
       </view>
       <view class='animal item'>
           <view class='title'>
             <view class='left left_title'></view>
-            <view class='title_name'>动物</view>
+            <text class='title_name'>动物</text>
             <view class='right right_title'></view>
           </view>
           <view class='img_con flex flex-row'>
@@ -89,15 +113,19 @@
             </view>
 
             <view class='img_wrap flex flex-column'>
-                  更多
+                  <image src="../../images/bird.png" mode='widthFix' bindtap='detail' class='img' data-ename='bird' data-cname='知更鸟'></image><view class="triangle-bottomright"></view>
+                  <div class="free">免费</div>
             </view>
+            <!--<view class='img_wrap flex flex-column'>
+                  更多
+            </view>-->
           </view>
       </view>
       
       <view class='map item'>
           <view class='title'>
             <view class='left left_title'></view>
-            <view class='title_name'>地图</view>
+            <text class='title_name'>地图</text>
             <view class='right right_title'></view>
           </view>
           <view class='img_con flex flex-row'>

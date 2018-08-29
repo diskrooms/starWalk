@@ -3,12 +3,31 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/index/detail",
-    "pages/index/webcanvas"
+    "pages/index/webcanvas",
+    "pages/auction/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "色彩花园",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#f39c12",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "画画",
+        "iconPath": "images/start.png",
+        "selectedIconPath": "images/selectedStart.png"
+      },
+      {
+        "pagePath": "pages/auction/index",
+        "text": "拍卖",
+        "iconPath": "images/list.png",
+        "selectedIconPath": "images/selectedList.png"
+      }
+    ]
   }
 }
