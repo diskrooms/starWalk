@@ -63,6 +63,7 @@ view{
 .flex{display:flex;align-items:center;justify-content:center;}
 .flex-row{flex-direction:row;}
 .flex-column{flex-direction:column;}
+.flex2{display:flex;align-items:center;justify-content:space-between;}
 
 .show{display: auto;}
 .hide{display: none;}

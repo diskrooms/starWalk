@@ -605,7 +605,7 @@ Page({
   },
   //购买种子
   buy:function(e){  
-    console.log(e)
+    //console.log(e)
      var id = e.currentTarget.dataset.id;           //物品id
      var level = e.currentTarget.dataset.level;
      var price = e.currentTarget.dataset.price;

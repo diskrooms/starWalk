@@ -32,10 +32,10 @@
   z-index: 1;
 }
 .count{
-  color:#3A3A3A;
+  color:#fff;
   position: absolute;
-  top:18rpx;
-  left:80rpx;
+  top:20rpx;
+  left:90rpx;
   z-index: 10;
 }
 .smart-con{
@@ -47,15 +47,19 @@
   font-size: 9pt;
   color:3A3A3A;
   padding-left: 42rpx;
+  vertical-align: middle;
+  display: table-cell;
 }
 
 .smart{
+  position: relative;
   padding: 0 10rpx;
   color:#fff;
   background:  cornflowerblue;
   border-radius: 20rpx;
   line-height: 40rpx;
   height: 40rpx;
+  display: inline-block;
 }
 
 .add-smart{
@@ -67,7 +71,12 @@
   color:#3A3A3A;
   border-radius: 12rpx;
   text-align: center;
-  line-height: 24rpx;
+  line-height: 20rpx;
+  margin:0 0 0 5rpx;
+
+  /*position: absolute;
+  margin: auto; 
+  top: 0;  bottom: 0; right: 0; */
 }
 
 .contact{
@@ -117,6 +126,7 @@
   z-index: 99;
 }
 
+/* 图片块 */
 .img_wrap{
   width: 300rpx;
   height: 300rpx;
@@ -146,10 +156,65 @@
   color:#fff;
 }
 .price{
-  width:50rpx;
+  width:80rpx;
   bottom:5rpx;
   right:5rpx;
   text-align:right;
   line-height:25rpx;
-  color:  blanchedalmond;
+  color:#000;
+}
+
+/* 金币商店 */
+.coins_shops{
+  background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/ui/shops-bg.png') no-repeat center center;
+  background-size: 688rpx 797rpx;
+  width:688rpx;
+  height: 797rpx;
+  position: absolute;
+  top:150rpx;
+  left:30rpx;
+  z-index: 100;
+  padding: 20rpx 0;
+  font-family: zcool;
+}
+.coins_shops .coins_shops_scroll{
+  position: absolute;
+  width:70%;
+  text-align: center;
+  top: 250rpx;
+  height: 500rpx;
+  left: 100rpx;
+}
+.coins_shops .coins{
+  width:40rpx;
+  height: 60rpx;
+}
+.coins_shops .buy image{
+  width:150rpx;
+  height: 52rpx;
+}
+.coins_shops .flex-row{
+  background: #F0F2A7;
+  border-radius: 10rpx;
+  padding: 20rpx 10rpx;
+  margin: 20rpx 10rpx;
+  font-size: 22rpx;
+}
+.coins_shops .title{
+  width: 100rpx;
+  margin: 20rpx auto;
+  padding: 10rpx;
+  background: #fff;
+  border-radius: 10rpx;
+}
+/*关闭按钮*/
+ .close{
+  background:url('http://coder.51tui.vip/Public/miniProgram/my_garden/ui/dialog-close.png') no-repeat 0 0;
+  background-size:76rpx 75rpx;
+  width:76rpx;
+  height: 75rpx;
+  position: absolute;
+  top:0rpx;
+  right:0rpx;
+  z-index: 101;
 }

@@ -9,9 +9,10 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     imageData:{},
-    lay_status: 0,             //遮罩层状态
+    lay_status: 1,             //遮罩层状态
     lay_top:0,                 //遮罩层top值
     download:'',               //
+    coins_shops_status:1,      //金币商店状态
   },
   //事件处理函数
   bindViewTap: function() {

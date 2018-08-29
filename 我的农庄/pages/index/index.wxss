@@ -368,7 +368,7 @@
 /* 卷心菜 */
 .crop-cabbage{
     background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/crop/cabbage-seeding.png') no-repeat center bottom;
-    background-size:146rpx 595rpx;
+    background-size:146rpx 59rpx;
 }
 .crop-cabbage-current{
     background: url('http://coder.51tui.vip/Public/miniProgram/my_garden/crop/cabbage-seeding-current.png') no-repeat center bottom;

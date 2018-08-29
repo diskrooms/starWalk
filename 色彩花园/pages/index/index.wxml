@@ -3,8 +3,8 @@
       <view class="flex flex-row top">
         <view class="level-con">
           <view class="level text-align-center bolder">{{userInfo.level}}</view>
-          <wxc-progress class="energy" percent="60" stroke-width="24" radius="12" active-color="#3ACE3A" background-color="#fff"></wxc-progress>
-          <view class="px-20 count"><text class="cur">{{userInfo.cur_energy ? userInfo.cur_energy : 0}}</text> / <text class="full">{{userInfo.max ? userInfo.max : 0}}</text></view>
+          <wxc-progress class="energy" percent="{{userInfo.percent}}" stroke-width="24" radius="12" active-color="#3ACE3A" background-color="#ccc"></wxc-progress>
+          <view class="px-18 count"><text class="cur">{{userInfo.cur_energy ? userInfo.cur_energy : 0}}</text> / <text class="full">{{userInfo.max ? userInfo.max : 0}}</text></view>
         </view>
         <view class="smart-con">
           <view class="smart">{{userInfo.smart}}<text class="add-smart">+</text></view>
@@ -154,9 +154,45 @@
           </view>-->
       </view>
 
-  <view class="download {{lay_status ? 'show' : 'hide'}}" style="top:{{lay_top+50}}px" bindtap="closeLay">
+  <!-- 金币商店 start-->
+  <view class="coins_shops px-28" wx:if="{{coins_shops_status}}">
+      <scroll-view class="flex flex-column coins_shops_scroll" scroll-y>
+        <view class="flex2 flex-row" data-price="10" data-type="9" bindtap="buyCoins">
+          <view class="name">每天签到 +5 智慧/天</view>
+          <view class="buy invite"><image src="../../images/ui/button-bg.png"></image></view>
+        </view>
+
+        <view class="flex2 flex-row" data-price="10" data-type="9" bindtap="buyCoins">
+          <view class="name">邀请好友 +10 智慧/位</view>
+          <view class="buy invite"><image src="../../images/ui/button-bg.png"></image></view>
+        </view>
+
+        <view class="flex2 flex-row" data-price="10" data-type="9" bindtap="buyCoins">
+          <view class="seed-con"><image src="../../images/ui/smart-x2.png" class="coins"></image></view>
+          <view class="name">+20 智慧</view>
+          <view class="price">￥2.0</view>
+          <view class="buy"><image src="../../images/ui/buy.png"></image></view>
+        </view>
+        <view class="flex2 flex-row" data-price="20" data-type="10" bindtap="buyCoins">
+          <view class="seed-con"><image src="../../images/ui/smart-x2.png" class="coins"></image></view>
+          <view class="name">+50 智慧</view>
+          <view class="price">￥5.0</view>
+          <view class="buy"><image src="../../images/ui/buy.png"></image></view>
+        </view>
+        <view class="flex2 flex-row" data-price="30" data-type="11" bindtap="buyCoins">
+          <view class="seed-con"><image src="../../images/ui/smart-x2.png" class="coins"></image></view>
+          <view class="name">+100 智慧</view>
+          <view class="price">￥10.0</view>
+          <view class="buy"><image src="../../images/ui/buy.png"></image></view>
+        </view>
+      </scroll-view>
+      <view class="close" bindtap="closeShop"></view>
+  </view>
+  <!-- 金币商店 end-->
+
+  <!--<view class="download {{lay_status ? 'show' : 'hide'}}" style="top:{{lay_top+50}}px" bindtap="closeLay">
     <view class="title2">长按下方区域保存作品</view>
     <image src="{{download}}" mode='widthFix' bindload='imgload' bindlongtap='saveImgToPhotosAlbum' data-src='{{download}}'></image>
-  </view>
-  <view class="layer" wx:if="{{lay_status}}" style="top:{{lay_top}}px"></view>
+  </view>-->
+  <view class="layer" wx:if="{{lay_status}}" style="top:0rpx;height:300%"></view>
 </view>
