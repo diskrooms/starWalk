@@ -1,8 +1,8 @@
 /* pages/auction/index.wxss */
 .tips{
-  
+  margin-top:10rpx;
 }
-.auction{
+.auction-con{
   padding: 0 50rpx;
 }
 .title_name{
@@ -27,7 +27,7 @@
   display: inline-block;  /* 这一句也很关键 */
 }
 .img_wrap .img{
-  width: 250rpx;
+  width: 200rpx;
   position: absolute;
   margin:auto;
   left:0;
@@ -35,9 +35,12 @@
   top:0;
   bottom:0
 }
-.img_wrap .author{
+.img_wrap .author,.status,.auction{
   width:200rpx;
   height: 50rpx;
+  line-height: 50rpx;
+  border-radius: 25rpx;
+  background: #fff;
   position: absolute;
   margin:auto;
   left:0;
@@ -46,4 +49,14 @@
   color:cornflowerblue;
   overflow: hidden;
   font-size: 22rpx;
+  padding: 0rpx 10rpx;
+}
+.img_wrap .status{
+  width: 100rpx;
+}
+.img_wrap .auction{
+  width:100rpx;
+}
+.img_wrap .status.sold{
+  color:coral;
 }
