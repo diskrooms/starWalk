@@ -1,2 +1,91 @@
-<!--pages/auction/index.wxml-->
-<text>pages/auction/index.wxml</text>
+<!--index.wxml-->
+<view class="auction container text-align-center">
+     
+      <view class='item'>
+          <view class='title'>
+            <view class='left left_title'></view>
+            <text class='title_name'>// 我的购买 //</text>
+            <view class="tips">*手指左右滑动查看更多</view>
+          </view>
+          <scroll-view class='img_con flex flex-row' scroll-x>
+            <view class='img_wrap flex flex-column'>
+                  <image class='img' src="../../images/plane.png" mode='widthFix' bindtap='detail' data-ename='plane' data-cname='小飞机'></image>
+                  <view class="author">作者 / waldenpond</view>
+            </view>
+            <view class='img_wrap'>
+                  <image class='img' src="../../images/plane.png" mode='widthFix' bindtap='detail' data-ename='plane' data-cname='小飞机'></image>
+                  <view class="author">作者 / waldenpond</view>
+            </view>
+            <view class='img_wrap'>
+                  <image class='img' src="../../images/plane.png" mode='widthFix' bindtap='detail' data-ename='plane' data-cname='小飞机'></image>
+                  <view class="author">作者 / waldenpond</view>
+            </view>
+            <view class='img_wrap'>
+                  <image class='img' src="../../images/plane.png" mode='widthFix' bindtap='detail' data-ename='plane' data-cname='小飞机'></image>
+                  <view class="author">作者 / waldenpond</view>
+            </view>
+          </scroll-view>
+          
+      </view>
+
+      <view class='item'>
+          <view class='title'>
+            <view class='left left_title'></view>
+            <text class='title_name'>// 我的拍卖 //</text>
+            <view class='right right_title'></view>
+          </view>
+          <view class='img_con flex flex-row'>
+            <view class='img_wrap flex flex-column'>
+                  <image src="../../images/figure1.png" mode='widthFix' bindtap='detail' class='img' data-ename='figure1' data-cname='形状1'></image>
+                  <view class="triangle-bottomright"></view>
+                  <div class="status">免费</div>
+            </view>
+
+            <view class='img_wrap flex flex-column'>
+                  <image src="../../images/figure2.png" mode='widthFix' bindtap='detail' class='img' data-ename='figure2' data-cname='形状2'></image>
+                  <view class="triangle-bottomright"></view>
+                  <div class="free">免费</div>
+            </view>
+          </view>
+          <view class='img_con flex flex-row'>
+            <view class='img_wrap flex flex-column'>
+                  <image src="../../images/figure3.png" mode='widthFix' bindtap='detail' class='img' data-ename='figure3' data-cname='形状3'></image>
+                  <view class="triangle-bottomright"></view>
+                  <div class="free">免费</div>
+            </view>
+
+            <view class='img_wrap flex flex-column'>
+                  <image src="../../images/figure3.png" mode='widthFix' bindtap='detail' class='img' data-ename='figure3' data-cname='形状3'></image>
+                  <view class="triangle-bottomright"></view>
+                  <div class="free">免费</div>
+            </view>
+
+          </view>
+      </view>
+      <view class='item'>
+          <view class='title'>
+            <text class='title_name'>//拍卖集市//</text>
+            <view class='right right_title'></view>
+          </view>
+          <view class='img_con flex flex-row'>
+            <view class='img_wrap flex flex-column'>
+                  <image src="../../images/owl.png" mode='widthFix' bindtap='detail' class='img' data-ename='owl' data-cname='猫头鹰'></image>
+                  <div class="price">售价:100智慧</div>
+                  <div class="auction">拍下</div>
+            </view>
+
+          </view>
+          <view class='img_con flex flex-row'>
+            <view class='img_wrap flex flex-column'>
+                  <image src="../../images/bird.png" mode='widthFix' bindtap='detail' class='img' data-ename='bird' data-cname='知更鸟'></image><view class="triangle-bottomright"></view>
+                  <div class="price">售价:200智慧</div>
+                  <div class="auction">拍下</div>
+            </view>
+
+
+          </view>
+      </view>
+      
+    
+  <view class="layer" wx:if="{{lay_status}}" style="top:0rpx;height:300%"></view>
+</view>

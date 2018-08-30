@@ -1,1 +1,49 @@
 /* pages/auction/index.wxss */
+.tips{
+  
+}
+.auction{
+  padding: 0 50rpx;
+}
+.title_name{
+  font-size: 26rpx;
+  padding: 5rpx 10rpx;
+  background:   coral;
+  border-radius: 8rpx;
+  color:#fff;
+}
+.img_con{
+  white-space: nowrap; /* 这一句很关键 */
+}
+/* 图片块 */
+.img_wrap{
+  width: 300rpx;
+  height: 300rpx;
+  background: blanchedalmond;
+  margin:10rpx;
+  font-size: 28rpx;
+  position: relative;
+  border-radius: 8rpx;
+  display: inline-block;  /* 这一句也很关键 */
+}
+.img_wrap .img{
+  width: 250rpx;
+  position: absolute;
+  margin:auto;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0
+}
+.img_wrap .author{
+  width:200rpx;
+  height: 50rpx;
+  position: absolute;
+  margin:auto;
+  left:0;
+  right:0;
+  bottom:10rpx;
+  color:cornflowerblue;
+  overflow: hidden;
+  font-size: 22rpx;
+}

@@ -27,11 +27,11 @@ App({
   onShareAppMessage: function (params, callback) {
     var that = this
     //console.log(params)
-    wx.showShareMenu({
+    /*wx.showShareMenu({
       withShareTicket: true,
       success: function (res) {
       }
-    })
+    })*/
     return {
       title: util.share()['share_title'],
       path: '/pages/index/index?above=' + that.globalData.userInfo.id,
@@ -77,6 +77,9 @@ App({
       fail: function (res) {
         // 转发失败
         console.log('转发失败')
+      },
+      complete:function(){
+        console.log('转发完成');
       }
     }
   }

@@ -24,10 +24,10 @@ function alert(msg) {
 
 //随机分享
 function share() {
-  var _title = ['每个人都是自己的艺术家'];
+  var _title = ['你离世界名画的距离，只差一个色彩花园','看看你的作品能拍卖多少'];
   var random = parseInt(_title.length * Math.random());
   var share_title = _title[random];
-  var _image = ['http://coder.51tui.vip/Public/miniProgram/color_garden/owl.png', 'http://coder.51tui.vip/Public/miniProgram/color_garden/lion.png'];
+  var _image = ['http://coder.51tui.vip/Public/miniProgram/color_garden/share.jpg', 'http://coder.51tui.vip/Public/miniProgram/color_garden/share_2.webp'];
   var random = parseInt(_image.length * Math.random());
   var share_image = _image[random];
   return { 'share_title': share_title, 'share_image': share_image }
