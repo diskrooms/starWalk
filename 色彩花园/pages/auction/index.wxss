@@ -60,3 +60,23 @@
 .img_wrap .status.sold{
   color:coral;
 }
+
+/* 拍卖集市价格 */
+.img_wrap .triangle-topright {
+  width: 0;
+  height: 0;
+  border-top: 45px solid  orangered;
+  border-left: 45px solid transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.img_wrap .price{
+  position:absolute;
+  top:5rpx;
+  right:5rpx;
+  font-size:10px;
+  color:#fff;
+  width:40rpx;
+  line-height: 22rpx;
+}

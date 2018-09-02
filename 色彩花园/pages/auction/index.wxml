@@ -10,19 +10,19 @@
           <scroll-view class='img_con flex flex-row' scroll-x>
             <view class='img_wrap flex flex-column'>
                   <image class='img' src="../../images/plane.png" mode='aspectFit' bindtap='detail' data-ename='plane' data-cname='小飞机'></image>
-                  <view class="author">创作 / waldenpond</view>
+                  <view class="author">waldenpond 作品</view>
             </view>
             <view class='img_wrap'>
                   <image class='img' src="../../images/plane.png" mode='widthFix' bindtap='detail' data-ename='plane' data-cname='小飞机'></image>
-                  <view class="author">创作 / waldenpond</view>
+                  <view class="author">waldenpond 作品</view>
             </view>
             <view class='img_wrap'>
                   <image class='img' src="../../images/plane.png" mode='widthFix' bindtap='detail' data-ename='plane' data-cname='小飞机'></image>
-                  <view class="author">创作 / waldenpond</view>
+                  <view class="author">waldenpond 作品</view>
             </view>
             <view class='img_wrap'>
                   <image class='img' src="../../images/plane.png" mode='widthFix' bindtap='detail' data-ename='plane' data-cname='小飞机'></image>
-                  <view class="author">创作 / waldenpond</view>
+                  <view class="author">waldenpond 作品</view>
             </view>
           </scroll-view>
           
@@ -65,19 +65,24 @@
           <view class="text-align-left">
             <view class='img_wrap flex flex-column'>
                   <image src="../../images/owl.png" mode='widthFix' bindtap='detail' class='img' data-ename='owl' data-cname='猫头鹰'></image>
-                  <div class="price">售价:100智慧</div>
-                  <div class="auction text-align-center">点击购买</div>
+                  <!--<view class="triangle-topright"></view>
+                  <div class="price">100智慧</div>-->
             </view>
+            <div class="auction text-align-center">点击购买</div>
+            
             <view class='img_wrap flex flex-column'>
                   <image src="../../images/owl.png" mode='widthFix' bindtap='detail' class='img' data-ename='owl' data-cname='猫头鹰'></image>
-                  <div class="price">售价:100智慧</div>
-                  <div class="auction text-align-center">点击购买</div>
+                  <!--<view class="triangle-topright"></view>
+                  <div class="price">100智慧</div>--> 
             </view>
+            <div class="auction text-align-center">点击购买</div>
+
             <view class='img_wrap flex flex-column'>
                   <image src="../../images/owl.png" mode='widthFix' bindtap='detail' class='img' data-ename='owl' data-cname='猫头鹰'></image>
-                  <div class="price">售价:100智慧</div>
-                  <div class="auction text-align-center">点击购买</div>
+                  <!--<view class="triangle-topright"></view>
+                  <div class="price">100智慧</div>-->
             </view>
+            <div class="auction text-align-center">点击购买</div>
           </view>
           
       </view>
