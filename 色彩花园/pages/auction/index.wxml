@@ -92,7 +92,7 @@
       </view>
       
   <!-- 金币商店 start-->
-  <view class="coins_shops px-28" wx:if="{{coins_shops_status}}">
+  <view class="coins_shops px-28" wx:if="{{coins_shops_status}}" style="top:{{lay_top}}px">
       <scroll-view class="flex flex-column coins_shops_scroll" scroll-y>
         <view>*等级提升，相应奖励也会随之增加</view>
         <view class="flex2 flex-row" bindtap="{{today_sign ? 'signed':'sign'}}">
@@ -111,31 +111,42 @@
         </view>
 
         <view class="flex flex-row">
-          <view class="flex flex-column buy-block" data-price="10" data-type="9" bindtap="buyCoins">
-            <view class="seed-con"><image src="../../images/ui/smart-x2.png" class="coins"></image></view>
-            <view class="name">+20 智慧</view>
+          <view class="flex flex-column buy-block" data-price="2" data-type="9" bindtap="buyCoins">
+            <view class="seed-con">
+                <image src="../../images/ui/smart-x2.png" class="coins"></image>
+                <view class="name">+20</view>
+            </view>
             <view class="buy-price">￥2.0</view>
             <view class="buy"><image src="../../images/ui/buy.png"></image></view>
           </view>
-          <view class="flex flex-column buy-block" data-price="20" data-type="10" bindtap="buyCoins">
-            <view class="seed-con"><image src="../../images/ui/smart-x2.png" class="coins"></image></view>
-            <view class="name">+50 智慧</view>
+
+          <view class="flex flex-column buy-block" data-price="5" data-type="10" bindtap="buyCoins">
+            <view class="seed-con">
+              <image src="../../images/ui/smart-x2.png" class="coins"></image>
+              <view class="name">+50</view>
+            </view>
             <view class="buy-price">￥5.0</view>
             <view class="buy"><image src="../../images/ui/buy.png"></image></view>
           </view>
         </view>
         
         <view class="flex flex-row">
-          <view class="flex flex-column buy-block" data-price="30" data-type="11" bindtap="buyCoins">
-            <view class="seed-con"><image src="../../images/ui/smart-x2.png" class="coins"></image></view>
-            <view class="name">+100 智慧</view>
-            <view class="price">￥10.0</view>
+          <view class="flex flex-column buy-block" data-price="10" data-type="11" bindtap="buyCoins">
+            <view class="seed-con">
+                <image src="../../images/ui/smart-x2.png" class="coins"></image>
+                <view class="name">+100</view>
+            </view>
+            
+            <view class="buy-price">￥10.0</view>
             <view class="buy"><image src="../../images/ui/buy.png"></image></view>
           </view>
           <view class="flex flex-column buy-block" data-price="30" data-type="11" bindtap="buyCoins">
-            <view class="seed-con"><image src="../../images/ui/smart-x2.png" class="coins"></image></view>
-            <view class="name">+1000 智慧</view>
-            <view class="price">￥30.0</view>
+            <view class="seed-con">
+                <image src="../../images/ui/smart-x2.png" class="coins"></image>
+                <view class="name">+1000</view>
+            </view>
+
+            <view class="buy-price">￥30.0</view>
             <view class="buy"><image src="../../images/ui/buy.png"></image></view>
           </view>
         </view>
