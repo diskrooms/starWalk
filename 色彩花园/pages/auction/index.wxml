@@ -57,36 +57,92 @@
           
       </view>
 
-      <view class='item'>
+      <view class='item auction-market'>
           <view class='title'>
             <text class='title_name'>// 拍卖集市 //</text>
             <view class='right right_title'></view>
           </view>
           <view class="text-align-left">
-            <view class='img_wrap flex flex-column'>
-                  <image src="../../images/owl.png" mode='widthFix' bindtap='detail' class='img' data-ename='owl' data-cname='猫头鹰'></image>
-                  <!--<view class="triangle-topright"></view>
-                  <div class="price">100智慧</div>-->
+            <view class="item-market" bindtap="buy" data-price='120' data-ename='owl' data-cname='猫头鹰'>
+              <view class='img_wrap flex flex-column'>
+                    <image src="../../images/owl.png" mode='widthFix' class='img'></image>
+              </view>
+              <view class="auction-info"> waldenpond / 120智慧</view>
+              <view class="auction-buy text-align-center">点击购买</view>
             </view>
-            <div class="auction text-align-center">点击购买</div>
-            
-            <view class='img_wrap flex flex-column'>
-                  <image src="../../images/owl.png" mode='widthFix' bindtap='detail' class='img' data-ename='owl' data-cname='猫头鹰'></image>
-                  <!--<view class="triangle-topright"></view>
-                  <div class="price">100智慧</div>--> 
-            </view>
-            <div class="auction text-align-center">点击购买</div>
 
-            <view class='img_wrap flex flex-column'>
-                  <image src="../../images/owl.png" mode='widthFix' bindtap='detail' class='img' data-ename='owl' data-cname='猫头鹰'></image>
-                  <!--<view class="triangle-topright"></view>
-                  <div class="price">100智慧</div>-->
+            <view class="item-market" bindtap="buy" data-price='120' data-ename='owl' data-cname='猫头鹰'>
+              <view class='img_wrap flex flex-column'>
+                    <image src="../../images/owl.png" mode='widthFix' class='img'></image>
+              </view>
+              <view class="auction-info"> waldenpond / 120智慧</view>
+              <view class="auction-buy text-align-center">点击购买</view>
             </view>
-            <div class="auction text-align-center">点击购买</div>
+
+            <view class="item-market" bindtap="buy" data-price='120' data-ename='owl' data-cname='猫头鹰'>
+              <view class='img_wrap flex flex-column'>
+                    <image src="../../images/owl.png" mode='widthFix' class='img'></image>
+              </view>
+              <view class="auction-info"> waldenpond / 120智慧</view>
+              <view class="auction-buy text-align-center">点击购买</view>
+            </view>
+
           </view>
           
       </view>
       
-    
+  <!-- 金币商店 start-->
+  <view class="coins_shops px-28" wx:if="{{coins_shops_status}}">
+      <scroll-view class="flex flex-column coins_shops_scroll" scroll-y>
+        <view>*等级提升，相应奖励也会随之增加</view>
+        <view class="flex2 flex-row" bindtap="{{today_sign ? 'signed':'sign'}}">
+          <view class="name">每天签到 + 5 智慧/天</view>
+          <view class="sign {{today_sign ? 'signed':''}}">{{today_sign ? '已签到':'签到'}}</view>
+        </view>
+
+        <view class="flex2 flex-row">
+          <view class="name">邀请好友 +10 智慧/位</view>
+          <button class="invite" open-type="share">邀请</button>
+        </view>
+
+        <view class="flex2 flex-row">
+          <view class="name">分享群组 +20 智慧/次</view>
+          <button open-type='share' bindtap="{{today_share_group ? 'shared':'shareG'}}" class="shareG {{today_share_group ? 'shared':''}}">{{today_share_group ? '已分享':'分享'}}</button>
+        </view>
+
+        <view class="flex flex-row">
+          <view class="flex flex-column buy-block" data-price="10" data-type="9" bindtap="buyCoins">
+            <view class="seed-con"><image src="../../images/ui/smart-x2.png" class="coins"></image></view>
+            <view class="name">+20 智慧</view>
+            <view class="buy-price">￥2.0</view>
+            <view class="buy"><image src="../../images/ui/buy.png"></image></view>
+          </view>
+          <view class="flex flex-column buy-block" data-price="20" data-type="10" bindtap="buyCoins">
+            <view class="seed-con"><image src="../../images/ui/smart-x2.png" class="coins"></image></view>
+            <view class="name">+50 智慧</view>
+            <view class="buy-price">￥5.0</view>
+            <view class="buy"><image src="../../images/ui/buy.png"></image></view>
+          </view>
+        </view>
+        
+        <view class="flex flex-row">
+          <view class="flex flex-column buy-block" data-price="30" data-type="11" bindtap="buyCoins">
+            <view class="seed-con"><image src="../../images/ui/smart-x2.png" class="coins"></image></view>
+            <view class="name">+100 智慧</view>
+            <view class="price">￥10.0</view>
+            <view class="buy"><image src="../../images/ui/buy.png"></image></view>
+          </view>
+          <view class="flex flex-column buy-block" data-price="30" data-type="11" bindtap="buyCoins">
+            <view class="seed-con"><image src="../../images/ui/smart-x2.png" class="coins"></image></view>
+            <view class="name">+1000 智慧</view>
+            <view class="price">￥30.0</view>
+            <view class="buy"><image src="../../images/ui/buy.png"></image></view>
+          </view>
+        </view>
+      </scroll-view>
+      <view class="close" bindtap="closeShop"></view>
+  </view>
+  <!-- 金币商店 end-->
+  
   <view class="layer" wx:if="{{lay_status}}" style="top:0rpx;height:300%"></view>
 </view>

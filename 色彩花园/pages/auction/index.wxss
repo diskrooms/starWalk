@@ -62,7 +62,7 @@
 }
 
 /* 拍卖集市价格 */
-.img_wrap .triangle-topright {
+/*.img_wrap .triangle-topright {
   width: 0;
   height: 0;
   border-top: 45px solid  orangered;
@@ -79,4 +79,21 @@
   color:#fff;
   width:40rpx;
   line-height: 22rpx;
+}*/
+.auction-market .item-market{
+  display: inline-block;
+  text-align: center;
+  margin: 10rpx 0rpx;
+}
+.auction-market .auction-info{
+  font-size: 26rpx;
+}
+.auction-market .auction-buy{
+  font-size:26rpx;
+  color:#fff;
+  background:coral;
+  border-radius: 25rpx;
+  margin: 15rpx 0rpx;
+  padding: 10rpx 15rpx;
+  display: inline-block;
 }
