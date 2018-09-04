@@ -84,14 +84,14 @@ Page({
     var price = e.currentTarget.dataset.price
     var ename = e.currentTarget.dataset.ename
     var cname = e.currentTarget.dataset.cname
-    //console.log( typeof app.globalData.userInfo.smart)
-    //console.log(typeof price)
+    console.log(app.globalData.userInfo.smart)
+    //console.log(price)
     if (parseInt(app.globalData.userInfo.smart) < parseInt(price)){
       util.alert('智慧不足')
       this.getScrollOffset()
       this.openBuyLayer()
     } else {
-      //扣款并调整新页面
+      //扣款并跳转至新页面
       var timestamp = parseInt(Date.parse(new Date()) / 1000)+'';    //时间戳并转换成字符串类型
       var sign = MD5.md5(timestamp + price + 'colorGarden')
       if(!this.data.buy_market_lock){
@@ -176,13 +176,14 @@ Page({
       'package': res.data.package,
       'signType': 'MD5',
       'paySign': res.data.paySign,
-      'success': (res) => {
-        if (res.errMsg == 'requestPayment:ok') {
-          setTimeout(function () {
+      'success': (res2) => {
+        if (res2.errMsg == 'requestPayment:ok') {
+          /*setTimeout(function () {
             wx.reLaunch({
               url: '/pages/index/index',
             })
-          }, 100);
+          }, 100);*/
+          console.log(res)
         }
       },
       'fail': (res) => {
@@ -198,9 +199,9 @@ Page({
   sign: function () {
     util.request(app.globalData.apiDomain + '/color/sign_post', 'POST', { 'token': wx.getStorageSync('token'), 'app': 3, 'type': 1 }, (res) => {
       if (res.data.status > 0) {
-        let userInfo = this.data.userInfo
-        userInfo['smart'] = res.data.msg[1]
-        this.setData({ 'today_sign': 1, 'userInfo': userInfo })
+        //let userInfo = this.data.userInfo
+        app.globalData.userInfo['smart'] = res.data.msg[1]
+        this.setData({ 'today_sign': 1, 'userInfo': app.globalData.userInfo })
       }
       util.alert(res.data.msg[0])
     })

@@ -38,19 +38,19 @@
           <scroll-view class='img_con flex flex-row' scroll-x>
             <view class='img_wrap flex flex-column'>
                   <image src="../../images/figure1.png" mode='widthFix' bindtap='detail' class='img' data-ename='figure1' data-cname='形状1'></image>
-                  <view class="triangle-bottomright"></view>
+                  <!--<view class="triangle-bottomright"></view>-->
                   <div class="status">拍卖中</div>
             </view>
 
             <view class='img_wrap flex flex-column'>
                   <image src="../../images/figure2.png" mode='widthFix' bindtap='detail' class='img' data-ename='figure2' data-cname='形状2'></image>
-                  <view class="triangle-bottomright"></view>
+                  <!--<view class="triangle-bottomright"></view>-->
                   <div class="status sold">已售出</div>
             </view>
 
             <view class='img_wrap flex flex-column'>
                   <image src="../../images/figure2.png" mode='widthFix' bindtap='detail' class='img' data-ename='figure2' data-cname='形状2'></image>
-                  <view class="triangle-bottomright"></view>
+                  <!--<view class="triangle-bottomright"></view>-->
                   <div class="status sold">已售出</div>
             </view>
           </scroll-view>
