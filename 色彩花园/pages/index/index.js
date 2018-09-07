@@ -45,6 +45,7 @@ Page({
       var sid = e.currentTarget.dataset.sid
       
       if(price > 0){  
+        //非免费
         if (!this.data.buy_index_lock) {
           this.setData({ 'buy_index_lock': 1 })                        //锁住 请求完成/取消前不能重复点击发请求
           var url = app.globalData.apiDomain + '/Color/indexSmartBuy'
@@ -52,6 +53,7 @@ Page({
           util.request(url, 'POST', data, this.buy_index_callback)
         }
       } else {
+        //免费
         wx.navigateTo({
           url: '/pages/index/webcanvas?cname=' + cname + '&ename=' + ename + '&width=' + width + '&height=' + height,
         })
@@ -59,8 +61,7 @@ Page({
   },
 
   //首页虚拟货币购买回调
-  buy_index_callback: function (res) {
-    util.alert(res.data.msg[0])
+  buy_index_callback: function (res) { 
     this.setData({ 'buy_index_lock': 0 })
     if (res.data.status > 0) {
       app.globalData.userInfo.smart = res.data.msg[1]
@@ -69,10 +70,13 @@ Page({
         url: '/pages/index/webcanvas?cname=' + res.data.msg[3] + '&ename=' + res.data.msg[2],
       })
     } else if(res.data.status == 0) {
+      //智慧不足 需要充值
+      util.alert(res.data.msg[0])
       this.getScrollOffset()
       this.openBuyLayer(res.data.msg[2])
     } else {
-
+      //其他错误
+      util.alert(res.data.msg[0])
     }
   },
 
@@ -83,7 +87,7 @@ Page({
   //渲染页面数据
   render:function(){
     this.setData({ 'userInfo': app.globalData.userInfo,'bought_sid':app.globalData.userInfo.bought_sid})
-    console.log(typeof this.data.bought_sid.indexOf('2'));
+    //console.log(typeof this.data.bought_sid.indexOf('2'));
   },
   indexOf:function(sid){
     return this.data.bought_sid.indexOf(sid)
