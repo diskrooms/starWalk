@@ -21,26 +21,26 @@
           </view>
           <view class='img_con flex flex-row'>
             <view class='img_wrap flex flex-column'>
-                  <image src="../../images/plane.png" mode='widthFix' bindtap='detail' class='img' data-ename='plane' data-cname='小飞机'></image>
+                  <image src="../../images/plane.png" mode='widthFix' bindtap='detail' class='img' data-ename='plane' data-cname='小飞机' data-sid='1' data-price='0'></image>
                   <view class="triangle-bottomright"></view>
                   <div class="free">免费</div>
             </view>
 
             <view class='img_wrap flex flex-column'>
-                  <image src="../../images/house.png" mode='widthFix' bindtap='detail' class='img' data-ename='house' data-cname='别墅'></image>
-                  <view class="triangle-bottomright"></view>
+                  <image src="../../images/house.png" mode='widthFix' bindtap='detail' class='img' data-ename='house' data-cname='别墅' data-sid='2' data-price='300'></image>
+                  <view class="triangle-bottomright pink">{{indexOf('2')}}</view>
                   <div class="free price">300智慧</div>
             </view>
           </view>
           <view class='img_con flex flex-row'>
             <view class='img_wrap flex flex-column'>
-                  <image src="../../images/rabbit.png" mode='widthFix' bindtap='detail' class='img' data-ename='rabbit' data-cname='小白兔'></image>
+                  <image src="../../images/rabbit.png" mode='widthFix' bindtap='detail' class='img' data-ename='rabbit' data-cname='小白兔' data-sid='3' data-price='0'></image>
                   <view class="triangle-bottomright"></view>
                   <div class="free">免费</div> 
             </view>
 
             <view class='img_wrap flex flex-column'>
-                  <image src="../../images/rabbit.png" mode='widthFix' bindtap='detail' class='img' data-ename='rabbit' data-cname='小白兔'></image>
+                  <image src="../../images/rabbit.png" mode='widthFix' bindtap='detail' class='img' data-ename='rabbit' data-cname='小白兔' data-sid='4' data-price='0'></image>
                   <view class="triangle-bottomright"></view>
                   <div class="free">免费</div>
             </view>
@@ -95,13 +95,13 @@
           </view>
           <view class='img_con flex flex-row'>
             <view class='img_wrap flex flex-column'>
-                  <image src="../../images/owl.png" mode='widthFix' bindtap='detail' class='img' data-ename='owl' data-cname='猫头鹰'></image>
+                  <image src="../../images/owl.png" mode='widthFix' bindtap='detail' class='img' data-ename='owl' data-cname='猫头鹰' data-price='150'></image>
                   <view class="triangle-bottomright"></view>
                   <div class="free price">150智慧</div>
             </view>
 
             <view class='img_wrap flex flex-column'>
-                  <image src="../../images/lion.png" mode='widthFix' bindtap='detail' class='img' data-ename='lion' data-cname='狮子'></image>
+                  <image src="../../images/lion.png" mode='widthFix' bindtap='detail' class='img' data-ename='lion' data-cname='狮子' data-price='200'></image>
                   <view class="triangle-bottomright"></view>
                   <div class="free price">200智慧</div>
             </view>
@@ -174,13 +174,13 @@
         </view>
 
         <view class="flex flex-row">
-          <view class="flex flex-column buy-block" data-price="10" data-type="9" bindtap="buyCoins">
+          <view class="flex flex-column buy-block" data-price="2" bindtap="buyCoins" data-smart='20'>
             <view class="seed-con"><image src="../../images/ui/smart-x2.png" class="coins"></image></view>
             <view class="name">+20 智慧</view>
             <view class="buy-price">￥2.0</view>
             <view class="buy"><image src="../../images/ui/buy.png"></image></view>
           </view>
-          <view class="flex flex-column buy-block" data-price="20" data-type="10" bindtap="buyCoins">
+          <view class="flex flex-column buy-block" data-price="5" bindtap="buyCoins" data-smart='50'>
             <view class="seed-con"><image src="../../images/ui/smart-x2.png" class="coins"></image></view>
             <view class="name">+50 智慧</view>
             <view class="buy-price">￥5.0</view>
@@ -189,13 +189,13 @@
         </view>
         
         <view class="flex flex-row">
-          <view class="flex flex-column buy-block" data-price="30" data-type="11" bindtap="buyCoins">
+          <view class="flex flex-column buy-block" data-price="10" bindtap="buyCoins" data-smart='100'>
             <view class="seed-con"><image src="../../images/ui/smart-x2.png" class="coins"></image></view>
             <view class="name">+100 智慧</view>
             <view class="price">￥10.0</view>
             <view class="buy"><image src="../../images/ui/buy.png"></image></view>
           </view>
-          <view class="flex flex-column buy-block" data-price="30" data-type="11" bindtap="buyCoins">
+          <view class="flex flex-column buy-block" data-price="30" bindtap="buyCoins" data-smart='1000'>
             <view class="seed-con"><image src="../../images/ui/smart-x2.png" class="coins"></image></view>
             <view class="name">+1000 智慧</view>
             <view class="price">￥30.0</view>

@@ -1,5 +1,6 @@
 //index.js
 const util = require('../../utils/util.js')
+var MD5 = require('../../utils/md5.js');
 //获取应用实例
 const app = getApp()
 
@@ -16,6 +17,10 @@ Page({
     coins_shops_status:0,      //金币商店状态
     today_sign:0,              //今日是否已签到
     today_share_group:0,       //今日是否已分享群组
+    buy_index_lock:0,          //首页购买锁
+    need_smart: 0,             //购买物件所需智慧值
+    buy_smart: 0,              //准备购进多少智慧值
+    bought_sid:[],             //已经购买的物料 sid 存放数组
   },
   //事件处理函数
   bindViewTap: function() {
@@ -29,24 +34,46 @@ Page({
   getUserInfo: function(e) {
     
   },
+  
+  //点击物件动作-跳转至填色页或者弹出智慧购买页
   detail:function(e){
       var cname = e.currentTarget.dataset.cname
       var ename = e.currentTarget.dataset.ename
       var width = e.currentTarget.dataset.width
       var height = e.currentTarget.dataset.height
-      wx.navigateTo({
-        url: '/pages/index/webcanvas?cname=' + cname + '&ename=' + ename + '&width=' + width + '&height=' + height,
-      })
-
-      /*if (e.detail.userInfo != undefined && e.detail.userInfo != '' && e.detail.userInfo != null){
-        //console.log(e.detail.userInfo)
-        var nickname = e.detail.userInfo.nickName;
-        var avatar = e.detail.userInfo.avatarUrl;
-        wx.navigateTo({
-          url: '/pages/index/webcanvas?cname=' + cname + '&ename=' + ename + '&width=' + width + '&height=' + height+'&nickname='+nickname+'&avatar='+avatar,
-        })
-      }*/
+      var price = e.currentTarget.dataset.price
+      var sid = e.currentTarget.dataset.sid
       
+      if(price > 0){  
+        if (!this.data.buy_index_lock) {
+          this.setData({ 'buy_index_lock': 1 })                        //锁住 请求完成/取消前不能重复点击发请求
+          var url = app.globalData.apiDomain + '/Color/indexSmartBuy'
+          var data = { 'token': wx.getStorageSync('token'), 'app': 3, 'sid':sid }
+          util.request(url, 'POST', data, this.buy_index_callback)
+        }
+      } else {
+        wx.navigateTo({
+          url: '/pages/index/webcanvas?cname=' + cname + '&ename=' + ename + '&width=' + width + '&height=' + height,
+        })
+      }
+  },
+
+  //首页虚拟货币购买回调
+  buy_index_callback: function (res) {
+    util.alert(res.data.msg[0])
+    this.setData({ 'buy_index_lock': 0 })
+    if (res.data.status > 0) {
+      app.globalData.userInfo.smart = res.data.msg[1]
+      //购买成功(或已购买)并跳转至填色页面
+      wx.navigateTo({
+        url: '/pages/index/webcanvas?cname=' + res.data.msg[3] + '&ename=' + res.data.msg[2],
+      })
+    } else if(res.data.status == 0) {
+      this.getScrollOffset()
+      this.openBuyLayer(res.data.msg[2])
+    } else {
+
+    }
   },
 
   onShow:function(e){
@@ -55,7 +82,11 @@ Page({
 
   //渲染页面数据
   render:function(){
-    this.setData({'userInfo':app.globalData.userInfo})
+    this.setData({ 'userInfo': app.globalData.userInfo,'bought_sid':app.globalData.userInfo.bought_sid})
+    console.log(typeof this.data.bought_sid.indexOf('2'));
+  },
+  indexOf:function(sid){
+    return this.data.bought_sid.indexOf(sid)
   },
   //下载作品
   downloadGift:function(e){
@@ -110,27 +141,27 @@ Page({
     this.setData({ 'coins_shops_status': 0, 'lay_status': 0 })
   },
   //打开购买浮层
-  openBuyLayer:function(){
+  openBuyLayer:function(price){
+    this.setData({ 'coins_shops_status': 1, 'lay_status': 1})
     //请求签到和分享数据
     util.request(app.globalData.apiDomain + '/color/openBuyLayer', 'POST', { 'token': wx.getStorageSync('token'), 'app': 3},(res)=>{
       //console.log(res)
-      this.setData({ 'today_sign': res.data.msg[0], 'today_share_group': res.data.msg[1], 'coins_shops_status': 1, 'lay_status': 1 })
+      this.setData({ 'today_sign': res.data.msg[0], 'today_share_group': res.data.msg[1], 'need_smart': price })
     })
   },
 
   //购买智慧值
   buyCoins: function (e) {
     var that = this;
-    var title = e.currentTarget.dataset.title;
-    var type = e.currentTarget.dataset.type;
-    var price = e.currentTarget.dataset.price;
+    var price = e.currentTarget.dataset.price;                  //该物件人民币价格
+    var smart = e.currentTarget.dataset.smart;                  //购买多少智慧值
     var timestamp = parseInt(Date.parse(new Date()) / 1000);    //参数签名
     var random = Math.ceil(Math.random() * 100000) + 1 + '';    //强制转换字符
-    var sign = MD5.md5(timestamp + random + price + type + 'colorgarden')
+    var sign = MD5.md5(timestamp + random + price + 'colorgarden')
     if (!this.data.coins_buy_lock) {
-      this.setData({ 'coins_buy_lock': 1 })                        //锁住 购买完成/取消前不能重复点击发请求
-      var url = app.globalData.apiDomain + '/pay/index2'
-      var data = { 'token': wx.getStorageSync('token'), 'app': 3, 'timestamp': timestamp, 'random': random, 'sign': sign, 'type': type, 'price': price }
+      this.setData({ 'coins_buy_lock': 1, 'buy_smart': smart })                        //锁住 购买完成/取消前不能重复点击发请求
+      var url = app.globalData.apiDomain + '/pay/color'
+      var data = { 'token': wx.getStorageSync('token'), 'app': 3, 'timestamp': timestamp, 'random': random, 'sign': sign, 'price': price }
       util.request(url, 'POST', data, this._buycoins_sure_callback)
     }
   },

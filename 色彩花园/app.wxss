@@ -257,6 +257,12 @@ button::after{
   bottom: 0;
   right: 0;
 }
+.triangle-bottomright.pink{
+  border-bottom: 45px solid #ec5300;
+}
+.triangle-bottomright.green{
+  border-bottom: 45px solid green;
+}
 .free{
   position:absolute;
   bottom:10rpx;
@@ -265,12 +271,12 @@ button::after{
   color:#fff;
 }
 .price{
-  width:80rpx;
+  width:50rpx;
   bottom:5rpx;
   right:5rpx;
   text-align:right;
   line-height:25rpx;
-  margin: 20rpx 0rpx;
+  margin: 20rpx 0rpx 0rpx;
 }
 
 /* 金币商店开始 */

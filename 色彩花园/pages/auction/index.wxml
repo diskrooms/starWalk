@@ -111,7 +111,7 @@
         </view>
 
         <view class="flex flex-row">
-          <view class="flex flex-column buy-block" data-price="2" data-type="9" bindtap="buyCoins">
+          <view class="flex flex-column buy-block" data-price="2" data-smart="20" bindtap="buyCoins">
             <view class="seed-con">
                 <image src="../../images/ui/smart-x2.png" class="coins"></image>
                 <view class="name">+20</view>
@@ -120,7 +120,7 @@
             <view class="buy"><image src="../../images/ui/buy.png"></image></view>
           </view>
 
-          <view class="flex flex-column buy-block" data-price="5" data-type="10" bindtap="buyCoins">
+          <view class="flex flex-column buy-block" data-price="5" data-smart="50" bindtap="buyCoins">
             <view class="seed-con">
               <image src="../../images/ui/smart-x2.png" class="coins"></image>
               <view class="name">+50</view>
@@ -131,7 +131,7 @@
         </view>
         
         <view class="flex flex-row">
-          <view class="flex flex-column buy-block" data-price="10" data-type="11" bindtap="buyCoins">
+          <view class="flex flex-column buy-block" data-price="10" data-smart="100" bindtap="buyCoins">
             <view class="seed-con">
                 <image src="../../images/ui/smart-x2.png" class="coins"></image>
                 <view class="name">+100</view>
@@ -140,7 +140,7 @@
             <view class="buy-price">￥10.0</view>
             <view class="buy"><image src="../../images/ui/buy.png"></image></view>
           </view>
-          <view class="flex flex-column buy-block" data-price="30" data-type="11" bindtap="buyCoins">
+          <view class="flex flex-column buy-block" data-price="30" data-smart="1000" bindtap="buyCoins">
             <view class="seed-con">
                 <image src="../../images/ui/smart-x2.png" class="coins"></image>
                 <view class="name">+1000</view>

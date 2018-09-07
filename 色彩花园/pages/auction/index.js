@@ -10,10 +10,11 @@ Page({
    */
   data: {
     userInfo:{},
-    coins_shops_status: 0,      //金币商店状态
+    coins_shops_status: 0,      //智慧商店状态
     lay_status:0,               //遮罩层状态
     lay_top:0,                  //金币商店top值
-
+    need_smart:0,               //购买物件所需智慧值
+    buy_smart:0,                //准备购进多少智慧值
   },
 
   /**
@@ -84,12 +85,13 @@ Page({
     var price = e.currentTarget.dataset.price
     var ename = e.currentTarget.dataset.ename
     var cname = e.currentTarget.dataset.cname
-    console.log(app.globalData.userInfo.smart)
-    //console.log(price)
+    //console.log(app.globalData.userInfo.smart)
+
+
     if (parseInt(app.globalData.userInfo.smart) < parseInt(price)){
       util.alert('智慧不足')
       this.getScrollOffset()
-      this.openBuyLayer()
+      this.openBuyLayer(price)
     } else {
       //扣款并跳转至新页面
       var timestamp = parseInt(Date.parse(new Date()) / 1000)+'';    //时间戳并转换成字符串类型
@@ -103,7 +105,7 @@ Page({
     }
   },
 
-  //拍卖集市购买回调
+  //拍卖集市虚拟货币购买回调
   buy_market_callback:function(res){
     util.alert(res.data.msg[0])
     this.setData({ 'buy_market_lock': 0})
@@ -125,11 +127,12 @@ Page({
     this.setData({ 'coins_shops_status': 0, 'lay_status': 0 })
   },
   //打开购买浮层
-  openBuyLayer: function () {
+  openBuyLayer: function (price) {
+    this.setData({ 'coins_shops_status': 1, 'lay_status': 1})
     //请求签到和分享数据
     util.request(app.globalData.apiDomain + '/color/openBuyLayer', 'POST', { 'token': wx.getStorageSync('token'), 'app': 3 }, (res) => {
       //console.log(res)
-      this.setData({ 'today_sign': res.data.msg[0], 'today_share_group': res.data.msg[1], 'coins_shops_status': 1, 'lay_status': 1 })
+      this.setData({ 'today_sign': res.data.msg[0], 'today_share_group': res.data.msg[1],'need_smart': price })
     })
   },
 
@@ -155,13 +158,13 @@ Page({
   //购买智慧值
   buyCoins: function (e) {
     var that = this;
-    var title = e.currentTarget.dataset.title;
-    var price = e.currentTarget.dataset.price;
+    var price = e.currentTarget.dataset.price;                  //该物件人民币价格
+    var smart = e.currentTarget.dataset.smart;                  //购买多少智慧值
     var timestamp = parseInt(Date.parse(new Date()) / 1000);    //参数签名
     var random = Math.ceil(Math.random() * 100000) + 1 + '';    //强制转换字符
     var sign = MD5.md5(timestamp + random + price + 'colorgarden')
     if (!this.data.coins_buy_lock) {
-      this.setData({ 'coins_buy_lock': 1 })                        //锁住 购买完成/取消前不能重复点击发请求
+      this.setData({ 'coins_buy_lock': 1,'buy_smart':smart })                        //锁住 购买完成/取消前不能重复点击发请求
       var url = app.globalData.apiDomain + '/pay/color'
       var data = { 'token': wx.getStorageSync('token'), 'app': 3, 'timestamp': timestamp, 'random': random, 'sign': sign, 'price': price }
       util.request(url, 'POST', data, this._buycoins_sure_callback)
@@ -178,18 +181,24 @@ Page({
       'paySign': res.data.paySign,
       'success': (res2) => {
         if (res2.errMsg == 'requestPayment:ok') {
-          /*setTimeout(function () {
-            wx.reLaunch({
-              url: '/pages/index/index',
-            })
-          }, 100);*/
+          if(app.globalData.userInfo.smart + this.data.buy_smart >= this.data.need_smart){
+              wx.redirectTo({
+                url: '/pages/index/webcanvas',
+              })
+          } else {
+            setTimeout(function () {
+              wx.reLaunch({
+                url: '/pages/auction/index',
+              })
+            }, 100);
+          }
           console.log(res)
         }
       },
-      'fail': (res) => {
+      'fail': (res2) => {
         this.setData({ 'coins_buy_lock': 0 })
       },
-      'complete': (res) => {
+      'complete': (res2) => {
         this.setData({ 'coins_buy_lock': 0 })
       }
     })
