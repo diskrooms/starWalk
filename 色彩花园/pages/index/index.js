@@ -89,9 +89,7 @@ Page({
     this.setData({ 'userInfo': app.globalData.userInfo,'bought_sid':app.globalData.userInfo.bought_sid})
     //console.log(typeof this.data.bought_sid.indexOf('2'));
   },
-  indexOf:function(sid){
-    return this.data.bought_sid.indexOf(sid)
-  },
+
   //下载作品
   downloadGift:function(e){
     //console.log(e)
