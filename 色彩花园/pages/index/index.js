@@ -81,17 +81,7 @@ Page({
   },
 
   onShow:function(e){
-    //app.onLaunch(this.render)
-    wx.request({
-      url: 'https://xcx.danciby.cn/gamegushici/verify_answer',
-      data:{
-        'debug':1,
-        'type':2,
-        'q_id':4605,
-        'a_id':123
-      },
-      method:'POST'
-    })
+    app.onLaunch(this.render)
   },
 
   //渲染页面数据
