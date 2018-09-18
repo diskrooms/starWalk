@@ -14,8 +14,8 @@ Page({
   onLoad: function (options) {
       var sid = options.sid
       var token = wx.getStorageSync('token')
-      this.setData({'src':'https://coder.51tui.vip/canvas/index?sid='+sid+'&token='+token})
-      console.log('https://coder.51tui.vip/canvas/index?sid=' + sid + '&token=' + token)
+      this.setData({'src':'https://coder.51tui.vip/canvas/index?app=3&sid='+sid+'&token='+token})
+      console.log('https://coder.51tui.vip/canvas/index?app=3&sid=' + sid + '&token=' + token)
   },
 
   /**
