@@ -15,6 +15,9 @@ Page({
     lay_top:0,                  //金币商店top值
     need_smart:0,               //购买物件所需智慧值
     buy_smart:0,                //准备购进多少智慧值
+    my_bought:[],               //我的购买
+    my_auction:[],              //我的拍卖
+    market_auction:[]           //拍卖集市
   },
 
   /**
@@ -40,6 +43,13 @@ Page({
 
   //渲染页面数据
   render: function () {
+    var url = app.globalData.apiDomain + '/Color/market'
+    var data = { 'token': wx.getStorageSync('token'), 'app': 3}
+    util.request(url, 'POST', data, (res)=>{
+      this.setData({ 'my_bought': res.data.msg.myBought, 'my_auction': res.data.msg.myAuction, 'market_auction': res.data.msg.marketAuction})
+    },(res)=>{
+      console.log(res)
+    })
     this.setData({ 'userInfo': app.globalData.userInfo })
   },
 

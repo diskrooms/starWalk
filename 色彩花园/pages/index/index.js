@@ -37,13 +37,8 @@ Page({
   
   //点击物件动作-跳转至填色页或者弹出智慧购买页
   detail:function(e){
-      var cname = e.currentTarget.dataset.cname
-      var ename = e.currentTarget.dataset.ename
-      var width = e.currentTarget.dataset.width
-      var height = e.currentTarget.dataset.height
-      var price = e.currentTarget.dataset.price
       var sid = e.currentTarget.dataset.sid
-      
+      var price = e.currentTarget.dataset.price
       if(price > 0){  
         //非免费
         if (!this.data.buy_index_lock) {
@@ -55,7 +50,7 @@ Page({
       } else {
         //免费
         wx.navigateTo({
-          url: '/pages/index/webcanvas?cname=' + cname + '&ename=' + ename + '&width=' + width + '&height=' + height,
+          url: '/pages/index/webcanvas?sid=' + sid,
         })
       }
   },

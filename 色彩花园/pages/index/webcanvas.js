@@ -12,14 +12,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      var cname = options.cname
-      var ename = options.ename
-      var nickname = options.nickname
-      var avatar = options.avatar
-
+      var sid = options.sid
       var token = wx.getStorageSync('token')
-      this.setData({'src':'https://coder.51tui.vip/canvas/index?cname='+cname+'&ename='+ename+'&token='+token+'&app=3'+'&nickname='+nickname+'&avatar='+avatar})
-    console.log('https://coder.51tui.vip/canvas/index?cname=' + cname + '&ename=' + ename + '&token=' + token + '&app=3' + '&nickname=' + nickname + '&avatar=' + avatar)
+      this.setData({'src':'https://coder.51tui.vip/canvas/index?sid='+sid+'&token='+token})
+      console.log('https://coder.51tui.vip/canvas/index?sid=' + sid + '&token=' + token)
   },
 
   /**
