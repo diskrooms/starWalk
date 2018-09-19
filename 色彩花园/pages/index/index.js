@@ -62,7 +62,7 @@ Page({
       app.globalData.userInfo.smart = res.data.msg[1]
       //购买成功(或已购买)并跳转至填色页面
       wx.navigateTo({
-        url: '/pages/index/webcanvas?sid=' + res.data.msg[2]
+        url: '/pages/index/webcanvas?sid=' + res.data.msg[2],
       })
     } else if(res.data.status == 0) {
       //智慧不足 需要充值

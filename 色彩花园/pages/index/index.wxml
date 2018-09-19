@@ -130,7 +130,7 @@
           </view>
           <view class='img_con flex flex-row'>
             <view class='img_wrap flex flex-column'>
-                  <image src="../../images/usa.png" mode='widthFix' bindtap='detail' class='img' data-price='0'></image>
+                  <image src="../../images/usa.png" mode='widthFix' bindtap='detail' data-sid='13' class='img' data-price='0'></image>
                   <view class="triangle-bottomright"></view>
                   <div class="free">免费</div>
             </view>
