@@ -32,12 +32,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
 					"name": "拍卖集市",
-					"pathName": "pages/auction/index"
+					"pathName": "pages/auction/index",
+					"query": ""
 				}
 			]
 		}

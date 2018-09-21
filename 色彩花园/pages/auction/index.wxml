@@ -5,15 +5,20 @@
           <view class='title'>
             <view class='left left_title'></view>
             <text class='title_name'>// 我的购买 //</text>
-            <view class="tips px-22">*手指左右滑动查看更多</view>
+            <view class="tips px-22" wx:if="{{my_bought.length > 3}}">*手指左右滑动查看更多</view>
           </view>
           <scroll-view class='img_con flex flex-row' scroll-x>
-            
-            <view class='img_wrap flex flex-column'>
-                  <image class='img' src="../../images/plane.png" mode='aspectFit' bindtap='detail' data-ename='plane' data-cname='小飞机'></image>
-                  <view class="author">waldenpond 作品</view>
-            </view>
-            
+            <block wx:if="{{my_bought.length > 0}}">
+              <view class='img_wrap flex flex-column'  wx:for='{{my_bought}}'>
+                    <image class='img' src="{{item.img}}" mode='aspectFit' bindtap='detail' data-ename='{{item.ename}}' data-cname='{{item.cname}}' data-sid='{{item.sid}}' data-auction='{{item.id}}'></image>
+                    <view class="author">{{item.seller}}</view>
+              </view>
+            </block>
+            <block wx:else>
+              <view class='img_no'>
+               您还没有购入任何作品,快去拍卖集市逛逛吧~
+              </view>
+            </block>
           </scroll-view>
           
       </view>
@@ -26,22 +31,10 @@
           </view>
 
           <scroll-view class='img_con flex flex-row' scroll-x>
-            <view class='img_wrap flex flex-column'>
-                  <image src="../../images/figure1.png" mode='widthFix' bindtap='detail' class='img' data-ename='figure1' data-cname='形状1'></image>
+            <view class='img_wrap flex flex-column' wx:for='{{my_auction}}' wx:key="index">
+                  <image class='img' src="{{item.img}}" mode='aspectFit' bindtap='detail' data-ename='{{item.ename}}' data-cname='{{item.cname}}' data-sid='{{item.sid}}' data-auction='{{item.id}}'></image>
                   <!--<view class="triangle-bottomright"></view>-->
-                  <div class="status">拍卖中</div>
-            </view>
-
-            <view class='img_wrap flex flex-column'>
-                  <image src="../../images/figure2.png" mode='widthFix' bindtap='detail' class='img' data-ename='figure2' data-cname='形状2'></image>
-                  <!--<view class="triangle-bottomright"></view>-->
-                  <div class="status sold">已售出</div>
-            </view>
-
-            <view class='img_wrap flex flex-column'>
-                  <image src="../../images/figure2.png" mode='widthFix' bindtap='detail' class='img' data-ename='figure2' data-cname='形状2'></image>
-                  <!--<view class="triangle-bottomright"></view>-->
-                  <div class="status sold">已售出</div>
+                  <view class="status {{item.status == 0 ? '' : (item.status == 1 ? 'sold' : 'expired')}}">{{item.status == 0 ? '拍卖中' : (item.status == 1 ? '已售出' : '已过期')}}</view>
             </view>
           </scroll-view>
           
@@ -53,29 +46,16 @@
             <view class='right right_title'></view>
           </view>
           <view class="text-align-left">
-            <view class="item-market" bindtap="buy" data-price='120' data-ename='owl' data-cname='猫头鹰'>
+
+            <view class="item-market" wx:for='{{market_auction}}'  wx:key="index" bindtap="buy" data-price='{{item.price}}' data-ename='{{item.ename}}' data-cname='{{item.cname}}'>
               <view class='img_wrap flex flex-column'>
-                    <image src="../../images/owl.png" mode='widthFix' class='img'></image>
+                    <image src="{{item.img}}" mode='widthFix' class='img'></image>
               </view>
-              <view class="auction-info"> waldenpond / 120智慧</view>
-              <view class="auction-buy text-align-center">点击购买</view>
+              <view class="auction-info"> 卖家id : {{item.seller}} / {{item.price}}智慧</view>
+              <view class="auction-buy text-align-center" wx:if="{{item.self == 0}}">点击购买</view>
             </view>
 
-            <view class="item-market" bindtap="buy" data-price='120' data-ename='owl' data-cname='猫头鹰'>
-              <view class='img_wrap flex flex-column'>
-                    <image src="../../images/owl.png" mode='widthFix' class='img'></image>
-              </view>
-              <view class="auction-info"> waldenpond / 120智慧</view>
-              <view class="auction-buy text-align-center">点击购买</view>
-            </view>
-
-            <view class="item-market" bindtap="buy" data-price='120' data-ename='owl' data-cname='猫头鹰'>
-              <view class='img_wrap flex flex-column'>
-                    <image src="../../images/owl.png" mode='widthFix' class='img'></image>
-              </view>
-              <view class="auction-info"> waldenpond / 120智慧</view>
-              <view class="auction-buy text-align-center">点击购买</view>
-            </view>
+            
 
           </view>
           
