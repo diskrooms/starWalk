@@ -15,7 +15,7 @@
               </view>
             </block>
             <block wx:else>
-              <view class='img_no'>
+              <view class='img_no px-26'>
                您还没有购入任何作品,快去拍卖集市逛逛吧~
               </view>
             </block>
@@ -45,7 +45,7 @@
             <text class='title_name'>// 拍卖集市 //</text>
             <view class='right right_title'></view>
           </view>
-          <view class="text-align-left">
+          <view class="text-align-center">
 
             <view class="item-market" wx:for='{{market_auction}}'  wx:key="index" bindtap="buy" data-price='{{item.price}}' data-ename='{{item.ename}}' data-cname='{{item.cname}}'>
               <view class='img_wrap flex flex-column'>

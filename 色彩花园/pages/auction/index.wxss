@@ -14,6 +14,7 @@
 }
 .img_con{
   white-space: nowrap; /* 这一句很关键 */
+  height: 320rpx; /* scroll-view 必须手动给一个高度,内部的view给了高度也无法撑起来scroll-view,不知道为何*/
 }
 /* 图片块 */
 .img_wrap{
@@ -59,6 +60,11 @@
 }
 .img_wrap .status.sold{
   color:coral;
+}
+/*没有图片的容器*/
+.img_no{
+  height: 300rpx;
+  line-height: 300rpx;
 }
 
 /* 拍卖集市价格 */
